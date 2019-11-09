@@ -1,0 +1,11 @@
+scipy
+scikit-learn 
+scikit-image 
+opencv-python 
+pillow 
+tqdm 
+gpustat 
+psutil 
+pandas 
+GPUtil 
+pylg
