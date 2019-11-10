@@ -4,6 +4,18 @@
 [![Build_Status](https://img.shields.io/badge/build-passing-green)](https://github.com/Tessellate-Imaging/monk_v1)
 
 
+## Documentation
+- [Docs](https://clever-noyce-f9d43f.netlify.com/#/)
+- [Introduction](https://clever-noyce-f9d43f.netlify.com/#/introduction)
+- [Setup](https://clever-noyce-f9d43f.netlify.com/#/setup/setup)
+- [Quick Mode](https://clever-noyce-f9d43f.netlify.com/#/quick_mode/quickmode_pytorch)
+- [Update Mode](https://clever-noyce-f9d43f.netlify.com/#/update_mode/update_dataset)
+- [Expert Mode](https://clever-noyce-f9d43f.netlify.com/#/expert_mode)
+- [Compare Experiments](https://clever-noyce-f9d43f.netlify.com/#/compare_experiment)
+- [Resume Training](https://clever-noyce-f9d43f.netlify.com/#/resume_training)
+
+
+
 ## Create an image classification experiment.
 - Load foldered dataset
 - Set number of epochs
@@ -39,6 +51,7 @@ ctf.Add_Experiment("sample-project-1", "sample-experiment-2");
     .
     . 
     .
+ctf.Generate_Statistics();
 ```
 
 ## RoadMap
