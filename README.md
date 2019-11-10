@@ -5,7 +5,6 @@
 
 
 ## Documentation
-- [Docs](https://clever-noyce-f9d43f.netlify.com/#/)
 - [Introduction](https://clever-noyce-f9d43f.netlify.com/#/introduction)
 - [Setup](https://clever-noyce-f9d43f.netlify.com/#/setup/setup)
 - [Quick Mode](https://clever-noyce-f9d43f.netlify.com/#/quick_mode/quickmode_pytorch)
