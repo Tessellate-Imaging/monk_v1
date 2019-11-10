@@ -1,4 +1,4 @@
-# monk_v1 [Tweet](http://twitter.com/share?text=Check out Monk Tool for Computer Vision&url=https://github.com/Tessellate-Imaging/monk_v1&hashtags=MonkAI, OpenSource, UnifiedWrapper, DeepLEarning, ComputerVision, TessellateImaging)
+# monk_v1 
 #### Monk is a low code Deep Learning tool and a unified wrapper for Computer Vision.
 [![Version](https://img.shields.io/badge/version-v1.0-lightgrey)](https://github.com/Tessellate-Imaging/monk_v1) &nbsp; &nbsp;
 [![Build_Status](https://img.shields.io/badge/build-passing-green)](https://github.com/Tessellate-Imaging/monk_v1)
