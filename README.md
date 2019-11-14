@@ -57,6 +57,7 @@ ctf.Generate_Statistics();
 
 ## RoadMap
 - [] Incorporate pep coding standards
+- [] Functional Documentation
 - [] Tackle Multiple versions of pytorch, keras, gluon
 - [] Standardize folder structure for next feature additions - object detection, image segmentation
 - [] Add support for tensorflow-2.0
