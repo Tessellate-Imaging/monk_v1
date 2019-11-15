@@ -90,9 +90,9 @@ def load_optimizer(system_dict):
     elif(optimizer == "signum"):
         system_dict["local"]["optimizer"] = mx.optimizer.Signum(
             learning_rate=learning_rate, 
-            wd_lh=weight_decay, 
+            wd_lh=system_dict["hyper-parameters"]["optimizer"]["params"]["weight_decay"], 
             lr_scheduler=learning_rate_scheduler, 
-            momentum=momentum);
+            momentum=system_dict["hyper-parameters"]["optimizer"]["params"]["momentum"]);
 
     elif(optimizer == "ftml"):
         system_dict["local"]["optimizer"] = mx.optimizer.FTML(
