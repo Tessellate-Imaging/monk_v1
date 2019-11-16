@@ -107,7 +107,7 @@ def print_summary(fname):
     print("Training");
     print("    Status: {}".format(system_dict["training"]["status"]));
     if(system_dict["training"]["status"]):
-        print("    Model dir:                      {}".format(system_dict["training"]["outputs"]["model_dir"]));
+        print("    Model dir:                      {}".format(system_dict["model_dir_relative"]));
         print("    Best validation accuracy:       {}".format(system_dict["training"]["outputs"]["best_val_acc"]));
         print("    Best validation accuracy epoch: {}".format(system_dict["training"]["outputs"]["best_val_acc_epoch_num"]));
         print("    Training time:                  {}".format(system_dict["training"]["outputs"]["training_time"]));
@@ -116,10 +116,10 @@ def print_summary(fname):
         print("");
 
         print("Training Log Files");
-        print("    Train accuracy: {}".format(system_dict["training"]["outputs"]["log_train_acc_history"]));
-        print("    Train loss:     {}".format(system_dict["training"]["outputs"]["log_train_loss_history"]));
-        print("    Val accuracy:   {}".format(system_dict["training"]["outputs"]["log_val_acc_history"]));
-        print("    Val loss:       {}".format(system_dict["training"]["outputs"]["log_val_loss_history"]));
+        print("    Train accuracy: {}".format(system_dict["training"]["outputs"]["log_train_acc_history_relative"]));
+        print("    Train loss:     {}".format(system_dict["training"]["outputs"]["log_train_loss_history_relative"]));
+        print("    Val accuracy:   {}".format(system_dict["training"]["outputs"]["log_val_acc_history_relative"]));
+        print("    Val loss:       {}".format(system_dict["training"]["outputs"]["log_val_loss_history_relative"]));
     print("");
     #############################################################################################################################
 

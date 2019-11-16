@@ -16,7 +16,7 @@ def read_json(fname, verbose=0):
 @accepts(dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def write_json(system_dict):    
-    fname = system_dict["fname"];
+    fname = system_dict["fname_relative"];
     f = open(fname, 'w');
     wr = json.dumps(system_dict, indent=4)
     f.write(wr);
@@ -62,7 +62,7 @@ def parse_csv2(fname, delimiter):
 def save(system_dict):
     system_dict_copy = system_dict.copy();
     if(system_dict_copy["states"]["eval_infer"]):
-        system_dict_tmp = read_json(system_dict_copy["fname"]);
+        system_dict_tmp = read_json(system_dict_copy["fname_relative"]);
         system_dict_tmp["testing"] = system_dict_copy["testing"];
         system_dict_tmp["dataset"]["test_path"] = system_dict_copy["dataset"]["test_path"];
         system_dict_tmp["dataset"]["transforms"]["test"] = system_dict_copy["dataset"]["transforms"]["test"];

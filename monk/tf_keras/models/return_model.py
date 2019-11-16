@@ -14,9 +14,9 @@ def load_model(system_dict, path=False, final=False, resume=False, external_path
         if(path):
             finetune_net = keras.models.load_model(path + "final.h5");
         else:
-            finetune_net = keras.models.load_model(system_dict["model_dir"] + "final.h5");
+            finetune_net = keras.models.load_model(system_dict["model_dir_relative"] + "final.h5");
     if(resume):
-        finetune_net = keras.models.load_model(system_dict["model_dir"] + "resume_state.h5");
+        finetune_net = keras.models.load_model(system_dict["model_dir_relative"] + "resume_state.h5");
  
     if(external_path):
         finetune_net = keras.models.load_model(external_path);

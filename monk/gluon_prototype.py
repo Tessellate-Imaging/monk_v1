@@ -107,7 +107,7 @@ class prototype(prototype_master):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def Summary(self):
-        print_summary(self.system_dict["fname"]);
+        print_summary(self.system_dict["fname_relative"]);
     ###############################################################################################################################################
 
 

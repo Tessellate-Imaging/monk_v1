@@ -15,11 +15,11 @@ def load_model(system_dict, path=False, final=False, resume=False, external_path
         else:
             with warnings.catch_warnings():
                 warnings.simplefilter("ignore")
-                finetune_net = mx.gluon.SymbolBlock.imports(system_dict["model_dir"] + 'final-symbol.json', ['data'], system_dict["model_dir"] + 'final-0000.params');
+                finetune_net = mx.gluon.SymbolBlock.imports(system_dict["model_dir_relative"] + 'final-symbol.json', ['data'], system_dict["model_dir_relative"] + 'final-0000.params');
     if(resume):
         with warnings.catch_warnings():
             warnings.simplefilter("ignore");
-            finetune_net = mx.gluon.SymbolBlock.imports(system_dict["model_dir"] + 'resume_state-symbol.json', ['data'], system_dict["model_dir"] + 'resume_state-0000.params');
+            finetune_net = mx.gluon.SymbolBlock.imports(system_dict["model_dir_relative"] + 'resume_state-symbol.json', ['data'], system_dict["model_dir_relative"] + 'resume_state-0000.params');
  
     if(external_path):
         with warnings.catch_warnings():

@@ -67,7 +67,7 @@ class system():
     def set_system_experiment(self, experiment_name, eval_infer=False, copy_from=False, resume_train=False, summary=False):
         if(summary):
             self.set_system_select_experiment(experiment_name);
-            print_summary(self.system_dict["fname"]);
+            print_summary(self.system_dict["fname_relative"]);
 
         else:
             self.system_dict["experiment_dir"] = self.system_dict["project_dir"] + experiment_name + "/";
@@ -101,6 +101,7 @@ class system():
         self.system_dict["log_dir"] = self.system_dict["output_dir"] + "logs/";
         self.system_dict["log_dir_relative"] = self.system_dict["output_dir_relative"] + "logs/";
         self.system_dict["fname"] = self.system_dict["experiment_dir"] + "/experiment_state.json";
+        self.system_dict["fname_relative"] = self.system_dict["experiment_dir_relative"] + "/experiment_state.json";
     #############################################################################################################################
 
 

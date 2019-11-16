@@ -31,7 +31,7 @@ class finetune_model(finetune_dataset):
 
 
         elif(self.system_dict["states"]["copy_from"]):
-            model_path = self.system_dict["master_systems_dir"] + self.system_dict["origin"][0] + "/" + self.system_dict["origin"][1] + "/output/models/";
+            model_path = self.system_dict["master_systems_dir_relative"] + self.system_dict["origin"][0] + "/" + self.system_dict["origin"][1] + "/output/models/";
             if(os.path.isfile(model_path + 'final-symbol.json')):
                 self.custom_print("    Loading model - {}".format(model_path + 'final-symbol.json'));
                 self.system_dict["local"]["model"] = load_model(self.system_dict, path=model_path, final=True);
@@ -44,23 +44,23 @@ class finetune_model(finetune_dataset):
                 raise ConstraintError(msg);
 
         elif(self.system_dict["states"]["eval_infer"]):
-            if(os.path.isfile(self.system_dict["model_dir"] + 'final-symbol.json')):
-                self.custom_print("    Loading model - {}".format(self.system_dict["model_dir"] + 'final-symbol.json'));
+            if(os.path.isfile(self.system_dict["model_dir_relative"] + 'final-symbol.json')):
+                self.custom_print("    Loading model - {}".format(self.system_dict["model_dir_relative"] + 'final-symbol.json'));
                 self.system_dict["local"]["model"] = load_model(self.system_dict, final=True);
                 self.system_dict = model_to_device(self.system_dict);
                 self.custom_print("    Model loaded!");
                 self.custom_print("");
             else:
-                msg = "Model not found - {}\n".format(self.system_dict["model_dir"] + 'final-symbol.json');
+                msg = "Model not found - {}\n".format(self.system_dict["model_dir_relative"] + 'final-symbol.json');
                 msg += "Previous Training Incomplete.";
                 raise ConstraintError(msg);
         else:
             if(self.system_dict["states"]["resume_train"]):
-                if(os.path.isfile(self.system_dict["model_dir"] + 'resume_state-symbol.json')):
-                    self.custom_print("    Loading model - {}".format(self.system_dict["model_dir"] + 'resume_state-symbol.json'));
+                if(os.path.isfile(self.system_dict["model_dir_relative"] + 'resume_state-symbol.json')):
+                    self.custom_print("    Loading model - {}".format(self.system_dict["model_dir_relative"] + 'resume_state-symbol.json'));
                     self.system_dict["local"]["model"] = load_model(self.system_dict, resume=True);
                 else:
-                    msg = "Model not found - \"{}\"\n".format(self.system_dict["model_dir"] + 'resume_state-symbol.json');
+                    msg = "Model not found - \"{}\"\n".format(self.system_dict["model_dir_relative"] + 'resume_state-symbol.json');
                     msg += "Training not started. Cannot Run resume Mode";
                     raise ConstraintError(msg);
             else:

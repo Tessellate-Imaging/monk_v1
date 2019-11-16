@@ -30,6 +30,7 @@ def get_base_system_dict():
     system_dict["log_dir"] = False;
     system_dict["log_dir_relative"] = False;
     system_dict["fname"] = False;
+    system_dict["fname_relative"] = False;
 
 
     #Dataset details

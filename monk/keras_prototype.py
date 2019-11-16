@@ -63,8 +63,7 @@ class prototype(prototype_master):
 
             if("resnet" in model_name or "vgg" in model_name or "dense" in model_name or "xception" in model_name):
                 self.optimizer_sgd(0.0001, momentum=0.9);
-                #self.lr_plateau_decrease(factor=0.1, patience=max(min(10, num_epochs//3), 1), verbose=True);
-                self.lr_step_decrease(1, gamma=0.97); #Testing for Issue - Issue with Keras training #5
+                self.lr_plateau_decrease(factor=0.1, patience=max(min(10, num_epochs//3), 1), verbose=True);
                 self.loss_crossentropy();
             elif("nas" in model_name):
                 self.optimizer_rmsprop(0.0001, weight_decay=0.00004, momentum=0.9);
@@ -94,7 +93,7 @@ class prototype(prototype_master):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def Summary(self):
-        print_summary(self.system_dict["fname"]);
+        print_summary(self.system_dict["fname_relative"]);
     ###############################################################################################################################################
 
 

@@ -38,7 +38,7 @@ class prototype_aux(prototype_params):
                         self.custom_print("        {}. {}".format(i+1, missing_images_train[i]));
                     self.custom_print("");
                 else:
-                    self.custom_print("    All images present.");
+                    self.custom_print("    All images present in train dir.");
                     self.custom_print("");
 
                 if(missing_images_val):
@@ -47,7 +47,7 @@ class prototype_aux(prototype_params):
                         self.custom_print("        {}. {}".format(i+1, missing_images_val[i]));
                     self.custom_print("");
                 else:
-                    self.custom_print("    All images present.");
+                    self.custom_print("    All images present in val dir.");
                     self.custom_print("");
             else:
                 self.custom_print("    Missing check not required for foldered dataset");
@@ -62,7 +62,7 @@ class prototype_aux(prototype_params):
                     self.custom_print("        {}. {}".format(i+1, corrupt_images_train[i]));
                 self.custom_print("");
             else:
-                self.custom_print("    No corrupt image found.");
+                self.custom_print("    No corrupt image found in train dir.");
                 self.custom_print("");
 
             if(corrupt_images_val):
@@ -71,7 +71,7 @@ class prototype_aux(prototype_params):
                     self.custom_print("        {}. {}".format(i+1, corrupt_images_val[i]));
                 self.custom_print("");
             else:
-                self.custom_print("    No corrupt image found.");
+                self.custom_print("    No corrupt image found in val dir.");
                 self.custom_print("");
     ###############################################################################################################################################
 

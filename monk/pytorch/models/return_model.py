@@ -12,9 +12,9 @@ def load_model(system_dict, path=False, final=False, resume=False, external_path
         if(path):
             finetune_net = torch.load(path + "final");
         else:
-            finetune_net = torch.load(system_dict["model_dir"] + "final");
+            finetune_net = torch.load(system_dict["model_dir_relative"] + "final");
     if(resume):
-        finetune_net = torch.load(system_dict["model_dir"] + "resume_state");
+        finetune_net = torch.load(system_dict["model_dir_relative"] + "resume_state");
  
     if(external_path):
         finetune_net = torch.load(external_path);
