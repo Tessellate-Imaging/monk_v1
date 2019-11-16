@@ -73,11 +73,14 @@ def create_final_layer(finetune_net, custom_network, num_classes, set=1):
 @accepts(dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def model_to_device(system_dict):
-
-    if(system_dict["model"]["params"]["use_gpu"]):
-        system_dict["local"]["ctx"] = [mx.gpu(0)];
-    else:
+    GPUs = GPUtil.getGPUs()
+    if(len(GPUs)==0):
         system_dict["local"]["ctx"] = [mx.cpu()];
+    else:
+        if(system_dict["model"]["params"]["use_gpu"]):
+            system_dict["local"]["ctx"] = [mx.gpu(0)];
+        else:
+            system_dict["local"]["ctx"] = [mx.cpu()];
 
     system_dict["local"]["model"].collect_params().reset_ctx(system_dict["local"]["ctx"])
     system_dict["local"]["model"].hybridize()

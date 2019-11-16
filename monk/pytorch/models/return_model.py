@@ -8,16 +8,29 @@ from pytorch.models.common import create_final_layer
 @accepts(dict, path=[str, bool], final=bool, resume=bool, external_path=[bool, str, list], post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def load_model(system_dict, path=False, final=False, resume=False, external_path=False):
-    if(final):
-        if(path):
-            finetune_net = torch.load(path + "final");
-        else:
-            finetune_net = torch.load(system_dict["model_dir_relative"] + "final");
-    if(resume):
-        finetune_net = torch.load(system_dict["model_dir_relative"] + "resume_state");
- 
-    if(external_path):
-        finetune_net = torch.load(external_path);
+    GPUs = GPUtil.getGPUs()
+    if(len(GPUs)==0):
+        if(final):
+            if(path):
+                finetune_net = torch.load(path + "final", map_location=torch.device('cpu'));
+            else:
+                finetune_net = torch.load(system_dict["model_dir_relative"] + "final", map_location=torch.device('cpu'));
+        if(resume):
+            finetune_net = torch.load(system_dict["model_dir_relative"] + "resume_state", map_location=torch.device('cpu'));
+     
+        if(external_path):
+            finetune_net = torch.load(external_path, map_location=torch.device('cpu'));
+    else:
+        if(final):
+            if(path):
+                finetune_net = torch.load(path + "final");
+            else:
+                finetune_net = torch.load(system_dict["model_dir_relative"] + "final");
+        if(resume):
+            finetune_net = torch.load(system_dict["model_dir_relative"] + "resume_state");
+     
+        if(external_path):
+            finetune_net = torch.load(external_path);
 
     return finetune_net;
 
