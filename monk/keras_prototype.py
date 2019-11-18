@@ -238,7 +238,7 @@ class prototype(prototype_master):
             if(int(total_time//60) == 0):
                 self.custom_print("Estimated time     : {} sec".format(total_time));
             else:
-                self.custom_print("Estimated time     : {} sec".format(int(total_time//60)+1));
+                self.custom_print("Estimated time     : {} min".format(int(total_time//60)+1));
 
             ktf_.Train();
             self.custom_print("Experiment Complete");
@@ -351,7 +351,7 @@ class prototype(prototype_master):
             if(int(total_time//60) == 0):
                 self.custom_print("Estimated time     : {} sec".format(total_time));
             else:
-                self.custom_print("Estimated time     : {} sec".format(int(total_time//60)+1));
+                self.custom_print("Estimated time     : {} min".format(int(total_time//60)+1));
 
             ktf_.Train();
             self.custom_print("Experiment Complete");
@@ -470,7 +470,7 @@ class prototype(prototype_master):
             if(int(total_time//60) == 0):
                 self.custom_print("Estimated time     : {} sec".format(total_time));
             else:
-                self.custom_print("Estimated time     : {} sec".format(int(total_time//60)+1));
+                self.custom_print("Estimated time     : {} min".format(int(total_time//60)+1));
 
             ktf_.Train();
             self.custom_print("Experiment Complete");
@@ -595,7 +595,7 @@ class prototype(prototype_master):
             if(int(total_time//60) == 0):
                 self.custom_print("Estimated time     : {} sec".format(total_time));
             else:
-                self.custom_print("Estimated time     : {} sec".format(int(total_time//60)+1));
+                self.custom_print("Estimated time     : {} min".format(int(total_time//60)+1));
 
             ktf_.Train();
             self.custom_print("Experiment Complete");
@@ -733,7 +733,7 @@ class prototype(prototype_master):
             if(int(total_time//60) == 0):
                 self.custom_print("Estimated time     : {} sec".format(total_time));
             else:
-                self.custom_print("Estimated time     : {} sec".format(int(total_time//60)+1));
+                self.custom_print("Estimated time     : {} min".format(int(total_time//60)+1));
 
             ktf_.Train();
             self.custom_print("Experiment Complete");

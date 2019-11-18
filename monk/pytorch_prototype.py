@@ -274,7 +274,7 @@ class prototype(prototype_master):
             if(int(total_time//60) == 0):
                 self.custom_print("Estimated time     : {} sec".format(total_time));
             else:
-                self.custom_print("Estimated time     : {} sec".format(int(total_time//60)+1));
+                self.custom_print("Estimated time     : {} min".format(int(total_time//60)+1));
 
             ptf_.Train();
             self.custom_print("Experiment Complete");
@@ -387,7 +387,7 @@ class prototype(prototype_master):
             if(int(total_time//60) == 0):
                 self.custom_print("Estimated time     : {} sec".format(total_time));
             else:
-                self.custom_print("Estimated time     : {} sec".format(int(total_time//60)+1));
+                self.custom_print("Estimated time     : {} min".format(int(total_time//60)+1));
 
             ptf_.Train();
             self.custom_print("Experiment Complete");
@@ -500,7 +500,7 @@ class prototype(prototype_master):
             if(int(total_time//60) == 0):
                 self.custom_print("Estimated time     : {} sec".format(total_time));
             else:
-                self.custom_print("Estimated time     : {} sec".format(int(total_time//60)+1));
+                self.custom_print("Estimated time     : {} min".format(int(total_time//60)+1));
 
             ptf_.Train();
             self.custom_print("Experiment Complete");
@@ -614,6 +614,7 @@ class prototype(prototype_master):
             ptf_.update_use_pretrained(model_list[i][2])
             ptf_.Reload();                                                                                  #Change 7
 
+
             ptf_.update_num_epochs(num_epochs);
             ptf_.update_display_progress_realtime(False)
             ptf_.update_save_intermediate_models(False); 
@@ -623,7 +624,7 @@ class prototype(prototype_master):
             if(int(total_time//60) == 0):
                 self.custom_print("Estimated time     : {} sec".format(total_time));
             else:
-                self.custom_print("Estimated time     : {} sec".format(int(total_time//60)+1));
+                self.custom_print("Estimated time     : {} min".format(int(total_time//60)+1));
 
             ptf_.Train();
             self.custom_print("Experiment Complete");
@@ -766,7 +767,7 @@ class prototype(prototype_master):
             if(int(total_time//60) == 0):
                 self.custom_print("Estimated time     : {} sec".format(total_time));
             else:
-                self.custom_print("Estimated time     : {} sec".format(int(total_time//60)+1));
+                self.custom_print("Estimated time     : {} min".format(int(total_time//60)+1));
 
             ptf_.Train();
             self.custom_print("Experiment Complete");

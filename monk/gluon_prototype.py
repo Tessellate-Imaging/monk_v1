@@ -225,7 +225,7 @@ class prototype(prototype_master):
         self.custom_print("");
 
         for i in range(len(lr_list)):                                                               #Change 2
-            gtf_ = prototype(verbose=1);
+            gtf_ = prototype(verbose=0);
             self.custom_print("Running experiment : {}/{}".format(i+1, len(lr_list)));              #Change 3
 
             experiment = "Learning_Rate_" + str(lr_list[i]);                                        #Change 4
@@ -265,7 +265,7 @@ class prototype(prototype_master):
             if(int(total_time//60) == 0):
                 self.custom_print("Estimated time     : {} sec".format(total_time));
             else:
-                self.custom_print("Estimated time     : {} sec".format(int(total_time//60)+1));
+                self.custom_print("Estimated time     : {} min".format(int(total_time//60)+1));
 
             gtf_.Train();
             self.custom_print("Experiment Complete");
@@ -340,7 +340,7 @@ class prototype(prototype_master):
         self.custom_print("");
 
         for i in range(len(inp_size_list)):                                                              #Change 2
-            gtf_ = prototype(verbose=1);    
+            gtf_ = prototype(verbose=0);    
             self.custom_print("Running experiment : {}/{}".format(i+1, len(inp_size_list)));             #Change 3        
 
             experiment = "Input_Size_" + str(inp_size_list[i]);                                          #Change 4
@@ -378,7 +378,7 @@ class prototype(prototype_master):
             if(int(total_time//60) == 0):
                 self.custom_print("Estimated time     : {} sec".format(total_time));
             else:
-                self.custom_print("Estimated time     : {} sec".format(int(total_time//60)+1));
+                self.custom_print("Estimated time     : {} min".format(int(total_time//60)+1));
 
             gtf_.Train();
             self.custom_print("Experiment Complete");
@@ -451,7 +451,7 @@ class prototype(prototype_master):
         self.custom_print("");
 
         for i in range(len(batch_size_list)):                                                            #Change 2
-            gtf_ = prototype(verbose=1);    
+            gtf_ = prototype(verbose=0);    
             self.custom_print("Running experiment : {}/{}".format(i+1, len(batch_size_list)));             #Change 3        
 
             experiment = "Batch_Size_" + str(batch_size_list[i]);                                          #Change 4, 5
@@ -489,7 +489,7 @@ class prototype(prototype_master):
             if(int(total_time//60) == 0):
                 self.custom_print("Estimated time     : {} sec".format(total_time));
             else:
-                self.custom_print("Estimated time     : {} sec".format(int(total_time//60)+1));
+                self.custom_print("Estimated time     : {} min".format(int(total_time//60)+1));
 
             gtf_.Train();
             self.custom_print("Experiment Complete");
@@ -563,7 +563,7 @@ class prototype(prototype_master):
         self.custom_print("");
 
         for i in range(len(model_list)):                                                            #Change 2
-            gtf_ = prototype(verbose=1);    
+            gtf_ = prototype(verbose=0);    
             self.custom_print("Running experiment : {}/{}".format(i+1, len(model_list)));             #Change 3        
 
             if(model_list[i][1]):
@@ -612,7 +612,7 @@ class prototype(prototype_master):
             if(int(total_time//60) == 0):
                 self.custom_print("Estimated time     : {} sec".format(total_time));
             else:
-                self.custom_print("Estimated time     : {} sec".format(int(total_time//60)+1));
+                self.custom_print("Estimated time     : {} min".format(int(total_time//60)+1));
 
             gtf_.Train();
             self.custom_print("Experiment Complete");
@@ -696,7 +696,7 @@ class prototype(prototype_master):
         self.custom_print("");
 
         for i in range(len(optimizer_list)):                                                            #Change 2
-            gtf_ = prototype(verbose=1);    
+            gtf_ = prototype(verbose=0);    
             self.custom_print("Running experiment : {}/{}".format(i+1, len(optimizer_list)));             #Change 3        
 
             experiment = "Optimizer_" + str(optimizer_list[i]);                                          #Change 4, 5
@@ -755,7 +755,7 @@ class prototype(prototype_master):
             if(int(total_time//60) == 0):
                 self.custom_print("Estimated time     : {} sec".format(total_time));
             else:
-                self.custom_print("Estimated time     : {} sec".format(int(total_time//60)+1));
+                self.custom_print("Estimated time     : {} min".format(int(total_time//60)+1));
 
             gtf_.Train();
             self.custom_print("Experiment Complete");
