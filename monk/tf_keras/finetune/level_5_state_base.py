@@ -109,7 +109,7 @@ class finetune_state(finetune_evaluation):
     @accepts("self", list, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def set_system_state_copy_from(self, copy_from):
-        fname = self.system_dict["master_systems_dir"] + copy_from[0] + "/" + copy_from[1] + "/experiment_state.json";
+        fname = self.system_dict["master_systems_dir_relative"] + copy_from[0] + "/" + copy_from[1] + "/experiment_state.json";
         system_dict_tmp = read_json(fname, verbose=self.system_dict["verbose"]);
 
 
@@ -137,7 +137,7 @@ class finetune_state(finetune_evaluation):
             self.system_dict["testing"]["status"] = False;
             save(self.system_dict);
 
-            self.system_dict = read_json(self.system_dict["fname"], verbose=self.system_dict["verbose"]);
+            self.system_dict = read_json(self.system_dict["fname_relative"], verbose=self.system_dict["verbose"]);
             self.system_dict["states"]["copy_from"] = True;
 
             tmp = {};
@@ -164,4 +164,59 @@ class finetune_state(finetune_evaluation):
             self.system_dict = retrieve_optimizer(self.system_dict);
             self.system_dict = retrieve_scheduler(self.system_dict);
             self.system_dict = retrieve_loss(self.system_dict);
+    ###############################################################################################################################################
+
+
+
+    ###############################################################################################################################################
+    @accepts("self", list, post_trace=True)
+    @TraceFunction(trace_args=True, trace_rv=True)
+    def set_system_state_pseudo_copy_from(self, pseudo_copy_from):
+        fname = self.system_dict["master_systems_dir_relative"] + pseudo_copy_from[0] + "/" + pseudo_copy_from[1] + "/experiment_state.json";
+        system_dict_tmp = read_json(fname, verbose=self.system_dict["verbose"]);
+
+        self.system_dict["dataset"] = system_dict_tmp["dataset"];
+        self.system_dict["model"] = system_dict_tmp["model"];
+        self.system_dict["hyper-parameters"] = system_dict_tmp["hyper-parameters"];
+        self.system_dict["training"] = system_dict_tmp["training"];
+        self.system_dict["origin"] = [pseudo_copy_from[0], pseudo_copy_from[1]];
+        self.system_dict["training"]["outputs"] = {};
+        self.system_dict["training"]["outputs"]["max_gpu_memory_usage"] = 0;
+        self.system_dict["training"]["outputs"]["best_val_acc"] = 0;
+        self.system_dict["training"]["outputs"]["best_val_acc_epoch_num"] = 0;
+        self.system_dict["training"]["outputs"]["epochs_completed"] = 0;
+        self.system_dict["training"]["status"] = False;
+        self.system_dict["training"]["enabled"] = True;
+        self.system_dict["testing"] = {};
+        self.system_dict["testing"]["status"] = False;
+        save(self.system_dict);
+
+        self.system_dict = read_json(self.system_dict["fname_relative"], verbose=self.system_dict["verbose"]);
+        self.system_dict["states"]["pseudo_copy_from"] = True;
+
+        tmp = {};
+        tmp["featurewise_center"] = False;
+        tmp["featurewise_std_normalization"] = False;
+        tmp["rotation_range"] = 0;
+        tmp["width_shift_range"] = 0;
+        tmp["height_shift_range"] = 0;
+        tmp["shear_range"] = 0;
+        tmp["zoom_range"] = 0;
+        tmp["brightness_range"] = None;
+        tmp["horizontal_flip"] = False;
+        tmp["vertical_flip"] = False;
+        tmp["mean"] = False;
+        tmp["std"] = False;
+
+        self.system_dict["local"]["transforms_train"] = tmp;
+        self.system_dict["local"]["transforms_val"] = tmp;
+        self.system_dict["local"]["transforms_test"] = tmp;
+
+        self.system_dict = retrieve_trainval_transforms(self.system_dict);
+        self.Dataset();
+        self.set_model_final();
+        self.system_dict = retrieve_optimizer(self.system_dict);
+        self.system_dict = retrieve_scheduler(self.system_dict);
+        self.system_dict = retrieve_loss(self.system_dict);
+
     ###############################################################################################################################################
