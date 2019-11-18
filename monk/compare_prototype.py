@@ -112,7 +112,7 @@ class compare(system):
             table.append(tmp);
 
         my_df = pd.DataFrame(table);
-        fname =  self.system_dict["comparison_dir_relative"] + "comparison.csv";
+        fname =  self.system_dict["master_comparison_dir_relative"] + "comparison.csv";
         my_df.to_csv(fname, index=False, header=headers);
 
         self.custom_print("Generated");
