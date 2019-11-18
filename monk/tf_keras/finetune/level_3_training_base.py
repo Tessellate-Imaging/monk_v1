@@ -163,10 +163,16 @@ class finetune_training(finetune_model):
 
             self.system_dict["training"]["outputs"]["training_time"] = "{:.0f}m {:.0f}s".format(time_elapsed_since // 60, time_elapsed_since % 60);
 
-            val_acc_history += history.history['val_acc'];
-            val_loss_history += history.history['val_loss'];
-            train_acc_history += history.history['acc'];
-            train_loss_history += history.history['loss'];
+            if(keras.__version__.split(".")[1] == "3"):
+                val_acc_history = history.history['val_accuracy'];
+                val_loss_history = history.history['val_loss'];
+                train_acc_history = history.history['accuracy'];
+                train_loss_history = history.history['loss'];
+            else:
+                val_acc_history = history.history['val_acc'];
+                val_loss_history = history.history['val_loss'];
+                train_acc_history = history.history['acc'];
+                train_loss_history = history.history['loss'];
 
 
             self.system_dict["training"]["outputs"]["best_val_acc"] = max(val_acc_history);
@@ -216,14 +222,24 @@ class finetune_training(finetune_model):
             num_epochs = self.system_dict["hyper-parameters"]["num_epochs"];
 
 
+            if(not self.system_dict["verbose"]):
+                verbose=0;
+            elif(display_progress_realtime):
+                verbose=1;
+            elif(display_progress):
+                verbose=2;
+            else:
+                verbose=0;
+
+
             csv_logger = krc.CSVLogger(log_dir + "model_history_log.csv", append=False);
-            ckpt_all = krc.ModelCheckpoint(model_dir + intermediate_model_prefix + '{epoch:02d}.h5', monitor='val_loss', verbose=1, 
+            ckpt_all = krc.ModelCheckpoint(model_dir + intermediate_model_prefix + '{epoch:02d}.h5', monitor='val_loss', verbose=verbose, 
                 save_best_only=False, save_weights_only=False, mode='auto', period=1);
 
-            ckpt_best = krc.ModelCheckpoint(model_dir + 'best_model.h5', monitor='val_loss', verbose=1, 
+            ckpt_best = krc.ModelCheckpoint(model_dir + 'best_model.h5', monitor='val_loss', verbose=verbose, 
                 save_best_only=True, save_weights_only=False, mode='auto', period=1);
 
-            resume = krc.ModelCheckpoint(model_dir + 'resume_state.h5', monitor='val_loss', verbose=1, 
+            resume = krc.ModelCheckpoint(model_dir + 'resume_state.h5', monitor='val_loss', verbose=verbose, 
                 save_best_only=False, save_weights_only=False, mode='auto', period=1);
             
             time_callback = TimeHistory(log_dir)
@@ -271,7 +287,6 @@ class finetune_training(finetune_model):
                                initial_epoch = initial_epoch,
                                verbose=verbose);
 
-            print(history.history.keys())
 
 
             time_elapsed_since = 0;
