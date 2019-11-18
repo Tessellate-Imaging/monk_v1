@@ -31,7 +31,7 @@ class compare(system):
     @accepts("self", str, str, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def Add_Experiment(self, project_name, experiment_name):
-        json_file = self.system_dict["master_systems_dir"] + project_name + "/" + experiment_name + "/experiment_state.json";
+        json_file = self.system_dict["master_systems_dir_relative"] + project_name + "/" + experiment_name + "/experiment_state.json";
         if(not os.path.isfile(json_file)):
             msg = "Project - {}, Experiment - {} does not exist".format(project_name, experiment_name)
             raise ConstraintError(msg)
@@ -79,7 +79,7 @@ class compare(system):
                 model_name = model_name.split("/")[-1];
             tmp.append(str(model_name));
             tmp.append(str(data[i]["origin"]));
-            if(data[i]["testing"]["status"]):
+            if(data[i]["training"]["status"]):
                 tmp.append(str(data[i]["training"]["outputs"]["best_val_acc"]));
             else:
                 tmp.append("NA");
@@ -96,7 +96,7 @@ class compare(system):
             tmp.append(str(data[i]["hyper-parameters"]["loss"]["name"]));
             tmp.append(str(data[i]["model"]["params"]["freeze_base_network"]));
             tmp.append(str(data[i]["model"]["params"]["use_gpu"]));
-            if(data[i]["testing"]["status"]):
+            if(data[i]["training"]["status"]):
                 tmp.append(str(data[i]["training"]["outputs"]["training_time"]));
                 tmp.append(str(data[i]["training"]["outputs"]["max_gpu_usage"]));
             else:
@@ -112,7 +112,7 @@ class compare(system):
             table.append(tmp);
 
         my_df = pd.DataFrame(table);
-        fname =  self.system_dict["comparison_dir"] + "comparison.csv";
+        fname =  self.system_dict["comparison_dir_relative"] + "comparison.csv";
         my_df.to_csv(fname, index=False, header=headers);
 
         self.custom_print("Generated");
