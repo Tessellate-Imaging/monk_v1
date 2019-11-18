@@ -133,6 +133,7 @@ def get_base_system_dict():
     system_dict["states"]["eval_infer"] = False;
     system_dict["states"]["resume_train"] = False;
     system_dict["states"]["copy_from"] = False;
+    system_dict["states"]["pseudo_copy_from"] = False;
 
     #Local variables
     system_dict["local"] = {};
@@ -203,5 +204,6 @@ def update_local_var(system_dict):
     system_dict["states"]["eval_infer"] = False;
     system_dict["states"]["resume_train"] = False;
     system_dict["states"]["copy_from"] = False;
+    system_dict["states"]["pseudo_copy_from"] = False;
 
     return system_dict;

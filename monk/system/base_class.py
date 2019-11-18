@@ -62,9 +62,9 @@ class system():
 
 
     #############################################################################################################################
-    @accepts("self", str, eval_infer=bool, copy_from=[list, bool], resume_train=bool, summary=bool, post_trace=True)
+    @accepts("self", str, eval_infer=bool, copy_from=[list, bool], pseudo_copy_from=[list, bool], resume_train=bool, summary=bool, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
-    def set_system_experiment(self, experiment_name, eval_infer=False, copy_from=False, resume_train=False, summary=False):
+    def set_system_experiment(self, experiment_name, eval_infer=False, copy_from=False, pseudo_copy_from=False, resume_train=False, summary=False):
         if(summary):
             self.set_system_select_experiment(experiment_name);
             print_summary(self.system_dict["fname_relative"]);
@@ -85,6 +85,9 @@ class system():
             elif(copy_from):
                 self.set_system_delete_create_dir();
                 self.set_system_state_copy_from(copy_from);
+            elif(pseudo_copy_from):
+                self.set_system_delete_create_dir();
+                self.set_system_state_pseudo_copy_from(pseudo_copy_from);
             else: 
                 self.set_system_delete_create_dir();
                 save(self.system_dict);

@@ -11,6 +11,7 @@ from test_expert_eval_infer import test_expert_eval_infer
 from test_switch_default import test_switch_default
 from test_switch_expert import test_switch_expert
 from test_compare import test_compare
+from test_analyse import test_analyse
 origstdout = sys.stdout
 
 #default - train
@@ -171,7 +172,8 @@ system_dict["skipped_tests_lists"] = [];
 
 start = time.time()
 
-print("Running 1/10");
+
+print("Running 1/11");
 system_dict = test_default_train(system_dict)
 sys.stdout = origstdout;
 print("Tests Completed           - {}".format(system_dict["total_tests"]));
@@ -179,7 +181,7 @@ print("Tests Succesful           - {}".format(system_dict["successful_tests"]));
 print("")
 
 
-print("Running 2/10");
+print("Running 2/11");
 sys.stdout = open("test_logs.txt", 'a');
 system_dict = test_default_eval_infer(system_dict)
 sys.stdout = origstdout;
@@ -188,7 +190,7 @@ print("Tests Succesful           - {}".format(system_dict["successful_tests"]));
 print("")
 
 
-print("Running 3/10");
+print("Running 3/11");
 sys.stdout = open("test_logs.txt", 'a');
 system_dict = test_update_copy_from(system_dict)
 sys.stdout = origstdout;
@@ -197,7 +199,7 @@ print("Tests Succesful           - {}".format(system_dict["successful_tests"]));
 print("")
 
 
-print("Running 4/10");
+print("Running 4/11");
 sys.stdout = open("test_logs.txt", 'a');
 system_dict = test_update_normal(system_dict)
 sys.stdout = origstdout;
@@ -207,7 +209,7 @@ print("")
 
 
 
-print("Running 5/10");
+print("Running 5/11");
 sys.stdout = open("test_logs.txt", 'a');
 system_dict = test_update_eval_infer(system_dict)
 sys.stdout = origstdout;
@@ -217,7 +219,7 @@ print("")
 
 
 
-print("Running 6/10");
+print("Running 6/11");
 sys.stdout = open("test_logs.txt", 'a');
 system_dict = test_expert_train(system_dict)
 sys.stdout = origstdout;
@@ -226,7 +228,7 @@ print("Tests Succesful           - {}".format(system_dict["successful_tests"]));
 
 
 
-print("Running 7/10");
+print("Running 7/11");
 sys.stdout = open("test_logs.txt", 'a');
 system_dict = test_expert_eval_infer(system_dict)
 sys.stdout = origstdout;
@@ -237,7 +239,7 @@ print("")
 
 
 
-print("Running 8/10");
+print("Running 8/11");
 sys.stdout = open("test_logs.txt", 'a');
 system_dict = test_switch_default(system_dict)
 sys.stdout = origstdout;
@@ -248,7 +250,7 @@ print("")
 
 
 
-print("Running 9/10");
+print("Running 9/11");
 sys.stdout = open("test_logs.txt", 'a');
 system_dict = test_switch_expert(system_dict)
 sys.stdout = origstdout;
@@ -259,9 +261,18 @@ print("")
 
 
 
-print("Running 10/10");
+print("Running 10/11");
 sys.stdout = open("test_logs.txt", 'a');
 system_dict = test_compare(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));
+print("")
+
+
+print("Running 11/11");
+sys.stdout = open("test_logs.txt", 'a');
+system_dict = test_analyse(system_dict)
 sys.stdout = origstdout;
 print("Tests Completed           - {}".format(system_dict["total_tests"]));
 print("Tests Succesful           - {}".format(system_dict["successful_tests"]));

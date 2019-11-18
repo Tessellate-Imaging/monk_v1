@@ -35,7 +35,7 @@ sys.stderr = stderr
 from keras import backend as K
 import tensorflow as tf
 import keras.callbacks as krc
-
+from tabulate import tabulate
 
 ################################################################################3
 from system.common import read_json

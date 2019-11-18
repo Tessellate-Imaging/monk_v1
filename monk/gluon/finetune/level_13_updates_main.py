@@ -210,6 +210,18 @@ class prototype_updates(prototype_losses):
         
         self.custom_print("Update: Num Epochs - {}".format(self.system_dict["hyper-parameters"]["num_epochs"]));
         self.custom_print("");
+
+
+    @warning_checks(None, ["lt", 1], post_trace=True)
+    @error_checks(None, ["gt", 0], post_trace=True)
+    @accepts("self", [int, float], post_trace=True)
+    @TraceFunction(trace_args=True, trace_rv=True)
+    def update_learning_rate(self, learning_rate):
+        self.system_dict["hyper-parameters"]["learning_rate"] = learning_rate;
+        self.system_dict["hyper-parameters"]["optimizer"]["params"]["lr"] = learning_rate;
+        
+        self.custom_print("Update: Learning Rate - {}".format(self.system_dict["hyper-parameters"]["learning_rate"]));
+        self.custom_print("");
         
 
     @accepts("self", bool, post_trace=True)

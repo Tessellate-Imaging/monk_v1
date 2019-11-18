@@ -30,7 +30,7 @@ else:
 
 import torch
 import torchvision
-
+from tabulate import tabulate
 
 ################################################################################3
 from system.common import read_json
