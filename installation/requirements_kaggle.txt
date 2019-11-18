@@ -9,3 +9,4 @@ psutil
 pandas 
 GPUtil 
 pylg
+tabulate
