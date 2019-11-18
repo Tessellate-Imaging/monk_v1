@@ -17,7 +17,6 @@ def load_optimizer(system_dict):
     elif(optimizer == "adagrad"):
         system_dict["local"]["optimizer"] = kro.Adagrad(
                 lr=learning_rate, 
-                epsilon=system_dict["hyper-parameters"]["optimizer"]["params"]["eps"], 
                 decay=system_dict["hyper-parameters"]["optimizer"]["params"]["lr_decay"]);
 
     elif(optimizer == "adam"):
