@@ -286,8 +286,24 @@ class prototype(prototype_master):
 
 
         
+        return_dict = {};
+        for i in range(len(tabular_data)):
+            return_dict[tabular_data[i][0]] = {};
+            return_dict[tabular_data[i][0]]["training_accuracy"] = tabular_data[i][1];
+            return_dict[tabular_data[i][0]]["validation_accuracy"] = tabular_data[i][2];
+            return_dict[tabular_data[i][0]]["training_loss"] = tabular_data[i][3];
+            return_dict[tabular_data[i][0]]["validation_loss"] = tabular_data[i][4];
+
+            fname = self.system_dict["master_systems_dir_relative"] + analysis_name + "/" + tabular_data[i][0] + "/experiment_state.json";
+            system_dict = read_json(fname);
+            return_dict[tabular_data[i][0]]["training_time"] = system_dict["training"]["outputs"]["training_time"];
+
+
+        
         if(state=="keep_none"):
             shutil.rmtree(self.system_dict["master_systems_dir_relative"] + analysis_name);
+
+        return return_dict
         
     ###############################################################################################################################################
 
@@ -399,8 +415,24 @@ class prototype(prototype_master):
 
 
         
+        return_dict = {};
+        for i in range(len(tabular_data)):
+            return_dict[tabular_data[i][0]] = {};
+            return_dict[tabular_data[i][0]]["training_accuracy"] = tabular_data[i][1];
+            return_dict[tabular_data[i][0]]["validation_accuracy"] = tabular_data[i][2];
+            return_dict[tabular_data[i][0]]["training_loss"] = tabular_data[i][3];
+            return_dict[tabular_data[i][0]]["validation_loss"] = tabular_data[i][4];
+
+            fname = self.system_dict["master_systems_dir_relative"] + analysis_name + "/" + tabular_data[i][0] + "/experiment_state.json";
+            system_dict = read_json(fname);
+            return_dict[tabular_data[i][0]]["training_time"] = system_dict["training"]["outputs"]["training_time"];
+
+
+        
         if(state=="keep_none"):
             shutil.rmtree(self.system_dict["master_systems_dir_relative"] + analysis_name);
+
+        return return_dict
         
     ###############################################################################################################################################
 
@@ -518,9 +550,24 @@ class prototype(prototype_master):
 
 
         
+        return_dict = {};
+        for i in range(len(tabular_data)):
+            return_dict[tabular_data[i][0]] = {};
+            return_dict[tabular_data[i][0]]["training_accuracy"] = tabular_data[i][1];
+            return_dict[tabular_data[i][0]]["validation_accuracy"] = tabular_data[i][2];
+            return_dict[tabular_data[i][0]]["training_loss"] = tabular_data[i][3];
+            return_dict[tabular_data[i][0]]["validation_loss"] = tabular_data[i][4];
+
+            fname = self.system_dict["master_systems_dir_relative"] + analysis_name + "/" + tabular_data[i][0] + "/experiment_state.json";
+            system_dict = read_json(fname);
+            return_dict[tabular_data[i][0]]["training_time"] = system_dict["training"]["outputs"]["training_time"];
+
+
+        
         if(state=="keep_none"):
             shutil.rmtree(self.system_dict["master_systems_dir_relative"] + analysis_name);
-        
+
+        return return_dict
     ###############################################################################################################################################
 
 
@@ -652,8 +699,24 @@ class prototype(prototype_master):
 
 
         
+        return_dict = {};
+        for i in range(len(tabular_data)):
+            return_dict[tabular_data[i][0]] = {};
+            return_dict[tabular_data[i][0]]["training_accuracy"] = tabular_data[i][1];
+            return_dict[tabular_data[i][0]]["validation_accuracy"] = tabular_data[i][2];
+            return_dict[tabular_data[i][0]]["training_loss"] = tabular_data[i][3];
+            return_dict[tabular_data[i][0]]["validation_loss"] = tabular_data[i][4];
+
+            fname = self.system_dict["master_systems_dir_relative"] + analysis_name + "/" + tabular_data[i][0] + "/experiment_state.json";
+            system_dict = read_json(fname);
+            return_dict[tabular_data[i][0]]["training_time"] = system_dict["training"]["outputs"]["training_time"];
+
+
+        
         if(state=="keep_none"):
             shutil.rmtree(self.system_dict["master_systems_dir_relative"] + analysis_name);
+
+        return return_dict
         
     ###############################################################################################################################################
 
@@ -781,7 +844,23 @@ class prototype(prototype_master):
 
 
         
+        return_dict = {};
+        for i in range(len(tabular_data)):
+            return_dict[tabular_data[i][0]] = {};
+            return_dict[tabular_data[i][0]]["training_accuracy"] = tabular_data[i][1];
+            return_dict[tabular_data[i][0]]["validation_accuracy"] = tabular_data[i][2];
+            return_dict[tabular_data[i][0]]["training_loss"] = tabular_data[i][3];
+            return_dict[tabular_data[i][0]]["validation_loss"] = tabular_data[i][4];
+
+            fname = self.system_dict["master_systems_dir_relative"] + analysis_name + "/" + tabular_data[i][0] + "/experiment_state.json";
+            system_dict = read_json(fname);
+            return_dict[tabular_data[i][0]]["training_time"] = system_dict["training"]["outputs"]["training_time"];
+
+
+        
         if(state=="keep_none"):
             shutil.rmtree(self.system_dict["master_systems_dir_relative"] + analysis_name);
+
+        return return_dict
         
     ###############################################################################################################################################

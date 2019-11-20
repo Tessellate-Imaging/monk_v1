@@ -39,7 +39,7 @@ percent_data=100
 
 # "keep_all" - Keep all the sub experiments created
 # "keep_non" - Delete all sub experiments created																				
-ktf.Analyse_Learning_Rates(analysis_name, lrs, percent_data, num_epochs=epochs, state="keep_none"); 
+analysis = ktf.Analyse_Learning_Rates(analysis_name, lrs, percent_data, num_epochs=epochs, state="keep_none"); 
 
 
 #As per results set the apropriate learning rate
@@ -64,7 +64,7 @@ percent_data=60;
 
 # "keep_all" - Keep all the sub experiments created
 # "keep_non" - Delete all sub experiments created	
-ktf.Analyse_Input_Sizes(analysis_name, input_sizes, percent_data, num_epochs=epochs, state="keep_none"); 
+analysis = ktf.Analyse_Input_Sizes(analysis_name, input_sizes, percent_data, num_epochs=epochs, state="keep_none"); 
 
 
 #As per results set the apropriate input size
@@ -89,7 +89,7 @@ percent_data = 70;
 
 # "keep_all" - Keep all the sub experiments created
 # "keep_non" - Delete all sub experiments created	
-ktf.Analyse_Batch_Sizes(analysis_name, batch_sizes, percent_data, num_epochs=epochs, state="keep_none"); 
+analysis = ktf.Analyse_Batch_Sizes(analysis_name, batch_sizes, percent_data, num_epochs=epochs, state="keep_none"); 
 
 
 #As per results set the apropriate batch size
@@ -116,7 +116,7 @@ percent_data=90;
 
 # "keep_all" - Keep all the sub experiments created
 # "keep_non" - Delete all sub experiments created
-ktf.Analyse_Models(analysis_name, models, percent_data, num_epochs=epochs, state="keep_none"); 
+analysis = ktf.Analyse_Models(analysis_name, models, percent_data, num_epochs=epochs, state="keep_none"); 
 
 
 #As per results set the apropriate model
@@ -144,7 +144,7 @@ percent_data = 90;
 
 # "keep_all" - Keep all the sub experiments created
 # "keep_non" - Delete all sub experiments created
-ktf.Analyse_Optimizers(analysis_name, optimizers, percent_data, num_epochs=epochs, state="keep_none"); 
+analysis = ktf.Analyse_Optimizers(analysis_name, optimizers, percent_data, num_epochs=epochs, state="keep_none"); 
 
 
 #As per results set the appropriate 

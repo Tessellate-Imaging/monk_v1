@@ -77,7 +77,7 @@ def test_analyse(system_dict):
             lrs = [0.1, 0.05];
             epochs=2
             percent_data=40
-            gtf.Analyse_Learning_Rates(analysis_name, lrs, percent_data, num_epochs=epochs, state="keep_none");
+            analysis = gtf.Analyse_Learning_Rates(analysis_name, lrs, percent_data, num_epochs=epochs, state="keep_none");
             system_dict["successful_tests"] += 1;
             print_status("Pass");
         except Exception as e:
@@ -99,7 +99,7 @@ def test_analyse(system_dict):
             input_sizes = [128, 256];
             epochs=2;
             percent_data=40;
-            gtf.Analyse_Input_Sizes(analysis_name, input_sizes, percent_data, num_epochs=epochs, state="keep_none");
+            analysis = gtf.Analyse_Input_Sizes(analysis_name, input_sizes, percent_data, num_epochs=epochs, state="keep_none");
             system_dict["successful_tests"] += 1;
             print_status("Pass");
         except Exception as e:
@@ -122,7 +122,7 @@ def test_analyse(system_dict):
             batch_sizes = [2, 3];
             epochs = 2;
             percent_data = 40;
-            gtf.Analyse_Batch_Sizes(analysis_name, batch_sizes, percent_data, num_epochs=epochs, state="keep_none");
+            analysis = gtf.Analyse_Batch_Sizes(analysis_name, batch_sizes, percent_data, num_epochs=epochs, state="keep_none");
             system_dict["successful_tests"] += 1;
             print_status("Pass");
         except Exception as e:
@@ -145,7 +145,7 @@ def test_analyse(system_dict):
             analysis_name = "analyse_models";
             models = [["resnet18_v1", True, True], ["resnet34_v1", False, True]]; 
             percent_data=40;
-            gtf.Analyse_Models(analysis_name, models, percent_data, num_epochs=epochs, state="keep_none");
+            analysis = gtf.Analyse_Models(analysis_name, models, percent_data, num_epochs=epochs, state="keep_none");
             system_dict["successful_tests"] += 1;
             print_status("Pass");
         except Exception as e:
@@ -168,7 +168,7 @@ def test_analyse(system_dict):
             optimizers = ["sgd", "adam"];
             epochs = 2;
             percent_data = 40;
-            gtf.Analyse_Optimizers(analysis_name, optimizers, percent_data, num_epochs=epochs, state="keep_none");
+            analysis = gtf.Analyse_Optimizers(analysis_name, optimizers, percent_data, num_epochs=epochs, state="keep_none");
             system_dict["successful_tests"] += 1;
             print_status("Pass");
         except Exception as e:
