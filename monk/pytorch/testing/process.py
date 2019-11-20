@@ -4,7 +4,7 @@ from system.imports import *
 @accepts(str, bool, dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def process_single(img_name, return_raw, system_dict):
-    img = Image.open(img_name);
+    img = Image.open(img_name).convert('RGB');
     img = system_dict["local"]["data_transforms"]["test"](img);
     img = img.unsqueeze(0);
     img = Variable(img);
