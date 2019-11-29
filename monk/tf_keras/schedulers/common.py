@@ -3,6 +3,7 @@ from system.imports import *
 
 
 
+# Code inspired from: https://www.pyimagesearch.com/2019/07/22/keras-learning-rate-schedules-and-decay/
 
 #Level - 1 - Helper classes - Keras
 class LearningRateDecay:
