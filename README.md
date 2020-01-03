@@ -56,13 +56,49 @@ ctf.Add_Experiment("sample-project-1", "sample-experiment-2");
 ctf.Generate_Statistics();
 ```
 
-## RoadMap
-- [] Incorporate pep coding standards
-- [] Functional Documentation
-- [] Tackle Multiple versions of pytorch, keras, gluon
-- [] Standardize folder structure for next feature additions - object detection, image segmentation
-- [] Add support for tensorflow-2.0
-- [] Add unit-testing
+<br />
+<br />
+<br />
+
+## TODO-2020 - Backend Support
+
+- [ ] Tensorflow 2.0
+- [ ] Chainer
+- [ ] Intel VINO toolkit
+
+
+## TODO-2020 - External Libraries
+- [ ] OpenCV
+- [ ] Dlib
+- [ ] Python PIL
+- [ ] TensorRT Acceleration
+- [ ] Intel Acceleration
+- [ ] Echo AI - for Activation functions
+
+
+## TODO-2020 - Features
+- [ ] Model Visualization
+- [ ] Pre-processed data visualization
+- [ ] Learned feature visualization
+- [ ] NDimensional data input
+- [ ] Data input from npy files
+- [ ] Data input from hdfs files
+- [ ] Support for Dicom data
+- [ ] Support for Tiff data
+- [ ] Multi-label Image Classification
+- [ ] Custom model development
+
+
+## TODO-2020 - General
+- [ ] Incorporate pep coding standards
+- [ ] Functional Documentation
+- [ ] Tackle Multiple versions of libraries
+- [ ] Add unit-testing
+- [ ] Contribution guidelines
+
+
+
+
 
 
 ## Copyright
