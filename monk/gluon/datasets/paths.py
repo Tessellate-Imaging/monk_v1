@@ -35,6 +35,7 @@ def set_dataset_train_path(system_dict, path, split, path_to_csv, delimiter):
             dataset_val_path = path[1];
             train_val_split = None;
 
+
     system_dict["dataset"]["dataset_type"] = dataset_type;
     system_dict["dataset"]["train_path"] = dataset_train_path;
     system_dict["dataset"]["val_path"] = dataset_val_path;

@@ -43,6 +43,7 @@ class finetune_dataset(system):
             num_workers = self.system_dict["dataset"]["params"]["num_workers"];
 
 
+            
             if(dataset_type == "train"):
                 sampled_dataset = mx.gluon.data.vision.ImageFolderDataset(dataset_train_path).transform_first(self.system_dict["local"]["data_transforms"]["train"]);
             elif(dataset_type == "train-val"):
@@ -92,6 +93,9 @@ class finetune_dataset(system):
             
 
             self.system_dict["dataset"]["status"]= True;
+            
+
+
     ###############################################################################################################################################
 
 

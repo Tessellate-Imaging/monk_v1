@@ -15,7 +15,7 @@ def load_optimizer(system_dict):
             lr_scheduler=learning_rate_scheduler, 
             momentum=system_dict["hyper-parameters"]["optimizer"]["params"]["momentum"]);
     
-    elif(optimizer == "nag"):
+    elif(optimizer == "nesterov_sgd"):
         system_dict["local"]["optimizer"] = mx.optimizer.NAG(
             learning_rate=learning_rate, 
             wd=system_dict["hyper-parameters"]["optimizer"]["params"]["weight_decay"], 
@@ -27,27 +27,39 @@ def load_optimizer(system_dict):
             learning_rate=learning_rate, 
             wd=system_dict["hyper-parameters"]["optimizer"]["params"]["weight_decay"], 
             lr_scheduler=learning_rate_scheduler,
-            gamma1=system_dict["hyper-parameters"]["optimizer"]["params"]["alpha"], 
+            gamma1=system_dict["hyper-parameters"]["optimizer"]["params"]["decay_rate"], 
+            gamma2=0.0, 
+            epsilon=system_dict["hyper-parameters"]["optimizer"]["params"]["epsilon"], 
+            centered=False);
+
+    elif(optimizer == "momentum_rmsprop"):
+        system_dict["local"]["optimizer"] = mx.optimizer.RMSProp(
+            learning_rate=learning_rate, 
+            wd=system_dict["hyper-parameters"]["optimizer"]["params"]["weight_decay"], 
+            lr_scheduler=learning_rate_scheduler,
+            gamma1=system_dict["hyper-parameters"]["optimizer"]["params"]["decay_rate"], 
             gamma2=system_dict["hyper-parameters"]["optimizer"]["params"]["momentum"], 
-            epsilon=system_dict["hyper-parameters"]["optimizer"]["params"]["eps"], 
-            centered=system_dict["hyper-parameters"]["optimizer"]["params"]["centered"]);
+            epsilon=system_dict["hyper-parameters"]["optimizer"]["params"]["epsilon"], 
+            centered=True);
+
 
     elif(optimizer == "adam"):
         system_dict["local"]["optimizer"] = mx.optimizer.Adam(
             learning_rate=learning_rate, 
             wd=system_dict["hyper-parameters"]["optimizer"]["params"]["weight_decay"], 
             lr_scheduler=learning_rate_scheduler,
-            beta1=system_dict["hyper-parameters"]["optimizer"]["params"]["betas"][0], 
-            beta2=system_dict["hyper-parameters"]["optimizer"]["params"]["betas"][1], 
-            epsilon=system_dict["hyper-parameters"]["optimizer"]["params"]["eps"]);
+            beta1=system_dict["hyper-parameters"]["optimizer"]["params"]["beta1"], 
+            beta2=system_dict["hyper-parameters"]["optimizer"]["params"]["beta2"], 
+            epsilon=system_dict["hyper-parameters"]["optimizer"]["params"]["epsilon"]);
 
 
-    elif(optimizer == "adagrad"):
-        system_dict["local"]["optimizer"] = mx.optimizer.AdaGrad(
+    elif(optimizer == "adamax"):
+        system_dict["local"]["optimizer"] = mx.optimizer.Adamax(
             learning_rate=learning_rate, 
             wd=system_dict["hyper-parameters"]["optimizer"]["params"]["weight_decay"], 
             lr_scheduler=learning_rate_scheduler,
-            eps=1e-07);
+            beta1=system_dict["hyper-parameters"]["optimizer"]["params"]["beta1"], 
+            beta2=system_dict["hyper-parameters"]["optimizer"]["params"]["beta2"]);
 
 
     elif(optimizer == "adadelta"):
@@ -56,36 +68,26 @@ def load_optimizer(system_dict):
             wd=system_dict["hyper-parameters"]["optimizer"]["params"]["weight_decay"], 
             lr_scheduler=learning_rate_scheduler,
             rho=system_dict["hyper-parameters"]["optimizer"]["params"]["rho"], 
-            epsilon=system_dict["hyper-parameters"]["optimizer"]["params"]["eps"]);
+            epsilon=system_dict["hyper-parameters"]["optimizer"]["params"]["epsilon"]);
 
 
-    elif(optimizer == "adamax"):
-        system_dict["local"]["optimizer"] = mx.optimizer.Adamax(
+    elif(optimizer == "adagrad"):
+        system_dict["local"]["optimizer"] = mx.optimizer.AdaGrad(
             learning_rate=learning_rate, 
             wd=system_dict["hyper-parameters"]["optimizer"]["params"]["weight_decay"], 
             lr_scheduler=learning_rate_scheduler,
-            beta1=system_dict["hyper-parameters"]["optimizer"]["params"]["betas"][0], 
-            beta2=system_dict["hyper-parameters"]["optimizer"]["params"]["betas"][1]);
-
+            eps=system_dict["hyper-parameters"]["optimizer"]["params"]["epsilon"]);
 
     elif(optimizer == "nadam"):
-        system_dict["local"]["optimizer"] = mx.optimizer.Adam(
+        system_dict["local"]["optimizer"] = mx.optimizer.Nadam(
             learning_rate=learning_rate, 
             wd=system_dict["hyper-parameters"]["optimizer"]["params"]["weight_decay"], 
             lr_scheduler=learning_rate_scheduler,
-            beta1=system_dict["hyper-parameters"]["optimizer"]["params"]["betas"][0], 
-            beta2=system_dict["hyper-parameters"]["optimizer"]["params"]["betas"][1], 
-            epsilon=system_dict["hyper-parameters"]["optimizer"]["params"]["eps"]);
-
-
-    elif(optimizer == "dcasgd"):
-        system_dict["local"]["optimizer"] = mx.optimizer.DCASGD(
-            learning_rate=learning_rate, 
-            wd=system_dict["hyper-parameters"]["optimizer"]["params"]["weight_decay"], 
-            lr_scheduler=learning_rate_scheduler,
-            momentum=system_dict["hyper-parameters"]["optimizer"]["params"]["alpha"], 
-            lamda=system_dict["hyper-parameters"]["optimizer"]["params"]["lambd"]);
-
+            beta1=system_dict["hyper-parameters"]["optimizer"]["params"]["beta1"], 
+            beta2=system_dict["hyper-parameters"]["optimizer"]["params"]["beta2"], 
+            epsilon=system_dict["hyper-parameters"]["optimizer"]["params"]["epsilon"],
+            schedule_decay=system_dict["hyper-parameters"]["optimizer"]["params"]["momentum_decay"]
+            );
 
     elif(optimizer == "signum"):
         system_dict["local"]["optimizer"] = mx.optimizer.Signum(
@@ -93,14 +95,5 @@ def load_optimizer(system_dict):
             wd_lh=system_dict["hyper-parameters"]["optimizer"]["params"]["weight_decay"], 
             lr_scheduler=learning_rate_scheduler, 
             momentum=system_dict["hyper-parameters"]["optimizer"]["params"]["momentum"]);
-
-    elif(optimizer == "ftml"):
-        system_dict["local"]["optimizer"] = mx.optimizer.FTML(
-            learning_rate=learning_rate, 
-            wd=system_dict["hyper-parameters"]["optimizer"]["params"]["weight_decay"], 
-            lr_scheduler=learning_rate_scheduler,
-            beta1=system_dict["hyper-parameters"]["optimizer"]["params"]["betas"][0], 
-            beta2=system_dict["hyper-parameters"]["optimizer"]["params"]["betas"][1], 
-            epsilon=system_dict["hyper-parameters"]["optimizer"]["params"]["eps"]);
 
     return system_dict;

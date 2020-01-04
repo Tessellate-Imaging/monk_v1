@@ -10,6 +10,8 @@ import psutil
 import shutil
 import numpy as np
 import GPUtil
+import cv2
+
 
 def isnotebook():
     try:
@@ -38,6 +40,7 @@ from tabulate import tabulate
 from system.common import read_json
 from system.common import write_json
 from system.common import parse_csv
+from system.common import parse_csv_updated
 from system.common import save
 
 from system.summary import print_summary
@@ -81,9 +84,17 @@ from system.graphs.line import create_train_test_plots_loss
 
 ################################################################################
 from gluon.losses.losses import softmax_crossentropy
+from gluon.losses.losses import crossentropy
 from gluon.losses.losses import sigmoid_binary_crossentropy
 from gluon.losses.losses import binary_crossentropy
 from gluon.losses.losses import poisson_nll
+from gluon.losses.losses import l1
+from gluon.losses.losses import l2
+from gluon.losses.losses import kldiv
+from gluon.losses.losses import huber
+from gluon.losses.losses import hinge
+from gluon.losses.losses import squared_hinge
+
 
 from gluon.losses.return_loss import load_loss
 
@@ -121,6 +132,7 @@ from gluon.models.common import freeze_layers
 
 from gluon.models.return_model import load_model
 from gluon.models.return_model import setup_model
+from gluon.models.return_model import debug_custom_model
 ################################################################################
 
 
@@ -128,15 +140,15 @@ from gluon.models.return_model import setup_model
 
 ################################################################################
 from gluon.optimizers.optimizers import sgd
-from gluon.optimizers.optimizers import nag
+from gluon.optimizers.optimizers import nesterov_sgd
 from gluon.optimizers.optimizers import rmsprop
+from gluon.optimizers.optimizers import momentum_rmsprop
 from gluon.optimizers.optimizers import adam
 from gluon.optimizers.optimizers import adagrad
 from gluon.optimizers.optimizers import adadelta
 from gluon.optimizers.optimizers import adamax
-from gluon.optimizers.optimizers import nadam
+from gluon.optimizers.optimizers import nesterov_adam
 from gluon.optimizers.optimizers import signum
-from gluon.optimizers.optimizers import ftml
 
 from gluon.optimizers.retrieve_optimizer import retrieve_optimizer
 

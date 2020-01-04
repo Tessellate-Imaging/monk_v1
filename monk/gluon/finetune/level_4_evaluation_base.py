@@ -85,6 +85,8 @@ class finetune_evaluation(finetune_training):
             msg += "Labels returned - Indexes instead of classes";
             ConstraintWarning(msg);
 
+
+        
         if(img_name):
             self.custom_print("    Image name:         {}".format(img_name));
 

@@ -43,6 +43,28 @@ def parse_csv(fname, delimiter):
     return img_list, label_list, classes;
 
 
+@accepts(str, str, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def parse_csv_updated(fname, delimiter):
+    df = pd.read_csv(fname);
+    columns = df.columns;
+    img_list = [];
+    label_list = [];
+    for i in range(len(df)):
+        img_list.append(df[columns[0]][i]);
+        label_list.append(df[columns[1]][i]);
+
+    classes = [];
+    for i in range(len(label_list)):
+        tmp = label_list[i].split(delimiter);
+        for j in range(len(tmp)):
+            if(tmp[j] not in classes):
+                classes.append(tmp[j]);
+    
+
+    return img_list, label_list, sorted(classes);
+
+
 
 def parse_csv2(fname, delimiter):
     df = pd.read_csv(fname, delimiter=delimiter);

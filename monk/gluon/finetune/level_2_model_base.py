@@ -72,17 +72,54 @@ class finetune_model(finetune_dataset):
             self.system_dict = model_to_device(self.system_dict);
             self.custom_print("    Model Loaded on device");
             
-            self.system_dict = get_num_layers(self.system_dict);
-            if(not self.system_dict["states"]["resume_train"]):
-                for param in self.system_dict["local"]["model"].collect_params().values():
-                    if param.grad_req == 'write':
-                        self.system_dict["local"]["params_to_update"].append(param)
-                self.system_dict["model"]["params"]["num_params_to_update"] = len(self.system_dict["local"]["params_to_update"])//2;
-                self.system_dict["model"]["status"] = True;
 
-            
-            self.custom_print("        Model name:           {}".format(self.system_dict["model"]["params"]["model_name"]));
-            self.custom_print("        Num layers in model:  {}".format(self.system_dict["model"]["params"]["num_layers"]));
-            self.custom_print("        Num trainable layers: {}".format(self.system_dict["model"]["params"]["num_params_to_update"]));
+
+            self.system_dict = get_num_layers(self.system_dict);
+
+            if(not self.system_dict["states"]["resume_train"]):
+                if(self.system_dict["model"]["type"] == "pretrained"):
+                    current_name = "";
+                    ip = 0;
+                    self.system_dict["local"]["params_to_update"] = [];
+                    for param in self.system_dict["local"]["model"].collect_params().values():
+                        if(ip==0):
+                            current_name = '_'.join(param.name.split("_")[:-1]);
+                            if(param.grad_req == "write"):
+                                self.system_dict["local"]["params_to_update"].append(current_name);
+                        else:
+                            if(current_name != '_'.join(param.name.split("_")[:-1])):
+                                current_name = '_'.join(param.name.split("_")[:-1]);
+                                if(param.grad_req == "write"):
+                                    self.system_dict["local"]["params_to_update"].append(current_name);
+                        ip += 1;
+                    self.system_dict["model"]["params"]["num_params_to_update"] = len(self.system_dict["local"]["params_to_update"]);
+                    self.system_dict["model"]["status"] = True;
+
+                else:
+                    current_name = "";
+                    ip = 0;
+                    self.system_dict["local"]["params_to_update"] = [];
+                    for param in self.system_dict["local"]["model"].collect_params().values():
+                        if(ip==0):
+                            current_name = param.name.split("_")[0];
+                            if(param.grad_req == "write"):
+                                self.system_dict["local"]["params_to_update"].append(current_name);
+                        else:
+                            if(current_name != param.name.split("_")[0]):
+                                current_name = param.name.split("_")[0];
+                                if(param.grad_req == "write"):
+                                    self.system_dict["local"]["params_to_update"].append(current_name);
+                        print(current_name);
+                        ip += 1;
+                    self.system_dict["model"]["params"]["num_params_to_update"] = len(self.system_dict["local"]["params_to_update"]);
+                    self.system_dict["model"]["status"] = True;
+
+            if(self.system_dict["model"]["type"] == "custom"):
+                self.custom_print("        Model name:                           {}".format("Custom Model"));
+            else:
+                self.custom_print("        Model name:                           {}".format(self.system_dict["model"]["params"]["model_name"]));
+            self.custom_print("        Num of potentially trainable layers:  {}".format(self.system_dict["model"]["params"]["num_layers"]));
+            self.custom_print("        Num of actual trainable layers:       {}".format(self.system_dict["model"]["params"]["num_params_to_update"]));
             self.custom_print("");
+            
     ###############################################################################################################################################

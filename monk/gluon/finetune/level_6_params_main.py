@@ -15,9 +15,11 @@ class prototype_params(finetune_state):
 
     ###############################################################################################################################################
     @warning_checks(None, dataset_path=None, path_to_csv=None, delimiter=None,
-        split=["gt", 0.5], input_size=["gte", 32, "lte", 1024], batch_size=["lte", 128], shuffle_data=None, num_processors=["lte", psutil.cpu_count()], post_trace=True)
+        split=["gt", 0.5], input_size=["gte", 32, "lte", 1024], batch_size=["lte", 128], shuffle_data=None, num_processors=["lte", psutil.cpu_count()], 
+        post_trace=True)
     @error_checks(None, dataset_path=["folder", "r"], path_to_csv=["file", "r"], delimiter=["in", [",", ";", "-", " "]],
-        split=["gt", 0.0, "lt", 1.0], input_size=["gt", 0], batch_size=["gt", 0], shuffle_data=None, num_processors=["gt", 0],  post_trace=True)
+        split=["gt", 0.0, "lt", 1.0], input_size=["gt", 0], batch_size=["gt", 0], shuffle_data=None, num_processors=["gt", 0],  
+        post_trace=True)
     @accepts("self", dataset_path=[str, list, bool], path_to_csv=[str, list, bool], delimiter=str, split=float, 
         input_size=int, batch_size=int, shuffle_data=bool, num_processors=int, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
@@ -30,7 +32,7 @@ class prototype_params(finetune_state):
                 self.system_dict = set_num_processors(num_processors, self.system_dict);
             self.system_dict = set_dataset_test_path(self.system_dict, dataset_path, path_to_csv, delimiter);
             self.custom_print("Dataset Details");
-            self.custom_print("    Test path:     {}".format(self.system_dict["dataset"]["test_path"]));
+            self.custom_print("    Test path:      {}".format(self.system_dict["dataset"]["test_path"]));
             self.custom_print("    CSV test path:  {}".format(self.system_dict["dataset"]["csv_test"]));
             self.custom_print("");
 
@@ -52,13 +54,13 @@ class prototype_params(finetune_state):
             self.custom_print("    Train path:     {}".format(self.system_dict["dataset"]["train_path"]));
             self.custom_print("    Val path:       {}".format(self.system_dict["dataset"]["val_path"]));
             self.custom_print("    CSV train path: {}".format(self.system_dict["dataset"]["csv_train"]));
-            self.custom_print("    CSV val path:  {}".format(self.system_dict["dataset"]["csv_val"]));
+            self.custom_print("    CSV val path:   {}".format(self.system_dict["dataset"]["csv_val"]));
             self.custom_print("");
 
 
             self.custom_print("Dataset Params");
-            self.custom_print("    Input Size:  {}".format(self.system_dict["dataset"]["params"]["input_size"]));
-            self.custom_print("    Batch Size:  {}".format(self.system_dict["dataset"]["params"]["batch_size"]));
+            self.custom_print("    Input Size:   {}".format(self.system_dict["dataset"]["params"]["input_size"]));
+            self.custom_print("    Batch Size:   {}".format(self.system_dict["dataset"]["params"]["batch_size"]));
             self.custom_print("    Data Shuffle: {}".format(self.system_dict["dataset"]["params"]["train_shuffle"]));
             self.custom_print("    Processors:   {}".format(self.system_dict["dataset"]["params"]["num_workers"]));
             if("val" not in self.system_dict["dataset"]["dataset_type"]):

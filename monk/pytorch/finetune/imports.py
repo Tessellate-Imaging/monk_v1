@@ -170,12 +170,11 @@ from pytorch.optimizers.optimizers import adadelta
 from pytorch.optimizers.optimizers import adagrad
 from pytorch.optimizers.optimizers import adam
 from pytorch.optimizers.optimizers import adamw
-from pytorch.optimizers.optimizers import sparseadam
 from pytorch.optimizers.optimizers import adamax
-from pytorch.optimizers.optimizers import asgd
 from pytorch.optimizers.optimizers import rmsprop
-from pytorch.optimizers.optimizers import rprop
+from pytorch.optimizers.optimizers import momentum_rmsprop
 from pytorch.optimizers.optimizers import sgd
+from pytorch.optimizers.optimizers import nesterov_sgd
 
 from pytorch.optimizers.retrieve_optimizer import retrieve_optimizer
 

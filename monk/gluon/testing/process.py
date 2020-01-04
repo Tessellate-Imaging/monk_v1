@@ -17,3 +17,4 @@ def process_single(img_name, return_raw, system_dict):
         return prediction, score, outputs[0].asnumpy()
     else:
         return prediction, score, "";
+    

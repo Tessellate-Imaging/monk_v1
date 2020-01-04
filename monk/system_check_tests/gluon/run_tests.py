@@ -199,6 +199,7 @@ print("Tests Succesful           - {}".format(system_dict["successful_tests"]));
 print("")
 
 
+
 print("Running 4/11");
 sys.stdout = open("test_logs.txt", 'a');
 system_dict = test_update_normal(system_dict)

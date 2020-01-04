@@ -191,3 +191,16 @@ class prototype_aux(prototype_params):
         elif(train):
             self.system_dict["states"]["eval_infer"] = False;
     ##########################################################################################################################################################
+
+
+
+    ##########################################################################################################################################################
+    @accepts("self", list, post_trace=True)
+    @TraceFunction(trace_args=True, trace_rv=True)
+    def debug_custom_model_design(self, network_list):
+        debug_custom_model(network_list);
+        if(not isnotebook()):
+            self.custom_print("If not using notebooks check file generated graph.png");
+
+
+    ##########################################################################################################################################################

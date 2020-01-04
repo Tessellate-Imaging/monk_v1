@@ -35,7 +35,8 @@ def get_base_system_dict():
 
     #Dataset details
     system_dict["dataset"] = {};
-    system_dict["dataset"]["dataset_type"] = False;
+    system_dict["dataset"]["dataset_type"] = False
+    system_dict["dataset"]["label_type"] = False;
     system_dict["dataset"]["train_path"] = False;
     system_dict["dataset"]["val_path"] = False;
     system_dict["dataset"]["csv_train"] = False;
@@ -47,6 +48,7 @@ def get_base_system_dict():
     #Dataset params
     system_dict["dataset"]["params"] = {};
     system_dict["dataset"]["params"]["input_size"] = False;
+    system_dict["dataset"]["params"]["data_shape"] = False;
     system_dict["dataset"]["params"]["batch_size"] = False;
     system_dict["dataset"]["params"]["train_shuffle"] = False;
     system_dict["dataset"]["params"]["train_shuffle"] = False;
@@ -73,8 +75,16 @@ def get_base_system_dict():
     #Model details
     system_dict["model"] = {};
     system_dict["model"]["status"] = False;
-    system_dict["model"]["custom_network"] = [];
     system_dict["model"]["final_layer"] = False;
+    system_dict["model"]["type"] = "pretrained";
+    system_dict["model"]["custom_network"] = [];
+
+    #Custom Model details
+    system_dict["custom_model"] = {};
+    system_dict["custom_model"]["status"] = False;
+    system_dict["custom_model"]["network_stack"] = [];
+    system_dict["custom_model"]["network_initializer"] = False;
+
     
     #Model params
     system_dict["model"]["params"] = {};
@@ -157,6 +167,7 @@ def get_base_system_dict():
     system_dict["local"]["data_generators"] = {};
 
     system_dict["local"]["model"] = False;
+    system_dict["local"]["custom_model"] = False;
     system_dict["local"]["ctx"] = False;
     system_dict["local"]["params_to_update"] = [];
     system_dict["local"]["device"] = False;
@@ -191,6 +202,7 @@ def update_local_var(system_dict):
     system_dict["local"]["data_generators"] = {};
 
     system_dict["local"]["model"] = False;
+    system_dict["local"]["custom_model"] = False;
     system_dict["local"]["ctx"] = False;
     system_dict["local"]["params_to_update"] = [];
     system_dict["local"]["device"] = False;

@@ -195,8 +195,8 @@ class system():
     #############################################################################################################################
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
-    def print_list_layers(self):
-        self.custom_print("Layers List: ");
+    def print_list_layers_transfer_learning(self):
+        self.custom_print("Layers List for transfer learning: ");
 
         if(self.system_dict["library"] == "Mxnet"):
             combined_list_lower = ["append_linear", "append_dropout"];
@@ -219,8 +219,40 @@ class system():
     #############################################################################################################################
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
-    def print_list_activations(self):
-        self.custom_print("Activations List: ");
+    def print_list_layers_custom_model(self):
+        self.custom_print("Layers List for transfer learning: ");
+
+        if(self.system_dict["library"] == "Mxnet"):
+            combined_list_lower = ["convolution1d", "convolution2d", "convolution", "convolution3d", "transposed_convolution1d",
+                                    "transposed_convolution", "transposed_convolution2d", "transposed_convolution3d", 
+                                    "max_pooling1d", "max_pooling2d", "max_pooling", "max_pooling3d", "average_pooling1d",
+                                    "average_pooling2d", "average_pooling", "average_pooling3d", "global_max_pooling1d",
+                                    "global_max_pooling2d", "global_max_pooling", "global_max_pooling3d", "global_average_pooling1d",
+                                    "global_average_pooling2d", "global_average_pooling", "global_average_pooling3d", 
+                                    "fully_connected", "dropout", "flatten", "identity", "add", "concatenate", "batch_normalization",
+                                    "instance_normalization", "layer_normalization"];
+
+        elif(self.system_dict["library"] == "Keras"):
+            combined_list_lower = [];
+
+        elif(self.system_dict["library"] == "Pytorch"):
+            combined_list_lower = [];
+
+        for i in range(len(combined_list_lower)):
+            self.custom_print("    {}. {}".format(i+1, combined_list_lower[i]))
+
+        self.custom_print("")
+    #############################################################################################################################
+
+
+
+
+
+    #############################################################################################################################
+    @accepts("self", post_trace=True)
+    @TraceFunction(trace_args=True, trace_rv=True)
+    def print_list_activations_transfer_learning(self):
+        self.custom_print("Activations List for transfer learning: ");
 
         if(self.system_dict["library"] == "Mxnet"):
             combined_list_lower = ["append_elu", "append_leakyrelu", "append_prelu", "append_relu", "append_selu",
@@ -251,6 +283,35 @@ class system():
 
 
 
+    #############################################################################################################################
+    @accepts("self", post_trace=True)
+    @TraceFunction(trace_args=True, trace_rv=True)
+    def print_list_activations_custom_model(self):
+        self.custom_print("Activations List for transfer learning: ");
+
+        if(self.system_dict["library"] == "Mxnet"):
+            combined_list_lower = ["relu", "sigmoid", "tanh", "softplus", "softsign", "elu", "gelu", "leaky_relu",
+                                    "prelu", "selu", "swish"];
+
+        elif(self.system_dict["library"] == "Keras"):
+            combined_list_lower = [];
+
+
+
+        elif(self.system_dict["library"] == "Pytorch"):
+            combined_list_lower = [];
+
+
+        for i in range(len(combined_list_lower)):
+            self.custom_print("    {}. {}".format(i+1, combined_list_lower[i]))
+
+        self.custom_print("")
+    #############################################################################################################################
+
+
+
+
+
 
     #############################################################################################################################
     @accepts("self", post_trace=True)
@@ -259,8 +320,10 @@ class system():
         self.custom_print("Losses List: ");
 
         if(self.system_dict["library"] == "Mxnet"):
-            combined_list_lower = ["loss_softmax_crossentropy", "loss_sigmoid_binary_crossentropy", "loss_binary_crossentropy",
-                                    "loss_poisson_nll"];
+            combined_list_lower = ["loss_l1", "loss_l2", "loss_softmax_crossentropy", "loss_crossentropy",
+                                    "loss_sigmoid_binary_crossentropy", "loss_binary_crossentropy",
+                                    "loss_kldiv", "loss_poisson_nll", "loss_huber", "loss_hinge",
+                                    "loss_squared_hinge"];
 
         elif(self.system_dict["library"] == "Keras"):
             combined_list_lower = ["loss_categorical_crossentropy", "loss_sparse_categorical_crossentropy",
@@ -291,9 +354,9 @@ class system():
         self.custom_print("Optimizers List: ");
 
         if(self.system_dict["library"] == "Mxnet"):
-            combined_list_lower = ["optimizer_sgd", "optimizer_nag", "optimizer_rmsprop", "optimizer_adam", "optimizer_adagrad", 
-                                    "optimizer_adadelta", "optimizer_adamax", "optimizer_nadam", "optimizer_signum", 
-                                    "optimizer_ftml"];
+            combined_list_lower = ["optimizer_sgd", "optimizer_nesterov_sgd", "optimizer_rmsprop", "optimizer_momentum_rmsprop", 
+                                    "optimizer_adam", "optimizer_adagrad", "optimizer_nesterov_adam", 
+                                    "optimizer_adadelta", "optimizer_adamax", "optimizer_signum"];
 
         elif(self.system_dict["library"] == "Keras"):
             combined_list_lower = ["optimizer_adadelta", "optimizer_adagrad", "optimizer_adam", "optimizer_adamax", 

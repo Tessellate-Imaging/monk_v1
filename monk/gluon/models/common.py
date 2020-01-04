@@ -103,39 +103,111 @@ def print_grad_stats(system_dict):
 @accepts(dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def get_num_layers(system_dict):
-    num_layers = 0;
-    for param in system_dict["local"]["model"].collect_params().values():
-        num_layers += 1;
-    system_dict["model"]["params"]["num_layers"] = num_layers//2;
-    return system_dict;
+    if(system_dict["model"]["type"] == "pretrained"):
+        num_layers = 0;
+        complete_list = [];
+        for names in system_dict["local"]["model"].collect_params().keys():
+            layer_name = '_'.join(names.split("_")[:-1]);
+            if(layer_name not in complete_list):
+                complete_list.append(layer_name);
+        system_dict["model"]["params"]["num_layers"] = len(np.unique(complete_list));
+        return system_dict;
+    else:
+        num_layers = 0;
+        complete_list = [];
+        for names in system_dict["local"]["model"].collect_params().keys():
+            complete_list.append(names.split("_")[0]);
+        system_dict["model"]["params"]["num_layers"] = len(np.unique(complete_list));
+        return system_dict;
+
 
 
 @accepts(int, dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def freeze_layers(num, system_dict):
-    system_dict = get_num_layers(system_dict);
-    num_layers_in_model = system_dict["model"]["params"]["num_layers"];
-    if(num > num_layers_in_model):
-        msg = "Parameter num > num_layers_in_model\n";
-        msg += "Freezing entire network\n";
-        msg += "TIP: Total layers: {}".format(num_layers_in_model);
-        raise ConstraintError(msg)
+    if(system_dict["model"]["type"] == "pretrained"):
+        num_freeze = num;
+        num_freezed = 0;
+        training_list = system_dict["local"]["params_to_update"];
 
-    num = num*2;
-    current_num = 0;
-    value = 'null';
+        grad_req= "null";
+        current_name = training_list[0];
+        for param in system_dict["local"]["model"].collect_params().values():
+            if(current_name != '_'.join(param.name.split("_")[:-1])):
+                num_freezed += 1;
+                if(num_freezed == num_freeze):
+                    grad_req = "write";
+                param.grad_req = grad_req;
+                current_name = '_'.join(param.name.split("_")[:-1]);
+            else:
+                param.grad_req = grad_req;
 
-    for param in system_dict["local"]["model"].collect_params().values():
-        param.grad_req = value;
-        current_num += 1;
-        if(current_num == num):
-            value = 'write';
+        current_name = "";
+        ip = 0;
+        system_dict["local"]["params_to_update"] = [];
+        for param in system_dict["local"]["model"].collect_params().values():
+            if(ip==0):
+                current_name = '_'.join(param.name.split("_")[:-1]);
+                if(param.grad_req == "write"):
+                    system_dict["local"]["params_to_update"].append(current_name);
+            else:
+                if(current_name != '_'.join(param.name.split("_")[:-1])):
+                    current_name = '_'.join(param.name.split("_")[:-1]);
+                    if(param.grad_req == "write"):
+                        system_dict["local"]["params_to_update"].append(current_name);
+            ip += 1;
+        system_dict["model"]["params"]["num_params_to_update"] = len(system_dict["local"]["params_to_update"]);
+        system_dict["model"]["status"] = True;
 
-    params_to_update = [];
-    for param in system_dict["local"]["model"].collect_params().values():
-        if param.grad_req == 'write':
-            params_to_update.append(param)
-    system_dict["model"]["params"]["num_params_to_update"] = len(params_to_update)//2;
-    system_dict["model"]["status"] = True;
+        return system_dict;
 
-    return system_dict;
+    else:
+        num_freeze = num;
+        num_freezed = 0;
+        training_list = system_dict["local"]["params_to_update"];
+
+
+        current_name = training_list[0];
+        for param in system_dict["local"]["model"].collect_params().values():
+            if(current_name != param.name.split("_")[0]):
+                num_freezed += 1;
+                if(num_freezed == num_freeze):
+                    break;
+                param.grad_req = "null";
+                current_name = param.name.split("_")[0];
+            else:
+                param.grad_req = "null";
+
+
+        current_name = "";
+        ip = 0;
+        system_dict["local"]["params_to_update"] = [];
+        for param in system_dict["local"]["model"].collect_params().values():
+            if(ip==0):
+                current_name = param.name.split("_")[0];
+                if(param.grad_req == "write"):
+                    system_dict["local"]["params_to_update"].append(current_name);
+            else:
+                if(current_name != param.name.split("_")[0]):
+                    current_name = param.name.split("_")[0];
+                    if(param.grad_req == "write"):
+                        system_dict["local"]["params_to_update"].append(current_name);
+            ip += 1;
+        system_dict["model"]["params"]["num_params_to_update"] = len(system_dict["local"]["params_to_update"]);
+        system_dict["model"]["status"] = True;
+
+
+
+        return system_dict;
+
+
+@accepts(dict, list, post_trace=True)
+@TraceFunction(trace_args=False, trace_rv=False)
+def get_layer_uid(network_stack, count):
+    if network_stack["uid"]:
+        return network_stack["uid"], count;
+    else:
+        index = layer_names.index(network_stack["name"]);
+        network_name = names[index] + str(count[index]);
+        count[index] += 1;
+        return network_name, count;

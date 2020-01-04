@@ -172,7 +172,8 @@ from tf_keras.optimizers.optimizers import adam
 from tf_keras.optimizers.optimizers import adamax
 from tf_keras.optimizers.optimizers import rmsprop
 from tf_keras.optimizers.optimizers import sgd
-from tf_keras.optimizers.optimizers import nadam
+from tf_keras.optimizers.optimizers import nesterov_sgd
+from tf_keras.optimizers.optimizers import nesterov_adam
 
 from tf_keras.optimizers.retrieve_optimizer import retrieve_optimizer
 

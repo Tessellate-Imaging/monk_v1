@@ -135,16 +135,22 @@ class prototype(prototype_master):
 
 
 
-
-
-
+    ## Will be depricated in v2.0
     ###############################################################################################################################################
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def List_Layers(self):
-        self.print_list_layers();
+        self.print_list_layers_transfer_learning();
     ###############################################################################################################################################
 
+
+
+    ###############################################################################################################################################
+    @accepts("self", post_trace=True)
+    @TraceFunction(trace_args=True, trace_rv=True)
+    def List_Layers_Transfer_Learning(self):
+        self.print_list_layers_transfer_learning();
+    ###############################################################################################################################################
 
 
 
@@ -152,8 +158,36 @@ class prototype(prototype_master):
     ###############################################################################################################################################
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
+    def List_Layers_Custom_Model(self):
+        self.print_list_layers_custom_model();
+    ###############################################################################################################################################
+
+
+
+    ## Will be depricated in v2.0
+    ###############################################################################################################################################
+    @accepts("self", post_trace=True)
+    @TraceFunction(trace_args=True, trace_rv=True)
     def List_Activations(self):
-        self.print_list_activations();
+        self.print_list_activations_transfer_learning();
+    ###############################################################################################################################################
+
+
+
+    ###############################################################################################################################################
+    @accepts("self", post_trace=True)
+    @TraceFunction(trace_args=True, trace_rv=True)
+    def List_Activations_Transfer_Learning(self):
+        self.print_list_activations_transfer_learning();
+    ###############################################################################################################################################
+
+
+
+    ###############################################################################################################################################
+    @accepts("self", post_trace=True)
+    @TraceFunction(trace_args=True, trace_rv=True)
+    def List_Activations_Custom_Model(self):
+        self.print_list_activations_custom_model();
     ###############################################################################################################################################
 
 

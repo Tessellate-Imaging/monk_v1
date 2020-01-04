@@ -18,6 +18,7 @@ class prototype_master(prototype_updates):
         self.set_dataset_final(test=self.system_dict["states"]["eval_infer"]);
         save(self.system_dict);
 
+        
         if(self.system_dict["states"]["eval_infer"]):
             
             self.custom_print("Pre-Composed Test Transforms");
@@ -43,6 +44,7 @@ class prototype_master(prototype_updates):
             self.custom_print("    Num val images:   {}".format(self.system_dict["dataset"]["params"]["num_val_images"]));
             self.custom_print("    Num classes:      {}".format(self.system_dict["dataset"]["params"]["num_classes"]))
             self.custom_print("");
+        
     ###############################################################################################################################################
 
 
@@ -164,7 +166,7 @@ class prototype_master(prototype_updates):
 
 
     ###############################################################################################################################################
-    @error_checks(None, img_name=["file", "r"], img_dir=["folder", "r"], return_raw=False, post_trace=True)
+    @error_checks(None, img_name=["file", "r"], img_dir=["folder", "r"], return_raw=None, post_trace=True)
     @accepts("self", img_name=[str, bool], img_dir=[str, bool], return_raw=bool, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def Infer(self, img_name=False, img_dir=False, return_raw=False):
@@ -173,4 +175,47 @@ class prototype_master(prototype_updates):
         else:
             predictions = self.set_prediction_final(img_dir=img_dir, return_raw=return_raw);
         return predictions;
+    ###############################################################################################################################################
+
+
+
+    ###############################################################################################################################################
+    @accepts("self", network=list, data_shape=tuple, use_gpu=bool, network_initializer=str, post_trace=True)
+    @TraceFunction(trace_args=True, trace_rv=True)
+    def Compile_Network(self, network, data_shape=(3, 224, 224), use_gpu=True, network_initializer="xavier_normal"):
+        self.system_dict["custom_model"]["network_stack"] = network;
+        self.system_dict["custom_model"]["network_initializer"] = network_initializer;
+        self.system_dict["model"]["type"] = "custom";
+        self.system_dict["dataset"]["params"]["data_shape"] = data_shape;
+        self.system_dict = set_device(use_gpu, self.system_dict);
+        save(self.system_dict);
+        self.set_model_final();
+    ###############################################################################################################################################
+
+
+    ###############################################################################################################################################
+    @accepts("self", post_trace=True)
+    @TraceFunction(trace_args=True, trace_rv=True)
+    def Visualize_With_Netron(self):
+        self.custom_print("Using Netron To Visualize");
+        self.custom_print("Not compatible on kaggle");
+        self.custom_print("Compatible only for Jupyter Notebooks");
+
+        c, h, w = self.system_dict["dataset"]["params"]["data_shape"];
+
+        data = mx.nd.random.randn(1, c, h, w)
+        if(self.system_dict["model"]["params"]["use_gpu"]):
+            self.system_dict["local"]["ctx"] = [mx.gpu(0)];
+        else:
+            self.system_dict["local"]["ctx"] = [mx.cpu()];
+
+        data = data.copyto(self.system_dict["local"]["ctx"][0])
+
+        self.system_dict["local"]["model"].hybridize();
+        out = self.system_dict["local"]["model"](data);
+
+        self.system_dict["local"]["model"].export("model", epoch=0)
+
+        import netron
+        netron.start('model-symbol.json')
     ###############################################################################################################################################

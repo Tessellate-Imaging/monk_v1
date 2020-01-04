@@ -21,3 +21,4 @@ class DatasetCustom(Dataset):
         img = image.imread(image_name);
         label = int(self.label_list[index]);       
         return img, label
+
