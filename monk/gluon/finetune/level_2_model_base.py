@@ -109,7 +109,6 @@ class finetune_model(finetune_dataset):
                                 current_name = param.name.split("_")[0];
                                 if(param.grad_req == "write"):
                                     self.system_dict["local"]["params_to_update"].append(current_name);
-                        print(current_name);
                         ip += 1;
                     self.system_dict["model"]["params"]["num_params_to_update"] = len(self.system_dict["local"]["params_to_update"]);
                     self.system_dict["model"]["status"] = True;
