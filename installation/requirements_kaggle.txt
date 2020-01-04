@@ -10,3 +10,4 @@ pandas
 GPUtil 
 pylg
 tabulate
+netron
