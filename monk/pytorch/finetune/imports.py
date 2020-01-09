@@ -187,11 +187,21 @@ from pytorch.optimizers.return_optimizer import load_optimizer
 
 
 ################################################################################
+from pytorch.losses.losses import l1
+from pytorch.losses.losses import l2
 from pytorch.losses.losses import softmax_crossentropy
-from pytorch.losses.losses import nll
-from pytorch.losses.losses import poisson_nll
+from pytorch.losses.losses import crossentropy
+from pytorch.losses.losses import sigmoid_binary_crossentropy
 from pytorch.losses.losses import binary_crossentropy
-from pytorch.losses.losses import binary_crossentropy_with_logits
+from pytorch.losses.losses import kldiv
+from pytorch.losses.losses import poisson_nll
+from pytorch.losses.losses import huber
+from pytorch.losses.losses import hinge
+from pytorch.losses.losses import squared_hinge
+from pytorch.losses.losses import multimargin
+from pytorch.losses.losses import squared_multimargin
+from pytorch.losses.losses import multilabelmargin
+from pytorch.losses.losses import multilabelsoftmargin
 
 from pytorch.losses.return_loss import load_loss
 
