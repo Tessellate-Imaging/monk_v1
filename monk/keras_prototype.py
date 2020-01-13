@@ -114,7 +114,7 @@ class prototype(prototype_master):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def List_Layers(self):
-        self.print_list_layers();
+        self.print_list_layers_transfer_learning();
     ###############################################################################################################################################
 
 
@@ -125,7 +125,7 @@ class prototype(prototype_master):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def List_Activations(self):
-        self.print_list_activations();
+        self.print_list_activations_transfer_learning();
     ###############################################################################################################################################
 
 
