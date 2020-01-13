@@ -11,3 +11,5 @@ GPUtil
 pylg
 tabulate
 netron
+networkx
+matplotlib
