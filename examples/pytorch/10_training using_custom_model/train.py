@@ -130,7 +130,7 @@ network.append(gtf.dropout(drop_probability=0.2));
 network.append(gtf.fully_connected(units=2));
 
 gtf.debug_custom_model_design(network);
-gtf.Compile_Network(network);
+gtf.Compile_Network(network, data_shape=(3, 224, 224));
 
 ##########################################################################################################################################
 

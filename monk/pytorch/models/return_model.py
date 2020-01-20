@@ -222,3 +222,82 @@ def setup_model(system_dict):
         system_dict["local"]["model"] = net;
 
         return system_dict;
+
+
+
+@accepts(list, post_trace=True)
+@TraceFunction(trace_args=False, trace_rv=False)
+def debug_custom_model(network_stack):
+    count = [];
+    for i in range(len(names)):
+        count.append(1);
+
+    G=nx.DiGraph()
+    G.add_node("Net", pos=(1,1))
+    sequential_first = "data";
+    sequential_second, count = get_layer_uid(network_stack[0], count)
+
+    count = [];
+    for i in range(len(names)):
+        count.append(1);
+
+    position = 1;
+    G.add_node(sequential_first, pos=(2,1))
+    position += 1;
+
+
+    max_width = 1;
+    for i in range(len(network_stack)):
+        if(type(network_stack[i]) == list):
+            branch_end_points = [];
+            branch_lengths = [];
+            branches = [];
+            branch_net = [];
+
+
+            if(max_width < len(network_stack[i])-2):
+                max_width = len(network_stack[i])-2
+            for j in range(len(network_stack[i])-1):
+                branch_first = sequential_first
+                branch_position = position
+                column = j+2;
+                for k in range(len(network_stack[i][j])):
+                    branch_second, count = get_layer_uid(network_stack[i][j][k], count);
+                    G.add_node(branch_second, pos=(column, branch_position));
+                    branch_position += 1;
+                    G.add_edge(branch_first, branch_second);
+                    branch_first = branch_second;
+
+                    if(k == len(network_stack[i][j])-1):
+                        branch_end_points.append(branch_second);
+                        branch_lengths.append(len(network_stack[i][j]));
+
+            position += max(branch_lengths);
+            position += 1;
+
+            sequential_second, count = get_layer_uid(network_stack[i][-1], count)
+
+            G.add_node(sequential_second, pos=(2, position));
+            position += 1;
+            for i in range(len(branch_end_points)):
+                G.add_edge(branch_end_points[i], sequential_second);
+            sequential_first = sequential_second;
+
+
+        else:
+            sequential_second, count = get_layer_uid(network_stack[i], count)
+            G.add_node(sequential_second, pos=(2, position))
+            position += 1;
+            G.add_edge(sequential_first, sequential_second);
+            sequential_first = sequential_second;
+
+
+    if(max_width == 1):
+        G.add_node("monk", pos=(3, position));
+    else:
+        G.add_node("monk", pos=(max_width + 3, position))
+    pos=nx.get_node_attributes(G,'pos')
+
+    plt.figure(3, figsize=(8, 12 + position//6)) 
+    nx.draw_networkx(G, pos, with_label=True, font_size=16, node_color="yellow", node_size=100)
+    plt.savefig("graph.png");
