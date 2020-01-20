@@ -139,6 +139,7 @@ from pytorch.models.common import freeze_layers
 
 from pytorch.models.return_model import load_model
 from pytorch.models.return_model import setup_model
+from pytorch.models.return_model import debug_custom_model
 ################################################################################
 
 
