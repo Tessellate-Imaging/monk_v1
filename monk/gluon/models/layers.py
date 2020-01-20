@@ -272,7 +272,7 @@ def custom_model_get_layer(network_layer):
     elif(layer_name == "tanh"):
         return custom_model_activation_tanh(layer_params);
     elif(layer_name == "softplus"):
-        return custom_model_activation_tanh(layer_params);
+        return custom_model_activation_softplus(layer_params);
     elif(layer_name == "softsign"):
         return custom_model_activation_softsign(layer_params);
 

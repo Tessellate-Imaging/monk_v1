@@ -47,11 +47,15 @@ class finetune_training(finetune_model):
 
 
                 with torch.set_grad_enabled(phase == 'train'):
-                    if "inception" in self.system_dict["model"]["params"]["model_name"] and phase == 'train':
-                        outputs, aux_outputs = self.system_dict["local"]["model"](inputs)
-                        loss1 = self.system_dict["local"]["criterion"](outputs, labels)
-                        loss2 = self.system_dict["local"]["criterion"](aux_outputs, labels)
-                        loss = loss1 + 0.4*loss2
+                    if(self.system_dict["model"]["params"]["model_name"]):
+                        if "inception" in self.system_dict["model"]["params"]["model_name"] and phase == 'train':
+                            outputs, aux_outputs = self.system_dict["local"]["model"](inputs)
+                            loss1 = self.system_dict["local"]["criterion"](outputs, labels)
+                            loss2 = self.system_dict["local"]["criterion"](aux_outputs, labels)
+                            loss = loss1 + 0.4*loss2
+                        else:
+                            outputs = self.system_dict["local"]["model"](inputs)
+                            loss = self.system_dict["local"]["criterion"](outputs, labels)
                     else:
                         outputs = self.system_dict["local"]["model"](inputs)
                         loss = self.system_dict["local"]["criterion"](outputs, labels)
@@ -146,11 +150,15 @@ class finetune_training(finetune_model):
 
 
                         with torch.set_grad_enabled(phase == 'train'):
-                            if "inception" in self.system_dict["model"]["params"]["model_name"] and phase == 'train':
-                                outputs, aux_outputs = self.system_dict["local"]["model"](inputs)
-                                loss1 = self.system_dict["local"]["criterion"](outputs, labels)
-                                loss2 = self.system_dict["local"]["criterion"](aux_outputs, labels)
-                                loss = loss1 + 0.4*loss2
+                            if(self.system_dict["model"]["params"]["model_name"]):
+                                if "inception" in self.system_dict["model"]["params"]["model_name"] and phase == 'train':
+                                    outputs, aux_outputs = self.system_dict["local"]["model"](inputs)
+                                    loss1 = self.system_dict["local"]["criterion"](outputs, labels)
+                                    loss2 = self.system_dict["local"]["criterion"](aux_outputs, labels)
+                                    loss = loss1 + 0.4*loss2
+                                else:
+                                    outputs = self.system_dict["local"]["model"](inputs)
+                                    loss = self.system_dict["local"]["criterion"](outputs, labels)
                             else:
                                 outputs = self.system_dict["local"]["model"](inputs)
                                 loss = self.system_dict["local"]["criterion"](outputs, labels)
@@ -315,11 +323,15 @@ class finetune_training(finetune_model):
 
 
                         with torch.set_grad_enabled(phase == 'train'):
-                            if "inception" in self.system_dict["model"]["params"]["model_name"] and phase == 'train':
-                                outputs, aux_outputs = self.system_dict["local"]["model"](inputs)
-                                loss1 = self.system_dict["local"]["criterion"](outputs, labels)
-                                loss2 = self.system_dict["local"]["criterion"](aux_outputs, labels)
-                                loss = loss1 + 0.4*loss2
+                            if(self.system_dict["model"]["params"]["model_name"]):
+                                if "inception" in self.system_dict["model"]["params"]["model_name"] and phase == 'train':
+                                    outputs, aux_outputs = self.system_dict["local"]["model"](inputs)
+                                    loss1 = self.system_dict["local"]["criterion"](outputs, labels)
+                                    loss2 = self.system_dict["local"]["criterion"](aux_outputs, labels)
+                                    loss = loss1 + 0.4*loss2
+                                else:
+                                    outputs = self.system_dict["local"]["model"](inputs)
+                                    loss = self.system_dict["local"]["criterion"](outputs, labels)
                             else:
                                 outputs = self.system_dict["local"]["model"](inputs)
                                 loss = self.system_dict["local"]["criterion"](outputs, labels)

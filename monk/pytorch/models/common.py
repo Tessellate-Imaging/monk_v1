@@ -118,3 +118,15 @@ def freeze_layers(num, system_dict):
     system_dict["model"]["status"] = True;
 
     return system_dict;
+
+
+@accepts(dict, list, post_trace=True)
+@TraceFunction(trace_args=False, trace_rv=False)
+def get_layer_uid(network_stack, count):
+    if network_stack["uid"]:
+        return network_stack["uid"], count;
+    else:
+        index = layer_names.index(network_stack["name"]);
+        network_name = names[index] + str(count[index]);
+        count[index] += 1;
+        return network_name, count;

@@ -189,6 +189,9 @@ class prototype_layers(prototype_aux):
     #####################################################################################################################################
 
 
+
+
+
     #####################################################################################################################################
     @warning_checks(None, output_channels=["lt", 2048], kernel_size=["lt", 16], stride=["lt", 16], padding=None,
         groups=None, dilation=None, use_bias=None, layout=None, uid=None, post_trace=True)
@@ -977,15 +980,17 @@ class prototype_layers(prototype_aux):
 
 
     #####################################################################################################################################
-    @warning_checks(None, uid=None, post_trace=True)
-    @error_checks(None, uid=None, post_trace=True)
-    @accepts("self", uid=[None, str], post_trace=True)
+    @warning_checks(None, beta=None, threshold=None, uid=None, post_trace=True)
+    @error_checks(None, beta=["gt", 0], threshold=None, uid=None, post_trace=True)
+    @accepts("self", beta=[int, float], threshold=[int, float], uid=[None, str], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
-    def softplus(self, uid=None): #softrelu
+    def softplus(self, beta=1, threshold=20, uid=None): 
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "softplus";
         tmp["params"] = {};
+        tmp["params"]["beta"] = beta;
+        tmp["params"]["threshold"] = threshold;
         return tmp;
     #####################################################################################################################################
 
@@ -1040,7 +1045,7 @@ class prototype_layers(prototype_aux):
     @error_checks(None, alpha=["gt", 0], uid=None, post_trace=True)
     @accepts("self", alpha=float, uid=[None, str], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
-    def leaky_relu(self, alpha=1.0, uid=None): 
+    def leaky_relu(self, alpha=0.01, uid=None): 
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "leaky_relu";

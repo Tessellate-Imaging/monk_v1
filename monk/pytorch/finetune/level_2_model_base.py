@@ -73,8 +73,11 @@ class finetune_model(finetune_dataset):
                 self.custom_print("    Loading pretrained model");
                 self.system_dict = setup_model(self.system_dict);
 
+
+            
             self.system_dict = model_to_device(self.system_dict);
             self.custom_print("    Model Loaded on device");
+
 
             self.system_dict = get_num_layers(self.system_dict);
 
@@ -85,8 +88,13 @@ class finetune_model(finetune_dataset):
             self.system_dict["model"]["params"]["num_params_to_update"] = len(self.system_dict["local"]["params_to_update"])//2;
             self.system_dict["model"]["status"] = True;
 
-            self.custom_print("        Model name:           {}".format(self.system_dict["model"]["params"]["model_name"]));
+            
+            if(self.system_dict["model"]["type"] == "custom"):
+                self.custom_print("        Model name:                           {}".format("Custom Model"));
+            else:
+                self.custom_print("        Model name:                           {}".format(self.system_dict["model"]["params"]["model_name"]));
             self.custom_print("        Num layers in model:  {}".format(self.system_dict["model"]["params"]["num_layers"]));
             self.custom_print("        Num trainable layers: {}".format(self.system_dict["model"]["params"]["num_params_to_update"]));
             self.custom_print("");
+            
     ###############################################################################################################################################

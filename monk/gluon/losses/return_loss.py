@@ -76,5 +76,8 @@ def load_loss(system_dict):
 			weight=system_dict["hyper-parameters"]["loss"]["params"]["weight"],
 			batch_axis=system_dict["hyper-parameters"]["loss"]["params"]["batch_axis"]);
 
+	
+
+
 
 	return system_dict;

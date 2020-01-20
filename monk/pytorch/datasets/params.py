@@ -2,7 +2,7 @@ from pytorch.datasets.imports import *
 from system.imports import *
 
 
-@accepts(int, dict, post_trace=True)
+@accepts([int, tuple], dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def set_input_size(input_size, system_dict):
     system_dict["dataset"]["params"]["input_size"] = input_size;

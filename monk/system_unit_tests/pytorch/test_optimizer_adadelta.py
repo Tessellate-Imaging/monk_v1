@@ -9,6 +9,7 @@ from common import print_start
 from common import print_status
 
 
+
 def test_optimizer_adadelta(system_dict):
     forward = True;
 

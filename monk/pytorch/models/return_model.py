@@ -2,6 +2,10 @@ from pytorch.models.imports import *
 from system.imports import *
 from pytorch.models.models import *
 from pytorch.models.common import create_final_layer
+from pytorch.models.common import get_layer_uid
+from pytorch.models.layers import custom_model_get_layer
+from pytorch.models.layers import Net_Add
+from pytorch.models.layers import Net_Concat
 
 
 
@@ -42,61 +46,179 @@ def load_model(system_dict, path=False, final=False, resume=False, external_path
 @accepts(dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def setup_model(system_dict):
-    model_name = system_dict["model"]["params"]["model_name"];
-    use_pretrained = system_dict["model"]["params"]["use_pretrained"];
-    freeze_base_network = system_dict["model"]["params"]["freeze_base_network"];
-    custom_network = system_dict["model"]["custom_network"];
-    final_layer = system_dict["model"]["final_layer"];
-    num_classes = system_dict["dataset"]["params"]["num_classes"];
+    if(system_dict["model"]["type"] == "pretrained"):
 
-    finetune_net, model_name = get_base_model(model_name, use_pretrained, num_classes, freeze_base_network);
+        model_name = system_dict["model"]["params"]["model_name"];
+        use_pretrained = system_dict["model"]["params"]["use_pretrained"];
+        freeze_base_network = system_dict["model"]["params"]["freeze_base_network"];
+        custom_network = system_dict["model"]["custom_network"];
+        final_layer = system_dict["model"]["final_layer"];
+        num_classes = system_dict["dataset"]["params"]["num_classes"];
+
+        finetune_net, model_name = get_base_model(model_name, use_pretrained, num_classes, freeze_base_network);
 
 
-    if(len(custom_network)):
-        if(final_layer):
+        if(len(custom_network)):
+            if(final_layer):
+                if(model_name in set1):
+                    finetune_net = create_final_layer(finetune_net, custom_network, num_classes, set=1);
+                elif(model_name in set2):
+                    finetune_net = create_final_layer(finetune_net, custom_network, num_classes, set=2);
+                elif(model_name in set3):
+                    if(model_name == "inception_v3"):
+                        msg = "Custm layer addition to inception_V3 unimplemented.\n";
+                        msg += "Using basic inception_v3";
+                        ConstraintWarning(msg);
+                        num_ftrs = finetune_net.AuxLogits.fc.in_features;
+                        finetune_net.AuxLogits.fc = nn.Linear(num_ftrs, num_classes);
+                        num_ftrs = finetune_net.fc.in_features;
+                        finetune_net.fc = nn.Linear(num_ftrs,num_classes);
+                    else:
+                        finetune_net = create_final_layer(finetune_net, custom_network, num_classes, set=3);
+                elif(model_name in set4):
+                    finetune_net = create_final_layer(finetune_net, custom_network, num_classes, set=4);
+            else:
+                msg = "Final layer not assigned";
+                raise ConstraintError(msg);
+        else:
             if(model_name in set1):
-                finetune_net = create_final_layer(finetune_net, custom_network, num_classes, set=1);
+                num_ftrs = finetune_net.classifier[6].in_features;
+                finetune_net.classifier[6] = nn.Linear(num_ftrs, num_classes);
             elif(model_name in set2):
-                finetune_net = create_final_layer(finetune_net, custom_network, num_classes, set=2);
+                num_ftrs = finetune_net.classifier.in_features;
+                finetune_net.classifier = nn.Linear(num_ftrs, num_classes);
             elif(model_name in set3):
                 if(model_name == "inception_v3"):
-                    msg = "Custm layer addition to inception_V3 unimplemented.\n";
-                    msg += "Using basic inception_v3";
-                    ConstraintWarning(msg);
                     num_ftrs = finetune_net.AuxLogits.fc.in_features;
                     finetune_net.AuxLogits.fc = nn.Linear(num_ftrs, num_classes);
                     num_ftrs = finetune_net.fc.in_features;
                     finetune_net.fc = nn.Linear(num_ftrs,num_classes);
                 else:
-                    finetune_net = create_final_layer(finetune_net, custom_network, num_classes, set=3);
+                    num_ftrs = finetune_net.fc.in_features;
+                    finetune_net.fc = nn.Linear(num_ftrs, num_classes);
             elif(model_name in set4):
-                finetune_net = create_final_layer(finetune_net, custom_network, num_classes, set=4);
-        else:
-            msg = "Final layer not assigned";
-            raise ConstraintError(msg);
+                num_ftrs = finetune_net.classifier[1].in_features;
+                finetune_net.classifier[1] = nn.Linear(num_ftrs, num_classes);
+
+
+
+        system_dict["local"]["model"] = finetune_net;
+
+
+        return system_dict;
+
     else:
-        if(model_name in set1):
-            num_ftrs = finetune_net.classifier[6].in_features;
-            finetune_net.classifier[6] = nn.Linear(num_ftrs, num_classes);
-        elif(model_name in set2):
-            num_ftrs = finetune_net.classifier.in_features;
-            finetune_net.classifier = nn.Linear(num_ftrs, num_classes);
-        elif(model_name in set3):
-            if(model_name == "inception_v3"):
-                num_ftrs = finetune_net.AuxLogits.fc.in_features;
-                finetune_net.AuxLogits.fc = nn.Linear(num_ftrs, num_classes);
-                num_ftrs = finetune_net.fc.in_features;
-                finetune_net.fc = nn.Linear(num_ftrs,num_classes);
+
+        count = [];
+        for i in range(len(names)):
+            count.append(1);
+
+        network_stack = system_dict["custom_model"]["network_stack"];
+        G=nx.DiGraph()
+        G.add_node("Net", pos=(1,1))
+        sequential_first = "data";
+        sequential_second, count = get_layer_uid(network_stack[0], count)
+        current_in_shape = system_dict["dataset"]["params"]["data_shape"];
+
+        count = [];
+        for i in range(len(names)):
+            count.append(1);
+
+        position = 1;
+        G.add_node(sequential_first, pos=(2,1))
+        position += 1;
+
+
+        net = nn.Sequential();
+        max_width = 1;
+        for i in range(len(network_stack)):
+            if(type(network_stack[i]) == list):
+                branch_end_points = [];
+                branch_lengths = [];
+                branches = [];
+                branch_net = [];
+
+
+
+                if(max_width < len(network_stack[i])-2):
+                    max_width = len(network_stack[i])-2
+                for j in range(len(network_stack[i])-1):
+                    small_net = [];
+                    branch_net.append(nn.Sequential())
+                    branch_first = sequential_first
+                    branch_position = position
+                    column = j+2;
+                    current_in_shape_base = current_in_shape
+                    for k in range(len(network_stack[i][j])):
+                        branch_second, count = get_layer_uid(network_stack[i][j][k], count);
+                        current_layer, current_in_shape_base = custom_model_get_layer(network_stack[i][j][k], current_in_shape_base);
+                        branch_net[j].add_module(branch_second, current_layer);
+                        small_net.append(current_layer);
+                        G.add_node(branch_second, pos=(column, branch_position));
+                        branch_position += 1;
+                        G.add_edge(branch_first, branch_second);
+                        branch_first = branch_second;
+
+                        if(k == len(network_stack[i][j])-1):
+                            branch_end_points.append(branch_second);
+                            branch_lengths.append(len(network_stack[i][j]));
+                    branches.append(small_net);
+
+                position += max(branch_lengths);
+                position += 1;
+
+                sequential_second, count = get_layer_uid(network_stack[i][-1], count)
+
+                if(network_stack[i][-1]["name"] == "concatenate"):
+                    subnetwork = Net_Concat(branch_net);
+                else:
+                    subnetwork = Net_Add(branch_net);
+
+                if(len(current_in_shape) == 2):
+                    c, w = current_in_shape
+                    x = torch.randn(1, c, w);
+                    y = subnetwork(x)
+                    current_in_shape = (y.shape[1], y.shape[2]);
+                elif(len(current_in_shape) == 3):
+                    c, h, w = current_in_shape
+                    x = torch.randn(1, c, h, w);
+                    y = subnetwork(x)
+                    current_in_shape = (y.shape[1], y.shape[2], y.shape[3]);
+                elif(len(current_in_shape) == 4):
+                    c, d, h, w = current_in_shape
+                    x = torch.randn(1, c, d, h, w);
+                    y = subnetwork(x)
+                    current_in_shape = (y.shape[1], y.shape[2], y.shape[3], y.shape[4]);
+
+
+                G.add_node(sequential_second, pos=(2, position));
+                position += 1;
+                for i in range(len(branch_end_points)):
+                    G.add_edge(branch_end_points[i], sequential_second);
+                sequential_first = sequential_second;
+                net.add_module(sequential_second, subnetwork)
             else:
-                num_ftrs = finetune_net.fc.in_features;
-                finetune_net.fc = nn.Linear(num_ftrs, num_classes);
-        elif(model_name in set4):
-            num_ftrs = finetune_net.classifier[1].in_features;
-            finetune_net.classifier[1] = nn.Linear(num_ftrs, num_classes);
+                sequential_second, count = get_layer_uid(network_stack[i], count)
+                current_layer, current_in_shape = custom_model_get_layer(network_stack[i], current_in_shape);
+                net.add_module(sequential_second, current_layer);
+                G.add_node(sequential_second, pos=(2, position))
+                position += 1;
+                G.add_edge(sequential_first, sequential_second);
+                sequential_first = sequential_second;
 
 
 
-    system_dict["local"]["model"] = finetune_net;
+        if(max_width == 1):
+            G.add_node("monk", pos=(3, position));
+        else:
+            G.add_node("monk", pos=(max_width + 3, position))
+        pos=nx.get_node_attributes(G,'pos')
+
+        plt.figure(3, figsize=(8, 12 + position//6)) 
+        nx.draw_networkx(G, pos, with_label=True, font_size=16, node_color="yellow", node_size=100)
+        plt.savefig("graph.png");
 
 
-    return system_dict;
+        system_dict["local"]["model"] = net;
+
+        return system_dict;

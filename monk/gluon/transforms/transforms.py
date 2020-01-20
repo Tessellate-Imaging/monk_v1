@@ -185,22 +185,29 @@ def transform_normalize(system_dict, mean, std, train, val, test, retrieve=False
     system_dict["local"]["normalize"] = True;
     input_size = system_dict["dataset"]["params"]["input_size"];
 
+    if(type(system_dict["dataset"]["params"]["input_size"]) == tuple or type(system_dict["dataset"]["params"]["input_size"]) == list):
+        h = system_dict["dataset"]["params"]["input_size"][0];
+        w = system_dict["dataset"]["params"]["input_size"][1];
+    else:
+        h = system_dict["dataset"]["params"]["input_size"];
+        w = system_dict["dataset"]["params"]["input_size"];
+
     if(train):
         if(not retrieve):
             system_dict["dataset"]["transforms"]["train"].append(tmp);
-        system_dict["local"]["transforms_train"].append(transforms.Resize(size=(input_size, input_size)));
+        system_dict["local"]["transforms_train"].append(transforms.Resize(size=(w, h)));
         system_dict["local"]["transforms_train"].append(transforms.ToTensor())
         system_dict["local"]["transforms_train"].append(transforms.Normalize(mean=mean, std=std));
     if(val):
         if(not retrieve):
             system_dict["dataset"]["transforms"]["val"].append(tmp);
-        system_dict["local"]["transforms_val"].append(transforms.Resize(size=(input_size, input_size)));
+        system_dict["local"]["transforms_val"].append(transforms.Resize(size=(w, h)));
         system_dict["local"]["transforms_val"].append(transforms.ToTensor())
         system_dict["local"]["transforms_val"].append(transforms.Normalize(mean=mean, std=std));
     if(test):
         if(not retrieve):
             system_dict["dataset"]["transforms"]["test"].append(tmp);
-        system_dict["local"]["transforms_test"].append(transforms.Resize(size=(input_size, input_size)));
+        system_dict["local"]["transforms_test"].append(transforms.Resize(size=(w, h)));
         system_dict["local"]["transforms_test"].append(transforms.ToTensor())
         system_dict["local"]["transforms_test"].append(transforms.Normalize(mean=mean, std=std));
 
