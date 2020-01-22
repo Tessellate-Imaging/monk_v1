@@ -1,7 +1,7 @@
-from tf_keras.finetune.imports import *
+from tf_keras_1.finetune.imports import *
 from system.imports import *
 
-from tf_keras.finetune.level_14_master_main import prototype_master
+from tf_keras_1.finetune.level_14_master_main import prototype_master
 
 
 
@@ -114,7 +114,7 @@ class prototype(prototype_master):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def List_Layers(self):
-        self.print_list_layers_transfer_learning();
+        self.print_list_layers();
     ###############################################################################################################################################
 
 
@@ -125,7 +125,7 @@ class prototype(prototype_master):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def List_Activations(self):
-        self.print_list_activations_transfer_learning();
+        self.print_list_activations();
     ###############################################################################################################################################
 
 
