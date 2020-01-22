@@ -7,7 +7,30 @@ from system.imports import *
 def load_loss(system_dict):
     name = system_dict["local"]["criterion"];
 
-    
+    if(name == "l1"):
+        system_dict["local"]["criterion"] = krlo.mean_absolute_error
+
+    elif(name == "l2"):
+        system_dict["local"]["criterion"] = krlo.mean_squared_error
+
+    elif(name == "crossentropy"):
+        system_dict["local"]["criterion"] = krlo.categorical_crossentropy;
+
+    elif(name == "binarycrossentropy"):
+        system_dict["local"]["criterion"] = krlo.binary_crossentropy;
+
+    elif(name == "kldiv"):
+        system_dict["local"]["criterion"] = krlo.kullback_leibler_divergence;
+
+    elif(name == "hinge"):
+        system_dict["local"]["criterion"] = krlo.hinge;  
+
+    elif(name == "squaredhinge"):
+        system_dict["local"]["criterion"] = krlo.squared_hinge;
+
+
+
+    '''
     if(name == "categoricalcrossentropy"):
         system_dict["local"]["criterion"] = krlo.categorical_crossentropy;
 
@@ -19,7 +42,7 @@ def load_loss(system_dict):
 
     elif(name == "binarycrossentropy"):
         system_dict["local"]["criterion"] = krlo.binary_crossentropy;
-    
+    '''
 
 
     return system_dict;

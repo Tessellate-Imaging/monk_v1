@@ -187,10 +187,17 @@ from tf_keras_1.optimizers.return_optimizer import load_optimizer
 
 
 ################################################################################
-from tf_keras_1.losses.losses import categorical_crossentropy
-from tf_keras_1.losses.losses import sparse_categorical_crossentropy
-from tf_keras_1.losses.losses import categorical_hinge
+from tf_keras_1.losses.losses import l1
+from tf_keras_1.losses.losses import l2
+from tf_keras_1.losses.losses import crossentropy
 from tf_keras_1.losses.losses import binary_crossentropy
+from tf_keras_1.losses.losses import kldiv
+from tf_keras_1.losses.losses import hinge
+from tf_keras_1.losses.losses import squared_hinge
+
+#from tf_keras_1.losses.losses import sparse_categorical_crossentropy
+#from tf_keras_1.losses.losses import categorical_hinge
+#from tf_keras_1.losses.losses import binary_crossentropy
 
 from tf_keras_1.losses.return_loss import load_loss
 

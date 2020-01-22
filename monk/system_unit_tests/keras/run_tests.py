@@ -11,6 +11,13 @@ from test_optimizer_adamax import test_optimizer_adamax
 from test_optimizer_adadelta import test_optimizer_adadelta
 from test_optimizer_adagrad import test_optimizer_adagrad
 
+from test_loss_l1 import test_loss_l1
+from test_loss_l2 import test_loss_l2
+from test_loss_crossentropy import test_loss_crossentropy
+from test_loss_binary_crossentropy import test_loss_binary_crossentropy
+from test_loss_kldiv import test_loss_kldiv
+from test_loss_hinge import test_loss_hinge
+from test_loss_squared_hinge import test_loss_squared_hinge
 
 origstdout = sys.stdout
 
@@ -106,6 +113,60 @@ print("")
 
 
 
+print("Running 9/<num>");
+system_dict = test_loss_l1(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+print("Running 10/<num>");
+system_dict = test_loss_l2(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+print("Running 11/<num>");
+system_dict = test_loss_crossentropy(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+print("Running 12/<num>");
+system_dict = test_loss_binary_crossentropy(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+print("Running 13/<num>");
+system_dict = test_loss_kldiv(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+print("Running 14/<num>");
+system_dict = test_loss_hinge(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+print("Running 15/<num>");
+system_dict = test_loss_squared_hinge(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+
+
+
 
 sys.stdout = open("test_logs.txt", 'a');
 end = time.time();
@@ -116,6 +177,9 @@ print("Num Successful Tests  - {}".format(system_dict["successful_tests"]));
 print("Num Failed Tests      - {}".format(len(system_dict["failed_tests_lists"])));
 print("Num Skipped Tests     - {}".format(len(system_dict["skipped_tests_lists"])));
 print("");
+
+
+
 
 
 
