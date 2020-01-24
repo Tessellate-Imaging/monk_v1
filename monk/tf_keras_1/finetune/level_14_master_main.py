@@ -177,3 +177,18 @@ class prototype_master(prototype_updates):
             predictions = self.set_prediction_final(img_dir=img_dir, return_raw=return_raw);
         return predictions;
     ###############################################################################################################################################
+
+
+
+    ###############################################################################################################################################
+    @accepts("self", network=list, data_shape=tuple, use_gpu=bool, network_initializer=str, post_trace=True)
+    @TraceFunction(trace_args=True, trace_rv=True)
+    def Compile_Network(self, network, data_shape=(3, 224, 224), use_gpu=True, network_initializer="xavier_normal"):
+        self.system_dict["custom_model"]["network_stack"] = network;
+        self.system_dict["custom_model"]["network_initializer"] = network_initializer;
+        self.system_dict["model"]["type"] = "custom";
+        self.system_dict["dataset"]["params"]["data_shape"] = data_shape;
+        self.system_dict = set_device(use_gpu, self.system_dict);
+        save(self.system_dict);
+        self.set_model_final();
+    ###############################################################################################################################################

@@ -1,0 +1,964 @@
+=== Log initialised at 2020-01-24 14:01:18.390819 ===
+
+2020-01-24 14:01:18.390640  keras_prototype.py    0011: __init__                          -> ENTRY: verbose = 1
+2020-01-24 14:01:18.390880  level_14_master_main  0011: __init__                          -> ENTRY: verbose = 1
+2020-01-24 14:01:18.390943  level_13_updates_mai  0010: __init__                          -> ENTRY: verbose = 1
+2020-01-24 14:01:18.391005  level_12_losses_main  0010: __init__                          -> ENTRY: verbose = 1
+2020-01-24 14:01:18.391062  level_11_optimizers_  0010: __init__                          -> ENTRY: verbose = 1
+2020-01-24 14:01:18.391107  level_10_schedulers_  0010: __init__                          -> ENTRY: verbose = 1
+2020-01-24 14:01:18.391148  level_9_transforms_m  0010: __init__                          -> ENTRY: verbose = 1
+2020-01-24 14:01:18.391188  level_8_layers_main.  0010: __init__                          -> ENTRY: verbose = 1
+2020-01-24 14:01:18.391228  level_7_aux_main.py   0010: __init__                          -> ENTRY: verbose = 1
+2020-01-24 14:01:18.391267  level_6_params_main.  0009: __init__                          -> ENTRY: verbose = 1
+2020-01-24 14:01:18.391306  level_5_state_base.p  0009: __init__                          -> ENTRY: verbose = 1
+2020-01-24 14:01:18.391345  level_4_evaluation_b  0010: __init__                          -> ENTRY: verbose = 1
+2020-01-24 14:01:18.391389  level_3_training_bas  0010: __init__                          -> ENTRY: verbose = 1
+2020-01-24 14:01:18.391428  level_2_model_base.p  0009: __init__                          -> ENTRY: verbose = 1
+2020-01-24 14:01:18.391469  level_1_dataset_base  0010: __init__                          -> ENTRY: verbose = 1
+2020-01-24 14:01:18.391509  base_class.py         0013: __init__                          -> ENTRY: verbose = 1
+2020-01-24 14:01:18.391545  base_system_state.py  0005: get_base_system_dict              -> ENTRY
+2020-01-24 14:01:18.391636  base_system_state.py  0005: get_base_system_dict              <- EXIT : {'verbose': 1, 'cwd': False, 'master_systems_dir': False, 'master_systems_dir_relative': False, 'project_name': False, 'project_dir': False, 'project_dir_relative': False, 'experiment_name': False, 'experiment_dir': False, 'experiment_dir_relative': False, 'origin': False, 'master_comparison_dir': False, 'master_comparison_dir_relative': False, 'library': False, 'output_dir': False, 'output_dir_relative': False, 'model_dir': False, 'model_dir_relative': False, 'log_dir': False, 'log_dir_relative': False, 'fname': False, 'fname_relative': False, 'dataset': {'dataset_type': False, 'label_type': False, 'train_path': False, 'val_path': False, 'csv_train': False, 'csv_val': False, 'test_path': False, 'csv_test': False, 'params': {'input_size': False, 'data_shape': False, 'batch_size': False, 'train_shuffle': False, 'num_workers': False, 'weighted_sample': False, 'num_classes': False, 'classes': False, 'num_train_images': False, 'num_val_images': False, 'num_test_images': False, 'delimiter': ',', 'test_delimiter': ',', 'dataset_test_type': False, 'train_val_split': 0.9}, 'transforms': {'train': [], 'val': [], 'test': []}, 'status': False}, 'model': {'status': False, 'final_layer': False, 'type': 'pretrained', 'custom_network': [], 'params': {'model_name': False, 'model_path': False, 'use_gpu': False, 'use_pretrained': False, 'freeze_base_network': False, 'num_layers': False, 'num_params_to_update': False, 'num_freeze': False, 'gpu_memory_fraction': 0.6}}, 'custom_model': {'status': False, 'network_stack': [], 'network_initializer': False}, 'hyper-parameters': {'status': False, 'learning_rate': False, 'num_epochs': False, 'optimizer': {'name': False, 'params': {}}, 'learning_rate_scheduler': {'name': False, 'params': {}}, 'loss': {'name': False, 'params': {}}}, 'training': {'settings': {'display_progress_realtime': False, 'display_progress': False, 'save_intermediate_models': False, 'save_training_logs': False, 'intermediate_model_prefix': False}, 'outputs': {'max_gpu_memory_usage': 0, 'best_val_acc': 0, 'best_val_acc_epoch_num': 0, 'epochs_completed': 0}, 'status': False}, 'testing': {'status': False, 'num_images': False, 'num_correct_predictions': False, 'percentage_accuracy': False, 'class_accuracy': False}, 'states': {'eval_infer': False, 'resume_train': False, 'copy_from': False, 'pseudo_copy_from': False}, 'local': {'projects_list': [], 'num_projects': False, 'experiments_list': [], 'num_experiments': False, 'project_experiment_list': [], 'transforms_train': [], 'transforms_val': [], 'transforms_test': [], 'normalize': False, 'mean_subtract': False, 'applied_train_tensor': False, 'applied_test_tensor': False, 'data_transforms': {}, 'image_datasets': {}, 'data_loaders': {}, 'data_generators': {}, 'model': False, 'custom_model': False, 'ctx': False, 'params_to_update': [], 'device': False, 'learning_rate_scheduler': False, 'optimizer': False, 'criterion': False}}
+2020-01-24 14:01:18.392140  common.py             0105: create_dir                        -> ENTRY: dir_path = workspace/
+2020-01-24 14:01:18.392191  common.py             0105: create_dir                        <- EXIT
+2020-01-24 14:01:18.392227  common.py             0105: create_dir                        -> ENTRY: dir_path = workspace/comparison/
+2020-01-24 14:01:18.392268  common.py             0105: create_dir                        <- EXIT
+2020-01-24 14:01:18.392321  base_class.py         0013: __init__                          <- EXIT
+2020-01-24 14:01:18.392352  level_1_dataset_base  0010: __init__                          <- EXIT
+2020-01-24 14:01:18.392379  level_2_model_base.p  0009: __init__                          <- EXIT
+2020-01-24 14:01:18.392406  level_3_training_bas  0010: __init__                          <- EXIT
+2020-01-24 14:01:18.392431  level_4_evaluation_b  0010: __init__                          <- EXIT
+2020-01-24 14:01:18.392457  level_5_state_base.p  0009: __init__                          <- EXIT
+2020-01-24 14:01:18.392483  level_6_params_main.  0009: __init__                          <- EXIT
+2020-01-24 14:01:18.392509  level_7_aux_main.py   0010: __init__                          <- EXIT
+2020-01-24 14:01:18.392535  level_8_layers_main.  0010: __init__                          <- EXIT
+2020-01-24 14:01:18.392562  level_9_transforms_m  0010: __init__                          <- EXIT
+2020-01-24 14:01:18.392589  level_10_schedulers_  0010: __init__                          <- EXIT
+2020-01-24 14:01:18.392615  level_11_optimizers_  0010: __init__                          <- EXIT
+2020-01-24 14:01:18.392641  level_12_losses_main  0010: __init__                          <- EXIT
+2020-01-24 14:01:18.392666  level_13_updates_mai  0010: __init__                          <- EXIT
+2020-01-24 14:01:18.392691  level_14_master_main  0011: __init__                          <- EXIT
+2020-01-24 14:01:18.392729  base_class.py         0137: custom_print                      -> ENTRY: msg = Keras Version: 2.2.5
+2020-01-24 14:01:18.392781  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.392863  base_class.py         0137: custom_print                      -> ENTRY: msg = Tensorflow Version: 1.12.0
+2020-01-24 14:01:18.392918  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.392995  base_class.py         0137: custom_print                      -> ENTRY: msg =
+2020-01-24 14:01:18.393044  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.393114  keras_prototype.py    0011: __init__                          <- EXIT
+2020-01-24 14:01:18.393211  keras_prototype.py    0024: Prototype                         -> ENTRY: project_name = sample-project-1, experiment_name = sample-experiment-1, eval_infer = False, resume_train = False, copy_from = False, pseudo_copy_from = False, summary = False
+2020-01-24 14:01:18.393301  base_class.py         0037: set_system_project                -> ENTRY: project_name = sample-project-1
+2020-01-24 14:01:18.393355  common.py             0105: create_dir                        -> ENTRY: dir_path = /home/abhi/Desktop/Work/tess_tool/gui/v0.3/finetune_models/Organization/development/v4.9/examples/keras/10_training using_custom_model/workspace/sample-project-1/
+2020-01-24 14:01:18.393418  common.py             0105: create_dir                        <- EXIT
+2020-01-24 14:01:18.393459  base_class.py         0049: set_system_select_project         -> ENTRY: project_name = sample-project-1
+2020-01-24 14:01:18.393511  base_class.py         0049: set_system_select_project         <- EXIT
+2020-01-24 14:01:18.393542  base_class.py         0037: set_system_project                <- EXIT
+2020-01-24 14:01:18.393587  base_class.py         0067: set_system_experiment             -> ENTRY: experiment_name = sample-experiment-1, eval_infer = False, copy_from = False, pseudo_copy_from = False, resume_train = False, summary = False
+2020-01-24 14:01:18.393659  common.py             0105: create_dir                        -> ENTRY: dir_path = /home/abhi/Desktop/Work/tess_tool/gui/v0.3/finetune_models/Organization/development/v4.9/examples/keras/10_training using_custom_model/workspace/sample-project-1/sample-experiment-1/
+2020-01-24 14:01:18.393720  common.py             0105: create_dir                        <- EXIT
+2020-01-24 14:01:18.393760  base_class.py         0097: set_system_select_experiment      -> ENTRY: experiment_name = sample-experiment-1
+2020-01-24 14:01:18.393799  base_class.py         0097: set_system_select_experiment      <- EXIT
+2020-01-24 14:01:18.393834  base_class.py         0114: set_system_delete_create_dir      -> ENTRY
+2020-01-24 14:01:18.393865  common.py             0111: delete_dir                        -> ENTRY: dir_path = workspace/sample-project-1/sample-experiment-1/output/
+2020-01-24 14:01:18.394036  common.py             0111: delete_dir                        <- EXIT
+2020-01-24 14:01:18.394081  common.py             0105: create_dir                        -> ENTRY: dir_path = workspace/sample-project-1/sample-experiment-1/output/
+2020-01-24 14:01:18.394153  common.py             0105: create_dir                        <- EXIT
+2020-01-24 14:01:18.394192  common.py             0105: create_dir                        -> ENTRY: dir_path = workspace/sample-project-1/sample-experiment-1/output/models/
+2020-01-24 14:01:18.394255  common.py             0105: create_dir                        <- EXIT
+2020-01-24 14:01:18.394293  common.py             0105: create_dir                        -> ENTRY: dir_path = workspace/sample-project-1/sample-experiment-1/output/logs/
+2020-01-24 14:01:18.394354  common.py             0105: create_dir                        <- EXIT
+2020-01-24 14:01:18.394387  base_class.py         0114: set_system_delete_create_dir      <- EXIT
+2020-01-24 14:01:18.394420  common.py             0083: save                              -> ENTRY: ---
+2020-01-24 14:01:18.394454  base_system_state.py  0182: update_local_var                  -> ENTRY: ---
+2020-01-24 14:01:18.394488  base_system_state.py  0182: update_local_var                  <- EXIT : ---
+2020-01-24 14:01:18.394523  common.py             0017: write_json                        -> ENTRY: ---
+2020-01-24 14:01:18.394819  common.py             0017: write_json                        <- EXIT
+2020-01-24 14:01:18.394865  common.py             0083: save                              <- EXIT
+2020-01-24 14:01:18.394919  base_class.py         0067: set_system_experiment             <- EXIT
+2020-01-24 14:01:18.394961  base_class.py         0137: custom_print                      -> ENTRY: msg = Experiment Details
+2020-01-24 14:01:18.395004  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.395086  base_class.py         0137: custom_print                      -> ENTRY: msg =     Project: sample-project-1
+2020-01-24 14:01:18.395141  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.395220  base_class.py         0137: custom_print                      -> ENTRY: msg =     Experiment: sample-experiment-1
+2020-01-24 14:01:18.395275  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.395353  base_class.py         0137: custom_print                      -> ENTRY: msg =     Dir: /home/abhi/Desktop/Work/tess_tool/gui/v0.3/finetune_models/Organization/development/v4.9/examples/keras/10_training using_custom_model/workspace/sample-project-1/sample-experiment-1/
+2020-01-24 14:01:18.395430  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.395512  base_class.py         0137: custom_print                      -> ENTRY: msg =
+2020-01-24 14:01:18.395549  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.395593  keras_prototype.py    0024: Prototype                         <- EXIT
+2020-01-24 14:01:18.395696  level_6_params_main.  0022: Dataset_Params                    -> ENTRY: dataset_path = ../../../monk/system_check_tests/datasets/dataset_cats_dogs_train, path_to_csv = False, delimiter = ,, split = 0.9, input_size = 224, batch_size = 16, shuffle_data = True, num_processors = 3
+2020-01-24 14:01:18.395786  params.py             0006: set_input_size                    -> ENTRY: ---
+2020-01-24 14:01:18.395822  params.py             0006: set_input_size                    <- EXIT : ---
+2020-01-24 14:01:18.395860  params.py             0012: set_batch_size                    -> ENTRY: ---
+2020-01-24 14:01:18.395891  params.py             0012: set_batch_size                    <- EXIT : ---
+2020-01-24 14:01:18.395927  params.py             0018: set_data_shuffle                  -> ENTRY: ---
+2020-01-24 14:01:18.395958  params.py             0018: set_data_shuffle                  <- EXIT : ---
+2020-01-24 14:01:18.395993  params.py             0027: set_num_processors                -> ENTRY: ---
+2020-01-24 14:01:18.396023  params.py             0027: set_num_processors                <- EXIT : ---
+2020-01-24 14:01:18.396060  paths.py              0007: set_dataset_train_path            -> ENTRY: ---
+2020-01-24 14:01:18.396091  paths.py              0007: set_dataset_train_path            <- EXIT : ---
+2020-01-24 14:01:18.396129  base_class.py         0137: custom_print                      -> ENTRY: msg = Dataset Details
+2020-01-24 14:01:18.396169  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.396207  base_class.py         0137: custom_print                      -> ENTRY: msg =     Train path:     ../../../monk/system_check_tests/datasets/dataset_cats_dogs_train
+2020-01-24 14:01:18.396255  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.396294  base_class.py         0137: custom_print                      -> ENTRY: msg =     Val path:       None
+2020-01-24 14:01:18.396335  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.396372  base_class.py         0137: custom_print                      -> ENTRY: msg =     CSV train path: None
+2020-01-24 14:01:18.396415  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.396453  base_class.py         0137: custom_print                      -> ENTRY: msg =     CSV val path:  None
+2020-01-24 14:01:18.396495  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.396531  base_class.py         0137: custom_print                      -> ENTRY: msg =
+2020-01-24 14:01:18.396567  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.396603  base_class.py         0137: custom_print                      -> ENTRY: msg = Dataset Params
+2020-01-24 14:01:18.396641  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.396677  base_class.py         0137: custom_print                      -> ENTRY: msg =     Input Size:  224
+2020-01-24 14:01:18.396718  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.396754  base_class.py         0137: custom_print                      -> ENTRY: msg =     Batch Size:  16
+2020-01-24 14:01:18.396794  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.396836  base_class.py         0137: custom_print                      -> ENTRY: msg =     Data Shuffle: True
+2020-01-24 14:01:18.396878  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.396914  base_class.py         0137: custom_print                      -> ENTRY: msg =     Processors:   3
+2020-01-24 14:01:18.396953  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.396991  base_class.py         0137: custom_print                      -> ENTRY: msg =     Train-val split:   0.9
+2020-01-24 14:01:18.397034  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.397070  base_class.py         0137: custom_print                      -> ENTRY: msg =
+2020-01-24 14:01:18.397106  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.397135  level_6_params_main.  0022: Dataset_Params                    <- EXIT
+2020-01-24 14:01:18.397175  level_9_transforms_m  0065: apply_random_horizontal_flip      -> ENTRY: ---
+2020-01-24 14:01:18.397214  transforms.py         0087: transform_random_horizontal_flip  -> ENTRY: ---
+2020-01-24 14:01:18.397255  transforms.py         0087: transform_random_horizontal_flip  <- EXIT : ---
+2020-01-24 14:01:18.397288  level_9_transforms_m  0065: apply_random_horizontal_flip      <- EXIT
+2020-01-24 14:01:18.397343  level_9_transforms_m  0109: apply_normalize                   -> ENTRY: ---
+2020-01-24 14:01:18.397384  transforms.py         0198: transform_normalize               -> ENTRY: ---
+2020-01-24 14:01:18.397457  transforms.py         0198: transform_normalize               <- EXIT : ---
+2020-01-24 14:01:18.397495  level_9_transforms_m  0109: apply_normalize                   <- EXIT
+2020-01-24 14:01:18.397533  level_14_master_main  0017: Dataset                           -> ENTRY
+2020-01-24 14:01:18.397574  level_1_dataset_base  0255: set_dataset_final                 -> ENTRY: test = False
+2020-01-24 14:01:18.397613  return_transform.py   0046: set_transform_trainval            -> ENTRY: ---
+2020-01-24 14:01:18.397780  return_transform.py   0046: set_transform_trainval            <- EXIT : ---
+2020-01-24 14:01:18.397836  level_1_dataset_base  0017: set_dataset_dataloader            -> ENTRY: test = False, estimate = False
+2020-01-24 14:01:18.606069  level_1_dataset_base  0017: set_dataset_dataloader            <- EXIT
+2020-01-24 14:01:18.606356  level_1_dataset_base  0255: set_dataset_final                 <- EXIT
+2020-01-24 14:01:18.606548  common.py             0083: save                              -> ENTRY: ---
+2020-01-24 14:01:18.606713  base_system_state.py  0182: update_local_var                  -> ENTRY: ---
+2020-01-24 14:01:18.606859  base_system_state.py  0182: update_local_var                  <- EXIT : ---
+2020-01-24 14:01:18.607010  common.py             0017: write_json                        -> ENTRY: ---
+2020-01-24 14:01:18.608494  common.py             0017: write_json                        <- EXIT
+2020-01-24 14:01:18.608691  common.py             0083: save                              <- EXIT
+2020-01-24 14:01:18.608876  base_class.py         0137: custom_print                      -> ENTRY: msg = Pre-Composed Train Transforms
+2020-01-24 14:01:18.609081  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.609299  base_class.py         0137: custom_print                      -> ENTRY: msg = [{'RandomHorizontalFlip': {'p': 0.5}}, {'Normalize': {'mean': [0.485, 0.456, 0.406], 'std': [0.229, 0.224, 0.225]}}]
+2020-01-24 14:01:18.609584  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.609748  base_class.py         0137: custom_print                      -> ENTRY: msg =
+2020-01-24 14:01:18.609901  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.610045  base_class.py         0137: custom_print                      -> ENTRY: msg = Pre-Composed Val Transforms
+2020-01-24 14:01:18.610216  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.610403  base_class.py         0137: custom_print                      -> ENTRY: msg = [{'RandomHorizontalFlip': {'p': 0.5}}, {'Normalize': {'mean': [0.485, 0.456, 0.406], 'std': [0.229, 0.224, 0.225]}}]
+2020-01-24 14:01:18.610671  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.610822  base_class.py         0137: custom_print                      -> ENTRY: msg =
+2020-01-24 14:01:18.610967  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.611109  base_class.py         0137: custom_print                      -> ENTRY: msg = Dataset Numbers
+2020-01-24 14:01:18.611263  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.611378  base_class.py         0137: custom_print                      -> ENTRY: msg =     Num train images: 182
+2020-01-24 14:01:18.611432  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.611515  base_class.py         0137: custom_print                      -> ENTRY: msg =     Num val images:   18
+2020-01-24 14:01:18.611556  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.611592  base_class.py         0137: custom_print                      -> ENTRY: msg =     Num classes:      2
+2020-01-24 14:01:18.611659  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.611723  base_class.py         0137: custom_print                      -> ENTRY: msg =
+2020-01-24 14:01:18.611771  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.611841  level_14_master_main  0017: Dataset                           <- EXIT
+2020-01-24 14:01:18.611876  keras_prototype.py    0133: List_Layers_Custom_Model          -> ENTRY
+2020-01-24 14:01:18.611926  base_class.py         0221: print_list_layers_custom_model    -> ENTRY
+2020-01-24 14:01:18.611961  base_class.py         0137: custom_print                      -> ENTRY: msg = Layers List for transfer learning:
+2020-01-24 14:01:18.612006  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.612100  base_class.py         0137: custom_print                      -> ENTRY: msg =     1. convolution1d
+2020-01-24 14:01:18.612139  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.612217  base_class.py         0137: custom_print                      -> ENTRY: msg =     2. convolution2d
+2020-01-24 14:01:18.612257  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.612307  base_class.py         0137: custom_print                      -> ENTRY: msg =     3. convolution
+2020-01-24 14:01:18.612347  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.612384  base_class.py         0137: custom_print                      -> ENTRY: msg =     4. convolution3d
+2020-01-24 14:01:18.612425  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.612462  base_class.py         0137: custom_print                      -> ENTRY: msg =     5. transposed_convolution
+2020-01-24 14:01:18.612504  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.612541  base_class.py         0137: custom_print                      -> ENTRY: msg =     6. transposed_convolution2d
+2020-01-24 14:01:18.612583  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.612619  base_class.py         0137: custom_print                      -> ENTRY: msg =     7. transposed_convolution3d
+2020-01-24 14:01:18.612661  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.612698  base_class.py         0137: custom_print                      -> ENTRY: msg =     8. max_pooling1d
+2020-01-24 14:01:18.612738  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.612775  base_class.py         0137: custom_print                      -> ENTRY: msg =     9. max_pooling2d
+2020-01-24 14:01:18.612819  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.612857  base_class.py         0137: custom_print                      -> ENTRY: msg =     10. max_pooling
+2020-01-24 14:01:18.612897  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.612933  base_class.py         0137: custom_print                      -> ENTRY: msg =     11. max_pooling3d
+2020-01-24 14:01:18.612974  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.613011  base_class.py         0137: custom_print                      -> ENTRY: msg =     12. average_pooling1d
+2020-01-24 14:01:18.613051  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.613089  base_class.py         0137: custom_print                      -> ENTRY: msg =     13. average_pooling2d
+2020-01-24 14:01:18.613129  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.613166  base_class.py         0137: custom_print                      -> ENTRY: msg =     14. average_pooling
+2020-01-24 14:01:18.613223  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.613271  base_class.py         0137: custom_print                      -> ENTRY: msg =     15. average_pooling3d
+2020-01-24 14:01:18.613316  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.613356  base_class.py         0137: custom_print                      -> ENTRY: msg =     16. global_max_pooling1d
+2020-01-24 14:01:18.613401  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.613441  base_class.py         0137: custom_print                      -> ENTRY: msg =     17. global_max_pooling2d
+2020-01-24 14:01:18.613485  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.613525  base_class.py         0137: custom_print                      -> ENTRY: msg =     18. global_max_pooling
+2020-01-24 14:01:18.613569  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.613608  base_class.py         0137: custom_print                      -> ENTRY: msg =     19. global_max_pooling3d
+2020-01-24 14:01:18.613652  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.613693  base_class.py         0137: custom_print                      -> ENTRY: msg =     20. global_average_pooling1d
+2020-01-24 14:01:18.613738  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.613778  base_class.py         0137: custom_print                      -> ENTRY: msg =     21. global_average_pooling2d
+2020-01-24 14:01:18.613823  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.613863  base_class.py         0137: custom_print                      -> ENTRY: msg =     22. global_average_pooling
+2020-01-24 14:01:18.613908  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.613948  base_class.py         0137: custom_print                      -> ENTRY: msg =     23. global_average_pooling3d
+2020-01-24 14:01:18.613992  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.614032  base_class.py         0137: custom_print                      -> ENTRY: msg =     24. flatten
+2020-01-24 14:01:18.614074  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.614114  base_class.py         0137: custom_print                      -> ENTRY: msg =     25. fully_connected
+2020-01-24 14:01:18.614158  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.614198  base_class.py         0137: custom_print                      -> ENTRY: msg =     26. dropout
+2020-01-24 14:01:18.614240  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.614283  base_class.py         0137: custom_print                      -> ENTRY: msg =     27. identity
+2020-01-24 14:01:18.614326  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.614366  base_class.py         0137: custom_print                      -> ENTRY: msg =     28. batch_normalization
+2020-01-24 14:01:18.614410  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.614450  base_class.py         0137: custom_print                      -> ENTRY: msg =     29. add
+2020-01-24 14:01:18.614491  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.614531  base_class.py         0137: custom_print                      -> ENTRY: msg =     30. concatenate
+2020-01-24 14:01:18.614573  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.614613  base_class.py         0137: custom_print                      -> ENTRY: msg =
+2020-01-24 14:01:18.614652  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.614684  base_class.py         0221: print_list_layers_custom_model    <- EXIT
+2020-01-24 14:01:18.614714  keras_prototype.py    0133: List_Layers_Custom_Model          <- EXIT
+2020-01-24 14:01:18.614751  keras_prototype.py    0161: List_Activations_Custom_Model     -> ENTRY
+2020-01-24 14:01:18.614788  base_class.py         0301: print_list_activations_custom_mo  -> ENTRY
+2020-01-24 14:01:18.614827  base_class.py         0137: custom_print                      -> ENTRY: msg = Activations List for transfer learning:
+2020-01-24 14:01:18.614878  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.614921  base_class.py         0137: custom_print                      -> ENTRY: msg =     1. relu
+2020-01-24 14:01:18.614964  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.615004  base_class.py         0137: custom_print                      -> ENTRY: msg =     2. elu
+2020-01-24 14:01:18.615046  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.615086  base_class.py         0137: custom_print                      -> ENTRY: msg =     3. leaky_relu
+2020-01-24 14:01:18.615129  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.615169  base_class.py         0137: custom_print                      -> ENTRY: msg =     4. prelu
+2020-01-24 14:01:18.615210  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.615250  base_class.py         0137: custom_print                      -> ENTRY: msg =     5. thresholded_relu
+2020-01-24 14:01:18.615294  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.615333  base_class.py         0137: custom_print                      -> ENTRY: msg =     6. softmax
+2020-01-24 14:01:18.615375  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.615415  base_class.py         0137: custom_print                      -> ENTRY: msg =     7. selu
+2020-01-24 14:01:18.615456  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.615496  base_class.py         0137: custom_print                      -> ENTRY: msg =     8. softplus
+2020-01-24 14:01:18.615538  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.615577  base_class.py         0137: custom_print                      -> ENTRY: msg =     9. softsign
+2020-01-24 14:01:18.615619  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.615659  base_class.py         0137: custom_print                      -> ENTRY: msg =     10. tanh
+2020-01-24 14:01:18.615700  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.615739  base_class.py         0137: custom_print                      -> ENTRY: msg =     11. sigmoid
+2020-01-24 14:01:18.615781  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.615823  base_class.py         0137: custom_print                      -> ENTRY: msg =     12. hard_sigmoid
+2020-01-24 14:01:18.615867  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.615906  base_class.py         0137: custom_print                      -> ENTRY: msg =
+2020-01-24 14:01:18.615945  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.615977  base_class.py         0301: print_list_activations_custom_mo  <- EXIT
+2020-01-24 14:01:18.616006  keras_prototype.py    0161: List_Activations_Custom_Model     <- EXIT
+2020-01-24 14:01:18.616073  level_8_layers_main.  0331: convolution                       -> ENTRY: output_channels = 16, kernel_size = 3, stride = 1, padding = in_eq_out, groups = 1, dilation = 1, use_bias = True, layout = NHWC, uid = None
+2020-01-24 14:01:18.616159  level_8_layers_main.  0331: convolution                       <- EXIT : {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}
+2020-01-24 14:01:18.616261  level_8_layers_main.  0898: batch_normalization               -> ENTRY: moving_average_momentum = 0.99, epsilon = 0.001, use_trainable_parameters = True, activate_scale_shift_operation = False, uid = None
+2020-01-24 14:01:18.616334  level_8_layers_main.  0898: batch_normalization               <- EXIT : {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}
+2020-01-24 14:01:18.616417  level_8_layers_main.  0944: relu                              -> ENTRY: uid = None
+2020-01-24 14:01:18.616460  level_8_layers_main.  0944: relu                              <- EXIT : {'uid': None, 'name': 'relu', 'params': {}}
+2020-01-24 14:01:18.616533  level_8_layers_main.  0331: convolution                       -> ENTRY: output_channels = 16, kernel_size = 3, stride = 1, padding = in_eq_out, groups = 1, dilation = 1, use_bias = True, layout = NHWC, uid = None
+2020-01-24 14:01:18.616617  level_8_layers_main.  0331: convolution                       <- EXIT : {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}
+2020-01-24 14:01:18.616712  level_8_layers_main.  0898: batch_normalization               -> ENTRY: moving_average_momentum = 0.99, epsilon = 0.001, use_trainable_parameters = True, activate_scale_shift_operation = False, uid = None
+2020-01-24 14:01:18.616784  level_8_layers_main.  0898: batch_normalization               <- EXIT : {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}
+2020-01-24 14:01:18.616864  level_8_layers_main.  0944: relu                              -> ENTRY: uid = None
+2020-01-24 14:01:18.616906  level_8_layers_main.  0944: relu                              <- EXIT : {'uid': None, 'name': 'relu', 'params': {}}
+2020-01-24 14:01:18.616971  level_8_layers_main.  0527: max_pooling                       -> ENTRY: kernel_size = 2, stride = None, padding = 0, dilation = 1, return_indices = False, ceil_mode = False, layout = NHWC, uid = None
+2020-01-24 14:01:18.617048  level_8_layers_main.  0527: max_pooling                       <- EXIT : {'uid': None, 'name': 'max_pooling2d', 'params': {'kernel_size': 2, 'stride': None, 'padding': 0, 'dilation': 1, 'return_indices': False, 'ceil_mode': False, 'layout': 'NHWC'}}
+2020-01-24 14:01:18.617148  level_8_layers_main.  0331: convolution                       -> ENTRY: output_channels = 16, kernel_size = 3, stride = 1, padding = in_eq_out, groups = 1, dilation = 1, use_bias = True, layout = NHWC, uid = None
+2020-01-24 14:01:18.617232  level_8_layers_main.  0331: convolution                       <- EXIT : {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}
+2020-01-24 14:01:18.617342  level_8_layers_main.  0898: batch_normalization               -> ENTRY: moving_average_momentum = 0.99, epsilon = 0.001, use_trainable_parameters = True, activate_scale_shift_operation = False, uid = None
+2020-01-24 14:01:18.617415  level_8_layers_main.  0898: batch_normalization               <- EXIT : {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}
+2020-01-24 14:01:18.617512  level_8_layers_main.  0331: convolution                       -> ENTRY: output_channels = 16, kernel_size = 3, stride = 1, padding = in_eq_out, groups = 1, dilation = 1, use_bias = True, layout = NHWC, uid = None
+2020-01-24 14:01:18.617595  level_8_layers_main.  0331: convolution                       <- EXIT : {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}
+2020-01-24 14:01:18.617690  level_8_layers_main.  0898: batch_normalization               -> ENTRY: moving_average_momentum = 0.99, epsilon = 0.001, use_trainable_parameters = True, activate_scale_shift_operation = False, uid = None
+2020-01-24 14:01:18.617762  level_8_layers_main.  0898: batch_normalization               <- EXIT : {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}
+2020-01-24 14:01:18.617858  level_8_layers_main.  0331: convolution                       -> ENTRY: output_channels = 16, kernel_size = 3, stride = 1, padding = in_eq_out, groups = 1, dilation = 1, use_bias = True, layout = NHWC, uid = None
+2020-01-24 14:01:18.617941  level_8_layers_main.  0331: convolution                       <- EXIT : {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}
+2020-01-24 14:01:18.618035  level_8_layers_main.  0898: batch_normalization               -> ENTRY: moving_average_momentum = 0.99, epsilon = 0.001, use_trainable_parameters = True, activate_scale_shift_operation = False, uid = None
+2020-01-24 14:01:18.618106  level_8_layers_main.  0898: batch_normalization               <- EXIT : {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}
+2020-01-24 14:01:18.618186  level_8_layers_main.  0879: identity                          -> ENTRY: uid = None
+2020-01-24 14:01:18.618229  level_8_layers_main.  0879: identity                          <- EXIT : {'uid': None, 'name': 'identity', 'params': {}}
+2020-01-24 14:01:18.618287  level_8_layers_main.  0930: concatenate                       -> ENTRY: uid = None
+2020-01-24 14:01:18.618328  level_8_layers_main.  0930: concatenate                       <- EXIT : {'uid': None, 'name': 'concatenate'}
+2020-01-24 14:01:18.618398  level_8_layers_main.  0331: convolution                       -> ENTRY: output_channels = 16, kernel_size = 3, stride = 1, padding = in_eq_out, groups = 1, dilation = 1, use_bias = True, layout = NHWC, uid = None
+2020-01-24 14:01:18.618480  level_8_layers_main.  0331: convolution                       <- EXIT : {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}
+2020-01-24 14:01:18.618574  level_8_layers_main.  0898: batch_normalization               -> ENTRY: moving_average_momentum = 0.99, epsilon = 0.001, use_trainable_parameters = True, activate_scale_shift_operation = False, uid = None
+2020-01-24 14:01:18.618649  level_8_layers_main.  0898: batch_normalization               <- EXIT : {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}
+2020-01-24 14:01:18.618730  level_8_layers_main.  0944: relu                              -> ENTRY: uid = None
+2020-01-24 14:01:18.618772  level_8_layers_main.  0944: relu                              <- EXIT : {'uid': None, 'name': 'relu', 'params': {}}
+2020-01-24 14:01:18.618834  level_8_layers_main.  0527: max_pooling                       -> ENTRY: kernel_size = 2, stride = None, padding = 0, dilation = 1, return_indices = False, ceil_mode = False, layout = NHWC, uid = None
+2020-01-24 14:01:18.618911  level_8_layers_main.  0527: max_pooling                       <- EXIT : {'uid': None, 'name': 'max_pooling2d', 'params': {'kernel_size': 2, 'stride': None, 'padding': 0, 'dilation': 1, 'return_indices': False, 'ceil_mode': False, 'layout': 'NHWC'}}
+2020-01-24 14:01:18.619012  level_8_layers_main.  0331: convolution                       -> ENTRY: output_channels = 16, kernel_size = 3, stride = 1, padding = in_eq_out, groups = 1, dilation = 1, use_bias = True, layout = NHWC, uid = None
+2020-01-24 14:01:18.619095  level_8_layers_main.  0331: convolution                       <- EXIT : {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}
+2020-01-24 14:01:18.619190  level_8_layers_main.  0898: batch_normalization               -> ENTRY: moving_average_momentum = 0.99, epsilon = 0.001, use_trainable_parameters = True, activate_scale_shift_operation = False, uid = None
+2020-01-24 14:01:18.619260  level_8_layers_main.  0898: batch_normalization               <- EXIT : {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}
+2020-01-24 14:01:18.619355  level_8_layers_main.  0331: convolution                       -> ENTRY: output_channels = 16, kernel_size = 3, stride = 1, padding = in_eq_out, groups = 1, dilation = 1, use_bias = True, layout = NHWC, uid = None
+2020-01-24 14:01:18.619438  level_8_layers_main.  0331: convolution                       <- EXIT : {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}
+2020-01-24 14:01:18.619532  level_8_layers_main.  0898: batch_normalization               -> ENTRY: moving_average_momentum = 0.99, epsilon = 0.001, use_trainable_parameters = True, activate_scale_shift_operation = False, uid = None
+2020-01-24 14:01:18.619604  level_8_layers_main.  0898: batch_normalization               <- EXIT : {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}
+2020-01-24 14:01:18.619699  level_8_layers_main.  0331: convolution                       -> ENTRY: output_channels = 16, kernel_size = 3, stride = 1, padding = in_eq_out, groups = 1, dilation = 1, use_bias = True, layout = NHWC, uid = None
+2020-01-24 14:01:18.619782  level_8_layers_main.  0331: convolution                       <- EXIT : {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}
+2020-01-24 14:01:18.619876  level_8_layers_main.  0898: batch_normalization               -> ENTRY: moving_average_momentum = 0.99, epsilon = 0.001, use_trainable_parameters = True, activate_scale_shift_operation = False, uid = None
+2020-01-24 14:01:18.619946  level_8_layers_main.  0898: batch_normalization               <- EXIT : {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}
+2020-01-24 14:01:18.620029  level_8_layers_main.  0879: identity                          -> ENTRY: uid = None
+2020-01-24 14:01:18.620072  level_8_layers_main.  0879: identity                          <- EXIT : {'uid': None, 'name': 'identity', 'params': {}}
+2020-01-24 14:01:18.620131  level_8_layers_main.  0916: add                               -> ENTRY: uid = None
+2020-01-24 14:01:18.620171  level_8_layers_main.  0916: add                               <- EXIT : {'uid': None, 'name': 'add'}
+2020-01-24 14:01:18.620240  level_8_layers_main.  0331: convolution                       -> ENTRY: output_channels = 16, kernel_size = 3, stride = 1, padding = in_eq_out, groups = 1, dilation = 1, use_bias = True, layout = NHWC, uid = None
+2020-01-24 14:01:18.620322  level_8_layers_main.  0331: convolution                       <- EXIT : {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}
+2020-01-24 14:01:18.620416  level_8_layers_main.  0898: batch_normalization               -> ENTRY: moving_average_momentum = 0.99, epsilon = 0.001, use_trainable_parameters = True, activate_scale_shift_operation = False, uid = None
+2020-01-24 14:01:18.620486  level_8_layers_main.  0898: batch_normalization               <- EXIT : {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}
+2020-01-24 14:01:18.620565  level_8_layers_main.  0944: relu                              -> ENTRY: uid = None
+2020-01-24 14:01:18.620606  level_8_layers_main.  0944: relu                              <- EXIT : {'uid': None, 'name': 'relu', 'params': {}}
+2020-01-24 14:01:18.620668  level_8_layers_main.  0527: max_pooling                       -> ENTRY: kernel_size = 2, stride = None, padding = 0, dilation = 1, return_indices = False, ceil_mode = False, layout = NHWC, uid = None
+2020-01-24 14:01:18.620745  level_8_layers_main.  0527: max_pooling                       <- EXIT : {'uid': None, 'name': 'max_pooling2d', 'params': {'kernel_size': 2, 'stride': None, 'padding': 0, 'dilation': 1, 'return_indices': False, 'ceil_mode': False, 'layout': 'NHWC'}}
+2020-01-24 14:01:18.620832  level_8_layers_main.  0829: flatten                           -> ENTRY: layout = NHWC, uid = None
+2020-01-24 14:01:18.620881  level_8_layers_main.  0829: flatten                           <- EXIT : {'uid': None, 'name': 'flatten', 'params': {'layout': 'NHWC'}}
+2020-01-24 14:01:18.620951  level_8_layers_main.  0844: fully_connected                   -> ENTRY: units = 1024, use_bias = True, flatten = True, uid = None
+2020-01-24 14:01:18.621010  level_8_layers_main.  0844: fully_connected                   <- EXIT : {'uid': None, 'name': 'fully_connected', 'params': {'units': 1024, 'use_bias': True, 'flatten': True}}
+2020-01-24 14:01:18.621096  level_8_layers_main.  0862: dropout                           -> ENTRY: drop_probability = 0.2, axes = (), uid = None
+2020-01-24 14:01:18.621153  level_8_layers_main.  0862: dropout                           <- EXIT : {'uid': None, 'name': 'dropout', 'params': {'drop_probability': 0.2, 'axes': ()}}
+2020-01-24 14:01:18.621226  level_8_layers_main.  0844: fully_connected                   -> ENTRY: units = 2, use_bias = True, flatten = True, uid = None
+2020-01-24 14:01:18.621291  level_8_layers_main.  0844: fully_connected                   <- EXIT : {'uid': None, 'name': 'fully_connected', 'params': {'units': 2, 'use_bias': True, 'flatten': True}}
+2020-01-24 14:01:18.621428  level_7_aux_main.py   0220: debug_custom_model_design         -> ENTRY: network_list = [{'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}, {'uid': None, 'name': 'relu', 'params': {}}, {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}, {'uid': None, 'name': 'relu', 'params': {}}, {'uid': None, 'name': 'max_pooling2d', 'params': {'kernel_size': 2, 'stride': None, 'padding': 0, 'dilation': 1, 'return_indices': False, 'ceil_mode': False, 'layout': 'NHWC'}}, [[{'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}, {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}], [{'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}], [{'uid': None, 'name': 'identity', 'params': {}}], {'uid': None, 'name': 'concatenate'}], {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}, {'uid': None, 'name': 'relu', 'params': {}}, {'uid': None, 'name': 'max_pooling2d', 'params': {'kernel_size': 2, 'stride': None, 'padding': 0, 'dilation': 1, 'return_indices': False, 'ceil_mode': False, 'layout': 'NHWC'}}, [[{'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}, {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}], [{'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}], [{'uid': None, 'name': 'identity', 'params': {}}], {'uid': None, 'name': 'add'}], {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}, {'uid': None, 'name': 'relu', 'params': {}}, {'uid': None, 'name': 'max_pooling2d', 'params': {'kernel_size': 2, 'stride': None, 'padding': 0, 'dilation': 1, 'return_indices': False, 'ceil_mode': False, 'layout': 'NHWC'}}, {'uid': None, 'name': 'flatten', 'params': {'layout': 'NHWC'}}, {'uid': None, 'name': 'fully_connected', 'params': {'units': 1024, 'use_bias': True, 'flatten': True}}, {'uid': None, 'name': 'dropout', 'params': {'drop_probability': 0.2, 'axes': ()}}, {'uid': None, 'name': 'fully_connected', 'params': {'units': 2, 'use_bias': True, 'flatten': True}}]
+2020-01-24 14:01:18.622410  return_model.py       0184: debug_custom_model                -> ENTRY: ---
+2020-01-24 14:01:18.622479  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.622524  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.622573  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.622611  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.622656  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.622692  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.622735  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.622771  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.622813  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.622848  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.622890  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.622926  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.622968  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.623003  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.623045  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.623080  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.623124  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.623160  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.623203  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.623238  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.623281  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.623316  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.623358  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.623393  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.623436  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.623472  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.623514  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.623549  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.623592  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.623627  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.623670  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.623706  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.623755  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.623791  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.623833  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.623868  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.623908  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.623943  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.623984  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.624019  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.624062  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.624097  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.624140  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.624176  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.624218  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.624252  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.624294  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.624329  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.624371  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.624406  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.624447  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.624482  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.624524  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.624564  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.624610  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.624646  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.624690  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.624725  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.624771  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.624807  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.624848  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.624883  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.624925  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.624960  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.625002  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.625041  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.625083  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.625119  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.625160  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.625195  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.625242  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:18.625286  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:18.967750  return_model.py       0184: debug_custom_model                <- EXIT
+2020-01-24 14:01:18.967883  base_class.py         0137: custom_print                      -> ENTRY: msg = If not using notebooks check file generated graph.png
+2020-01-24 14:01:18.967968  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.968054  level_7_aux_main.py   0220: debug_custom_model_design         <- EXIT
+2020-01-24 14:01:18.968217  level_14_master_main  0186: Compile_Network                   -> ENTRY: network = [{'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}, {'uid': None, 'name': 'relu', 'params': {}}, {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}, {'uid': None, 'name': 'relu', 'params': {}}, {'uid': None, 'name': 'max_pooling2d', 'params': {'kernel_size': 2, 'stride': None, 'padding': 0, 'dilation': 1, 'return_indices': False, 'ceil_mode': False, 'layout': 'NHWC'}}, [[{'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}, {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}], [{'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}], [{'uid': None, 'name': 'identity', 'params': {}}], {'uid': None, 'name': 'concatenate'}], {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}, {'uid': None, 'name': 'relu', 'params': {}}, {'uid': None, 'name': 'max_pooling2d', 'params': {'kernel_size': 2, 'stride': None, 'padding': 0, 'dilation': 1, 'return_indices': False, 'ceil_mode': False, 'layout': 'NHWC'}}, [[{'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}, {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}], [{'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}], [{'uid': None, 'name': 'identity', 'params': {}}], {'uid': None, 'name': 'add'}], {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}, {'uid': None, 'name': 'relu', 'params': {}}, {'uid': None, 'name': 'max_pooling2d', 'params': {'kernel_size': 2, 'stride': None, 'padding': 0, 'dilation': 1, 'return_indices': False, 'ceil_mode': False, 'layout': 'NHWC'}}, {'uid': None, 'name': 'flatten', 'params': {'layout': 'NHWC'}}, {'uid': None, 'name': 'fully_connected', 'params': {'units': 1024, 'use_bias': True, 'flatten': True}}, {'uid': None, 'name': 'dropout', 'params': {'drop_probability': 0.2, 'axes': ()}}, {'uid': None, 'name': 'fully_connected', 'params': {'units': 2, 'use_bias': True, 'flatten': True}}], data_shape = (3, 224, 224), use_gpu = True, network_initializer = xavier_normal
+2020-01-24 14:01:18.969081  params.py             0024: set_device                        -> ENTRY: ---
+2020-01-24 14:01:18.988237  params.py             0024: set_device                        <- EXIT : ---
+2020-01-24 14:01:18.988436  common.py             0083: save                              -> ENTRY: ---
+2020-01-24 14:01:18.988569  base_system_state.py  0182: update_local_var                  -> ENTRY: ---
+2020-01-24 14:01:18.988622  base_system_state.py  0182: update_local_var                  <- EXIT : ---
+2020-01-24 14:01:18.988668  common.py             0017: write_json                        -> ENTRY: ---
+2020-01-24 14:01:18.989740  common.py             0017: write_json                        <- EXIT
+2020-01-24 14:01:18.989793  common.py             0083: save                              <- EXIT
+2020-01-24 14:01:18.989856  level_2_model_base.p  0016: set_model_final                   -> ENTRY: path = False
+2020-01-24 14:01:18.989915  base_class.py         0137: custom_print                      -> ENTRY: msg = Model Details
+2020-01-24 14:01:18.989973  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.990051  base_class.py         0137: custom_print                      -> ENTRY: msg =     Loading pretrained model
+2020-01-24 14:01:18.990098  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:18.990168  common.py             0112: setup_device_environment          -> ENTRY: ---
+2020-01-24 14:01:19.358006  common.py             0112: setup_device_environment          <- EXIT : ---
+2020-01-24 14:01:19.358158  return_model.py       0032: setup_model                       -> ENTRY: ---
+2020-01-24 14:01:19.359844  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:19.359942  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:19.360022  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:19.360058  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:19.360122  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.360225  layers.py             0415: custom_model_layer_convolution2d  -> ENTRY: params = {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}, network_initializer = xavier_normal
+2020-01-24 14:01:19.360312  initializers.py       0005: get_initializer                   -> ENTRY: ---
+2020-01-24 14:01:19.360348  initializers.py       0005: get_initializer                   <- EXIT : ---
+2020-01-24 14:01:19.360925  layers.py             0415: custom_model_layer_convolution2d  <- EXIT : ---
+2020-01-24 14:01:19.360981  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.convolutional.Conv2D object at 0x7fe5a11f6390>
+2020-01-24 14:01:19.370905  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:19.371000  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:19.371064  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.371160  layers.py             0852: custom_model_layer_batch_normali  -> ENTRY: params = {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}
+2020-01-24 14:01:19.371431  layers.py             0852: custom_model_layer_batch_normali  <- EXIT : ---
+2020-01-24 14:01:19.371482  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.normalization.BatchNormalization object at 0x7fe5a11f6128>
+2020-01-24 14:01:19.461693  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:19.461790  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:19.461886  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'relu', 'params': {}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.461951  layers.py             0884: custom_model_activation_relu      -> ENTRY: params = {}
+2020-01-24 14:01:19.462055  layers.py             0884: custom_model_activation_relu      <- EXIT : ---
+2020-01-24 14:01:19.462101  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.advanced_activations.ReLU object at 0x7fe5a11f6518>
+2020-01-24 14:01:19.462659  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:19.462721  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:19.462776  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.462869  layers.py             0415: custom_model_layer_convolution2d  -> ENTRY: params = {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}, network_initializer = xavier_normal
+2020-01-24 14:01:19.462941  initializers.py       0005: get_initializer                   -> ENTRY: ---
+2020-01-24 14:01:19.462975  initializers.py       0005: get_initializer                   <- EXIT : ---
+2020-01-24 14:01:19.463131  layers.py             0415: custom_model_layer_convolution2d  <- EXIT : ---
+2020-01-24 14:01:19.463179  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.convolutional.Conv2D object at 0x7fe5a00bf630>
+2020-01-24 14:01:19.471775  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:19.471850  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:19.471917  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.472006  layers.py             0852: custom_model_layer_batch_normali  -> ENTRY: params = {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}
+2020-01-24 14:01:19.472237  layers.py             0852: custom_model_layer_batch_normali  <- EXIT : ---
+2020-01-24 14:01:19.472288  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.normalization.BatchNormalization object at 0x7fe5a00601d0>
+2020-01-24 14:01:19.528651  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:19.528744  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:19.528801  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'relu', 'params': {}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.528867  layers.py             0884: custom_model_activation_relu      -> ENTRY: params = {}
+2020-01-24 14:01:19.528955  layers.py             0884: custom_model_activation_relu      <- EXIT : ---
+2020-01-24 14:01:19.528999  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.advanced_activations.ReLU object at 0x7fe5a0060710>
+2020-01-24 14:01:19.529546  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:19.529608  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:19.529664  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'max_pooling2d', 'params': {'kernel_size': 2, 'stride': None, 'padding': 0, 'dilation': 1, 'return_indices': False, 'ceil_mode': False, 'layout': 'NHWC'}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.529758  layers.py             0605: custom_model_layer_max_pooling2d  -> ENTRY: params = {'kernel_size': 2, 'stride': None, 'padding': 0, 'dilation': 1, 'return_indices': False, 'ceil_mode': False, 'layout': 'NHWC'}
+2020-01-24 14:01:19.529883  layers.py             0605: custom_model_layer_max_pooling2d  <- EXIT : ---
+2020-01-24 14:01:19.529927  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.pooling.MaxPooling2D object at 0x7fe5911d5c50>
+2020-01-24 14:01:19.530715  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:19.530777  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:19.530832  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.530925  layers.py             0415: custom_model_layer_convolution2d  -> ENTRY: params = {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}, network_initializer = xavier_normal
+2020-01-24 14:01:19.530999  initializers.py       0005: get_initializer                   -> ENTRY: ---
+2020-01-24 14:01:19.531034  initializers.py       0005: get_initializer                   <- EXIT : ---
+2020-01-24 14:01:19.531199  layers.py             0415: custom_model_layer_convolution2d  <- EXIT : ---
+2020-01-24 14:01:19.531246  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.convolutional.Conv2D object at 0x7fe5911eaa58>
+2020-01-24 14:01:19.531305  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.531401  layers.py             0415: custom_model_layer_convolution2d  -> ENTRY: params = {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}, network_initializer = xavier_normal
+2020-01-24 14:01:19.531471  initializers.py       0005: get_initializer                   -> ENTRY: ---
+2020-01-24 14:01:19.531504  initializers.py       0005: get_initializer                   <- EXIT : ---
+2020-01-24 14:01:19.531636  layers.py             0415: custom_model_layer_convolution2d  <- EXIT : ---
+2020-01-24 14:01:19.531680  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.convolutional.Conv2D object at 0x7fe59116c748>
+2020-01-24 14:01:19.540181  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:19.540254  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:19.540314  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.540403  layers.py             0852: custom_model_layer_batch_normali  -> ENTRY: params = {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}
+2020-01-24 14:01:19.540636  layers.py             0852: custom_model_layer_batch_normali  <- EXIT : ---
+2020-01-24 14:01:19.540688  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.normalization.BatchNormalization object at 0x7fe59116c7b8>
+2020-01-24 14:01:19.540752  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.540838  layers.py             0852: custom_model_layer_batch_normali  -> ENTRY: params = {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}
+2020-01-24 14:01:19.541035  layers.py             0852: custom_model_layer_batch_normali  <- EXIT : ---
+2020-01-24 14:01:19.541083  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.normalization.BatchNormalization object at 0x7fe59116c978>
+2020-01-24 14:01:19.598072  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:19.598167  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:19.598266  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.598365  layers.py             0415: custom_model_layer_convolution2d  -> ENTRY: params = {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}, network_initializer = xavier_normal
+2020-01-24 14:01:19.598443  initializers.py       0005: get_initializer                   -> ENTRY: ---
+2020-01-24 14:01:19.598478  initializers.py       0005: get_initializer                   <- EXIT : ---
+2020-01-24 14:01:19.598635  layers.py             0415: custom_model_layer_convolution2d  <- EXIT : ---
+2020-01-24 14:01:19.598689  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.convolutional.Conv2D object at 0x7fe591186cf8>
+2020-01-24 14:01:19.598750  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.598840  layers.py             0415: custom_model_layer_convolution2d  -> ENTRY: params = {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}, network_initializer = xavier_normal
+2020-01-24 14:01:19.598909  initializers.py       0005: get_initializer                   -> ENTRY: ---
+2020-01-24 14:01:19.598943  initializers.py       0005: get_initializer                   <- EXIT : ---
+2020-01-24 14:01:19.599065  layers.py             0415: custom_model_layer_convolution2d  <- EXIT : ---
+2020-01-24 14:01:19.599109  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.convolutional.Conv2D object at 0x7fe591118d68>
+2020-01-24 14:01:19.607612  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:19.607687  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:19.607749  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.607838  layers.py             0852: custom_model_layer_batch_normali  -> ENTRY: params = {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}
+2020-01-24 14:01:19.608073  layers.py             0852: custom_model_layer_batch_normali  <- EXIT : ---
+2020-01-24 14:01:19.608124  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.normalization.BatchNormalization object at 0x7fe5910dc080>
+2020-01-24 14:01:19.608188  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.608271  layers.py             0852: custom_model_layer_batch_normali  -> ENTRY: params = {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}
+2020-01-24 14:01:19.608470  layers.py             0852: custom_model_layer_batch_normali  <- EXIT : ---
+2020-01-24 14:01:19.608518  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.normalization.BatchNormalization object at 0x7fe59109a860>
+2020-01-24 14:01:19.665696  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:19.665788  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:19.665886  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.665981  layers.py             0415: custom_model_layer_convolution2d  -> ENTRY: params = {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}, network_initializer = xavier_normal
+2020-01-24 14:01:19.666055  initializers.py       0005: get_initializer                   -> ENTRY: ---
+2020-01-24 14:01:19.666095  initializers.py       0005: get_initializer                   <- EXIT : ---
+2020-01-24 14:01:19.666258  layers.py             0415: custom_model_layer_convolution2d  <- EXIT : ---
+2020-01-24 14:01:19.666305  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.convolutional.Conv2D object at 0x7fe5910b0f98>
+2020-01-24 14:01:19.666363  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.666452  layers.py             0415: custom_model_layer_convolution2d  -> ENTRY: params = {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}, network_initializer = xavier_normal
+2020-01-24 14:01:19.666520  initializers.py       0005: get_initializer                   -> ENTRY: ---
+2020-01-24 14:01:19.666552  initializers.py       0005: get_initializer                   <- EXIT : ---
+2020-01-24 14:01:19.666674  layers.py             0415: custom_model_layer_convolution2d  <- EXIT : ---
+2020-01-24 14:01:19.666718  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.convolutional.Conv2D object at 0x7fe5910c7dd8>
+2020-01-24 14:01:19.718264  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:19.718357  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:19.718421  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.718511  layers.py             0852: custom_model_layer_batch_normali  -> ENTRY: params = {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}
+2020-01-24 14:01:19.718755  layers.py             0852: custom_model_layer_batch_normali  <- EXIT : ---
+2020-01-24 14:01:19.718810  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.normalization.BatchNormalization object at 0x7fe59106e208>
+2020-01-24 14:01:19.718875  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.718960  layers.py             0852: custom_model_layer_batch_normali  -> ENTRY: params = {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}
+2020-01-24 14:01:19.719158  layers.py             0852: custom_model_layer_batch_normali  <- EXIT : ---
+2020-01-24 14:01:19.719207  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.normalization.BatchNormalization object at 0x7fe591045550>
+2020-01-24 14:01:19.775765  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:19.775860  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:19.775951  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'identity', 'params': {}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.776017  layers.py             0845: custom_model_layer_identity       -> ENTRY: params = {}
+2020-01-24 14:01:19.776057  layers.py             0845: custom_model_layer_identity       <- EXIT : ---
+2020-01-24 14:01:19.776099  layers.py             0287: custom_model_get_layer            <- EXIT : <function linear at 0x7fe5c454ee18>
+2020-01-24 14:01:19.776149  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'identity', 'params': {}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.776207  layers.py             0845: custom_model_layer_identity       -> ENTRY: params = {}
+2020-01-24 14:01:19.776241  layers.py             0845: custom_model_layer_identity       <- EXIT : ---
+2020-01-24 14:01:19.776274  layers.py             0287: custom_model_get_layer            <- EXIT : <function linear at 0x7fe5c454ee18>
+2020-01-24 14:01:19.776323  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:19.776357  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:19.777525  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:19.777590  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:19.777648  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.777743  layers.py             0415: custom_model_layer_convolution2d  -> ENTRY: params = {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}, network_initializer = xavier_normal
+2020-01-24 14:01:19.777815  initializers.py       0005: get_initializer                   -> ENTRY: ---
+2020-01-24 14:01:19.777850  initializers.py       0005: get_initializer                   <- EXIT : ---
+2020-01-24 14:01:19.778007  layers.py             0415: custom_model_layer_convolution2d  <- EXIT : ---
+2020-01-24 14:01:19.778053  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.convolutional.Conv2D object at 0x7fe590ff4518>
+2020-01-24 14:01:19.786532  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:19.786609  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:19.786669  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.786758  layers.py             0852: custom_model_layer_batch_normali  -> ENTRY: params = {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}
+2020-01-24 14:01:19.786987  layers.py             0852: custom_model_layer_batch_normali  <- EXIT : ---
+2020-01-24 14:01:19.787038  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.normalization.BatchNormalization object at 0x7fe590f9c7f0>
+2020-01-24 14:01:19.844182  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:19.844278  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:19.844337  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'relu', 'params': {}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.844403  layers.py             0884: custom_model_activation_relu      -> ENTRY: params = {}
+2020-01-24 14:01:19.844491  layers.py             0884: custom_model_activation_relu      <- EXIT : ---
+2020-01-24 14:01:19.844536  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.advanced_activations.ReLU object at 0x7fe590f71dd8>
+2020-01-24 14:01:19.845076  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:19.845144  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:19.845199  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'max_pooling2d', 'params': {'kernel_size': 2, 'stride': None, 'padding': 0, 'dilation': 1, 'return_indices': False, 'ceil_mode': False, 'layout': 'NHWC'}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.845297  layers.py             0605: custom_model_layer_max_pooling2d  -> ENTRY: params = {'kernel_size': 2, 'stride': None, 'padding': 0, 'dilation': 1, 'return_indices': False, 'ceil_mode': False, 'layout': 'NHWC'}
+2020-01-24 14:01:19.845409  layers.py             0605: custom_model_layer_max_pooling2d  <- EXIT : ---
+2020-01-24 14:01:19.845453  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.pooling.MaxPooling2D object at 0x7fe590f86240>
+2020-01-24 14:01:19.846237  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:19.846301  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:19.846357  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.846450  layers.py             0415: custom_model_layer_convolution2d  -> ENTRY: params = {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}, network_initializer = xavier_normal
+2020-01-24 14:01:19.846524  initializers.py       0005: get_initializer                   -> ENTRY: ---
+2020-01-24 14:01:19.846560  initializers.py       0005: get_initializer                   <- EXIT : ---
+2020-01-24 14:01:19.846706  layers.py             0415: custom_model_layer_convolution2d  <- EXIT : ---
+2020-01-24 14:01:19.846754  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.convolutional.Conv2D object at 0x7fe591193ef0>
+2020-01-24 14:01:19.846814  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.846904  layers.py             0415: custom_model_layer_convolution2d  -> ENTRY: params = {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}, network_initializer = xavier_normal
+2020-01-24 14:01:19.846973  initializers.py       0005: get_initializer                   -> ENTRY: ---
+2020-01-24 14:01:19.847005  initializers.py       0005: get_initializer                   <- EXIT : ---
+2020-01-24 14:01:19.847126  layers.py             0415: custom_model_layer_convolution2d  <- EXIT : ---
+2020-01-24 14:01:19.847169  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.convolutional.Conv2D object at 0x7fe59116c7b8>
+2020-01-24 14:01:19.855897  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:19.856086  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:19.856167  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.856297  layers.py             0852: custom_model_layer_batch_normali  -> ENTRY: params = {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}
+2020-01-24 14:01:19.856618  layers.py             0852: custom_model_layer_batch_normali  <- EXIT : ---
+2020-01-24 14:01:19.856686  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.normalization.BatchNormalization object at 0x7fe591186cf8>
+2020-01-24 14:01:19.856764  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.856850  layers.py             0852: custom_model_layer_batch_normali  -> ENTRY: params = {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}
+2020-01-24 14:01:19.857052  layers.py             0852: custom_model_layer_batch_normali  <- EXIT : ---
+2020-01-24 14:01:19.857100  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.normalization.BatchNormalization object at 0x7fe591186e80>
+2020-01-24 14:01:19.914212  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:19.914308  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:19.914394  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.914503  layers.py             0415: custom_model_layer_convolution2d  -> ENTRY: params = {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}, network_initializer = xavier_normal
+2020-01-24 14:01:19.914579  initializers.py       0005: get_initializer                   -> ENTRY: ---
+2020-01-24 14:01:19.914614  initializers.py       0005: get_initializer                   <- EXIT : ---
+2020-01-24 14:01:19.914776  layers.py             0415: custom_model_layer_convolution2d  <- EXIT : ---
+2020-01-24 14:01:19.914826  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.convolutional.Conv2D object at 0x7fe590e97a90>
+2020-01-24 14:01:19.914887  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.914975  layers.py             0415: custom_model_layer_convolution2d  -> ENTRY: params = {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}, network_initializer = xavier_normal
+2020-01-24 14:01:19.915044  initializers.py       0005: get_initializer                   -> ENTRY: ---
+2020-01-24 14:01:19.915076  initializers.py       0005: get_initializer                   <- EXIT : ---
+2020-01-24 14:01:19.915196  layers.py             0415: custom_model_layer_convolution2d  <- EXIT : ---
+2020-01-24 14:01:19.915240  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.convolutional.Conv2D object at 0x7fe590eb3978>
+2020-01-24 14:01:19.923775  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:19.923850  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:19.923912  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.924009  layers.py             0852: custom_model_layer_batch_normali  -> ENTRY: params = {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}
+2020-01-24 14:01:19.924241  layers.py             0852: custom_model_layer_batch_normali  <- EXIT : ---
+2020-01-24 14:01:19.924292  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.normalization.BatchNormalization object at 0x7fe590e5ce48>
+2020-01-24 14:01:19.924357  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.924442  layers.py             0852: custom_model_layer_batch_normali  -> ENTRY: params = {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}
+2020-01-24 14:01:19.924640  layers.py             0852: custom_model_layer_batch_normali  <- EXIT : ---
+2020-01-24 14:01:19.924689  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.normalization.BatchNormalization object at 0x7fe590e1feb8>
+2020-01-24 14:01:19.983023  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:19.983117  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:19.983216  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.983312  layers.py             0415: custom_model_layer_convolution2d  -> ENTRY: params = {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}, network_initializer = xavier_normal
+2020-01-24 14:01:19.983386  initializers.py       0005: get_initializer                   -> ENTRY: ---
+2020-01-24 14:01:19.983420  initializers.py       0005: get_initializer                   <- EXIT : ---
+2020-01-24 14:01:19.983582  layers.py             0415: custom_model_layer_convolution2d  <- EXIT : ---
+2020-01-24 14:01:19.983629  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.convolutional.Conv2D object at 0x7fe590dd2e48>
+2020-01-24 14:01:19.983689  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.983778  layers.py             0415: custom_model_layer_convolution2d  -> ENTRY: params = {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}, network_initializer = xavier_normal
+2020-01-24 14:01:19.983848  initializers.py       0005: get_initializer                   -> ENTRY: ---
+2020-01-24 14:01:19.983880  initializers.py       0005: get_initializer                   <- EXIT : ---
+2020-01-24 14:01:19.984002  layers.py             0415: custom_model_layer_convolution2d  <- EXIT : ---
+2020-01-24 14:01:19.984046  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.convolutional.Conv2D object at 0x7fe590de6908>
+2020-01-24 14:01:19.992638  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:19.992717  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:19.992787  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.992876  layers.py             0852: custom_model_layer_batch_normali  -> ENTRY: params = {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}
+2020-01-24 14:01:19.993111  layers.py             0852: custom_model_layer_batch_normali  <- EXIT : ---
+2020-01-24 14:01:19.993161  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.normalization.BatchNormalization object at 0x7fe590d8f320>
+2020-01-24 14:01:19.993261  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}, network_initializer = xavier_normal
+2020-01-24 14:01:19.993375  layers.py             0852: custom_model_layer_batch_normali  -> ENTRY: params = {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}
+2020-01-24 14:01:19.993576  layers.py             0852: custom_model_layer_batch_normali  <- EXIT : ---
+2020-01-24 14:01:19.993624  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.normalization.BatchNormalization object at 0x7fe590d61f98>
+2020-01-24 14:01:20.051069  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:20.051165  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:20.051225  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'identity', 'params': {}}, network_initializer = xavier_normal
+2020-01-24 14:01:20.051293  layers.py             0845: custom_model_layer_identity       -> ENTRY: params = {}
+2020-01-24 14:01:20.051333  layers.py             0845: custom_model_layer_identity       <- EXIT : ---
+2020-01-24 14:01:20.051368  layers.py             0287: custom_model_get_layer            <- EXIT : <function linear at 0x7fe5c454ee18>
+2020-01-24 14:01:20.051417  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'identity', 'params': {}}, network_initializer = xavier_normal
+2020-01-24 14:01:20.051476  layers.py             0845: custom_model_layer_identity       -> ENTRY: params = {}
+2020-01-24 14:01:20.051510  layers.py             0845: custom_model_layer_identity       <- EXIT : ---
+2020-01-24 14:01:20.051544  layers.py             0287: custom_model_get_layer            <- EXIT : <function linear at 0x7fe5c454ee18>
+2020-01-24 14:01:20.051594  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:20.051628  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:20.052695  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:20.052758  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:20.052815  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'convolution2d', 'params': {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}}, network_initializer = xavier_normal
+2020-01-24 14:01:20.052910  layers.py             0415: custom_model_layer_convolution2d  -> ENTRY: params = {'output_channels': 16, 'kernel_size': 3, 'stride': 1, 'padding': 'in_eq_out', 'groups': 1, 'dilation': 1, 'use_bias': True, 'layout': 'NHWC'}, network_initializer = xavier_normal
+2020-01-24 14:01:20.052985  initializers.py       0005: get_initializer                   -> ENTRY: ---
+2020-01-24 14:01:20.053027  initializers.py       0005: get_initializer                   <- EXIT : ---
+2020-01-24 14:01:20.053182  layers.py             0415: custom_model_layer_convolution2d  <- EXIT : ---
+2020-01-24 14:01:20.053229  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.convolutional.Conv2D object at 0x7fe590d809b0>
+2020-01-24 14:01:20.061843  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:20.061932  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:20.062025  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'batch_normalization', 'params': {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}}, network_initializer = xavier_normal
+2020-01-24 14:01:20.062130  layers.py             0852: custom_model_layer_batch_normali  -> ENTRY: params = {'moving_average_momentum': 0.99, 'epsilon': 0.001, 'use_trainable_parameters': True, 'activate_scale_shift_operation': False}
+2020-01-24 14:01:20.062363  layers.py             0852: custom_model_layer_batch_normali  <- EXIT : ---
+2020-01-24 14:01:20.062418  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.normalization.BatchNormalization object at 0x7fe590d3e780>
+2020-01-24 14:01:20.119527  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:20.119621  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:20.119678  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'relu', 'params': {}}, network_initializer = xavier_normal
+2020-01-24 14:01:20.119744  layers.py             0884: custom_model_activation_relu      -> ENTRY: params = {}
+2020-01-24 14:01:20.119833  layers.py             0884: custom_model_activation_relu      <- EXIT : ---
+2020-01-24 14:01:20.119878  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.advanced_activations.ReLU object at 0x7fe590c98da0>
+2020-01-24 14:01:20.120422  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:20.120481  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:20.120536  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'max_pooling2d', 'params': {'kernel_size': 2, 'stride': None, 'padding': 0, 'dilation': 1, 'return_indices': False, 'ceil_mode': False, 'layout': 'NHWC'}}, network_initializer = xavier_normal
+2020-01-24 14:01:20.120628  layers.py             0605: custom_model_layer_max_pooling2d  -> ENTRY: params = {'kernel_size': 2, 'stride': None, 'padding': 0, 'dilation': 1, 'return_indices': False, 'ceil_mode': False, 'layout': 'NHWC'}
+2020-01-24 14:01:20.120739  layers.py             0605: custom_model_layer_max_pooling2d  <- EXIT : ---
+2020-01-24 14:01:20.120783  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.pooling.MaxPooling2D object at 0x7fe590cb1208>
+2020-01-24 14:01:20.121552  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:20.121617  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:20.121670  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'flatten', 'params': {'layout': 'NHWC'}}, network_initializer = xavier_normal
+2020-01-24 14:01:20.121737  layers.py             0798: custom_model_layer_flatten        -> ENTRY: params = {'layout': 'NHWC'}
+2020-01-24 14:01:20.121814  layers.py             0798: custom_model_layer_flatten        <- EXIT : ---
+2020-01-24 14:01:20.121856  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.core.Flatten object at 0x7fe590cc1240>
+2020-01-24 14:01:20.126578  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:20.126660  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:20.126718  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'fully_connected', 'params': {'units': 1024, 'use_bias': True, 'flatten': True}}, network_initializer = xavier_normal
+2020-01-24 14:01:20.126795  layers.py             0811: custom_model_layer_fully_connect  -> ENTRY: params = {'units': 1024, 'use_bias': True, 'flatten': True}, network_initializer = xavier_normal
+2020-01-24 14:01:20.126849  initializers.py       0005: get_initializer                   -> ENTRY: ---
+2020-01-24 14:01:20.126883  initializers.py       0005: get_initializer                   <- EXIT : ---
+2020-01-24 14:01:20.127029  layers.py             0811: custom_model_layer_fully_connect  <- EXIT : ---
+2020-01-24 14:01:20.127076  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.core.Dense object at 0x7fe590cc12b0>
+2020-01-24 14:01:20.134802  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:20.134876  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:20.134935  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'dropout', 'params': {'drop_probability': 0.2, 'axes': ()}}, network_initializer = xavier_normal
+2020-01-24 14:01:20.135009  layers.py             0836: custom_model_layer_dropout        -> ENTRY: params = {'drop_probability': 0.2, 'axes': ()}
+2020-01-24 14:01:20.135091  layers.py             0836: custom_model_layer_dropout        <- EXIT : ---
+2020-01-24 14:01:20.135133  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.core.Dropout object at 0x7fe590c4aa58>
+2020-01-24 14:01:20.145162  common.py             0151: get_layer_uid                     -> ENTRY: ---
+2020-01-24 14:01:20.145246  common.py             0151: get_layer_uid                     <- EXIT : ---
+2020-01-24 14:01:20.145304  layers.py             0287: custom_model_get_layer            -> ENTRY: network_layer = {'uid': None, 'name': 'fully_connected', 'params': {'units': 2, 'use_bias': True, 'flatten': True}}, network_initializer = xavier_normal
+2020-01-24 14:01:20.145381  layers.py             0811: custom_model_layer_fully_connect  -> ENTRY: params = {'units': 2, 'use_bias': True, 'flatten': True}, network_initializer = xavier_normal
+2020-01-24 14:01:20.145435  initializers.py       0005: get_initializer                   -> ENTRY: ---
+2020-01-24 14:01:20.145468  initializers.py       0005: get_initializer                   <- EXIT : ---
+2020-01-24 14:01:20.145601  layers.py             0811: custom_model_layer_fully_connect  <- EXIT : ---
+2020-01-24 14:01:20.145649  layers.py             0287: custom_model_get_layer            <- EXIT : <keras.layers.core.Dense object at 0x7fe590c4a828>
+2020-01-24 14:01:20.441907  return_model.py       0032: setup_model                       <- EXIT : ---
+2020-01-24 14:01:20.442025  base_class.py         0137: custom_print                      -> ENTRY: msg =     Model Loaded on device
+2020-01-24 14:01:20.442101  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.442194  common.py             0048: get_num_layers                    -> ENTRY: ---
+2020-01-24 14:01:20.442275  common.py             0048: get_num_layers                    <- EXIT : ---
+2020-01-24 14:01:20.442314  common.py             0059: get_num_trainable_layers          -> ENTRY: ---
+2020-01-24 14:01:20.442357  common.py             0059: get_num_trainable_layers          <- EXIT : ---
+2020-01-24 14:01:20.442400  base_class.py         0137: custom_print                      -> ENTRY: msg =         Model name:                           Custom Model
+2020-01-24 14:01:20.442446  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.442533  base_class.py         0137: custom_print                      -> ENTRY: msg =         Num layers in model:  34
+2020-01-24 14:01:20.442592  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.442672  base_class.py         0137: custom_print                      -> ENTRY: msg =         Num trainable layers: 33
+2020-01-24 14:01:20.442728  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.442806  base_class.py         0137: custom_print                      -> ENTRY: msg =
+2020-01-24 14:01:20.442843  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.442873  level_2_model_base.p  0016: set_model_final                   <- EXIT
+2020-01-24 14:01:20.442930  level_14_master_main  0186: Compile_Network                   <- EXIT
+2020-01-24 14:01:20.442988  level_7_aux_main.py   0108: Freeze_Layers                     -> ENTRY: num = 10
+2020-01-24 14:01:20.443046  common.py             0072: freeze_layers                     -> ENTRY: ---
+2020-01-24 14:01:20.443084  common.py             0048: get_num_layers                    -> ENTRY: ---
+2020-01-24 14:01:20.443117  common.py             0048: get_num_layers                    <- EXIT : ---
+2020-01-24 14:01:20.443158  common.py             0059: get_num_trainable_layers          -> ENTRY: ---
+2020-01-24 14:01:20.443191  common.py             0059: get_num_trainable_layers          <- EXIT : ---
+2020-01-24 14:01:20.443236  common.py             0072: freeze_layers                     <- EXIT : ---
+2020-01-24 14:01:20.443275  base_class.py         0137: custom_print                      -> ENTRY: msg = Model params post freezing
+2020-01-24 14:01:20.443332  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.443411  base_class.py         0137: custom_print                      -> ENTRY: msg =     Num trainable layers: 24
+2020-01-24 14:01:20.443467  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.443532  base_class.py         0137: custom_print                      -> ENTRY: msg =
+2020-01-24 14:01:20.443582  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.443631  common.py             0083: save                              -> ENTRY: ---
+2020-01-24 14:01:20.443681  base_system_state.py  0182: update_local_var                  -> ENTRY: ---
+2020-01-24 14:01:20.443718  base_system_state.py  0182: update_local_var                  <- EXIT : ---
+2020-01-24 14:01:20.443754  common.py             0017: write_json                        -> ENTRY: ---
+2020-01-24 14:01:20.444590  common.py             0017: write_json                        <- EXIT
+2020-01-24 14:01:20.444643  common.py             0083: save                              <- EXIT
+2020-01-24 14:01:20.444680  level_7_aux_main.py   0108: Freeze_Layers                     <- EXIT
+2020-01-24 14:01:20.444803  level_6_params_main.  0114: Training_Params                   -> ENTRY: num_epochs = 2, display_progress = True, display_progress_realtime = True, save_intermediate_models = True, intermediate_model_prefix = intermediate_model_, save_training_logs = True
+2020-01-24 14:01:20.444898  params.py             0006: set_num_epochs                    -> ENTRY: ---
+2020-01-24 14:01:20.444940  params.py             0006: set_num_epochs                    <- EXIT : ---
+2020-01-24 14:01:20.444980  params.py             0014: set_display_progress_realtime     -> ENTRY: ---
+2020-01-24 14:01:20.445013  params.py             0014: set_display_progress_realtime     <- EXIT : ---
+2020-01-24 14:01:20.445050  params.py             0021: set_display_progress              -> ENTRY: ---
+2020-01-24 14:01:20.445081  params.py             0021: set_display_progress              <- EXIT : ---
+2020-01-24 14:01:20.445116  params.py             0028: set_save_intermediate_models      -> ENTRY: ---
+2020-01-24 14:01:20.445147  params.py             0028: set_save_intermediate_models      <- EXIT : ---
+2020-01-24 14:01:20.445185  params.py             0035: set_save_training_logs            -> ENTRY: ---
+2020-01-24 14:01:20.445216  params.py             0035: set_save_training_logs            <- EXIT : ---
+2020-01-24 14:01:20.445259  params.py             0042: set_intermediate_model_prefix     -> ENTRY: ---
+2020-01-24 14:01:20.445291  params.py             0042: set_intermediate_model_prefix     <- EXIT : ---
+2020-01-24 14:01:20.445329  base_class.py         0137: custom_print                      -> ENTRY: msg = Training params
+2020-01-24 14:01:20.445372  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.445442  base_class.py         0137: custom_print                      -> ENTRY: msg =     Num Epochs: 2
+2020-01-24 14:01:20.445496  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.445574  base_class.py         0137: custom_print                      -> ENTRY: msg =
+2020-01-24 14:01:20.445623  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.445701  base_class.py         0137: custom_print                      -> ENTRY: msg = Display params
+2020-01-24 14:01:20.445740  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.445793  base_class.py         0137: custom_print                      -> ENTRY: msg =     Display progress:          True
+2020-01-24 14:01:20.445849  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.445902  base_class.py         0137: custom_print                      -> ENTRY: msg =     Display progress realtime: True
+2020-01-24 14:01:20.445946  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.445984  base_class.py         0137: custom_print                      -> ENTRY: msg =     Save Training logs:        True
+2020-01-24 14:01:20.446028  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.446066  base_class.py         0137: custom_print                      -> ENTRY: msg =     Save Intermediate models:  True
+2020-01-24 14:01:20.446110  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.446148  base_class.py         0137: custom_print                      -> ENTRY: msg =     Intermediate model prefix: intermediate_model_
+2020-01-24 14:01:20.446194  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.446231  base_class.py         0137: custom_print                      -> ENTRY: msg =
+2020-01-24 14:01:20.446268  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.446298  level_6_params_main.  0114: Training_Params                   <- EXIT
+2020-01-24 14:01:20.446361  level_11_optimizers_  0022: optimizer_sgd                     -> ENTRY: learning_rate = 0.0001, momentum = 0, weight_decay = 0, momentum_dampening_rate = 0, clipnorm = 0.0, clipvalue = 0.0
+2020-01-24 14:01:20.446436  optimizers.py         0007: sgd                               -> ENTRY: ---
+2020-01-24 14:01:20.446477  optimizers.py         0007: sgd                               <- EXIT : ---
+2020-01-24 14:01:20.446519  base_class.py         0137: custom_print                      -> ENTRY: msg = Optimizer
+2020-01-24 14:01:20.446560  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.446599  base_class.py         0137: custom_print                      -> ENTRY: msg =     Name:          sgd
+2020-01-24 14:01:20.446640  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.446680  base_class.py         0137: custom_print                      -> ENTRY: msg =     Learning rate: 0.0001
+2020-01-24 14:01:20.446723  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.446768  base_class.py         0137: custom_print                      -> ENTRY: msg =     Params:        {'lr': 0.0001, 'momentum': 0, 'weight_decay': 0, 'momentum_dampening_rate': 0, 'clipnorm': 0.0, 'clipvalue': 0.0}
+2020-01-24 14:01:20.446836  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.446875  base_class.py         0137: custom_print                      -> ENTRY: msg =
+2020-01-24 14:01:20.446914  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.446963  base_class.py         0137: custom_print                      -> ENTRY: msg =
+2020-01-24 14:01:20.447002  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.447043  base_class.py         0137: custom_print                      -> ENTRY: msg =
+2020-01-24 14:01:20.447082  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.447112  level_11_optimizers_  0022: optimizer_sgd                     <- EXIT
+2020-01-24 14:01:20.447148  keras_prototype.py    0187: List_Optimizers                   -> ENTRY
+2020-01-24 14:01:20.447187  base_class.py         0370: print_list_optimizers             -> ENTRY
+2020-01-24 14:01:20.447224  base_class.py         0137: custom_print                      -> ENTRY: msg = Optimizers List:
+2020-01-24 14:01:20.447266  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.447305  base_class.py         0137: custom_print                      -> ENTRY: msg =     1. optimizer_sgd
+2020-01-24 14:01:20.447347  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.447384  base_class.py         0137: custom_print                      -> ENTRY: msg =     2. optimizer_nesterov_sgd
+2020-01-24 14:01:20.447426  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.447464  base_class.py         0137: custom_print                      -> ENTRY: msg =     3. optimizer_rmsprop
+2020-01-24 14:01:20.447506  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.447544  base_class.py         0137: custom_print                      -> ENTRY: msg =     4. optimizer_adam
+2020-01-24 14:01:20.447585  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.447623  base_class.py         0137: custom_print                      -> ENTRY: msg =     5. optimizer_nesterov_adam
+2020-01-24 14:01:20.447665  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.447702  base_class.py         0137: custom_print                      -> ENTRY: msg =     6. optimizer_adamax
+2020-01-24 14:01:20.447744  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.447781  base_class.py         0137: custom_print                      -> ENTRY: msg =     7. optimizer_adagrad
+2020-01-24 14:01:20.447822  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.447859  base_class.py         0137: custom_print                      -> ENTRY: msg =     8. optimizer_adadelta
+2020-01-24 14:01:20.447900  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.447937  base_class.py         0137: custom_print                      -> ENTRY: msg =
+2020-01-24 14:01:20.447974  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.448003  base_class.py         0370: print_list_optimizers             <- EXIT
+2020-01-24 14:01:20.448032  keras_prototype.py    0187: List_Optimizers                   <- EXIT
+2020-01-24 14:01:20.448066  level_10_schedulers_  0016: lr_fixed                          -> ENTRY
+2020-01-24 14:01:20.448101  schedulers.py         0006: scheduler_fixed                   -> ENTRY: ---
+2020-01-24 14:01:20.448134  schedulers.py         0006: scheduler_fixed                   <- EXIT : ---
+2020-01-24 14:01:20.448174  base_class.py         0137: custom_print                      -> ENTRY: msg = Learning rate scheduler
+2020-01-24 14:01:20.448216  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.448254  base_class.py         0137: custom_print                      -> ENTRY: msg =     Name:   fixed
+2020-01-24 14:01:20.448297  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.448337  base_class.py         0137: custom_print                      -> ENTRY: msg =     Params: {}
+2020-01-24 14:01:20.448377  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.448413  base_class.py         0137: custom_print                      -> ENTRY: msg =
+2020-01-24 14:01:20.448450  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.448479  level_10_schedulers_  0016: lr_fixed                          <- EXIT
+2020-01-24 14:01:20.448514  keras_prototype.py    0200: List_Schedulers                   -> ENTRY
+2020-01-24 14:01:20.448551  base_class.py         0402: print_list_schedulers             -> ENTRY
+2020-01-24 14:01:20.448587  base_class.py         0137: custom_print                      -> ENTRY: msg = Optimizers List:
+2020-01-24 14:01:20.448629  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.448667  base_class.py         0137: custom_print                      -> ENTRY: msg =     1. lr_fixed
+2020-01-24 14:01:20.448708  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.448745  base_class.py         0137: custom_print                      -> ENTRY: msg =     2. lr_step_decrease
+2020-01-24 14:01:20.448786  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.448824  base_class.py         0137: custom_print                      -> ENTRY: msg =     3. lr_exponential_decrease
+2020-01-24 14:01:20.448865  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.448903  base_class.py         0137: custom_print                      -> ENTRY: msg =     4. lr_plateau_decrease
+2020-01-24 14:01:20.448944  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.448981  base_class.py         0137: custom_print                      -> ENTRY: msg =
+2020-01-24 14:01:20.449019  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.449049  base_class.py         0402: print_list_schedulers             <- EXIT
+2020-01-24 14:01:20.449077  keras_prototype.py    0200: List_Schedulers                   <- EXIT
+2020-01-24 14:01:20.449119  level_12_losses_main  0046: loss_crossentropy                 -> ENTRY: weight = None, batch_axis = 0, axis_to_sum_over = -1, label_as_categories = True, label_smoothing = False
+2020-01-24 14:01:20.449184  losses.py             0031: crossentropy                      -> ENTRY: ---
+2020-01-24 14:01:20.449220  losses.py             0031: crossentropy                      <- EXIT : ---
+2020-01-24 14:01:20.449268  base_class.py         0137: custom_print                      -> ENTRY: msg = Loss
+2020-01-24 14:01:20.449308  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.449347  base_class.py         0137: custom_print                      -> ENTRY: msg =     Name:          crossentropy
+2020-01-24 14:01:20.449388  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.449430  base_class.py         0137: custom_print                      -> ENTRY: msg =     Params:        {'weight': None, 'batch_axis': 0, 'axis_to_sum_over': -1, 'label_as_categories': True, 'label_smoothing': False}
+2020-01-24 14:01:20.449491  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.449530  base_class.py         0137: custom_print                      -> ENTRY: msg =
+2020-01-24 14:01:20.449568  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.449597  level_12_losses_main  0046: loss_crossentropy                 <- EXIT
+2020-01-24 14:01:20.449632  keras_prototype.py    0174: List_Losses                       -> ENTRY
+2020-01-24 14:01:20.449667  base_class.py         0334: print_list_losses                 -> ENTRY
+2020-01-24 14:01:20.449707  base_class.py         0137: custom_print                      -> ENTRY: msg = Losses List:
+2020-01-24 14:01:20.449749  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.449788  base_class.py         0137: custom_print                      -> ENTRY: msg =     1. loss_l1
+2020-01-24 14:01:20.449828  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.449866  base_class.py         0137: custom_print                      -> ENTRY: msg =     2. loss_l2
+2020-01-24 14:01:20.449906  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.449943  base_class.py         0137: custom_print                      -> ENTRY: msg =     3. loss_crossentropy
+2020-01-24 14:01:20.449984  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.450022  base_class.py         0137: custom_print                      -> ENTRY: msg =     4. loss_binary_crossentropyloss_kldiv
+2020-01-24 14:01:20.450064  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.450102  base_class.py         0137: custom_print                      -> ENTRY: msg =     5. loss_hinge
+2020-01-24 14:01:20.450142  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.450179  base_class.py         0137: custom_print                      -> ENTRY: msg =     6. loss_squared_hinge
+2020-01-24 14:01:20.450220  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.450257  base_class.py         0137: custom_print                      -> ENTRY: msg =
+2020-01-24 14:01:20.450294  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.450323  base_class.py         0334: print_list_losses                 <- EXIT
+2020-01-24 14:01:20.450350  keras_prototype.py    0174: List_Losses                       <- EXIT
+2020-01-24 14:01:20.450385  level_14_master_main  0147: Train                             -> ENTRY
+2020-01-24 14:01:20.450420  level_3_training_bas  0057: set_training_final                -> ENTRY
+2020-01-24 14:01:20.450457  base_class.py         0137: custom_print                      -> ENTRY: msg = Training Start
+2020-01-24 14:01:20.450498  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:20.450533  return_scheduler.py   0008: load_scheduler                    -> ENTRY: ---
+2020-01-24 14:01:20.450569  return_scheduler.py   0008: load_scheduler                    <- EXIT : ---
+2020-01-24 14:01:20.450605  return_optimizer.py   0005: load_optimizer                    -> ENTRY: ---
+2020-01-24 14:01:20.459669  return_optimizer.py   0005: load_optimizer                    <- EXIT : ---
+2020-01-24 14:01:20.459764  return_loss.py        0006: load_loss                         -> ENTRY: ---
+2020-01-24 14:01:20.459808  return_loss.py        0006: load_loss                         <- EXIT : ---
+2020-01-24 14:01:25.935156  base_class.py         0137: custom_print                      -> ENTRY: msg =     Training completed in: 0m 3s
+2020-01-24 14:01:25.935601  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:25.935852  base_class.py         0137: custom_print                      -> ENTRY: msg =     Best val Acc:          0.562500
+2020-01-24 14:01:25.936058  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:25.936223  base_class.py         0137: custom_print                      -> ENTRY: msg =
+2020-01-24 14:01:25.936378  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:26.078005  common.py             0083: save                              -> ENTRY: ---
+2020-01-24 14:01:26.078168  base_system_state.py  0182: update_local_var                  -> ENTRY: ---
+2020-01-24 14:01:26.078225  base_system_state.py  0182: update_local_var                  <- EXIT : ---
+2020-01-24 14:01:26.078275  common.py             0017: write_json                        -> ENTRY: ---
+2020-01-24 14:01:26.079267  common.py             0017: write_json                        <- EXIT
+2020-01-24 14:01:26.079321  common.py             0083: save                              <- EXIT
+2020-01-24 14:01:26.079370  base_class.py         0137: custom_print                      -> ENTRY: msg = Training End
+2020-01-24 14:01:26.079421  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:26.079489  base_class.py         0137: custom_print                      -> ENTRY: msg =
+2020-01-24 14:01:26.079544  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:26.079646  base_class.py         0137: custom_print                      -> ENTRY: msg = Training Outputs
+2020-01-24 14:01:26.079702  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:26.079768  base_class.py         0137: custom_print                      -> ENTRY: msg =     Model Dir:   /home/abhi/Desktop/Work/tess_tool/gui/v0.3/finetune_models/Organization/development/v4.9/examples/keras/10_training using_custom_model/workspace/sample-project-1/sample-experiment-1/output/models/
+2020-01-24 14:01:26.079873  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:26.079938  base_class.py         0137: custom_print                      -> ENTRY: msg =     Log Dir:     /home/abhi/Desktop/Work/tess_tool/gui/v0.3/finetune_models/Organization/development/v4.9/examples/keras/10_training using_custom_model/workspace/sample-project-1/sample-experiment-1/output/logs/
+2020-01-24 14:01:26.080012  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:26.080089  base_class.py         0137: custom_print                      -> ENTRY: msg =     Final model: final
+2020-01-24 14:01:26.080157  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:26.080231  base_class.py         0137: custom_print                      -> ENTRY: msg =     Best model:  best_model
+2020-01-24 14:01:26.080313  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:26.080351  base_class.py         0137: custom_print                      -> ENTRY: msg =     Log 1 - Validation accuracy history log: val_acc_history.npy
+2020-01-24 14:01:26.080416  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:26.080479  base_class.py         0137: custom_print                      -> ENTRY: msg =     Log 2 - Validation loss history log:     val_loss_history.npy
+2020-01-24 14:01:26.080527  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:26.080606  base_class.py         0137: custom_print                      -> ENTRY: msg =     Log 3 - Training accuracy history log:   train_acc_history.npy
+2020-01-24 14:01:26.080656  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:26.080707  base_class.py         0137: custom_print                      -> ENTRY: msg =     Log 4 - Training loss history log:       train_loss_history.npy
+2020-01-24 14:01:26.080768  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:26.080821  base_class.py         0137: custom_print                      -> ENTRY: msg =     Log 5 - Training curve:                  train_loss_history.npy
+2020-01-24 14:01:26.080869  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:26.080906  base_class.py         0137: custom_print                      -> ENTRY: msg =     Log 6 - Validation curve:                train_loss_history.npy
+2020-01-24 14:01:26.080954  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:26.080991  base_class.py         0137: custom_print                      -> ENTRY: msg =
+2020-01-24 14:01:26.081028  base_class.py         0137: custom_print                      <- EXIT
+2020-01-24 14:01:26.081935  line.py               0007: create_train_test_plots_accuracy  -> ENTRY: plots = [[0.5180722898747547, 0.530120482286775], [0.5625, 0.0]], labels = ['Epoch Num', 'Accuracy'], log_dir = /home/abhi/Desktop/Work/tess_tool/gui/v0.3/finetune_models/Organization/development/v4.9/examples/keras/10_training using_custom_model/workspace/sample-project-1/sample-experiment-1/output/logs/, show_img = False, save_img = True
+2020-01-24 14:01:26.494681  line.py               0007: create_train_test_plots_accuracy  <- EXIT
+2020-01-24 14:01:26.494822  line.py               0020: create_train_test_plots_loss      -> ENTRY: plots = [[2.169300260314022, 0.872682382543403], [1.1289186477661133, 0.22229328751564026]], labels = ['Epoch Num', 'Loss'], log_dir = /home/abhi/Desktop/Work/tess_tool/gui/v0.3/finetune_models/Organization/development/v4.9/examples/keras/10_training using_custom_model/workspace/sample-project-1/sample-experiment-1/output/logs/, show_img = False, save_img = True
+2020-01-24 14:01:26.694121  line.py               0020: create_train_test_plots_loss      <- EXIT
+2020-01-24 14:01:26.694257  level_3_training_bas  0057: set_training_final                <- EXIT
+2020-01-24 14:01:26.694324  common.py             0083: save                              -> ENTRY: ---
+2020-01-24 14:01:26.694370  base_system_state.py  0182: update_local_var                  -> ENTRY: ---
+2020-01-24 14:01:26.694408  base_system_state.py  0182: update_local_var                  <- EXIT : ---
+2020-01-24 14:01:26.694447  common.py             0017: write_json                        -> ENTRY: ---
+2020-01-24 14:01:26.695318  common.py             0017: write_json                        <- EXIT
+2020-01-24 14:01:26.695371  common.py             0083: save                              <- EXIT
+2020-01-24 14:01:26.695428  level_14_master_main  0147: Train                             <- EXIT

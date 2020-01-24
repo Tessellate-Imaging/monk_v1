@@ -1,6 +1,6 @@
 from tf_keras_1.models.imports import *
 from system.imports import *
-
+from tf_keras_1.models.initializers import get_initializer
 
 
 
@@ -274,3 +274,703 @@ def activation_sigmoid(system_dict, final_layer=False):
     system_dict["model"]["final_layer"] = final_layer;
 
     return system_dict;
+
+
+
+
+
+
+
+
+
+@accepts(dict, str, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=True)
+def custom_model_get_layer(network_layer, network_initializer):
+    layer_name = network_layer["name"];
+    layer_params = network_layer["params"];
+    if(layer_name == "convolution1d"):
+        return custom_model_layer_convolution1d(layer_params, network_initializer);
+    elif(layer_name == "convolution2d"):
+        return custom_model_layer_convolution2d(layer_params, network_initializer);
+    elif(layer_name == "convolution3d"):
+        return custom_model_layer_convolution3d(layer_params, network_initializer);
+
+    elif(layer_name == "transposed_convolution2d"):
+        return custom_model_layer_transposed_convolution2d(layer_params, network_initializer);
+    elif(layer_name == "transposed_convolution3d"):
+        return custom_model_layer_transposed_convolution3d(layer_params, network_initializer);
+
+    elif(layer_name == "max_pooling1d"):
+        return custom_model_layer_max_pooling1d(layer_params);
+    elif(layer_name == "max_pooling2d"):
+        return custom_model_layer_max_pooling2d(layer_params);
+    elif(layer_name == "max_pooling3d"):
+        return custom_model_layer_max_pooling3d(layer_params);
+
+    elif(layer_name == "average_pooling1d"):
+        return custom_model_layer_average_pooling1d(layer_params);
+    elif(layer_name == "average_pooling2d"):
+        return custom_model_layer_average_pooling2d(layer_params);
+    elif(layer_name == "average_pooling3d"):
+        return custom_model_layer_average_pooling3d(layer_params);
+
+    elif(layer_name == "global_max_pooling1d"):
+        return custom_model_layer_global_max_pooling1d(layer_params);
+    elif(layer_name == "global_max_pooling2d"):
+        return custom_model_layer_global_max_pooling2d(layer_params);
+    elif(layer_name == "global_max_pooling3d"):
+        return custom_model_layer_global_max_pooling3d(layer_params);
+
+    elif(layer_name == "global_average_pooling1d"):
+        return custom_model_layer_global_average_pooling1d(layer_params);
+    elif(layer_name == "global_average_pooling2d"):
+        return custom_model_layer_global_average_pooling2d(layer_params);
+    elif(layer_name == "global_average_pooling3d"):
+        return custom_model_layer_global_average_pooling3d(layer_params);
+
+    elif(layer_name == "flatten"):
+        return custom_model_layer_flatten(layer_params);
+    elif(layer_name == "fully_connected"):
+        return custom_model_layer_fully_connected(layer_params, network_initializer);
+    elif(layer_name == "dropout"):
+        return custom_model_layer_dropout(layer_params);
+    elif(layer_name == "identity"):
+        return custom_model_layer_identity(layer_params);
+
+    elif(layer_name == "batch_normalization"):
+        return custom_model_layer_batch_normalization(layer_params);
+
+    elif(layer_name == "relu"):
+        return custom_model_activation_relu(layer_params);
+    elif(layer_name == "softmax"):
+        return custom_model_activation_softmax(layer_params);
+    elif(layer_name == "thresholded_relu"):
+        return custom_model_activation_thresholded_relu(layer_params);
+    elif(layer_name == "elu"):
+        return custom_model_activation_elu(layer_params);
+    elif(layer_name == "prelu"):
+        return custom_model_activation_prelu(layer_params);
+    elif(layer_name == "leaky_relu"):
+        return custom_model_activation_leaky_relu(layer_params);
+    elif(layer_name == "selu"):
+        return custom_model_activation_selu(layer_params);
+    elif(layer_name == "softplus"):
+        return custom_model_activation_softplus(layer_params);
+    elif(layer_name == "softsign"):
+        return custom_model_activation_softsign(layer_params);
+    elif(layer_name == "tanh"):
+        return custom_model_activation_tanh(layer_params);
+    elif(layer_name == "sigmoid"):
+        return custom_model_activation_sigmoid(layer_params);
+    elif(layer_name == "hard_sigmoid"):
+        return custom_model_activation_hard_sigmoid(layer_params);
+
+
+
+
+
+
+@accepts(dict, str, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_layer_convolution1d(params, network_initializer):
+    out_channels = params["output_channels"];
+    kernel_size=params["kernel_size"];
+    strides=1;
+    if(params["padding"] == "in_eq_out"):
+        padding = "same";
+    elif(params["padding"] == 0):
+        padding = "valid";
+    else:
+        padding = "causal";
+
+    if(params["layout"][-1] == "C"):
+        data_format='channels_last';
+    else:
+        data_format='channels_first';
+
+    dilation_rate=params["dilation"];
+    activation=None;
+    use_bias = params["use_bias"];
+    kernel_initializer=get_initializer(network_initializer)
+    bias_initializer='zeros';
+    kernel_regularizer=None;
+    bias_regularizer=None;
+    activity_regularizer=None;
+    kernel_constraint=None;
+    bias_constraint=None;
+
+
+    layer = keras.layers.Conv1D(out_channels, kernel_size, strides=strides, 
+                            padding=padding, data_format=data_format, 
+                            dilation_rate=dilation_rate, activation=activation, use_bias=use_bias, 
+                            kernel_initializer=kernel_initializer, bias_initializer=bias_initializer, 
+                            kernel_regularizer=kernel_regularizer, bias_regularizer=bias_regularizer, 
+                            activity_regularizer=activity_regularizer, kernel_constraint=kernel_constraint, 
+                            bias_constraint=bias_constraint)
+
+    return layer
+
+
+@accepts(dict, str, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_layer_convolution2d(params, network_initializer):
+    out_channels = params["output_channels"];
+    kernel_size=params["kernel_size"];
+    strides=1;
+    if(params["padding"] == "in_eq_out"):
+        padding = "same";
+    elif(params["padding"] == 0):
+        padding = "valid";
+    else:
+        padding = "causal";
+
+    if(params["layout"][-1] == "C"):
+        data_format='channels_last';
+    else:
+        data_format='channels_first';
+
+    dilation_rate=params["dilation"];
+    activation=None;
+    use_bias = params["use_bias"];
+    kernel_initializer=get_initializer(network_initializer);
+    bias_initializer='zeros';
+    kernel_regularizer=None;
+    bias_regularizer=None;
+    activity_regularizer=None;
+    kernel_constraint=None;
+    bias_constraint=None;
+
+
+    layer = keras.layers.Conv2D(out_channels, kernel_size, strides=strides, 
+                            padding=padding, data_format=data_format, 
+                            dilation_rate=dilation_rate, activation=activation, use_bias=use_bias, 
+                            kernel_initializer=kernel_initializer, bias_initializer=bias_initializer, 
+                            kernel_regularizer=kernel_regularizer, bias_regularizer=bias_regularizer, 
+                            activity_regularizer=activity_regularizer, kernel_constraint=kernel_constraint, 
+                            bias_constraint=bias_constraint)
+
+    return layer
+
+
+
+@accepts(dict, str, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_layer_convolution3d(params, network_initializer):
+    out_channels = params["output_channels"];
+    kernel_size=params["kernel_size"];
+    strides=1;
+    if(params["padding"] == "in_eq_out"):
+        padding = "same";
+    elif(params["padding"] == 0):
+        padding = "valid";
+    else:
+        padding = "causal";
+
+    if(params["layout"][-1] == "C"):
+        data_format='channels_last';
+    else:
+        data_format='channels_first';
+
+    dilation_rate=params["dilation"];
+    activation=None;
+    use_bias = params["use_bias"];
+    kernel_initializer=get_initializer(network_initializer);
+    bias_initializer='zeros';
+    kernel_regularizer=None;
+    bias_regularizer=None;
+    activity_regularizer=None;
+    kernel_constraint=None;
+    bias_constraint=None;
+
+
+    layer = keras.layers.Conv3D(out_channels, kernel_size, strides=strides, 
+                            padding=padding, data_format=data_format, 
+                            dilation_rate=dilation_rate, activation=activation, use_bias=use_bias, 
+                            kernel_initializer=kernel_initializer, bias_initializer=bias_initializer, 
+                            kernel_regularizer=kernel_regularizer, bias_regularizer=bias_regularizer, 
+                            activity_regularizer=activity_regularizer, kernel_constraint=kernel_constraint, 
+                            bias_constraint=bias_constraint)
+
+    return layer
+
+
+
+@accepts(dict, str, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_layer_transposed_convolution2d(params, network_initializer):
+    out_channels = params["output_channels"];
+    kernel_size=params["kernel_size"];
+    strides=1;
+    if(params["padding"] == "in_eq_out"):
+        padding = "same";
+    elif(params["padding"] == 0):
+        padding = "valid";
+    else:
+        padding = "causal";
+
+    if(params["layout"][-1] == "C"):
+        data_format='channels_last';
+    else:
+        data_format='channels_first';
+
+    dilation_rate=params["dilation"];
+    activation=None;
+    use_bias = params["use_bias"];
+    kernel_initializer=get_initializer(network_initializer);
+    bias_initializer='zeros';
+    kernel_regularizer=None;
+    bias_regularizer=None;
+    activity_regularizer=None;
+    kernel_constraint=None;
+    bias_constraint=None;
+
+
+    layer = keras.layers.Conv2DTranspose(out_channels, kernel_size, strides=strides, 
+                            padding=padding, data_format=data_format, 
+                            dilation_rate=dilation_rate, activation=activation, use_bias=use_bias, 
+                            kernel_initializer=kernel_initializer, bias_initializer=bias_initializer, 
+                            kernel_regularizer=kernel_regularizer, bias_regularizer=bias_regularizer, 
+                            activity_regularizer=activity_regularizer, kernel_constraint=kernel_constraint, 
+                            bias_constraint=bias_constraint)
+
+    return layer
+
+
+@accepts(dict, str, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_layer_transposed_convolution3d(params, network_initializer):
+    out_channels = params["output_channels"];
+    kernel_size=params["kernel_size"];
+    strides=1;
+    if(params["padding"] == "in_eq_out"):
+        padding = "same";
+    elif(params["padding"] == 0):
+        padding = "valid";
+    else:
+        padding = "causal";
+
+    if(params["layout"][-1] == "C"):
+        data_format='channels_last';
+    else:
+        data_format='channels_first';
+
+    dilation_rate=params["dilation"];
+    activation=None;
+    use_bias = params["use_bias"];
+    kernel_initializer=get_initializer(network_initializer);
+    bias_initializer='zeros';
+    kernel_regularizer=None;
+    bias_regularizer=None;
+    activity_regularizer=None;
+    kernel_constraint=None;
+    bias_constraint=None;
+
+
+    layer = keras.layers.Conv3DTranspose(out_channels, kernel_size, strides=strides, 
+                            padding=padding, data_format=data_format, 
+                            dilation_rate=dilation_rate, activation=activation, use_bias=use_bias, 
+                            kernel_initializer=kernel_initializer, bias_initializer=bias_initializer, 
+                            kernel_regularizer=kernel_regularizer, bias_regularizer=bias_regularizer, 
+                            activity_regularizer=activity_regularizer, kernel_constraint=kernel_constraint, 
+                            bias_constraint=bias_constraint)
+    
+    return layer
+
+
+@accepts(dict, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_layer_max_pooling1d(params):
+    pool_size=params["kernel_size"];
+    strides=params["stride"];
+    if(params["padding"] == "in_eq_out"):
+        padding = "same";
+    elif(params["padding"] == 0):
+        padding = "valid";
+    else:
+        padding = "causal";
+
+    if(params["layout"][-1] == "C"):
+        data_format='channels_last';
+    else:
+        data_format='channels_first';
+
+
+    layer = keras.layers.MaxPooling1D(pool_size=pool_size, strides=strides, 
+                                    padding=padding, data_format=data_format)
+
+    return layer
+
+
+@accepts(dict, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_layer_max_pooling2d(params):
+    pool_size=params["kernel_size"];
+    strides=params["stride"];
+    if(params["padding"] == "in_eq_out"):
+        padding = "same";
+    elif(params["padding"] == 0):
+        padding = "valid";
+    else:
+        padding = "causal";
+
+    if(params["layout"][-1] == "C"):
+        data_format='channels_last';
+    else:
+        data_format='channels_first';
+
+
+    layer = keras.layers.MaxPooling2D(pool_size=pool_size, strides=strides, 
+                                    padding=padding, data_format=data_format)
+
+    return layer
+
+
+@accepts(dict, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_layer_max_pooling3d(params):
+    pool_size=params["kernel_size"];
+    strides=params["stride"];
+    if(params["padding"] == "in_eq_out"):
+        padding = "same";
+    elif(params["padding"] == 0):
+        padding = "valid";
+    else:
+        padding = "causal";
+
+    if(params["layout"][-1] == "C"):
+        data_format='channels_last';
+    else:
+        data_format='channels_first';
+
+
+    layer = keras.layers.MaxPooling3D(pool_size=pool_size, strides=strides, 
+                                    padding=padding, data_format=data_format)
+
+    return layer
+
+
+@accepts(dict, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_layer_average_pooling1d(params):
+    pool_size=params["kernel_size"];
+    strides=params["stride"];
+    if(params["padding"] == "in_eq_out"):
+        padding = "same";
+    elif(params["padding"] == 0):
+        padding = "valid";
+    else:
+        padding = "causal";
+
+    if(params["layout"][-1] == "C"):
+        data_format='channels_last';
+    else:
+        data_format='channels_first';
+
+
+    layer = keras.layers.AveragePooling1D(pool_size=pool_size, strides=strides, 
+                                    padding=padding, data_format=data_format)
+
+    return layer
+
+
+@accepts(dict, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_layer_average_pooling2d(params):
+    pool_size=params["kernel_size"];
+    strides=params["stride"];
+    if(params["padding"] == "in_eq_out"):
+        padding = "same";
+    elif(params["padding"] == 0):
+        padding = "valid";
+    else:
+        padding = "causal";
+
+    if(params["layout"][-1] == "C"):
+        data_format='channels_last';
+    else:
+        data_format='channels_first';
+
+
+    layer = keras.layers.AveragePooling2D(pool_size=pool_size, strides=strides, 
+                                    padding=padding, data_format=data_format)
+
+    return layer
+
+
+@accepts(dict, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_layer_average_pooling3d(params):
+    pool_size=params["kernel_size"];
+    strides=params["stride"];
+    if(params["padding"] == "in_eq_out"):
+        padding = "same";
+    elif(params["padding"] == 0):
+        padding = "valid";
+    else:
+        padding = "causal";
+
+    if(params["layout"][-1] == "C"):
+        data_format='channels_last';
+    else:
+        data_format='channels_first';
+
+
+    layer = keras.layers.AveragePooling3D(pool_size=pool_size, strides=strides, 
+                                    padding=padding, data_format=data_format)
+
+    return layer
+
+
+
+@accepts(dict, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_layer_global_max_pooling1d(params):
+    if(params["layout"][-1] == "C"):
+        data_format='channels_last';
+    else:
+        data_format='channels_first';
+
+    layer = keras.layers.GlobalMaxPooling1D(data_format=data_format);
+    return layer
+
+
+@accepts(dict, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_layer_global_max_pooling2d(params):
+    if(params["layout"][-1] == "C"):
+        data_format='channels_last';
+    else:
+        data_format='channels_first';
+    
+    layer = keras.layers.GlobalMaxPooling2D(data_format=data_format);
+    return layer
+
+
+@accepts(dict, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_layer_global_max_pooling3d(params):
+    if(params["layout"][-1] == "C"):
+        data_format='channels_last';
+    else:
+        data_format='channels_first';
+    
+    layer = keras.layers.GlobalMaxPooling3D(data_format=data_format);
+    return layer
+
+
+@accepts(dict, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_layer_global_average_pooling1d(params):
+    if(params["layout"][-1] == "C"):
+        data_format='channels_last';
+    else:
+        data_format='channels_first';
+
+    layer = keras.layers.GlobalAveragePooling1D(data_format=data_format);
+    return layer
+
+
+@accepts(dict, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_layer_global_average_pooling2d(params):
+    if(params["layout"][-1] == "C"):
+        data_format='channels_last';
+    else:
+        data_format='channels_first';
+
+    layer = keras.layers.GlobalAveragePooling2D(data_format=data_format);
+    return layer
+
+
+@accepts(dict, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_layer_global_average_pooling3d(params):
+    if(params["layout"][-1] == "C"):
+        data_format='channels_last';
+    else:
+        data_format='channels_first';
+
+    layer = keras.layers.GlobalAveragePooling3D(data_format=data_format);
+    return layer
+
+
+@accepts(dict, str, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_layer_flatten(params):
+    if(params["layout"][-1] == "C"):
+        data_format='channels_last';
+    else:
+        data_format='channels_first';
+
+    layer = keras.layers.Flatten(data_format=data_format);
+    return layer;
+
+
+
+@accepts(dict, str, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_layer_fully_connected(params, network_initializer):
+    units=params["units"];
+    activation=None;
+    use_bias = params["use_bias"];
+    kernel_initializer=get_initializer(network_initializer);
+    bias_initializer='zeros';
+    kernel_regularizer=None;
+    bias_regularizer=None;
+    activity_regularizer=None;
+    kernel_constraint=None;
+    bias_constraint=None;
+
+
+    layer = keras.layers.Dense(units, activation=activation, use_bias=use_bias, 
+                   kernel_initializer=kernel_initializer, bias_initializer=bias_initializer, 
+                   kernel_regularizer=kernel_regularizer, bias_regularizer=bias_regularizer, 
+                   activity_regularizer=activity_regularizer, kernel_constraint=kernel_constraint, 
+                   bias_constraint=bias_constraint)
+
+    
+    return layer
+
+
+@accepts(dict, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_layer_dropout(params):
+    rate=params["drop_probability"];
+    layer = keras.layers.Dropout(rate, noise_shape=None, seed=None);
+
+    return layer;
+
+
+@accepts(dict, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_layer_identity(params):
+    layer = keras.activations.linear;
+    return layer
+
+
+@accepts(dict, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_layer_batch_normalization(params):
+    axis = -1;
+    momentum=params["moving_average_momentum"];
+    epsilon=params["epsilon"];
+    center=params["use_trainable_parameters"];
+    scale=params["use_trainable_parameters"];
+    beta_initializer='zeros';
+    gamma_initializer='ones';
+    moving_mean_initializer='zeros';
+    moving_variance_initializer='ones';
+    beta_regularizer=None;
+    gamma_regularizer=None;
+    beta_constraint=None;
+    gamma_constraint=None;
+
+
+
+    layer = keras.layers.BatchNormalization(axis=axis, momentum=momentum, epsilon=epsilon, 
+                                center=center, scale=scale, beta_initializer=beta_initializer, 
+                                gamma_initializer=gamma_initializer, 
+                                moving_mean_initializer=moving_mean_initializer, 
+                                moving_variance_initializer=moving_variance_initializer, 
+                                beta_regularizer=beta_regularizer, gamma_regularizer=gamma_regularizer, 
+                                beta_constraint=beta_constraint, gamma_constraint=gamma_constraint);
+
+
+    return layer;
+
+
+
+@accepts(dict, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_activation_relu(params):
+    layer = keras.layers.ReLU();
+    return layer
+
+
+@accepts(dict, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_activation_softmax(params):
+    axis = params["axis"];
+
+    layer = keras.layers.Softmax(axis=axis);
+    return layer
+
+
+@accepts(dict, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_activation_thresholded_relu(params):
+    threshold = params["threshold"];
+
+    layer = keras.layers.ThresholdedReLU(theta=threshold);
+    return layer
+
+
+@accepts(dict, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_activation_elu(params):
+    alpha = params["alpha"];
+    
+    layer = keras.layers.ELU(alpha=alpha);
+    return layer
+
+
+
+@accepts(dict, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_activation_prelu(params):
+    layer = keras.layers.PReLU();
+    return layer
+
+
+@accepts(dict, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_activation_leaky_relu(params):
+    alpha = params["alpha"];
+    
+    layer = keras.layers.LeakyReLU(alpha=alpha);
+    return layer
+
+
+
+@accepts(dict, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_activation_selu(params):
+    layer = keras.layers.Activation('selu');
+    return layer
+
+
+@accepts(dict, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_activation_softplus(params):
+    layer =keras.layers.Activation('softplus');
+    return layer
+
+
+@accepts(dict, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_activation_softsign(params):
+    layer = keras.layers.Activation('softsign');
+    return layer
+
+
+@accepts(dict, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_activation_tanh(params):
+    layer = keras.layers.Activation('tanh');
+    return layer
+
+
+@accepts(dict, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_activation_sigmoid(params):
+    layer = keras.layers.Activation('sigmoid');
+    return layer
+
+
+@accepts(dict, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=False)
+def custom_model_activation_hard_sigmoid(params):
+    layer = keras.layers.Activation('hard_sigmoid');
+    return layer
+
+

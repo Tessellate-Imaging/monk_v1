@@ -8,6 +8,7 @@ from gluon.models.layers import addBlock
 from gluon.models.initializers import initialize_network
 
 
+
 @accepts(dict, path=[str, bool], final=bool, resume=bool, external_path=[bool, str, list], post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def load_model(system_dict, path=False, final=False, resume=False, external_path=False):

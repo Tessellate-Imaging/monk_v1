@@ -81,10 +81,14 @@ class finetune_model(finetune_dataset):
             self.system_dict["model"]["status"] = True;
 
 
-            self.custom_print("        Model name:           {}".format(self.system_dict["model"]["params"]["model_name"]));
+            if(self.system_dict["model"]["type"] == "custom"):
+                self.custom_print("        Model name:                           {}".format("Custom Model"));
+            else:
+                self.custom_print("        Model name:                           {}".format(self.system_dict["model"]["params"]["model_name"]));
             self.custom_print("        Num layers in model:  {}".format(self.system_dict["model"]["params"]["num_layers"]));
             self.custom_print("        Num trainable layers: {}".format(self.system_dict["model"]["params"]["num_params_to_update"]));
             self.custom_print("");
+            
     ###############################################################################################################################################
 
 

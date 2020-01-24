@@ -26,7 +26,7 @@ layer_names = ["convolution1d", "convolution2d", "convolution", "convolution3d",
 
 
 names = ["conv1d_", "conv2d_", "conv_", "conv3d_", "tconv1d_", "tconv_", "tconv2d_", "tconv3d_", 
-            "max-pool1d_", "max-pool2d_", "max-pool_", "max-pool3d_", "avg-pooling1d_",
+            "max-pool1d_", "max-pool2d_", "max-pool_", "max-pool3d_", "avg-pool1d_",
             "avg-pool2d_", "avg-pool_", "avg-pool3d_", "global-max-pool1d_", "global-max-pool2d_", "global-max-pool_", 
             "global-max-pool3d_", "global-avg-pool1d_", "global-avg-pool2d_", "global-avg-pool_", "global-avg-pool3d_", 
             "fc_", "dropout_", "flatten_", "identity_", "add_", "concatenate_", "bn_",

@@ -21,7 +21,14 @@ class finetune_dataset(system):
             dataset_test_path = self.system_dict["dataset"]["test_path"];
             delimiter = self.system_dict["dataset"]["params"]["test_delimiter"];
 
-            target_size = (self.system_dict["dataset"]["params"]["input_size"], self.system_dict["dataset"]["params"]["input_size"]);
+            if(type(self.system_dict["dataset"]["params"]["input_size"]) == tuple or type(self.system_dict["dataset"]["params"]["input_size"]) == list):
+                h = self.system_dict["dataset"]["params"]["input_size"][0];
+                w = self.system_dict["dataset"]["params"]["input_size"][1];
+            else:
+                h = self.system_dict["dataset"]["params"]["input_size"];
+                w = self.system_dict["dataset"]["params"]["input_size"];
+
+            target_size = (h, w);
             color_mode='rgb';
             class_mode='categorical';
 
@@ -68,7 +75,15 @@ class finetune_dataset(system):
             shuffle = self.system_dict["dataset"]["params"]["train_shuffle"];
             num_workers = self.system_dict["dataset"]["params"]["num_workers"];
 
-            target_size = (self.system_dict["dataset"]["params"]["input_size"], self.system_dict["dataset"]["params"]["input_size"]);
+            if(type(self.system_dict["dataset"]["params"]["input_size"]) == tuple or type(self.system_dict["dataset"]["params"]["input_size"]) == list):
+                h = self.system_dict["dataset"]["params"]["input_size"][0];
+                w = self.system_dict["dataset"]["params"]["input_size"][1];
+            else:
+                h = self.system_dict["dataset"]["params"]["input_size"];
+                w = self.system_dict["dataset"]["params"]["input_size"];
+
+            target_size = (h, w);
+
             color_mode='rgb';
             class_mode='categorical';
 
@@ -112,7 +127,15 @@ class finetune_dataset(system):
             num_workers = self.system_dict["dataset"]["params"]["num_workers"];
 
 
-            target_size = (self.system_dict["dataset"]["params"]["input_size"], self.system_dict["dataset"]["params"]["input_size"]);
+            if(type(self.system_dict["dataset"]["params"]["input_size"]) == tuple or type(self.system_dict["dataset"]["params"]["input_size"]) == list):
+                h = self.system_dict["dataset"]["params"]["input_size"][0];
+                w = self.system_dict["dataset"]["params"]["input_size"][1];
+            else:
+                h = self.system_dict["dataset"]["params"]["input_size"];
+                w = self.system_dict["dataset"]["params"]["input_size"];
+
+            target_size = (h, w);
+            
             color_mode='rgb';
             class_mode='categorical';
 

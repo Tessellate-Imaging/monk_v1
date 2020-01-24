@@ -19,6 +19,59 @@ from test_loss_kldiv import test_loss_kldiv
 from test_loss_hinge import test_loss_hinge
 from test_loss_squared_hinge import test_loss_squared_hinge
 
+from test_layer_convolution1d import test_layer_convolution1d
+from test_layer_convolution2d import test_layer_convolution2d
+from test_layer_convolution3d import test_layer_convolution3d
+from test_layer_transposed_convolution2d import test_layer_transposed_convolution2d
+from test_layer_transposed_convolution3d import test_layer_transposed_convolution3d
+from test_layer_max_pooling1d import test_layer_max_pooling1d
+from test_layer_max_pooling2d import test_layer_max_pooling2d
+from test_layer_max_pooling3d import test_layer_max_pooling3d
+from test_layer_average_pooling1d import test_layer_average_pooling1d
+from test_layer_average_pooling2d import test_layer_average_pooling2d
+from test_layer_average_pooling3d import test_layer_average_pooling3d
+from test_layer_global_max_pooling1d import test_layer_global_max_pooling1d
+from test_layer_global_max_pooling2d import test_layer_global_max_pooling2d
+from test_layer_global_max_pooling3d import test_layer_global_max_pooling3d
+from test_layer_global_average_pooling1d import test_layer_global_average_pooling1d
+from test_layer_global_average_pooling2d import test_layer_global_average_pooling2d
+from test_layer_global_average_pooling3d import test_layer_global_average_pooling3d
+from test_layer_batch_normalization import test_layer_batch_normalization
+from test_layer_identity import test_layer_identity
+from test_layer_fully_connected import test_layer_fully_connected
+from test_layer_dropout import test_layer_dropout
+from test_layer_flatten import test_layer_flatten
+from test_layer_concatenate import test_layer_concatenate
+from test_layer_add import test_layer_add
+
+from test_activation_relu import test_activation_relu
+from test_activation_softmax import test_activation_softmax
+from test_activation_thresholded_relu import test_activation_thresholded_relu
+from test_activation_elu import test_activation_elu
+from test_activation_prelu import test_activation_prelu
+from test_activation_leaky_relu import test_activation_leaky_relu
+from test_activation_selu import test_activation_selu
+from test_activation_softplus import test_activation_softplus
+from test_activation_softsign import test_activation_softsign
+from test_activation_tanh import test_activation_tanh
+from test_activation_sigmoid import test_activation_sigmoid
+from test_activation_hard_sigmoid import test_activation_hard_sigmoid
+
+from test_initializer_xavier_normal import test_initializer_xavier_normal
+from test_initializer_xavier_uniform import test_initializer_xavier_uniform
+from test_initializer_random_normal import test_initializer_random_normal
+from test_initializer_random_uniform import test_initializer_random_uniform
+from test_initializer_lecun_normal import test_initializer_lecun_normal
+from test_initializer_lecun_uniform import test_initializer_lecun_uniform
+from test_initializer_he_normal import test_initializer_he_normal
+from test_initializer_he_uniform import test_initializer_he_uniform
+from test_initializer_truncated_normal import test_initializer_truncated_normal
+from test_initializer_orthogonal import test_initializer_orthogonal
+from test_initializer_variance_scaling import test_initializer_variance_scaling
+
+
+
+
 origstdout = sys.stdout
 
 
@@ -164,6 +217,369 @@ print("Tests Succesful           - {}".format(system_dict["successful_tests"]));
 print("")
 
 
+print("Running 16/<num>");
+system_dict = test_layer_convolution1d(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+print("Running 17/<num>");
+system_dict = test_layer_convolution2d(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+print("Running 18/<num>");
+system_dict = test_layer_convolution3d(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+print("Running 19/<num>");
+system_dict = test_layer_transposed_convolution2d(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+print("Running 20/<num>");
+system_dict = test_layer_transposed_convolution3d(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+print("Running 21/<num>");
+system_dict = test_layer_max_pooling1d(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+print("Running 22/<num>");
+system_dict = test_layer_max_pooling2d(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+print("Running 23/<num>");
+system_dict = test_layer_max_pooling3d(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+
+print("Running 24/<num>");
+system_dict = test_layer_average_pooling1d(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+print("Running 25/<num>");
+system_dict = test_layer_average_pooling2d(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+print("Running 26/<num>");
+system_dict = test_layer_average_pooling3d(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+print("Running 27/<num>");
+system_dict = test_layer_global_max_pooling1d(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+print("Running 28/<num>");
+system_dict = test_layer_global_max_pooling2d(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+print("Running 29/<num>");
+system_dict = test_layer_global_max_pooling3d(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+
+print("Running 30/<num>");
+system_dict = test_layer_global_average_pooling1d(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+print("Running 31/<num>");
+system_dict = test_layer_global_average_pooling2d(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+print("Running 32/<num>");
+system_dict = test_layer_global_average_pooling3d(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+print("Running 33/<num>");
+system_dict = test_layer_batch_normalization(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+print("Running 34/<num>");
+system_dict = test_layer_identity(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+print("Running 35/<num>");
+system_dict = test_layer_fully_connected(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+
+print("Running 36/<num>");
+system_dict = test_layer_dropout(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+print("Running 37/<num>");
+system_dict = test_layer_flatten(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+print("Running 38/<num>");
+system_dict = test_activation_relu(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+print("Running 39/<num>");
+system_dict = test_activation_softmax(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+print("Running 40/<num>");
+system_dict = test_activation_thresholded_relu(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+print("Running 41/<num>");
+system_dict = test_activation_elu(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+print("Running 42/<num>");
+system_dict = test_activation_prelu(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+print("Running 43/<num>");
+system_dict = test_activation_leaky_relu(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+print("Running 44/<num>");
+system_dict = test_activation_selu(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+print("Running 45/<num>");
+system_dict = test_activation_softplus(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+print("Running 46/<num>");
+system_dict = test_activation_softsign(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+print("Running 47/<num>");
+system_dict = test_activation_tanh(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+print("Running 48/<num>");
+system_dict = test_activation_sigmoid(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+print("Running 49/<num>");
+system_dict = test_activation_hard_sigmoid(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+print("Running 50/<num>");
+system_dict = test_layer_concatenate(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+print("Running 51/<num>");
+system_dict = test_layer_add(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+
+print("Running 52/<num>");
+system_dict = test_initializer_xavier_normal(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+print("Running 53/<num>");
+system_dict = test_initializer_xavier_uniform(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+print("Running 54/<num>");
+system_dict = test_initializer_random_normal(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+print("Running 55/<num>");
+system_dict = test_initializer_random_uniform(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+print("Running 56/<num>");
+system_dict = test_initializer_lecun_normal(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+print("Running 57/<num>");
+system_dict = test_initializer_lecun_uniform(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+print("Running 58/<num>");
+system_dict = test_initializer_he_normal(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+print("Running 59/<num>");
+system_dict = test_initializer_he_uniform(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+print("Running 60/<num>");
+system_dict = test_initializer_truncated_normal(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+print("Running 61/<num>");
+system_dict = test_initializer_orthogonal(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
+
+
+print("Running 62/<num>");
+system_dict = test_initializer_variance_scaling(system_dict)
+sys.stdout = origstdout;
+print("Tests Completed           - {}".format(system_dict["total_tests"]));
+print("Tests Succesful           - {}".format(system_dict["successful_tests"]));    
+print("")
 
 
 

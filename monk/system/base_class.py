@@ -233,10 +233,23 @@ class system():
                                     "instance_normalization", "layer_normalization"];
 
         elif(self.system_dict["library"] == "Keras"):
-            combined_list_lower = [];
+            combined_list_lower = ["convolution1d", "convolution2d", "convolution", "convolution3d", "transposed_convolution", 
+                                    "transposed_convolution2d", "transposed_convolution3d", "max_pooling1d", "max_pooling2d", 
+                                    "max_pooling", "max_pooling3d", "average_pooling1d", "average_pooling2d", "average_pooling", 
+                                    "average_pooling3d", "global_max_pooling1d", "global_max_pooling2d", "global_max_pooling", 
+                                    "global_max_pooling3d", "global_average_pooling1d", "global_average_pooling2d", "global_average_pooling", 
+                                    "global_average_pooling3d", "flatten", "fully_connected", "dropout", "identity", "batch_normalization",
+                                    "add", "concatenate"];
 
         elif(self.system_dict["library"] == "Pytorch"):
-            combined_list_lower = [];
+            combined_list_lower = ["convolution1d", "convolution2d", "convolution", "convolution3d", "transposed_convolution1d",
+                                    "transposed_convolution", "transposed_convolution2d", "transposed_convolution3d",
+                                    "max_pooling1d", "max_pooling2d", "max_pooling", "max_pooling3d", "average_pooling1d",
+                                    "average_pooling2d", "average_pooling", "average_pooling3d", "global_max_pooling1d",
+                                    "global_max_pooling2d", "global_max_pooling", "global_max_pooling3d", "global_average_pooling1d",
+                                    "global_average_pooling2d", "global_average_pooling", "global_average_pooling3d", "fully_connected", 
+                                    "flatten", "dropout", "identity", "batch_normalization", "instance_normalization", "layer_normalization",
+                                    "add", "concatenate"];
 
         for i in range(len(combined_list_lower)):
             self.custom_print("    {}. {}".format(i+1, combined_list_lower[i]))
@@ -294,12 +307,15 @@ class system():
                                     "prelu", "selu", "swish"];
 
         elif(self.system_dict["library"] == "Keras"):
-            combined_list_lower = [];
+            combined_list_lower = ["relu", "elu", "leaky_relu", "prelu", "thresholded_relu", "softmax", 
+                                    "selu", "softplus", "softsign", "tanh", "sigmoid", "hard_sigmoid"];
 
 
 
         elif(self.system_dict["library"] == "Pytorch"):
-            combined_list_lower = [];
+            combined_list_lower = ["relu", "sigmoid", "tanh", "softplus", "softsign",  "elu", "leaky_relu", "prelu", "selu",
+                                    "hardshrink", "hardtanh", "logsigmoid", "relu6", "rrelu", "celu", "softshrink", "tanhshrink",
+                                    "threshold", "softmin", "softmax", "logsoftmax"];
 
 
         for i in range(len(combined_list_lower)):
@@ -326,14 +342,16 @@ class system():
                                     "loss_squared_hinge"];
 
         elif(self.system_dict["library"] == "Keras"):
-            combined_list_lower = ["loss_categorical_crossentropy", "loss_sparse_categorical_crossentropy",
-                                    "loss_categorical_hinge", "loss_binary_crossentropy"];
-
+            combined_list_lower = ["loss_l1", "loss_l2", "loss_crossentropy", "loss_binary_crossentropy"
+                                    "loss_kldiv", "loss_hinge", "loss_squared_hinge"];
 
 
         elif(self.system_dict["library"] == "Pytorch"):
-            combined_list_lower = ["loss_softmax_crossentropy", "loss_nll", "loss_poisson_nll", 
-                                    "loss_binary_crossentropy", "loss_binary_crossentropy_with_logits"];
+            combined_list_lower = ["loss_l1", "loss_l2", "loss_softmax_crossentropy", "loss_crossentropy",
+                                    "loss_sigmoid_binary_crossentropy", "loss_binary_crossentropy",
+                                    "loss_kldiv", "loss_poisson_nll", "loss_huber", "loss_hinge",
+                                    "loss_squared_hinge", "loss_multimargin", "loss_squared_multimargin",
+                                    "loss_multilabel_margin", "loss_multilabel_softmargin"];
 
                                     
 
@@ -359,14 +377,14 @@ class system():
                                     "optimizer_adadelta", "optimizer_adamax", "optimizer_signum"];
 
         elif(self.system_dict["library"] == "Keras"):
-            combined_list_lower = ["optimizer_adadelta", "optimizer_adagrad", "optimizer_adam", "optimizer_adamax", 
-                                    "optimizer_rmsprop", "optimizer_sgd", "optimizer_nadam"];
+            combined_list_lower = ["optimizer_sgd", "optimizer_nesterov_sgd", "optimizer_rmsprop", "optimizer_adam",
+                                    "optimizer_nesterov_adam", "optimizer_adamax", "optimizer_adagrad", "optimizer_adadelta"];
 
 
         elif(self.system_dict["library"] == "Pytorch"):
-            combined_list_lower = ["optimizer_adadelta", "optimizer_adagrad", "optimizer_adam", "optimizer_adamw", 
-                                    "optimizer_sparseadam", "optimizer_adamax", "optimizer_asgd", "optimizer_rmsprop", 
-                                    "optimizer_rprop", "optimizer_sgd"];
+            combined_list_lower = ["optimizer_sgd", "optimizer_nesterov_sgd", "optimizer_rmsprop", "optimizer_momentum_rmsprop", 
+                                    "optimizer_adam", "optimizer_adamax", "optimizer_adamw", "optimizer_adagrad", 
+                                    "optimizer_adadelta"];
 
                                     
         for i in range(len(combined_list_lower)):

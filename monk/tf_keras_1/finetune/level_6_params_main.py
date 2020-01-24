@@ -16,7 +16,7 @@ class prototype_params(finetune_state):
     @error_checks(None, dataset_path=["folder", "r"], path_to_csv=["file", "r"], delimiter=["in", [",", ";", "-", " "]],
         split=["gt", 0.0, "lt", 1.0], input_size=["gt", 0], batch_size=["gt", 0], shuffle_data=None, num_processors=["gt", 0],  post_trace=True)
     @accepts("self", dataset_path=[str, list, bool], path_to_csv=[str, list, bool], delimiter=str, split=float, 
-        input_size=int, batch_size=int, shuffle_data=bool, num_processors=int, post_trace=True)
+        input_size=[int, tuple], batch_size=int, shuffle_data=bool, num_processors=int, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def Dataset_Params(self, dataset_path=False, path_to_csv=False, delimiter=",", split=0.9,
         input_size=224, batch_size=16, shuffle_data=True, num_processors=psutil.cpu_count()):
