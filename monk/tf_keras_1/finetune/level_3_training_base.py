@@ -96,7 +96,7 @@ class finetune_training(finetune_model):
                 times_history.append(float(lines[i][:len(lines[i])-1]));
 
 
-            csv_logger = krc.CSVLogger(log_dir + "model_history_log.csv", append=False);
+            csv_logger = krc.CSVLogger(log_dir + "model_history_log.csv", append=True);
 
             if(not self.system_dict["verbose"]):
                 verbose=0;
@@ -186,6 +186,7 @@ class finetune_training(finetune_model):
                 np.save(self.system_dict["log_dir"] + "train_acc_history.npy", np.array(train_acc_history));
                 np.save(self.system_dict["log_dir"] + "train_loss_history.npy", np.array(train_loss_history));
 
+                
 
             if(self.system_dict["training"]["settings"]["display_progress"]):
                 self.custom_print('    Training completed in: {:.0f}m {:.0f}s'.format(time_elapsed_since // 60, time_elapsed_since % 60))
@@ -317,6 +318,8 @@ class finetune_training(finetune_model):
                 np.save(self.system_dict["log_dir"] + "val_loss_history.npy", np.array(val_loss_history));
                 np.save(self.system_dict["log_dir"] + "train_acc_history.npy", np.array(train_acc_history));
                 np.save(self.system_dict["log_dir"] + "train_loss_history.npy", np.array(train_loss_history));
+
+               
 
 
             if(self.system_dict["training"]["settings"]["display_progress"]):
