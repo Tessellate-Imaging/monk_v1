@@ -189,12 +189,12 @@ class finetune_training(finetune_model):
                         if phase == 'val':
                             val_acc = epoch_acc;
                             val_loss = epoch_loss;
-                            val_acc_history.append(epoch_acc);
+                            val_acc_history.append(epoch_acc.cpu().detach().numpy());
                             val_loss_history.append(epoch_loss);
                         else:
                             train_acc = epoch_acc;
                             train_loss = epoch_loss;
-                            train_acc_history.append(epoch_acc);
+                            train_acc_history.append(epoch_acc.cpu().detach().numpy());
                             train_loss_history.append(epoch_loss);
 
                 if(self.system_dict["training"]["settings"]["save_intermediate_models"]):
@@ -365,12 +365,12 @@ class finetune_training(finetune_model):
                         if phase == 'val':
                             val_acc = epoch_acc;
                             val_loss = epoch_loss;
-                            val_acc_history.append(epoch_acc);
+                            val_acc_history.append(epoch_acc.cpu().detach().numpy());
                             val_loss_history.append(epoch_loss);
                         else:
                             train_acc = epoch_acc;
                             train_loss = epoch_loss;
-                            train_acc_history.append(epoch_acc);
+                            train_acc_history.append(epoch_acc.cpu().detach().numpy());
                             train_loss_history.append(epoch_loss);
 
 
