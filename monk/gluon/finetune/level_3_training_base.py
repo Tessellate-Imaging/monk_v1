@@ -203,6 +203,9 @@ class finetune_training(finetune_model):
                     np.save(self.system_dict["log_dir"] + "val_loss_history.npy", np.array(val_loss_history));
                     np.save(self.system_dict["log_dir"] + "train_acc_history.npy", np.array(train_acc_history));
                     np.save(self.system_dict["log_dir"] + "train_loss_history.npy", np.array(train_loss_history));
+
+                    create_train_test_plots_accuracy([train_acc_history, val_acc_history], ["Epoch Num", "Accuracy"], self.system_dict["log_dir"], show_img=False, save_img=True);
+                    create_train_test_plots_loss([train_loss_history, val_loss_history], ["Epoch Num", "Loss"], self.system_dict["log_dir"], show_img=False, save_img=True);
                 
                 self.system_dict["local"]["model"].export(self.system_dict["model_dir"] + "resume_state", epoch=0);
                 if(self.system_dict["training"]["settings"]["display_progress_realtime"] and self.system_dict["verbose"]):
@@ -327,6 +330,9 @@ class finetune_training(finetune_model):
                     np.save(self.system_dict["log_dir"] + "val_loss_history.npy", np.array(val_loss_history));
                     np.save(self.system_dict["log_dir"] + "train_acc_history.npy", np.array(train_acc_history));
                     np.save(self.system_dict["log_dir"] + "train_loss_history.npy", np.array(train_loss_history));
+
+                    create_train_test_plots_accuracy([train_acc_history, val_acc_history], ["Epoch Num", "Accuracy"], self.system_dict["log_dir"], show_img=False, save_img=True);
+                    create_train_test_plots_loss([train_loss_history, val_loss_history], ["Epoch Num", "Loss"], self.system_dict["log_dir"], show_img=False, save_img=True);
                 
                 self.system_dict["local"]["model"].export(self.system_dict["model_dir"] + "resume_state", epoch=0);
                 if(self.system_dict["training"]["settings"]["display_progress_realtime"] and self.system_dict["verbose"]):

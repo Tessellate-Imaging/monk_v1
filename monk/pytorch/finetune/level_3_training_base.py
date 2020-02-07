@@ -221,10 +221,13 @@ class finetune_training(finetune_model):
 
 
                 if(self.system_dict["training"]["settings"]["save_training_logs"]):
-                    np.save(self.system_dict["log_dir"] + "val_acc_history.npy", np.array(val_acc_history));
-                    np.save(self.system_dict["log_dir"] + "val_loss_history.npy", np.array(val_loss_history));
-                    np.save(self.system_dict["log_dir"] + "train_acc_history.npy", np.array(train_acc_history));
-                    np.save(self.system_dict["log_dir"] + "train_loss_history.npy", np.array(train_loss_history));
+                    np.save(self.system_dict["log_dir"] + "val_acc_history.npy", np.array(val_acc_history), allow_pickle=True);
+                    np.save(self.system_dict["log_dir"] + "val_loss_history.npy", np.array(val_loss_history), allow_pickle=True);
+                    np.save(self.system_dict["log_dir"] + "train_acc_history.npy", np.array(train_acc_history), allow_pickle=True);
+                    np.save(self.system_dict["log_dir"] + "train_loss_history.npy", np.array(train_loss_history), allow_pickle=True);
+
+                    create_train_test_plots_accuracy([train_acc_history, val_acc_history], ["Epoch Num", "Accuracy"], self.system_dict["log_dir"], show_img=False, save_img=True);
+                    create_train_test_plots_loss([train_loss_history, val_loss_history], ["Epoch Num", "Loss"], self.system_dict["log_dir"], show_img=False, save_img=True);
                 
                 torch.save(self.system_dict["local"]["model"], self.system_dict["model_dir"] + "resume_state");
 
@@ -395,10 +398,13 @@ class finetune_training(finetune_model):
 
 
                 if(self.system_dict["training"]["settings"]["save_training_logs"]):
-                    np.save(self.system_dict["log_dir"] + "val_acc_history.npy", np.array(val_acc_history));
-                    np.save(self.system_dict["log_dir"] + "val_loss_history.npy", np.array(val_loss_history));
-                    np.save(self.system_dict["log_dir"] + "train_acc_history.npy", np.array(train_acc_history));
-                    np.save(self.system_dict["log_dir"] + "train_loss_history.npy", np.array(train_loss_history));
+                    np.save(self.system_dict["log_dir"] + "val_acc_history.npy", np.array(val_acc_history), allow_pickle=True);
+                    np.save(self.system_dict["log_dir"] + "val_loss_history.npy", np.array(val_loss_history), allow_pickle=True);
+                    np.save(self.system_dict["log_dir"] + "train_acc_history.npy", np.array(train_acc_history), allow_pickle=True);
+                    np.save(self.system_dict["log_dir"] + "train_loss_history.npy", np.array(train_loss_history), allow_pickle=True);
+
+                    create_train_test_plots_accuracy([train_acc_history, val_acc_history], ["Epoch Num", "Accuracy"], self.system_dict["log_dir"], show_img=False, save_img=True);
+                    create_train_test_plots_loss([train_loss_history, val_loss_history], ["Epoch Num", "Loss"], self.system_dict["log_dir"], show_img=False, save_img=True);
                 
                 torch.save(self.system_dict["local"]["model"], self.system_dict["model_dir"] + "resume_state");
 
@@ -453,10 +459,10 @@ class finetune_training(finetune_model):
                 self.custom_print("    Log 6 - Validation curve:                {}".format("train_loss_history.npy"));
                 self.custom_print("");
 
-                np.save(self.system_dict["log_dir"] + "val_acc_history.npy", np.array(val_acc_history));
-                np.save(self.system_dict["log_dir"] + "val_loss_history.npy", np.array(val_loss_history));
-                np.save(self.system_dict["log_dir"] + "train_acc_history.npy", np.array(train_acc_history));
-                np.save(self.system_dict["log_dir"] + "train_loss_history.npy", np.array(train_loss_history));
+                np.save(self.system_dict["log_dir"] + "val_acc_history.npy", np.array(val_acc_history), allow_pickle=True);
+                np.save(self.system_dict["log_dir"] + "val_loss_history.npy", np.array(val_loss_history), allow_pickle=True);
+                np.save(self.system_dict["log_dir"] + "train_acc_history.npy", np.array(train_acc_history), allow_pickle=True);
+                np.save(self.system_dict["log_dir"] + "train_loss_history.npy", np.array(train_loss_history), allow_pickle=True);
                 
                 self.system_dict["training"]["outputs"]["log_val_acc_history"] = self.system_dict["log_dir"] + "val_acc_history.npy";
                 self.system_dict["training"]["outputs"]["log_val_loss_history"] = self.system_dict["log_dir"] + "val_loss_history.npy";
