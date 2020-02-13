@@ -7,8 +7,6 @@
 [![Version](https://img.shields.io/badge/version-v1.0-lightgrey)](https://github.com/Tessellate-Imaging/monk_v1) &nbsp; &nbsp;
 [![Build_Status](https://img.shields.io/badge/build-passing-green)](https://github.com/Tessellate-Imaging/monk_v1)
 
-## Latest Docs -- [LINK](https://li8bot.github.io/monkai/#/home)
-
 ## Documentation
 - [Introduction](https://clever-noyce-f9d43f.netlify.com/#/introduction)
 - [Setup](https://clever-noyce-f9d43f.netlify.com/#/setup/setup)
@@ -18,6 +16,9 @@
 - [Hyper Parameter Analyser](https://clever-noyce-f9d43f.netlify.com/#/hp_finder/model_finder)
 - [Compare Experiments](https://clever-noyce-f9d43f.netlify.com/#/compare_experiment)
 - [Resume Training](https://clever-noyce-f9d43f.netlify.com/#/resume_training)
+
+### Latest Docs
+- [LINK](https://li8bot.github.io/monkai/#/home)
 
 
 
