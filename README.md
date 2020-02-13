@@ -7,6 +7,8 @@
 [![Version](https://img.shields.io/badge/version-v1.0-lightgrey)](https://github.com/Tessellate-Imaging/monk_v1) &nbsp; &nbsp;
 [![Build_Status](https://img.shields.io/badge/build-passing-green)](https://github.com/Tessellate-Imaging/monk_v1)
 
+## Latest Docs -- [LINK](https://li8bot.github.io/monkai/#/home)
+
 ## Documentation
 - [Introduction](https://clever-noyce-f9d43f.netlify.com/#/introduction)
 - [Setup](https://clever-noyce-f9d43f.netlify.com/#/setup/setup)
