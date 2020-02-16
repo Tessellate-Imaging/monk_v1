@@ -25,11 +25,11 @@ layer_names = ["convolution1d", "convolution2d", "convolution", "convolution3d",
                     "prelu", "selu", "swish"]
 
 
-names = ["conv1d_", "conv2d_", "conv_", "conv3d_", "tconv1d_", "tconv_", "tconv2d_", "tconv3d_", 
-            "max-pool1d_", "max-pool2d_", "max-pool_", "max-pool3d_", "avg-pool1d_",
-            "avg-pool2d_", "avg-pool_", "avg-pool3d_", "global-max-pool1d_", "global-max-pool2d_", "global-max-pool_", 
+names = ["conv1d_", "conv_", "conv_", "conv3d_", "tconv1d_", "tconv_", "tconv2d_", "tconv3d_", 
+            "max-pool1d_", "mpool_", "mpool_", "max-pool3d_", "avg-pool1d_",
+            "apool_", "apool_", "avg-pool3d_", "global-max-pool1d_", "global-max-pool2d_", "global-max-pool_", 
             "global-max-pool3d_", "global-avg-pool1d_", "global-avg-pool2d_", "global-avg-pool_", "global-avg-pool3d_", 
-            "fc_", "dropout_", "flatten_", "identity_", "add_", "concatenate_", "bn_",
+            "fc_", "dropout_", "flatten_", "identity_", "add_", "concat_", "bn_",
             "inorm_", "lnorm_", "relu_", "sigmoid_", "tanh_", "softplus_", "softsign_", "elu_", "gelu_", 
             "leaky_relu_", "prelu_", "selu_", "swish_"];
 

@@ -15,9 +15,9 @@ def set_transform_trainval(system_dict):
                 h = system_dict["dataset"]["params"]["input_size"];
                 w = system_dict["dataset"]["params"]["input_size"];
 
-            system_dict["local"]["transforms_train"].append(transforms.Resize(size=(system_dict["dataset"]["params"]["input_size"], system_dict["dataset"]["params"]["input_size"])));
+            system_dict["local"]["transforms_train"].append(transforms.Resize(size=(w, h)));
             system_dict["local"]["transforms_train"].append(transforms.ToTensor());
-            system_dict["local"]["transforms_val"].append(transforms.Resize(size=(system_dict["dataset"]["params"]["input_size"], system_dict["dataset"]["params"]["input_size"])));
+            system_dict["local"]["transforms_val"].append(transforms.Resize(size=(w, h)));
             system_dict["local"]["transforms_val"].append(transforms.ToTensor());
             system_dict["local"]["applied_train_tensor"] = True;
     system_dict["local"]["data_transforms"]["train"] = transforms.Compose(system_dict["local"]["transforms_train"]);
@@ -40,7 +40,7 @@ def set_transform_test(system_dict):
                 h = system_dict["dataset"]["params"]["input_size"];
                 w = system_dict["dataset"]["params"]["input_size"];
             
-            system_dict["local"]["transforms_test"].append(transforms.Resize(size=(system_dict["dataset"]["params"]["input_size"], system_dict["dataset"]["params"]["input_size"])));
+            system_dict["local"]["transforms_test"].append(transforms.Resize(size=(w, h)));
             system_dict["local"]["transforms_test"].append(transforms.ToTensor());
             system_dict["local"]["applied_test_tensor"] = True;
     system_dict["local"]["data_transforms"]["test"] = transforms.Compose(system_dict["local"]["transforms_test"]);

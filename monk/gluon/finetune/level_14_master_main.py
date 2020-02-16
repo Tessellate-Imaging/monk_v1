@@ -194,14 +194,17 @@ class prototype_master(prototype_updates):
 
 
     ###############################################################################################################################################
-    @accepts("self", post_trace=True)
+    @accepts("self", data_shape=tuple, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
-    def Visualize_With_Netron(self):
+    def Visualize_With_Netron(self, data_shape=None):
         self.custom_print("Using Netron To Visualize");
         self.custom_print("Not compatible on kaggle");
         self.custom_print("Compatible only for Jupyter Notebooks");
 
-        c, h, w = self.system_dict["dataset"]["params"]["data_shape"];
+        if not data_shape:
+            c, h, w = self.system_dict["dataset"]["params"]["data_shape"];
+        else:
+            c, h, w = data_shape;
 
         data = mx.nd.random.randn(1, c, h, w)
         if(self.system_dict["model"]["params"]["use_gpu"]):

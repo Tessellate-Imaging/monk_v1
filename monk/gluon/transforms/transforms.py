@@ -159,18 +159,25 @@ def transform_resize(system_dict, input_size, train, val, test, retrieve=False):
     tmp["Resize"] = {};
     tmp["Resize"]["input_size"] = input_size;
 
+    if(type(input_size) == tuple or type(input_size) == list):
+        h = input_size[0];
+        w = input_size[1];
+    else:
+        h = input_size;
+        w = input_size;
+
     if(train):
         if(not retrieve):
             system_dict["dataset"]["transforms"]["train"].append(tmp);
-        system_dict["local"]["transforms_train"].append(transforms.Resize(size=(input_size, input_size)));
+        system_dict["local"]["transforms_train"].append(transforms.Resize(size=(w, h)));
     if(val):
         if(not retrieve):
             system_dict["dataset"]["transforms"]["val"].append(tmp);
-        system_dict["local"]["transforms_val"].append(transforms.Resize(size=(input_size, input_size)));
+        system_dict["local"]["transforms_val"].append(transforms.Resize(size=(w, h)));
     if(test):
         if(not retrieve):
             system_dict["dataset"]["transforms"]["test"].append(tmp);
-        system_dict["local"]["transforms_test"].append(transforms.Resize(size=(input_size, input_size)));
+        system_dict["local"]["transforms_test"].append(transforms.Resize(size=(w, h)));
 
     return system_dict;
 
