@@ -94,7 +94,7 @@ def setup_model(system_dict):
         return system_dict;
 
 
-
+@TraceFunction(trace_args=True, trace_rv=False)
 def create_block(network_stack, count, G, sequential_first, position, current_width):
     position += 1;
     max_width = current_width
@@ -199,7 +199,7 @@ def create_block(network_stack, count, G, sequential_first, position, current_wi
     
 
 
-
+@TraceFunction(trace_args=True, trace_rv=False)
 def create_network(network_stack):
     count = [];
     for i in range(len(names)):
@@ -348,15 +348,7 @@ def create_network(network_stack):
 
 
 
-
-
-
-
-
-
-
-
-
+@TraceFunction(trace_args=True, trace_rv=False)
 def debug_create_block(network_stack, count, G, sequential_first, position, current_width):
     position += 1;
     max_width = current_width
@@ -443,6 +435,8 @@ def debug_create_block(network_stack, count, G, sequential_first, position, curr
     return G, count, sequential_second, position, max_width
     
 
+
+@TraceFunction(trace_args=True, trace_rv=False)
 def debug_create_network(network_stack):
     count = [];
     for i in range(len(names)):

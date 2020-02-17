@@ -1109,7 +1109,7 @@ class prototype_layers(prototype_aux):
 
 
 
-
+    #####################################################################################################################################
     @warning_checks(None, output_channels=None, stride=None, downsample=None, post_trace=True)
     @error_checks(None, output_channels=["gt", 0], stride=None, downsample=None, post_trace=True)
     @accepts("self", output_channels=int, stride=[None, int, tuple], downsample=bool, post_trace=True)
@@ -1139,9 +1139,12 @@ class prototype_layers(prototype_aux):
         network.append(subnetwork)
         network.append(self.relu());
         return network;
+    #####################################################################################################################################
 
 
 
+
+    #####################################################################################################################################
     @warning_checks(None, output_channels=None, stride=None, downsample=None, post_trace=True)
     @error_checks(None, output_channels=["gt", 0], stride=None, downsample=None, post_trace=True)
     @accepts("self", output_channels=int, stride=[None, int, tuple], downsample=bool, post_trace=True)
@@ -1170,10 +1173,12 @@ class prototype_layers(prototype_aux):
         
         network.append(subnetwork)
         return network;
+    #####################################################################################################################################
 
 
 
 
+    #####################################################################################################################################
     @warning_checks(None, output_channels=None, stride=None, downsample=None, post_trace=True)
     @error_checks(None, output_channels=["gt", 0], stride=None, downsample=None, post_trace=True)
     @accepts("self", output_channels=int, stride=[None, int, tuple], downsample=bool, post_trace=True)
@@ -1206,11 +1211,13 @@ class prototype_layers(prototype_aux):
         network.append(subnetwork)
         network.append(self.relu())
         return network;
+    #####################################################################################################################################
 
 
 
 
 
+    #####################################################################################################################################
     @warning_checks(None, output_channels=None, stride=None, downsample=None, post_trace=True)
     @error_checks(None, output_channels=["gt", 0], stride=None, downsample=None, post_trace=True)
     @accepts("self", output_channels=int, stride=[None, int, tuple], downsample=bool, post_trace=True)
@@ -1241,13 +1248,13 @@ class prototype_layers(prototype_aux):
         
         network.append(subnetwork)
         return network;
+    #####################################################################################################################################
 
 
 
 
 
-
-
+    #####################################################################################################################################
     @warning_checks(None, output_channels=None, cardinality=None, bottleneck_width=None, stride=None, 
         downsample=None, post_trace=True)
     @error_checks(None, output_channels=["gt", 0], cardinality=None, bottleneck_width=None, stride=None, 
@@ -1289,9 +1296,13 @@ class prototype_layers(prototype_aux):
         network.append(subnetwork)
         network.append(self.relu());
         return network;
-    
+    #####################################################################################################################################
 
 
+
+
+
+    #####################################################################################################################################
     @warning_checks(None, output_channels=None, bottleneck_width=None, stride=None, 
         post_trace=True)
     @error_checks(None, output_channels=["gt", 0], bottleneck_width=None, stride=None, 
@@ -1327,9 +1338,13 @@ class prototype_layers(prototype_aux):
         
         network.append(subnetwork);
         return network;
+    #####################################################################################################################################
 
 
 
+
+
+    #####################################################################################################################################
     @warning_checks(None, input_channels=None, output_channels=None, kernel_size=None, stride=None, 
         padding=None, post_trace=True)
     @error_checks(None, input_channels=["gt", 0], output_channels=["gt", 0], kernel_size=None, stride=None, 
@@ -1345,8 +1360,12 @@ class prototype_layers(prototype_aux):
                                        stride=1));
 
         return network;
+    #####################################################################################################################################
 
 
+
+
+    #####################################################################################################################################
     @warning_checks(None, output_channels=None, bottleneck_width=None, stride=None, 
         post_trace=True)
     @error_checks(None, output_channels=["gt", 0], bottleneck_width=None, stride=None, 
@@ -1384,9 +1403,12 @@ class prototype_layers(prototype_aux):
         
         network.append(subnetwork);
         return network;
+    #####################################################################################################################################
 
 
-    
+
+
+    #####################################################################################################################################    
     @warning_checks(None, squeeze_channels=None, expand_channels_1x1=None, expand_channels_3x3=None, 
         post_trace=True)
     @error_checks(None, squeeze_channels=["gt", 0], expand_channels_1x1=["gt", 0], expand_channels_3x3=["gt", 0], 
@@ -1416,8 +1438,13 @@ class prototype_layers(prototype_aux):
         
         network.append(subnetwork);
         return network;
+    #####################################################################################################################################
 
 
+
+
+
+    #####################################################################################################################################
     @warning_checks(None, bottleneck_size=None, growth_rate=None, dropout=None, 
         post_trace=True)
     @error_checks(None, bottleneck_size=["gt", 0], growth_rate=None, dropout=["gte", 0, "lte", 1], 
@@ -1449,8 +1476,12 @@ class prototype_layers(prototype_aux):
         network.append(subnetwork);
         
         return network;
+    #####################################################################################################################################
 
 
+
+
+    #####################################################################################################################################
     @warning_checks(None, input_channels=None, output_channels=None, kernel_size=None, stride=None, 
         padding=None, post_trace=True)
     @error_checks(None, input_channels=["gt", 0], output_channels=["gt", 0], kernel_size=None, stride=None, 
@@ -1473,8 +1504,13 @@ class prototype_layers(prototype_aux):
         network.append(self.relu());
         
         return network;
+    #####################################################################################################################################
 
 
+
+
+
+    #####################################################################################################################################
     @warning_checks(None, pooling_branch_channels=None, pool_type=None, post_trace=True)
     @error_checks(None, pooling_branch_channels=["gt", 0], pool_type=None, post_trace=True)
     @accepts("self", pooling_branch_channels=int, pool_type=str, post_trace=True)
@@ -1512,8 +1548,11 @@ class prototype_layers(prototype_aux):
         network.append(subnetwork);
         
         return network;
-    
+    #####################################################################################################################################
 
+
+
+    #####################################################################################################################################
     @warning_checks(None, pool_type=None, post_trace=True)
     @error_checks(None, pool_type=None, post_trace=True)
     @accepts("self", pool_type=str, post_trace=True)
@@ -1546,8 +1585,12 @@ class prototype_layers(prototype_aux):
         network.append(subnetwork);
 
         return network;
+    #####################################################################################################################################
 
 
+
+
+    #####################################################################################################################################
     @warning_checks(None, channels_7x7=None, pool_type=None, post_trace=True)
     @error_checks(None, channels_7x7=["gt", 0], pool_type=None, post_trace=True)
     @accepts("self", channels_7x7=int, pool_type=str, post_trace=True)
@@ -1590,8 +1633,11 @@ class prototype_layers(prototype_aux):
         network.append(subnetwork);
         
         return network;
+    #####################################################################################################################################
 
 
+
+    #####################################################################################################################################
     @warning_checks(None, pool_type=None, post_trace=True)
     @error_checks(None, pool_type=None, post_trace=True)
     @accepts("self", pool_type=str, post_trace=True)
@@ -1628,8 +1674,12 @@ class prototype_layers(prototype_aux):
         network.append(subnetwork);
         
         return network;
+    #####################################################################################################################################
 
 
+
+
+    #####################################################################################################################################
     @warning_checks(None, post_trace=True)
     @error_checks(None, post_trace=True)
     @accepts("self", post_trace=True)
@@ -1644,8 +1694,12 @@ class prototype_layers(prototype_aux):
         subnetwork.append(branch_2);
         subnetwork.append(self.concatenate());
         return subnetwork;
+    #####################################################################################################################################
 
 
+
+
+    #####################################################################################################################################
     @warning_checks(None, pool_type=None, post_trace=True)
     @error_checks(None, pool_type=None, post_trace=True)
     @accepts("self", pool_type=str, post_trace=True)
@@ -1686,3 +1740,4 @@ class prototype_layers(prototype_aux):
         network.append(subnetwork);
         
         return network;
+    #####################################################################################################################################

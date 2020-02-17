@@ -196,3 +196,63 @@ class prototype_master(prototype_updates):
         save(self.system_dict);
         self.set_model_final();
     ###############################################################################################################################################
+
+
+
+
+    ###############################################################################################################################################
+    @accepts("self", data_shape=tuple, post_trace=True)
+    @TraceFunction(trace_args=True, trace_rv=True)
+    def Visualize_With_Netron(self, data_shape=None, port=None):
+        self.custom_print("Using Netron To Visualize");
+        self.custom_print("Not compatible on kaggle");
+        self.custom_print("Compatible only for Jupyter Notebooks");
+
+        if not data_shape:
+            self.custom_print("Provide data_shape argument");
+            pass;
+        else:
+            c, h, w = data_shape;
+
+        
+        # Input to the model
+        x = torch.randn(1, c, h, w, requires_grad=True)
+        x = x.to(self.system_dict["local"]["device"])
+        torch_out = self.system_dict["local"]["model"](x)
+
+        # Export the model
+        torch.onnx.export(self.system_dict["local"]["model"],               # model being run
+                          x,                         # model input (or a tuple for multiple inputs)
+                          "model.onnx",   # where to save the model (can be a file or file-like object)
+                          export_params=True,        # store the trained parameter weights inside the model file
+                          opset_version=10,          # the ONNX version to export the model to
+                          do_constant_folding=True,  # whether to execute constant folding for optimization
+                          input_names = ['input'],   # the model's input names
+                          output_names = ['output'], # the model's output names
+                          dynamic_axes={'input' : {0 : 'batch_size'},    # variable lenght axes
+                                        'output' : {0 : 'batch_size'}})
+
+
+
+        import netron
+        if(not port):
+            netron.start('model.onnx')
+        else:
+            netron.start('model.onnx', port=port)
+
+
+
+    ###############################################################################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+

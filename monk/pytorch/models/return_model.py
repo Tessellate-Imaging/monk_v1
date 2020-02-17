@@ -109,66 +109,107 @@ def setup_model(system_dict):
 
     else:
 
-        count = [];
-        for i in range(len(names)):
-            count.append(1);
-
-        network_stack = system_dict["custom_model"]["network_stack"];
-        G=nx.DiGraph()
-        G.add_node("Net", pos=(1,1))
-        sequential_first = "data";
-        sequential_second, count = get_layer_uid(network_stack[0], count)
-        current_in_shape = system_dict["dataset"]["params"]["data_shape"];
-
-        count = [];
-        for i in range(len(names)):
-            count.append(1);
-
-        position = 1;
-        G.add_node(sequential_first, pos=(2,1))
-        position += 1;
+        net = create_network(system_dict["custom_model"]["network_stack"], system_dict["dataset"]["params"]["data_shape"]);
 
 
-        net = nn.Sequential();
-        max_width = 1;
-        for i in range(len(network_stack)):
-            if(type(network_stack[i]) == list):
+        system_dict["local"]["model"] = net;
+
+        return system_dict;
+
+
+
+
+
+
+
+
+@TraceFunction(trace_args=True, trace_rv=False)
+def create_block(network_stack, count, G, sequential_first, position, current_width, current_in_shape):
+    position += 1;
+    max_width = current_width
+    net = nn.Sequential();
+    for i in range(len(network_stack)): 
+        if(type(network_stack[i]) == list):
+            is_block = True;
+
+            if(type(network_stack[i][-1]) != list):
+                if(network_stack[i][-1]["name"] in ["add", "concatenate"]):
+                    is_block=False;
+
+            if(is_block):
+                block, G, count, sequential_second, position, _, current_in_shape =  create_block(network_stack[i], count,
+                                                                                        G, sequential_first, position, current_width, 
+                                                                                        current_in_shape)
+                #print(sequential_second, current_in_shape)
+                sequential_first = sequential_second
+                net.add_module(sequential_second, block)
+            else:
                 branch_end_points = [];
-                branch_lengths = [];
+                branch_max_length = 0;
                 branches = [];
                 branch_net = [];
 
-
-
-                if(max_width < len(network_stack[i])-2):
-                    max_width = len(network_stack[i])-2
+                #if(max_width < len(network_stack[i])-2):
+                #    max_width = len(network_stack[i])-2;
+                max_width = current_width;
+                width = current_width;
                 for j in range(len(network_stack[i])-1):
                     small_net = [];
                     branch_net.append(nn.Sequential())
                     branch_first = sequential_first
                     branch_position = position
-                    column = j+2;
+                    column = max((j+1)*2+current_width, width);
+                    max_width = column
                     current_in_shape_base = current_in_shape
                     for k in range(len(network_stack[i][j])):
-                        branch_second, count = get_layer_uid(network_stack[i][j][k], count);
-                        current_layer, current_in_shape_base = custom_model_get_layer(network_stack[i][j][k], current_in_shape_base);
-                        branch_net[j].add_module(branch_second, current_layer);
-                        small_net.append(current_layer);
-                        G.add_node(branch_second, pos=(column, branch_position));
-                        branch_position += 1;
-                        G.add_edge(branch_first, branch_second);
-                        branch_first = branch_second;
+                        if type(network_stack[i][j][k]) == list:
+                            is_block2 = True;
 
+                            if(type(network_stack[i][j][k][-1]) != list):
+                                if(network_stack[i][j][k][-1]["name"] in ["add", "concatenate"]):
+                                    is_block2=False;
+
+                            if(is_block2):
+                                block, G, count, branch_second, branch_position, width, current_in_shape_base = create_block(network_stack[i][j][k], 
+                                                                                                                                 count,
+                                                                                                                                 G, 
+                                                                                                                                 branch_first, 
+                                                                                                                                 branch_position, 
+                                                                                                                                 column-2, #j+k+width
+                                                                                                                                 current_in_shape_base) 
+                            else:
+                                block, G, count, branch_second, branch_position, width, current_in_shape_base = create_block([network_stack[i][j][k]], 
+                                                                                                                                 count,
+                                                                                                                                 G, 
+                                                                                                                                 branch_first, 
+                                                                                                                                 branch_position, 
+                                                                                                                                 column-2, #j+k+width
+                                                                                                                                 current_in_shape_base) 
+                            #print(branch_second, current_in_shape_base)
+                            branch_first = branch_second
+                            small_net.append(block);
+                            branch_net[j].add_module(branch_second, block);
+                        else:
+                            branch_second, count = get_layer_uid(network_stack[i][j][k], count);
+                            current_layer, current_in_shape_base = custom_model_get_layer(network_stack[i][j][k], current_in_shape_base);
+                            #print(branch_second, current_in_shape_base)
+                            branch_net[j].add_module(branch_second, current_layer);
+                            small_net.append(current_layer);
+                            G.add_node(branch_second, pos=(column, branch_position));
+                            branch_position += 1;
+                            G.add_edge(branch_first, branch_second);
+                            branch_first = branch_second;
+
+                        branch_max_length = max(branch_position, branch_max_length)
                         if(k == len(network_stack[i][j])-1):
                             branch_end_points.append(branch_second);
-                            branch_lengths.append(len(network_stack[i][j]));
                     branches.append(small_net);
 
-                position += max(branch_lengths);
+                position = branch_max_length;
                 position += 1;
+                max_width += 2;
 
-                sequential_second, count = get_layer_uid(network_stack[i][-1], count)
-
+                sequential_second, count = get_layer_uid(network_stack[i][-1], count);
                 if(network_stack[i][-1]["name"] == "concatenate"):
                     subnetwork = Net_Concat(branch_net);
                 else:
@@ -190,44 +231,30 @@ def setup_model(system_dict):
                     y = subnetwork(x)
                     current_in_shape = (y.shape[1], y.shape[2], y.shape[3], y.shape[4]);
 
+                #print(sequential_second, current_in_shape)
 
-                G.add_node(sequential_second, pos=(2, position));
+                G.add_node(sequential_second, pos=(2 + current_width, position));
                 position += 1;
                 for i in range(len(branch_end_points)):
                     G.add_edge(branch_end_points[i], sequential_second);
                 sequential_first = sequential_second;
                 net.add_module(sequential_second, subnetwork)
-            else:
-                sequential_second, count = get_layer_uid(network_stack[i], count)
-                current_layer, current_in_shape = custom_model_get_layer(network_stack[i], current_in_shape);
-                net.add_module(sequential_second, current_layer);
-                G.add_node(sequential_second, pos=(2, position))
-                position += 1;
-                G.add_edge(sequential_first, sequential_second);
-                sequential_first = sequential_second;
-
-
-
-        if(max_width == 1):
-            G.add_node("monk", pos=(3, position));
         else:
-            G.add_node("monk", pos=(max_width + 3, position))
-        pos=nx.get_node_attributes(G,'pos')
+            sequential_second, count = get_layer_uid(network_stack[i], count);
+            current_layer, current_in_shape = custom_model_get_layer(network_stack[i], current_in_shape);
+            #print(sequential_second, current_in_shape)
+            net.add_module(sequential_second, current_layer);
+            G.add_node(sequential_second, pos=(2 + current_width, position))
+            position += 1;
+            G.add_edge(sequential_first, sequential_second);
+            sequential_first = sequential_second;
+            
+    return net, G, count, sequential_second, position, max_width, current_in_shape
+    
 
-        plt.figure(3, figsize=(8, 12 + position//6)) 
-        nx.draw_networkx(G, pos, with_label=True, font_size=16, node_color="yellow", node_size=100)
-        plt.savefig("graph.png");
 
-
-        system_dict["local"]["model"] = net;
-
-        return system_dict;
-
-
-
-@accepts(list, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
-def debug_custom_model(network_stack):
+@TraceFunction(trace_args=True, trace_rv=False)
+def create_network(network_stack, current_in_shape):
     count = [];
     for i in range(len(names)):
         count.append(1);
@@ -235,7 +262,267 @@ def debug_custom_model(network_stack):
     G=nx.DiGraph()
     G.add_node("Net", pos=(1,1))
     sequential_first = "data";
-    sequential_second, count = get_layer_uid(network_stack[0], count)
+    #sequential_second, count = get_layer_uid(network_stack[0], count);
+
+    count = [];
+    for i in range(len(names)):
+        count.append(1);
+
+    position = 1;
+    G.add_node(sequential_first, pos=(2,1))
+    position += 1;
+
+
+    net = nn.Sequential();
+    max_width = 1;
+    width = 0;
+    for i in range(len(network_stack)):
+        if(type(network_stack[i]) == list):
+            is_block = True;
+
+            if(type(network_stack[i][-1]) != list):
+                if(network_stack[i][-1]["name"] in ["add", "concatenate"]):
+                    is_block=False;
+
+
+            if(is_block):
+                block, G, count, sequential_second, position, _, current_in_shape =  create_block(network_stack[i], count,
+                                                                                        G, sequential_first, position, 0,
+                                                                                        current_in_shape)
+                #print(sequential_second, current_in_shape)
+                sequential_first = sequential_second
+                net.add_module(sequential_second, block)
+            else:
+                branch_end_points = [];
+                branch_max_length = 0;
+                branches = [];
+                branch_net = [];
+
+
+                if(max_width < len(network_stack[i])-2):
+                    max_width = len(network_stack[i])-2;
+                width = 0;
+                for j in range(len(network_stack[i])-1):
+                    small_net = [];
+                    branch_first = sequential_first
+                    branch_net.append(nn.Sequential())
+                    branch_position = position
+                    current_in_shape_base = current_in_shape
+                    if(width > 0):
+                        if(column == width):
+                            column += 2;
+                        else:
+                            column = width;
+                    else:
+                        column = (j+1)*2;
+                    for k in range(len(network_stack[i][j])):
+                        if type(network_stack[i][j][k]) == list:
+                            is_block2 = True;
+
+                            if(type(network_stack[i][j][k][-1]) != list):
+                                if(network_stack[i][j][k][-1]["name"] in ["add", "concatenate"]):
+                                    is_block2=False;
+                        
+                            if(is_block2):
+                                block, G, count, branch_second, branch_position, width, current_in_shape_base = create_block(network_stack[i][j][k], 
+                                                                                                             count,
+                                                                                                             G, 
+                                                                                                             branch_first, 
+                                                                                                             branch_position, 
+                                                                                                             column-2, #j+k+width
+                                                                                                             current_in_shape_base)
+                            else:
+                                block, G, count, branch_second, branch_position, width, current_in_shape_base = create_block([network_stack[i][j][k]], 
+                                                                                                             count,
+                                                                                                             G, 
+                                                                                                             branch_first, 
+                                                                                                             branch_position, 
+                                                                                                             column-2,
+                                                                                                             current_in_shape_base)
+                            #print(branch_second, current_in_shape_base)
+                            branch_first = branch_second
+                            small_net.append(block);
+                            branch_net[j].add_module(branch_second, block);
+                        else:
+                            branch_second, count = get_layer_uid(network_stack[i][j][k], count);
+                            current_layer, current_in_shape_base = custom_model_get_layer(network_stack[i][j][k], current_in_shape_base);
+                            #print(branch_second, current_in_shape_base)
+                            branch_net[j].add_module(branch_second, current_layer);
+                            small_net.append(current_layer);
+                            G.add_node(branch_second, pos=(column, branch_position));
+                            branch_position += 1;
+                            G.add_edge(branch_first, branch_second);
+                            branch_first = branch_second;                        
+
+                        branch_max_length = max(branch_position, branch_max_length)
+                        if(k == len(network_stack[i][j])-1):
+                            branch_end_points.append(branch_second);
+                    branches.append(small_net);
+                
+                position = branch_max_length;
+                position += 1;
+                max_width += width
+
+                sequential_second, count = get_layer_uid(network_stack[i][-1], count)
+                if(network_stack[i][-1]["name"] == "concatenate"):
+                    subnetwork = Net_Concat(branch_net);
+                else:
+                    subnetwork = Net_Add(branch_net);
+
+                if(len(current_in_shape) == 2):
+                    c, w = current_in_shape
+                    x = torch.randn(1, c, w);
+                    y = subnetwork(x)
+                    current_in_shape = (y.shape[1], y.shape[2]);
+                elif(len(current_in_shape) == 3):
+                    c, h, w = current_in_shape
+                    x = torch.randn(1, c, h, w);
+                    y = subnetwork(x)
+                    current_in_shape = (y.shape[1], y.shape[2], y.shape[3]);
+                elif(len(current_in_shape) == 4):
+                    c, d, h, w = current_in_shape
+                    x = torch.randn(1, c, d, h, w);
+                    y = subnetwork(x)
+                    current_in_shape = (y.shape[1], y.shape[2], y.shape[3], y.shape[4]);
+
+                #print(sequential_second, current_in_shape)
+
+                sequential_second, count = get_layer_uid(network_stack[i][-1], count);
+
+                G.add_node(sequential_second, pos=(2, position));
+                position += 1;
+                for i in range(len(branch_end_points)):
+                    G.add_edge(branch_end_points[i], sequential_second);
+                sequential_first = sequential_second;
+                net.add_module(sequential_second, subnetwork)
+
+
+        else:
+            sequential_second, count = get_layer_uid(network_stack[i], count);
+            G.add_node(sequential_second, pos=(2, position))
+            current_layer, current_in_shape = custom_model_get_layer(network_stack[i], current_in_shape);
+            #print(sequential_second, current_in_shape)
+            net.add_module(sequential_second, current_layer);
+            position += 1;
+            G.add_edge(sequential_first, sequential_second);
+            sequential_first = sequential_second;
+
+
+    max_width = max(max_width, width);
+    if(max_width == 1):
+        G.add_node("monk", pos=(3, position));
+    else:
+        G.add_node("monk", pos=(max_width + 3, position))
+    pos = nx.get_node_attributes(G, 'pos')
+
+
+    plt.figure(3, figsize=(12, 12 + position//6)) 
+    nx.draw_networkx(G, pos, with_label=True, font_size=16, node_color="yellow", node_size=100)
+    plt.savefig("graph.png");
+
+    return net;
+
+
+
+
+
+@TraceFunction(trace_args=True, trace_rv=False)
+def debug_create_block(network_stack, count, G, sequential_first, position, current_width):
+    position += 1;
+    max_width = current_width
+    for i in range(len(network_stack)): 
+        if(type(network_stack[i]) == list):
+            is_block = True;
+
+            if(type(network_stack[i][-1]) != list):
+                if(network_stack[i][-1]["name"] in ["add", "concatenate"]):
+                    is_block=False;
+
+            if(is_block):
+                G, count, sequential_second, position, _ =  debug_create_block(network_stack[i], count,
+                                                                                G, sequential_first, position, current_width) #0
+                sequential_first = sequential_second
+            else:
+                branch_end_points = [];
+                branch_max_length = 0;
+                branches = [];
+                branch_net = [];
+
+                #if(max_width < len(network_stack[i])-2):
+                #    max_width = len(network_stack[i])-2;
+                max_width = current_width;
+                width = current_width;
+                for j in range(len(network_stack[i])-1):
+                    branch_first = sequential_first
+                    branch_position = position
+                    column = max((j+1)*2+current_width, width);
+                    max_width = column
+                    for k in range(len(network_stack[i][j])):
+                        if type(network_stack[i][j][k]) == list:
+                            is_block2 = True;
+
+                            if(type(network_stack[i][j][k][-1]) != list):
+                                if(network_stack[i][j][k][-1]["name"] in ["add", "concatenate"]):
+                                    is_block2=False;
+
+
+                            if(is_block2):
+                                G, count, branch_second, branch_position, width = debug_create_block(network_stack[i][j][k], 
+                                                                                     count,
+                                                                                     G, 
+                                                                                     branch_first, 
+                                                                                     branch_position, 
+                                                                                     column-2) #j+k+width, j*2+current_width
+                            else:
+                                G, count, branch_second, branch_position, width = debug_create_block([network_stack[i][j][k]], 
+                                                                                     count,
+                                                                                     G, 
+                                                                                     branch_first, 
+                                                                                     branch_position, 
+                                                                                     column-2) #j+k+width, j+k+current_width
+                            branch_first = branch_second
+                        else:
+                            branch_second, count = get_layer_uid(network_stack[i][j][k], count);
+                            G.add_node(branch_second, pos=(column, branch_position));
+                            branch_position += 1;
+                            G.add_edge(branch_first, branch_second);
+                            branch_first = branch_second;
+
+                        branch_max_length = max(branch_position, branch_max_length)
+                        if(k == len(network_stack[i][j])-1):
+                            branch_end_points.append(branch_second);
+                
+                position = branch_max_length;
+                position += 1;
+                max_width += 2;
+
+                sequential_second, count = get_layer_uid(network_stack[i][-1], count);
+
+                G.add_node(sequential_second, pos=(2 + current_width, position));
+                position += 1;
+                for i in range(len(branch_end_points)):
+                    G.add_edge(branch_end_points[i], sequential_second);
+                sequential_first = sequential_second;
+        else:
+            sequential_second, count = get_layer_uid(network_stack[i], count);
+            G.add_node(sequential_second, pos=(2+current_width, position))
+            position += 1;
+            G.add_edge(sequential_first, sequential_second);
+            sequential_first = sequential_second;
+    
+    return G, count, sequential_second, position, max_width
+    
+
+@TraceFunction(trace_args=True, trace_rv=False)
+def debug_create_network(network_stack):
+    count = [];
+    for i in range(len(names)):
+        count.append(1);
+
+    G=nx.DiGraph()
+    G.add_node("Net", pos=(1,1))
+    sequential_first = "data";
+    #sequential_second, count = get_layer_uid(network_stack[0], count);
 
     count = [];
     for i in range(len(names)):
@@ -247,57 +534,103 @@ def debug_custom_model(network_stack):
 
 
     max_width = 1;
+    width = 0;
     for i in range(len(network_stack)):
         if(type(network_stack[i]) == list):
-            branch_end_points = [];
-            branch_lengths = [];
-            branches = [];
-            branch_net = [];
+            is_block = True;
+
+            if(type(network_stack[i][-1]) != list):
+                if(network_stack[i][-1]["name"] in ["add", "concatenate"]):
+                    is_block=False;
+
+            if(is_block):
+                G, count, sequential_second, position, _ =  debug_create_block(network_stack[i], count,
+                                                                                G, sequential_first, position, 0)
+                sequential_first = sequential_second
+            else:
+                branch_end_points = [];
+                branch_max_length = 0;
+                branches = [];
+                branch_net = [];
 
 
-            if(max_width < len(network_stack[i])-2):
-                max_width = len(network_stack[i])-2
-            for j in range(len(network_stack[i])-1):
-                branch_first = sequential_first
-                branch_position = position
-                column = j+2;
-                for k in range(len(network_stack[i][j])):
-                    branch_second, count = get_layer_uid(network_stack[i][j][k], count);
-                    G.add_node(branch_second, pos=(column, branch_position));
-                    branch_position += 1;
-                    G.add_edge(branch_first, branch_second);
-                    branch_first = branch_second;
+                if(max_width < len(network_stack[i])-2):
+                    max_width = len(network_stack[i])-2;
+                width = 0;
+                for j in range(len(network_stack[i])-1):
+                    branch_first = sequential_first
+                    branch_position = position
+                    if(width > 0):
+                        if(column == width):
+                            column += 2;
+                        else:
+                            column = width;
+                    else:
+                        column = (j+1)*2;
+                    for k in range(len(network_stack[i][j])):
+                        if type(network_stack[i][j][k]) == list:
+                            is_block2 = True;
 
-                    if(k == len(network_stack[i][j])-1):
-                        branch_end_points.append(branch_second);
-                        branch_lengths.append(len(network_stack[i][j]));
+                            if(type(network_stack[i][j][k][-1]) != list):
+                                if(network_stack[i][j][k][-1]["name"] in ["add", "concatenate"]):
+                                    is_block2=False;
 
-            position += max(branch_lengths);
-            position += 1;
+                           
 
-            sequential_second, count = get_layer_uid(network_stack[i][-1], count)
+                            if(is_block2):
+                                G, count, branch_second, branch_position, width = debug_create_block(network_stack[i][j][k], 
+                                                                                     count,
+                                                                                     G, 
+                                                                                     branch_first, 
+                                                                                     branch_position, 
+                                                                                     column-2) #j*2+width
+                            else:
+                                G, count, branch_second, branch_position, width = debug_create_block([network_stack[i][j][k]], 
+                                                                                     count,
+                                                                                     G, 
+                                                                                     branch_first, 
+                                                                                     branch_position, 
+                                                                                     column-2) #j+k+width
+                            branch_first = branch_second
+                        else:
+                            branch_second, count = get_layer_uid(network_stack[i][j][k], count);
+                            G.add_node(branch_second, pos=(column, branch_position));
+                            branch_position += 1;
+                            G.add_edge(branch_first, branch_second);
+                            branch_first = branch_second;
 
-            G.add_node(sequential_second, pos=(2, position));
-            position += 1;
-            for i in range(len(branch_end_points)):
-                G.add_edge(branch_end_points[i], sequential_second);
-            sequential_first = sequential_second;
+                        branch_max_length = max(branch_position, branch_max_length)
+                        if(k == len(network_stack[i][j])-1):
+                            branch_end_points.append(branch_second);
+                    
+                position = branch_max_length;
+                position += 1;
+                max_width += width
+
+                sequential_second, count = get_layer_uid(network_stack[i][-1], count);
+
+                G.add_node(sequential_second, pos=(2, position));
+                position += 1;
+                for i in range(len(branch_end_points)):
+                    G.add_edge(branch_end_points[i], sequential_second);
+                sequential_first = sequential_second;
 
 
         else:
-            sequential_second, count = get_layer_uid(network_stack[i], count)
+            sequential_second, count = get_layer_uid(network_stack[i], count);
             G.add_node(sequential_second, pos=(2, position))
             position += 1;
             G.add_edge(sequential_first, sequential_second);
             sequential_first = sequential_second;
 
-
+    max_width = max(max_width, width);
     if(max_width == 1):
         G.add_node("monk", pos=(3, position));
     else:
         G.add_node("monk", pos=(max_width + 3, position))
-    pos=nx.get_node_attributes(G,'pos')
+    pos = nx.get_node_attributes(G, 'pos')
 
-    plt.figure(3, figsize=(8, 12 + position//6)) 
+
+    plt.figure(3, figsize=(16, 20 + position//6)) 
     nx.draw_networkx(G, pos, with_label=True, font_size=16, node_color="yellow", node_size=100)
     plt.savefig("graph.png");

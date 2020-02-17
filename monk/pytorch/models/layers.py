@@ -595,6 +595,7 @@ def custom_model_layer_convolution2d(params, current_in_shape):
     y = layer(x)
     current_in_shape = (y.shape[1], y.shape[2], y.shape[3])
 
+
     return layer, current_in_shape
 
 

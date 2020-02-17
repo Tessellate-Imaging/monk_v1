@@ -196,7 +196,7 @@ class prototype_master(prototype_updates):
     ###############################################################################################################################################
     @accepts("self", data_shape=tuple, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
-    def Visualize_With_Netron(self, data_shape=None):
+    def Visualize_With_Netron(self, data_shape=None, port=None):
         self.custom_print("Using Netron To Visualize");
         self.custom_print("Not compatible on kaggle");
         self.custom_print("Compatible only for Jupyter Notebooks");
@@ -220,5 +220,8 @@ class prototype_master(prototype_updates):
         self.system_dict["local"]["model"].export("model", epoch=0)
 
         import netron
-        netron.start('model-symbol.json')
+        if(not port):
+            netron.start('model-symbol.json')
+        else:
+            netron.start('model-symbol.json', port=port)
     ###############################################################################################################################################
