@@ -471,7 +471,10 @@ class system():
                                     "inception_c_block", "inception_d_block", "inception_e_block"];
 
         elif(self.system_dict["library"] == "Keras"):
-            combined_list_lower = [];
+            combined_list_lower = ["resnet_v1_block", "resnet_v2_block", "resnet_v1_bottleneck_block", "resnet_v2_bottleneck_block",
+                                    "resnext_block", "mobilenet_v2_linear_block", "mobilenet_v2_inverted_linear_block",
+                                    "squeezenet_fire_block", "conv_bn_relu_block", "inception_a_block", "inception_b_block",
+                                    "inception_c_block", "inception_d_block", "inception_e_block"];
 
 
         elif(self.system_dict["library"] == "Pytorch"):

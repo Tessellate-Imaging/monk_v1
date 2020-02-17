@@ -192,3 +192,39 @@ class prototype_master(prototype_updates):
         save(self.system_dict);
         self.set_model_final();
     ###############################################################################################################################################
+
+
+
+
+    ###############################################################################################################################################
+    @accepts("self", data_shape=tuple, post_trace=True)
+    @TraceFunction(trace_args=True, trace_rv=True)
+    def Visualize_With_Netron(self, data_shape=None, port=None):
+        self.custom_print("Using Netron To Visualize");
+        self.custom_print("Not compatible on kaggle");
+        self.custom_print("Compatible only for Jupyter Notebooks");
+
+        if not data_shape:
+            self.custom_print("Provide data_shape argument");
+            pass;
+        else:
+            c, h, w = data_shape;
+
+        
+        batch_size=1;
+        x = tf.placeholder(tf.float32, shape=(batch_size, h, w, c))
+        y = self.system_dict["local"]["model"](x)
+
+        self.system_dict["local"]["model"].save("final.h5");
+
+
+
+        import netron
+        if(not port):
+            netron.start('final.h5')
+        else:
+            netron.start('final.h5', port=port)
+
+
+
+    ###############################################################################################################################################

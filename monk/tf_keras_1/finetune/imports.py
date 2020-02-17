@@ -141,7 +141,7 @@ from tf_keras_1.models.common import setup_device_environment
 
 from tf_keras_1.models.return_model import load_model
 from tf_keras_1.models.return_model import setup_model
-from tf_keras_1.models.return_model import debug_custom_model
+from tf_keras_1.models.return_model import debug_create_network
 ################################################################################
 
 

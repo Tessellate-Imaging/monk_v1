@@ -375,13 +375,13 @@ def custom_model_get_layer(network_layer, network_initializer):
 def custom_model_layer_convolution1d(params, network_initializer):
     out_channels = params["output_channels"];
     kernel_size=params["kernel_size"];
-    strides=1;
+    strides=params["stride"];
     if(params["padding"] == "in_eq_out"):
         padding = "same";
     elif(params["padding"] == 0):
         padding = "valid";
     else:
-        padding = "causal";
+        padding = "same"; #causal
 
     if(params["layout"][-1] == "C"):
         data_format='channels_last';
@@ -416,13 +416,13 @@ def custom_model_layer_convolution1d(params, network_initializer):
 def custom_model_layer_convolution2d(params, network_initializer):
     out_channels = params["output_channels"];
     kernel_size=params["kernel_size"];
-    strides=1;
+    strides=params["stride"];
     if(params["padding"] == "in_eq_out"):
         padding = "same";
     elif(params["padding"] == 0):
         padding = "valid";
     else:
-        padding = "causal";
+        padding = "causal"; #causal
 
     if(params["layout"][-1] == "C"):
         data_format='channels_last';
@@ -458,13 +458,13 @@ def custom_model_layer_convolution2d(params, network_initializer):
 def custom_model_layer_convolution3d(params, network_initializer):
     out_channels = params["output_channels"];
     kernel_size=params["kernel_size"];
-    strides=1;
+    strides=params["stride"];
     if(params["padding"] == "in_eq_out"):
         padding = "same";
     elif(params["padding"] == 0):
         padding = "valid";
     else:
-        padding = "causal";
+        padding = "same"; #causal
 
     if(params["layout"][-1] == "C"):
         data_format='channels_last';
@@ -500,7 +500,7 @@ def custom_model_layer_convolution3d(params, network_initializer):
 def custom_model_layer_transposed_convolution2d(params, network_initializer):
     out_channels = params["output_channels"];
     kernel_size=params["kernel_size"];
-    strides=1;
+    strides=params["stride"];
     if(params["padding"] == "in_eq_out"):
         padding = "same";
     elif(params["padding"] == 0):
@@ -541,7 +541,7 @@ def custom_model_layer_transposed_convolution2d(params, network_initializer):
 def custom_model_layer_transposed_convolution3d(params, network_initializer):
     out_channels = params["output_channels"];
     kernel_size=params["kernel_size"];
-    strides=1;
+    strides=params["stride"];
     if(params["padding"] == "in_eq_out"):
         padding = "same";
     elif(params["padding"] == 0):
