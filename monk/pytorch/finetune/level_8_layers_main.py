@@ -1471,6 +1471,7 @@ class prototype_layers(prototype_aux):
     def resnet_v2_block(self, output_channels=16, stride=1, downsample=True):
         network = [];
         network.append(self.batch_normalization());
+        network.append(self.relu());
         
         subnetwork = [];
         branch_1 = [];
@@ -1482,7 +1483,6 @@ class prototype_layers(prototype_aux):
         branch_2 = [];
         if(downsample):
             branch_2.append(self.convolution(output_channels=output_channels, kernel_size=1, stride=stride));
-            branch_2.append(self.batch_normalization());
         else:
             branch_2.append(self.identity());
         
