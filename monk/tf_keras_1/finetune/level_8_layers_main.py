@@ -1232,6 +1232,7 @@ class prototype_layers(prototype_aux):
     def resnet_v2_bottleneck_block(self, output_channels=16, stride=1, downsample=True):
         network = [];
         network.append(self.batch_normalization());
+        network.append(self.relu());
         
         subnetwork = [];
         branch_1 = [];
