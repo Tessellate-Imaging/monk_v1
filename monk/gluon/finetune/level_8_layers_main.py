@@ -1171,7 +1171,8 @@ class prototype_layers(prototype_aux):
         subnetwork.append(branch_2);
         subnetwork.append(self.add());
         
-        network.append(subnetwork)
+        network.append(subnetwork);
+        network.append(self.relu());
         return network;
     #####################################################################################################################################
 
