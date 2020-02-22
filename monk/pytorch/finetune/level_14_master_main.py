@@ -201,7 +201,7 @@ class prototype_master(prototype_updates):
 
 
     ###############################################################################################################################################
-    @accepts("self", data_shape=tuple, post_trace=True)
+    @accepts("self", data_shape=tuple, port=int, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def Visualize_With_Netron(self, data_shape=None, port=None):
         self.custom_print("Using Netron To Visualize");
