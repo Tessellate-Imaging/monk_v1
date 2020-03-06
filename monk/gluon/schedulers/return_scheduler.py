@@ -29,11 +29,18 @@ def load_scheduler(system_dict):
             raise ConstraintError(msg);
 
         steps = system_dict["hyper-parameters"]["learning_rate_scheduler"]["params"]["milestones"];
+        milestones = system_dict["hyper-parameters"]["learning_rate_scheduler"]["params"]["milestones"];
         for i in range(len(steps)):
             steps[i] = steps[i]*num_batches
+
+        
         system_dict["local"]["learning_rate_scheduler"] = mx.lr_scheduler.MultiFactorScheduler(
             step = steps,
             factor=system_dict["hyper-parameters"]["learning_rate_scheduler"]["params"]["gamma"],
             base_lr=learning_rate);
+
+        #to make sure milestones value is restored to original one and not the updated steps while writing to experiment state
+        for i in range(len(steps)):
+            steps[i] = steps[i]//num_batches
 
     return system_dict;
