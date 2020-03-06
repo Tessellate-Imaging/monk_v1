@@ -81,9 +81,14 @@ def print_grad_stats(system_dict):
 @TraceFunction(trace_args=False, trace_rv=False)
 def get_num_layers(system_dict):
     num_layers = 0;
+    layer_names = [];
     for param in system_dict["local"]["model"].named_parameters():
-        num_layers += 1;
-    system_dict["model"]["params"]["num_layers"] = num_layers//2;
+        lname = ".".join(param[0].split(".")[:-1]);
+        if lname not in layer_names:
+            layer_names.append(lname)
+
+    num_layers = len(layer_names);
+    system_dict["model"]["params"]["num_layers"] = num_layers;
     return system_dict;
 
 
@@ -99,22 +104,28 @@ def freeze_layers(num, system_dict):
         msg += "TIP: Total layers: {}".format(num_layers_in_model);
         raise ConstraintError(msg)
 
-    num = num*2;
     current_num = 0;
     value = False;
 
+    layer_names = [];
     for name,param in system_dict["local"]["model"].named_parameters():
         param.requires_grad = value;
-        current_num += 1;
+        lname = ".".join(name.split(".")[:-1]);
+        if lname not in layer_names:
+            layer_names.append(lname);
+            current_num += 1;
         if(current_num == num):
             value = True;
 
     system_dict["local"]["params_to_update"] = []
-    for name,param in system_dict["local"]["model"].named_parameters():
+    layer_names = [];
+    for name, param in self.system_dict["local"]["model"].named_parameters():
         if param.requires_grad == True:
-            system_dict["local"]["params_to_update"].append(param);
-
-    system_dict["model"]["params"]["num_params_to_update"] = len(system_dict["local"]["params_to_update"])//2;
+            self.system_dict["local"]["params_to_update"].append(param);
+            lname = ".".join(name.split(".")[:-1]);
+            if lname not in layer_names:
+                layer_names.append(lname);
+    self.system_dict["model"]["params"]["num_params_to_update"] = len(layer_names);
     system_dict["model"]["status"] = True;
 
     return system_dict;

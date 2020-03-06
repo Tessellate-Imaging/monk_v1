@@ -81,36 +81,54 @@ class finetune_model(finetune_dataset):
                     current_name = "";
                     ip = 0;
                     self.system_dict["local"]["params_to_update"] = [];
+                    complete_list = [];
                     for param in self.system_dict["local"]["model"].collect_params().values():
                         if(ip==0):
                             current_name = '_'.join(param.name.split("_")[:-1]);
+                            if("running" in current_name):
+                                current_name = '_'.join(current_name.split("_")[:-1]);
                             if(param.grad_req == "write"):
+                                if(current_name not in complete_list):
+                                    complete_list.append(current_name);
                                 self.system_dict["local"]["params_to_update"].append(current_name);
                         else:
                             if(current_name != '_'.join(param.name.split("_")[:-1])):
                                 current_name = '_'.join(param.name.split("_")[:-1]);
+                                if("running" in current_name):
+                                    current_name = '_'.join(current_name.split("_")[:-1]);
                                 if(param.grad_req == "write"):
+                                    if(current_name not in complete_list):
+                                        complete_list.append(current_name);
                                     self.system_dict["local"]["params_to_update"].append(current_name);
                         ip += 1;
-                    self.system_dict["model"]["params"]["num_params_to_update"] = len(self.system_dict["local"]["params_to_update"]);
+                    self.system_dict["model"]["params"]["num_params_to_update"] = len(complete_list);
                     self.system_dict["model"]["status"] = True;
 
                 else:
                     current_name = "";
                     ip = 0;
                     self.system_dict["local"]["params_to_update"] = [];
+                    complete_list = [];
                     for param in self.system_dict["local"]["model"].collect_params().values():
                         if(ip==0):
                             current_name = param.name.split("_")[0];
+                            if("running" in current_name):
+                                current_name = '_'.join(current_name.split("_")[:-1]);
                             if(param.grad_req == "write"):
+                                if(current_name not in complete_list):
+                                    complete_list.append(current_name);
                                 self.system_dict["local"]["params_to_update"].append(current_name);
                         else:
                             if(current_name != param.name.split("_")[0]):
                                 current_name = param.name.split("_")[0];
+                                if("running" in current_name):
+                                    current_name = '_'.join(current_name.split("_")[:-1]);
                                 if(param.grad_req == "write"):
+                                    if(current_name not in complete_list):
+                                        complete_list.append(current_name);
                                     self.system_dict["local"]["params_to_update"].append(current_name);
                         ip += 1;
-                    self.system_dict["model"]["params"]["num_params_to_update"] = len(self.system_dict["local"]["params_to_update"]);
+                    self.system_dict["model"]["params"]["num_params_to_update"] = len(complete_list);
                     self.system_dict["model"]["status"] = True;
 
             if(self.system_dict["model"]["type"] == "custom"):

@@ -26,10 +26,14 @@ class finetune_model(finetune_dataset):
                 self.system_dict = get_num_layers(self.system_dict);
 
                 self.system_dict["local"]["params_to_update"] = []
-                for name,param in self.system_dict["local"]["model"].named_parameters():
+                layer_names = [];
+                for name, param in self.system_dict["local"]["model"].named_parameters():
                     if param.requires_grad == True:
                         self.system_dict["local"]["params_to_update"].append(param);
-                self.system_dict["model"]["params"]["num_params_to_update"] = len(self.system_dict["local"]["params_to_update"])//2;
+                        lname = ".".join(name.split(".")[:-1]);
+                        if lname not in layer_names:
+                            layer_names.append(lname);
+                self.system_dict["model"]["params"]["num_params_to_update"] = len(layer_names);
                 self.system_dict["model"]["status"] = True;
                 
             else:
@@ -82,10 +86,14 @@ class finetune_model(finetune_dataset):
             self.system_dict = get_num_layers(self.system_dict);
 
             self.system_dict["local"]["params_to_update"] = []
-            for name,param in self.system_dict["local"]["model"].named_parameters():
+            layer_names = [];
+            for name, param in self.system_dict["local"]["model"].named_parameters():
                 if param.requires_grad == True:
                     self.system_dict["local"]["params_to_update"].append(param);
-            self.system_dict["model"]["params"]["num_params_to_update"] = len(self.system_dict["local"]["params_to_update"])//2;
+                    lname = ".".join(name.split(".")[:-1]);
+                    if lname not in layer_names:
+                        layer_names.append(lname);
+            self.system_dict["model"]["params"]["num_params_to_update"] = len(layer_names);
             self.system_dict["model"]["status"] = True;
 
             

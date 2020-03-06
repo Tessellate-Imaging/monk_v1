@@ -47,10 +47,11 @@ def create_final_layer(finetune_net, custom_network, num_classes):
 @accepts(dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def get_num_layers(system_dict):
-    num_layers = 0;
+    complete_list = [];
     for layer in system_dict["local"]["model"].layers:
-        num_layers += 1;
-    system_dict["model"]["params"]["num_layers"] = num_layers;
+        if(layer.count_params() > 0):
+            complete_list.append(layer.name)
+    system_dict["model"]["params"]["num_layers"] = len(complete_list);
     return system_dict;
 
 
@@ -58,11 +59,12 @@ def get_num_layers(system_dict):
 @accepts(dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def get_num_trainable_layers(system_dict):
-    num_trainable = 0;
+    complete_list_trainable = [];
     for layer in system_dict["local"]["model"].layers:
-        if(layer.trainable):
-            num_trainable += 1;
-    system_dict["model"]["params"]["num_params_to_update"] = num_trainable;
+        if(layer.count_params() > 0):
+            if(layer.trainable):
+                complete_list_trainable.append(layer.name)
+    system_dict["model"]["params"]["num_params_to_update"] = len(complete_list_trainable);
     return system_dict;
 
 
@@ -82,10 +84,11 @@ def freeze_layers(num, system_dict):
     current_num = 0;
     value = False;
     for layer in system_dict["local"]["model"].layers:
-        layer.trainable = value;
-        current_num += 1;
-        if(current_num == num):
-            value = True;   
+        if(layer.count_params() > 0):
+            layer.trainable = value;
+            current_num += 1;
+            if(current_num == num):
+                value = True;   
 
     system_dict = get_num_trainable_layers(system_dict);
     system_dict["model"]["status"] = True;   
