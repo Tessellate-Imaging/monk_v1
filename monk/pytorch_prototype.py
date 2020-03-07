@@ -60,8 +60,13 @@ class prototype(prototype_master):
 
             model_name = self.system_dict["model"]["params"]["model_name"];
 
-            if("resnet" in model_name or "alexnet" in model_name or "vgg" in model_name):
+            if("resnet" in model_name or "vgg" in model_name):
                 self.optimizer_sgd(0.01);
+                self.lr_plateau_decrease(factor=0.1, patience=max(min(10, num_epochs//3), 1), verbose=True);
+                self.loss_softmax_crossentropy();
+
+            elif("alexnet" in model_name):
+                self.optimizer_sgd(0.001);
                 self.lr_plateau_decrease(factor=0.1, patience=max(min(10, num_epochs//3), 1), verbose=True);
                 self.loss_softmax_crossentropy();
 
