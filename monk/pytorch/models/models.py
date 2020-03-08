@@ -40,13 +40,13 @@ def get_base_model(model_name, use_pretrained, num_classes, freeze_base_network)
     elif(model_name == "vgg13_bn"):
         finetune_net = torchvision.models.vgg11_bn(pretrained=use_pretrained);
     elif(model_name == "vgg16"):
-        finetune_net = torchvision.models.vgg11(pretrained=use_pretrained);
+        finetune_net = torchvision.models.vgg16(pretrained=use_pretrained);
     elif(model_name == "vgg16_bn"):
-        finetune_net = torchvision.models.vgg11_bn(pretrained=use_pretrained);
+        finetune_net = torchvision.models.vgg16_bn(pretrained=use_pretrained);
     elif(model_name == "vgg19"):
-        finetune_net = torchvision.models.vgg11(pretrained=use_pretrained);
+        finetune_net = torchvision.models.vgg19(pretrained=use_pretrained);
     elif(model_name == "vgg19_bn"):
-        finetune_net = torchvision.models.vgg11_bn(pretrained=use_pretrained);
+        finetune_net = torchvision.models.vgg19_bn(pretrained=use_pretrained);
     elif(model_name == "densenet121"):
         finetune_net = torchvision.models.densenet121(pretrained=use_pretrained);
     elif(model_name == "densenet161"):

@@ -60,8 +60,16 @@ class prototype(prototype_master):
             self.Model();
 
             model_name = self.system_dict["model"]["params"]["model_name"];
-            if("resnet" in model_name or "alexnet" in model_name or "vgg" in model_name or "darknet" in model_name or "xception" in model_name):
+            if("resnet" in model_name or "alexnet" in model_name or "darknet" in model_name or "xception" in model_name):
                 self.optimizer_sgd(0.01);
+                if(num_epochs>10):
+                    self.lr_step_decrease(max(min(num_epochs//3, 8), 1), gamma=0.1);
+                else:
+                    self.lr_step_decrease(1, gamma=0.98);
+                self.loss_softmax_crossentropy();
+
+            elif("vgg" in model_name):
+                self.optimizer_sgd(0.001);
                 if(num_epochs>10):
                     self.lr_step_decrease(max(min(num_epochs//3, 8), 1), gamma=0.1);
                 else:
