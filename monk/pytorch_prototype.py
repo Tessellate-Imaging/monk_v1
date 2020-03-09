@@ -855,18 +855,20 @@ class prototype(prototype_master):
                 ptf_.optimizer_adam(lr);
             elif(optimizer_list[i] == "adamw"):
                 ptf_.optimizer_adamw(lr);
-            elif(optimizer_list[i] == "sparseadam"):
-                ptf_.optimizer_sparseadam(lr);
             elif(optimizer_list[i] == "adamax"):
                 ptf_.optimizer_adamax(lr);
             elif(optimizer_list[i] == "asgd"):
                 ptf_.optimizer_asgd(lr);
             elif(optimizer_list[i] == "rmsprop"):
                 ptf_.optimizer_rmsprop(lr);
+            elif(optimizer_list[i] == "momentum_rmsprop"):
+                ptf_.optimizer_momentum_rmsprop(lr);
             elif(optimizer_list[i] == "rprop"):
                 ptf_.optimizer_rprop(lr);
             elif(optimizer_list[i] == "sgd"):
                 ptf_.optimizer_sgd(lr);
+            elif(optimizer_list[i] == "nesterov_sgd"):
+                ptf_.optimizer_nesterov_sgd(lr);
 
                                                       
             ptf_.Reload();                                                                                  #Change 7

@@ -822,10 +822,12 @@ class prototype(prototype_master):
                 ktf_.optimizer_adamax(lr);
             elif(optimizer_list[i] == "rmsprop"):
                 ktf_.optimizer_rmsprop(lr);
-            elif(optimizer_list[i] == "nadam"):
-                ktf_.optimizer_nadam(lr);
+            elif(optimizer_list[i] == "nesterov_adam"):
+                ktf_.optimizer_nesterov_adam(lr);
             elif(optimizer_list[i] == "sgd"):
                 ktf_.optimizer_sgd(lr);
+            elif(optimizer_list[i] == "nesterov_sgd"):
+                ktf_.optimizer_nesterov_sgd(lr);
 
                                                       
             ktf_.Reload();                                                                                  #Change 7

@@ -840,10 +840,12 @@ class prototype(prototype_master):
             lr = gtf_.system_dict["hyper-parameters"]["learning_rate"]                                      #Change 6 
             if(optimizer_list[i] == "sgd"):
                 gtf_.optimizer_sgd(lr);
-            elif(optimizer_list[i] == "nag"):
-                gtf_.optimizer_nag(lr);
+            elif(optimizer_list[i] == "nesterov_sgd"):
+                gtf_.optimizer_nesterov_sgd(lr);
             elif(optimizer_list[i] == "rmsprop"):
                 gtf_.optimizer_rmsprop(lr);
+            elif(optimizer_list[i] == "momentum_rmsprop"):
+                gtf_.optimizer_momentum_rmsprop(lr);
             elif(optimizer_list[i] == "adam"):
                 gtf_.optimizer_adam(lr);
             elif(optimizer_list[i] == "adagrad"):
@@ -852,12 +854,10 @@ class prototype(prototype_master):
                 gtf_.optimizer_adadelta(lr);
             elif(optimizer_list[i] == "adamax"):
                 gtf_.optimizer_adamax(lr);
-            elif(optimizer_list[i] == "nadam"):
-                gtf_.optimizer_nadam(lr);
+            elif(optimizer_list[i] == "nesterov_adam"):
+                gtf_.optimizer_nesterov_adam(lr);
             elif(optimizer_list[i] == "signum"):
                 gtf_.optimizer_signum(lr);
-            elif(optimizer_list[i] == "ftml"):
-                gtf_.optimizer_ftml(lr);
                                                       
             gtf_.Reload();                                                                                  #Change 7
 
