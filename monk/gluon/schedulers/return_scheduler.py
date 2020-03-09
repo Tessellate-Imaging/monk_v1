@@ -40,7 +40,7 @@ def load_scheduler(system_dict):
             base_lr=learning_rate);
 
         #to make sure milestones value is restored to original one and not the updated steps while writing to experiment state
-        for i in range(len(steps)):
-            steps[i] = steps[i]//num_batches
+        #for i in range(len(steps)):
+        #    steps[i] = steps[i]//num_batches
 
     return system_dict;
