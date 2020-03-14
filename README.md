@@ -10,7 +10,16 @@
 
 ## Documentation
 
-- 1) [Functional Documentation](https://abhi-kumar.github.io/monk_v1_docs/) (Temporary)
+- 1) [Functional Documentation](https://abhi-kumar.github.io/monk_v1_docs/) (Will be merged with Latest docs soon)
+    - Main Prototype Functions
+        - [Mxnet Backend](https://abhi-kumar.github.io/monk_v1_docs/gluon_prototype.html)
+        - [Pytorch Backend](https://abhi-kumar.github.io/monk_v1_docs/pytorch_prototype.html)
+        - [Keras Backend](https://abhi-kumar.github.io/monk_v1_docs/keras_prototype.html)
+        - [Comparison](https://abhi-kumar.github.io/monk_v1_docs/compare_prototype.html)
+    - [System Functions](https://abhi-kumar.github.io/monk_v1_docs/system/index.html)
+    - [Mxnet Backend base Functions](https://abhi-kumar.github.io/monk_v1_docs/gluon/index.html)
+    - [Pytorch Backend base Functions](https://abhi-kumar.github.io/monk_v1_docs/pytorch/index.html)
+    - [Keras Backend base Funtions](https://abhi-kumar.github.io/monk_v1_docs/tf_keras_1/index.html)
 
 - 2) Features and Functions (In development):
     - [Introduction](https://clever-noyce-f9d43f.netlify.com/#/introduction)
