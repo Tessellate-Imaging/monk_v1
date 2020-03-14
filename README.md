@@ -98,8 +98,6 @@ For Installation instructions visit: [Link](https://clever-noyce-f9d43f.netlify.
   - 4) [Transfer Learning](https://github.com/Tessellate-Imaging/monk_v1/tree/master/study_roadmaps/2_transfer_learning_roadmap)
   - 5) [Image classification zoo](https://github.com/Tessellate-Imaging/monk_v1/tree/master/study_roadmaps/4_image_classification_zoo)
 
-### [List of available models, layers, blocks, optimizers](https://github.com/Tessellate-Imaging/monk_v1/tree/master/study_roadmaps)
-    
 
 <br />
 <br />
@@ -108,7 +106,9 @@ For Installation instructions visit: [Link](https://clever-noyce-f9d43f.netlify.
 <a id="4"></a>
 ## Documentation
 
-- 1) [Functional Documentation](https://abhi-kumar.github.io/monk_v1_docs/) (Will be merged with Latest docs soon)
+- 1) [List of available models, layers, blocks, optimizers](https://github.com/Tessellate-Imaging/monk_v1/tree/master/monk)
+
+- 2) [Functional Documentation](https://abhi-kumar.github.io/monk_v1_docs/) (Will be merged with Latest docs soon)
     - Main Prototype Functions
         - [Mxnet Backend](https://abhi-kumar.github.io/monk_v1_docs/gluon_prototype.html)
         - [Pytorch Backend](https://abhi-kumar.github.io/monk_v1_docs/pytorch_prototype.html)
@@ -119,7 +119,7 @@ For Installation instructions visit: [Link](https://clever-noyce-f9d43f.netlify.
     - [Pytorch Backend base Functions](https://abhi-kumar.github.io/monk_v1_docs/pytorch/index.html)
     - [Keras Backend base Funtions](https://abhi-kumar.github.io/monk_v1_docs/tf_keras_1/index.html)
 
-- 2) Features and Functions (In development):
+- 3) Features and Functions (In development):
     - [Introduction](https://clever-noyce-f9d43f.netlify.com/#/introduction)
     - [Setup](https://clever-noyce-f9d43f.netlify.com/#/setup/setup)
     - [Quick Mode](https://clever-noyce-f9d43f.netlify.com/#/quick_mode/quickmode_pytorch)
@@ -129,7 +129,7 @@ For Installation instructions visit: [Link](https://clever-noyce-f9d43f.netlify.
     - [Compare Experiments](https://clever-noyce-f9d43f.netlify.com/#/compare_experiment)
     - [Resume Training](https://clever-noyce-f9d43f.netlify.com/#/resume_training)
 
-- 3) [Complete Latest Docs](https://li8bot.github.io/monkai/#/home) (In Progress)
+- 4) [Complete Latest Docs](https://li8bot.github.io/monkai/#/home) (In Progress)
 
 
 <br />
