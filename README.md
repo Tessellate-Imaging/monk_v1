@@ -8,6 +8,94 @@
 [![Build_Status](https://img.shields.io/badge/build-passing-green)](https://github.com/Tessellate-Imaging/monk_v1)
 
 
+# Table of Contents
+  - 1) [Sample Showcase](#sub-heading)
+  - 2) [Installation](#sub-heading-1)
+  - 3) [Study Roadmaps](#sub-heading-2)
+  - 4) [Documentation](#sub-heading-3)
+  - 5) [TODO](#sub-heading-4)
+
+
+
+## Sample Showcase
+
+### Create an image classification experiment.
+- Load foldered dataset
+- Set number of epochs
+- Run training
+
+```python
+ptf = prototype(verbose=1)
+ptf.Prototype("sample-project-1", "sample-experiment-1")
+ptf.Default(dataset_path="./dataset_cats_dogs_train/", 
+                model_name="resnet18", freeze_base_network=True, num_epochs=2)
+ptf.Train()
+```
+
+### Inference
+
+```python
+img_name = "./monk/datasets/test/0.jpg";
+predictions = ptf.Infer(img_name=img_name, return_raw=True);
+print(predictions)
+```
+
+
+### Compare Experiments
+
+- Add created experiments with different hyperparameters
+- Generate comparison plots
+
+```python
+ctf = compare(verbose=1);
+ctf.Comparison("Sample-Comparison-1");
+ctf.Add_Experiment("sample-project-1", "sample-experiment-1");
+ctf.Add_Experiment("sample-project-1", "sample-experiment-2");
+    .
+    . 
+    .
+ctf.Generate_Statistics();
+```
+
+<br />
+<br />
+<br />
+
+
+## Installation
+
+Support for
+  - OS
+      - Ubuntu 16.04
+      - Ubuntu 18.04
+  - Python
+      - Version 3.6
+      - Version 3.7
+  - Cuda
+      - Version 9.0
+      - Version 9.2
+      - Version 10.0
+      - Version 10.1
+
+For Installation instructions visit: [Link](https://clever-noyce-f9d43f.netlify.com/#/setup/setup)
+
+<br />
+<br />
+<br />
+
+
+
+## Study Roadmaps
+    - Getting started with monk
+    - Image Processing and Deep Learning
+    - Transfer Learning
+    - Image classification zoo
+
+<br />
+<br />
+<br />
+
+
 ## Documentation
 
 - 1) [Functional Documentation](https://abhi-kumar.github.io/monk_v1_docs/) (Will be merged with Latest docs soon)
@@ -34,52 +122,14 @@
 - 3) [Complete Latest Docs](https://li8bot.github.io/monkai/#/home) (In Progress)
 
 
-
-
-
-## Create an image classification experiment.
-- Load foldered dataset
-- Set number of epochs
-- Run training
-
-```python
-ptf = prototype(verbose=1)
-ptf.Prototype("sample-project-1", "sample-experiment-1")
-ptf.Default(dataset_path="./dataset_cats_dogs_train/", 
-                model_name="resnet18", freeze_base_network=True, num_epochs=2)
-ptf.Train()
-```
-
-## Inference
-
-```python
-img_name = "./monk/datasets/test/0.jpg";
-predictions = ptf.Infer(img_name=img_name, return_raw=True);
-print(predictions)
-```
-
-
-## Compare Experiments
-
-- Add created experiments with different hyperparameters
-- Generate comparison plots
-
-```python
-ctf = compare(verbose=1);
-ctf.Comparison("Sample-Comparison-1");
-ctf.Add_Experiment("sample-project-1", "sample-experiment-1");
-ctf.Add_Experiment("sample-project-1", "sample-experiment-2");
-    .
-    . 
-    .
-ctf.Generate_Statistics();
-```
-
 <br />
 <br />
 <br />
 
-## TODO-2020 - Features
+
+## TODO-2020
+
+### TODO-2020 - Features
 - [x] Model Visualization
 - [ ] Pre-processed data visualization
 - [ ] Learned feature visualization
@@ -92,7 +142,7 @@ ctf.Generate_Statistics();
 - [x] Custom model development
 
 
-## TODO-2020 - General
+### TODO-2020 - General
 - [ ] Incorporate pep coding standards
 - [x] Functional Documentation
 - [x] Tackle Multiple versions of libraries
@@ -100,14 +150,14 @@ ctf.Generate_Statistics();
 - [ ] Contribution guidelines
 
 
-## TODO-2020 - Backend Support
+### TODO-2020 - Backend Support
 
 - [ ] Tensorflow 2.0
 - [ ] Chainer
 - [ ] Intel VINO toolkit
 
 
-## TODO-2020 - External Libraries
+### TODO-2020 - External Libraries
 - [ ] OpenCV
 - [ ] Dlib
 - [ ] Python PIL
