@@ -5,6 +5,15 @@ from system.imports import *
 @accepts(dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def load_scheduler(system_dict):
+    '''
+    Load schedulers for training state
+
+    Args:
+        system_dict (dict): System dictionary storing experiment state and set variables
+
+    Returns:
+        dict: updated system dict
+    '''
     learning_rate_scheduler = system_dict["local"]["learning_rate_scheduler"];
     num_batches = len(system_dict["local"]["data_loaders"]["train"]);
     learning_rate = system_dict["hyper-parameters"]["learning_rate"];

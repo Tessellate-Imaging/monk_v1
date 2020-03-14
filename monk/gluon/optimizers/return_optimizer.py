@@ -4,6 +4,15 @@ from system.imports import *
 @accepts(dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def load_optimizer(system_dict):
+    '''
+    Load Optimizers in training states
+
+    Args:
+        system_dict (dict): System dictionary storing experiment state and set variables
+
+    Returns:
+        dict: updated system dict
+    '''
     optimizer = system_dict["local"]["optimizer"];
     learning_rate_scheduler = system_dict["local"]["learning_rate_scheduler"];
     learning_rate = system_dict["hyper-parameters"]["learning_rate"];

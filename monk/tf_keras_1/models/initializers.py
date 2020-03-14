@@ -4,6 +4,16 @@ from system.imports import *
 
 @TraceFunction(trace_args=False, trace_rv=False)
 def get_initializer(initializer):
+    '''
+    Get the right initializer for custom network weight initialization
+
+    Args:
+        initializer (str): The type of initializer
+
+    Returns:
+        str: The type of initializer
+    '''
+
     if(initializer == "xavier_normal"):
         return "glorot_normal";
     elif(initializer == "xavier_uniform"):

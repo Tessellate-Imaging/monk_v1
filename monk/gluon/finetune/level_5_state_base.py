@@ -7,6 +7,14 @@ from gluon.finetune.level_4_evaluation_base import finetune_evaluation
 
 
 class finetune_state(finetune_evaluation):
+    '''
+    Base class for Monk states - train, eval_infer, resume, copy_from, pseudo_copy_from (for running sub-experiments)
+
+    Args:
+        verbose (int): Set verbosity levels
+                        0 - Print Nothing
+                        1 - Print desired details
+    '''
     @accepts("self", verbose=int, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
@@ -18,6 +26,15 @@ class finetune_state(finetune_evaluation):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def set_system_state_eval_infer(self):
+        '''
+        Set system for eval_infer state
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         self.system_dict = read_json(self.system_dict["fname"], verbose=self.system_dict["verbose"]);
         self.system_dict["states"]["eval_infer"] = True;
 
@@ -39,6 +56,15 @@ class finetune_state(finetune_evaluation):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def set_system_state_resume_train(self):
+        '''
+        Set system for resume training state
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         self.system_dict = read_json(self.system_dict["fname"], verbose=self.system_dict["verbose"]);
         self.system_dict["states"]["resume_train"] = True;
         if(self.system_dict["dataset"]["status"]):
@@ -69,6 +95,15 @@ class finetune_state(finetune_evaluation):
     @accepts("self", list, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def set_system_state_copy_from(self, copy_from):
+        '''
+        Set system for copied state
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         fname = self.system_dict["master_systems_dir_relative"] + copy_from[0] + "/" + copy_from[1] + "/experiment_state.json";
         system_dict_tmp = read_json(fname, verbose=self.system_dict["verbose"]);
 
@@ -112,6 +147,15 @@ class finetune_state(finetune_evaluation):
     @accepts("self", list, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def set_system_state_pseudo_copy_from(self, pseudo_copy_from):
+        '''
+        Set system for copied state in hyper-parameter analysis mode 
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         fname = self.system_dict["master_systems_dir_relative"] + pseudo_copy_from[0] + "/" + pseudo_copy_from[1] + "/experiment_state.json";
         system_dict_tmp = read_json(fname, verbose=self.system_dict["verbose"]);
         self.system_dict["dataset"] = system_dict_tmp["dataset"];

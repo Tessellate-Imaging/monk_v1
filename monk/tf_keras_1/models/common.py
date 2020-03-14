@@ -7,6 +7,16 @@ from tf_keras_1.models.layers import get_layer
 @accepts("self", bool, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def set_parameter_requires_grad(finetune_net, freeze_base_network):
+    '''
+    Freeze based network as per params set
+
+    Args:
+        finetune_net (network): Model network
+        freeze_base_network (bool): If True, all trainable params are freezed
+
+    Returns:
+        network: Updated Model network
+    '''
     if freeze_base_network:
         for layer in finetune_net.layers:
             layer.trainable=False
@@ -21,6 +31,17 @@ def set_parameter_requires_grad(finetune_net, freeze_base_network):
 @accepts(list, "self", post_trace=True)
 @TraceFunction(trace_args=True, trace_rv=False)
 def set_final_layer(custom_network, x):
+    '''
+    Setup final sub-network 
+
+    Args:
+        custom_network (list): List of dicts containing details on appeded layers to base netwoek in transfer learning
+        num_ftrs (int): Number of features coming from base network's last layers
+        num_classes (int): Number of classes in the dataset
+
+    Returns:
+        layer: Sequential sub-network with added layers 
+    '''
     for i in range(len(custom_network)):
         x = get_layer(custom_network[i], x);
     return x;
@@ -32,6 +53,17 @@ def set_final_layer(custom_network, x):
 @accepts("self", list, int, set=int, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def create_final_layer(finetune_net, custom_network, num_classes):
+    '''
+    Create final sub-network 
+
+    Args:
+        finetune_net (network): Initial base network
+        custom_network (list):  List of dicts containing details on appeded layers to base netwoek in transfer learning
+        num_classes (int): Number of classes in the dataset
+
+    Returns:
+        network: Updated base network with appended custom additions
+    '''
     x = finetune_net.output
     x = krl.GlobalAveragePooling2D()(x);
 
@@ -47,6 +79,15 @@ def create_final_layer(finetune_net, custom_network, num_classes):
 @accepts(dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def get_num_layers(system_dict):
+    '''
+    Depricated function - Get number of potentially trainable layers
+
+    Args:
+        system_dict (dict): System dict containing system state and parameters
+
+    Returns:
+        dict: Updated system dict 
+    '''
     complete_list = [];
     for layer in system_dict["local"]["model"].layers:
         if(layer.count_params() > 0):
@@ -59,6 +100,15 @@ def get_num_layers(system_dict):
 @accepts(dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def get_num_trainable_layers(system_dict):
+    '''
+    Get number of potentially trainable layers
+
+    Args:
+        system_dict (dict): System dict containing system state and parameters
+
+    Returns:
+        dict: Updated system dict 
+    '''
     complete_list_trainable = [];
     for layer in system_dict["local"]["model"].layers:
         if(layer.count_params() > 0):
@@ -73,6 +123,16 @@ def get_num_trainable_layers(system_dict):
 @accepts(int, dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def freeze_layers(num, system_dict):
+    '''
+    Main function responsible to freeze layers in network
+
+    Args:
+        num (int): Number of layers to freeze
+        system_dict (dict): System dict containing system state and parameters
+
+    Returns:
+        dict: Updated system dict 
+    '''
     system_dict = get_num_layers(system_dict);
     num_layers_in_model = system_dict["model"]["params"]["num_layers"];
     if(num > num_layers_in_model):
@@ -100,6 +160,15 @@ def freeze_layers(num, system_dict):
 @accepts(dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def print_grad_stats(system_dict):
+    '''
+    Print details on which layers are trainable
+
+    Args:
+        system_dict (dict): System dict containing system state and parameters
+
+    Returns:
+        None 
+    '''
     print("Model - Gradient Statistics");
     i = 1;
     for layer in system_dict["local"]["model"].layers:
@@ -114,6 +183,15 @@ def print_grad_stats(system_dict):
 @accepts(dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def setup_device_environment(system_dict):
+    '''
+    Load model weights on device - cpu or gpu 
+
+    Args:
+        system_dict (dict): System dict containing system state and parameters
+
+    Returns:
+        dict: Updated system dict 
+    '''
     num_cores = psutil.cpu_count();
     if system_dict["model"]["params"]["use_gpu"]:
         num_GPU = 1
@@ -153,6 +231,18 @@ def setup_device_environment(system_dict):
 @accepts(dict, list, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def get_layer_uid(network_stack, count):
+    '''
+    Get a unique name for layer in custom network development
+
+    Args:
+        network_stack (list): List of list containing custom network details
+        count (dict): a unique dictionary mapping number of every type of layer in the network
+        system_dict (dict): System dict containing system state and parameters
+
+    Returns:
+        str: layer unique name
+        dict: updated layer type mapper count
+    '''
     if network_stack["uid"]:
         return network_stack["uid"], count;
     else:

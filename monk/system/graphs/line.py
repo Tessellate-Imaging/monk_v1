@@ -5,6 +5,21 @@ from system.imports import *
 @accepts([list, type(np.array([1, 2]))], [list, type(np.array([1, 2]))], str, show_img=bool, save_img=bool, post_trace=True)
 @TraceFunction(trace_args=True, trace_rv=True)
 def create_train_test_plots_accuracy(plots, labels, log_dir, show_img=False, save_img=False):
+    '''
+    Create line graphs for training and testing accuracies
+
+    Args:
+        plots (list): plots[0] contains training data
+                        plots[1] contains validation data
+        labels (list): Coresponding X-Axis labels
+        log_dir (str): Path to folder to save plot 
+        show_img (bool): If True, plot is displayed
+        save_img (bool): If True, plot is saved.
+        verbose (str): If True, prints logs for analysis 
+
+    Returns:
+        None
+    '''
     plt.plot(plots[0], marker='o', label='Training')
     plt.plot(plots[1], marker='x', label='Validation')
     plt.gca().legend(('Training','Validation'))
@@ -18,6 +33,21 @@ def create_train_test_plots_accuracy(plots, labels, log_dir, show_img=False, sav
 @accepts([list, type(np.array([1, 2]))], [list, type(np.array([1, 2]))], str, show_img=bool, save_img=bool, post_trace=True)
 @TraceFunction(trace_args=True, trace_rv=True)
 def create_train_test_plots_loss(plots, labels, log_dir, show_img=False, save_img=False):
+    '''
+    Create line graphs for training and testing losses
+
+    Args:
+        plots (list): plots[0] contains training data
+                        plots[1] contains validation data
+        labels (list): Coresponding X-Axis labels
+        log_dir (str): Path to folder to save plot 
+        show_img (bool): If True, plot is displayed
+        save_img (bool): If True, plot is saved.
+        verbose (str): If True, prints logs for analysis 
+
+    Returns:
+        None
+    '''
     plt.plot(plots[0], marker='o', label='Training')
     plt.plot(plots[1], marker='x', label='Validation')
     plt.gca().legend(('Training','Validation'))
@@ -31,6 +61,16 @@ def create_train_test_plots_loss(plots, labels, log_dir, show_img=False, save_im
 @accepts([list, type(np.array([1, 2]))], dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=True)
 def training_accuracy_curve(data, system_dict):
+    '''
+    Create training accuracy line graph
+
+    Args:
+        data (list): Entire data
+        system_dict (dict): System dictionary storing experiment state and set variables
+
+    Returns:
+        None
+    '''
     plt.figure(figsize=(20,10))
     for i in range(len(data)):
         if(not data[i]["training"]["status"]):
@@ -55,6 +95,16 @@ def training_accuracy_curve(data, system_dict):
 @accepts([list, type(np.array([1, 2]))], dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=True)
 def validation_accuracy_curve(data, system_dict):
+    '''
+    Create validation accuracy line graph
+
+    Args:
+        data (list): Entire data
+        system_dict (dict): System dictionary storing experiment state and set variables
+
+    Returns:
+        None
+    '''
     plt.figure(figsize=(20,10))
     for i in range(len(data)):
         if(not data[i]["training"]["status"]):
@@ -78,6 +128,16 @@ def validation_accuracy_curve(data, system_dict):
 @accepts([list, type(np.array([1, 2]))], dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=True)
 def training_loss_curve(data, system_dict):
+    '''
+    Create training loss line graph
+
+    Args:
+        data (list): Entire data
+        system_dict (dict): System dictionary storing experiment state and set variables
+
+    Returns:
+        None
+    '''
     plt.figure(figsize=(20,10))
     for i in range(len(data)):
         if(not data[i]["training"]["status"]):
@@ -101,6 +161,16 @@ def training_loss_curve(data, system_dict):
 @accepts([list, type(np.array([1, 2]))], dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=True)
 def validation_loss_curve(data, system_dict):
+    '''
+    Create validation loss line graph
+
+    Args:
+        data (list): Entire data
+        system_dict (dict): System dictionary storing experiment state and set variables
+
+    Returns:
+        None
+    '''
     plt.figure(figsize=(20,10))
     for i in range(len(data)):
         if(not data[i]["training"]["status"]):

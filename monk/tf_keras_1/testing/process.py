@@ -4,6 +4,19 @@ from system.imports import *
 @accepts(str, bool, dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def process_single(img_name, return_raw, system_dict):
+    '''
+    Run inference on a single image
+
+    Args:
+        img_name (str): path to image
+        return_raw (bool): If True, then output dictionary contains image probability for every class in the set.
+                            Else, only the most probable class score is returned back.
+                            
+
+    Returns:
+        str: predicted class
+        float: prediction score
+    '''
     input_size = system_dict["dataset"]["params"]["input_size"];
     normalize = system_dict["local"]["normalize"];
     mean_subtract = system_dict["local"]["mean_subtract"];

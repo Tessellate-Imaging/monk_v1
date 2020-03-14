@@ -5,6 +5,14 @@ from pytorch.finetune.level_3_training_base import finetune_training
 
 
 class finetune_evaluation(finetune_training):
+    '''
+    Bae class for external validation and inferencing
+
+    Args:
+        verbose (int): Set verbosity levels
+                        0 - Print Nothing
+                        1 - Print desired details
+    '''
     @accepts("self", verbose=int, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
@@ -15,6 +23,16 @@ class finetune_evaluation(finetune_training):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def set_evaluation_final(self):
+        '''
+        Main function for external validation post training
+
+        Args:
+            None
+
+        Returns:
+            float: Accuracy in percentage
+            dict: Class based accuracy in percentage
+        '''
         self.custom_print("Testing");
         self.system_dict["testing"]["status"] = False;
         if(self.system_dict["training"]["settings"]["display_progress_realtime"] and self.system_dict["verbose"]):
@@ -75,6 +93,24 @@ class finetune_evaluation(finetune_training):
     @accepts("self", img_name=[str, bool], img_dir=[str, bool], return_raw=bool, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def set_prediction_final(self, img_name=False, img_dir=False, return_raw=False):
+        '''
+        Main function for external inferencing on single image or folder of images post training
+
+        Args:
+            img_name (str): path to image
+            img_dir (str): path to folders containing images. 
+                            (Optional)
+            return_raw (bool): If True, then output dictionary contains image probability for every class in the set.
+                                Else, only the most probable class score is returned back.
+                                
+
+        Returns:
+            float: Accuracy in percentage
+            dict: Inference output
+                   1) Image name
+                   2) Predicted class
+                   3) Predicted score
+        '''
         self.custom_print("Prediction");
 
         if(not self.system_dict["dataset"]["params"]["input_size"]):

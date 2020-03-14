@@ -5,6 +5,15 @@ from system.imports import *
 @accepts(dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def retrieve_loss(system_dict):
+    '''
+    Retrieve loss post state changes
+
+    Args:
+        system_dict (dict): System dictionary storing experiment state and set variables
+
+    Returns:
+        dict: updated system dict
+    '''
     system_dict["local"]["criterion"] = system_dict["hyper-parameters"]["loss"]["name"];
     name = system_dict["local"]["criterion"];
 
@@ -28,20 +37,5 @@ def retrieve_loss(system_dict):
 
     elif(name == "squaredhinge"):
         system_dict["local"]["criterion"] = krlo.squared_hinge;
-
-
-    '''
-    if(name == "categoricalcrossentropy"):
-        system_dict["local"]["criterion"] = krlo.categorical_crossentropy;
-
-    elif(name == "sparsecategoricalcrossentropy"):
-        system_dict["local"]["criterion"] = krlo.sparse_categorical_crossentropy;
-
-    elif(name == "categoricalhinge"):
-        system_dict["local"]["criterion"] = krlo.categorical_hinge;
-
-    elif(name == "binarycrossentropy"):
-        system_dict["local"]["criterion"] = krlo.binary_crossentropy;
-    '''
 
     return system_dict;

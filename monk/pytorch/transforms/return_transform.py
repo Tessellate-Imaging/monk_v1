@@ -5,6 +5,15 @@ from system.imports import *
 @accepts(dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def set_transform_trainval(system_dict):
+    '''
+    Load training and validation transforms in main state
+
+    Args:
+        system_dict (dict): System dictionary storing experiment state and set variables
+
+    Returns:
+        dict: updated system dict
+    '''
     if(not system_dict["local"]["normalize"]):
         if(not system_dict["local"]["applied_train_tensor"]):
             if(type(system_dict["dataset"]["params"]["input_size"]) == tuple or type(system_dict["dataset"]["params"]["input_size"]) == list):
@@ -29,6 +38,15 @@ def set_transform_trainval(system_dict):
 @accepts(dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def set_transform_test(system_dict):
+    '''
+    Load testing transforms in main state
+
+    Args:
+        system_dict (dict): System dictionary storing experiment state and set variables
+
+    Returns:
+        dict: updated system dict
+    '''
     if(not system_dict["local"]["normalize"]):
         if(not system_dict["local"]["applied_test_tensor"]):
 

@@ -6,6 +6,16 @@ from gluon.models.layers import get_layer
 @accepts("self", bool, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def set_parameter_requires_grad(finetune_net, freeze_base_network):
+    '''
+    Freeze based network as per params set
+
+    Args:
+        finetune_net (network): Model network
+        freeze_base_network (bool): If True, all trainable params are freezed
+
+    Returns:
+        network: Updated Model network
+    '''
     if(freeze_base_network):
         for param in finetune_net.collect_params().values():
             param.grad_req = 'null';
@@ -15,6 +25,17 @@ def set_parameter_requires_grad(finetune_net, freeze_base_network):
 @accepts(dict, activation=str, post_trace=True)
 @TraceFunction(trace_args=True, trace_rv=True)
 def get_final_layer(network_layer, activation='relu'):
+    '''
+    Setup final layer
+
+    Args:
+        network_layer (dict): Dictionary containing all parameters for layer
+        activation (str): Activation function to use  
+                            - Available functions: 'relu', 'sigmoid', 'tanh', 'softrelu', 'softsign'
+
+    Returns:
+        layer: Designed layer
+    '''
     act_list = ['relu', 'sigmoid', 'tanh', 'softrelu', 'softsign'];
 
     if(activation not in act_list):
@@ -28,6 +49,18 @@ def get_final_layer(network_layer, activation='relu'):
 @accepts("self", list, int, set=int, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def create_final_layer(finetune_net, custom_network, num_classes, set=1):
+    '''
+    Create final sub-network 
+
+    Args:
+        finetune_net (network): Initial base network
+        custom_network (list):  List of dicts containing details on appeded layers to base netwoek in transfer learning
+        num_classes (int): Number of classes in the dataset
+        set (int): Select the right set to find the details of outermost layer
+
+    Returns:
+        network: Updated base network with appended custom additions
+    '''
     last_layer_name = custom_network[len(custom_network)-1]["name"];
 
     if(set==1):
@@ -73,6 +106,15 @@ def create_final_layer(finetune_net, custom_network, num_classes, set=1):
 @accepts(dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def model_to_device(system_dict):
+    '''
+    Load model weights on device - cpu or gpu 
+
+    Args:
+        system_dict (dict): System dict containing system state and parameters
+
+    Returns:
+        dict: Updated system dict 
+    '''
     GPUs = GPUtil.getGPUs()
     if(len(GPUs)==0):
         system_dict["local"]["ctx"] = [mx.cpu()];
@@ -91,6 +133,15 @@ def model_to_device(system_dict):
 @accepts(dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def print_grad_stats(system_dict):
+    '''
+    Print details on which layers are trainable
+
+    Args:
+        system_dict (dict): System dict containing system state and parameters
+
+    Returns:
+        None 
+    '''
     print("Model - Gradient Statistics");
     i = 1;
     for param in system_dict["local"]["model"].collect_params().values():
@@ -103,6 +154,15 @@ def print_grad_stats(system_dict):
 @accepts(dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def get_num_layers(system_dict):
+    '''
+    Get number of potentially trainable layers
+
+    Args:
+        system_dict (dict): System dict containing system state and parameters
+
+    Returns:
+        dict: Updated system dict 
+    '''
     if(system_dict["model"]["type"] == "pretrained"):
         num_layers = 0;
         complete_list = [];
@@ -127,6 +187,16 @@ def get_num_layers(system_dict):
 @accepts(int, dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def freeze_layers(num, system_dict):
+    '''
+    Main function responsible to freeze layers in network
+
+    Args:
+        num (int): Number of layers to freeze
+        system_dict (dict): System dict containing system state and parameters
+
+    Returns:
+        dict: Updated system dict 
+    '''
     if(system_dict["model"]["type"] == "pretrained"):
         num_freeze = num;
         num_freezed = 0;
@@ -152,7 +222,7 @@ def freeze_layers(num, system_dict):
         ip = 0;
         system_dict["local"]["params_to_update"] = [];
         complete_list = [];
-        for param in self.system_dict["local"]["model"].collect_params().values():
+        for param in system_dict["local"]["model"].collect_params().values():
             if(ip==0):
                 current_name = param.name.split("_")[0];
                 if("running" in current_name):
@@ -160,7 +230,7 @@ def freeze_layers(num, system_dict):
                 if(param.grad_req == "write"):
                     if(current_name not in complete_list):
                         complete_list.append(current_name);
-                    self.system_dict["local"]["params_to_update"].append(current_name);
+                    system_dict["local"]["params_to_update"].append(current_name);
             else:
                 if(current_name != param.name.split("_")[0]):
                     current_name = param.name.split("_")[0];
@@ -169,9 +239,9 @@ def freeze_layers(num, system_dict):
                     if(param.grad_req == "write"):
                         if(current_name not in complete_list):
                             complete_list.append(current_name);
-                        self.system_dict["local"]["params_to_update"].append(current_name);
+                        system_dict["local"]["params_to_update"].append(current_name);
             ip += 1;
-        self.system_dict["model"]["params"]["num_params_to_update"] = len(complete_list);
+        system_dict["model"]["params"]["num_params_to_update"] = len(complete_list);
         system_dict["model"]["status"] = True;
 
         return system_dict;
@@ -198,7 +268,7 @@ def freeze_layers(num, system_dict):
         ip = 0;
         system_dict["local"]["params_to_update"] = [];
         complete_list = [];
-        for param in self.system_dict["local"]["model"].collect_params().values():
+        for param in system_dict["local"]["model"].collect_params().values():
             if(ip==0):
                 current_name = '_'.join(param.name.split("_")[:-1]);
                 if("running" in current_name):
@@ -206,7 +276,7 @@ def freeze_layers(num, system_dict):
                 if(param.grad_req == "write"):
                     if(current_name not in complete_list):
                         complete_list.append(current_name);
-                    self.system_dict["local"]["params_to_update"].append(current_name);
+                    system_dict["local"]["params_to_update"].append(current_name);
             else:
                 if(current_name != '_'.join(param.name.split("_")[:-1])):
                     current_name = '_'.join(param.name.split("_")[:-1]);
@@ -215,9 +285,9 @@ def freeze_layers(num, system_dict):
                     if(param.grad_req == "write"):
                         if(current_name not in complete_list):
                             complete_list.append(current_name);
-                        self.system_dict["local"]["params_to_update"].append(current_name);
+                        system_dict["local"]["params_to_update"].append(current_name);
             ip += 1;
-        self.system_dict["model"]["params"]["num_params_to_update"] = len(self.system_dict["local"]["params_to_update"]);
+        system_dict["model"]["params"]["num_params_to_update"] = len(system_dict["local"]["params_to_update"]);
         system_dict["model"]["status"] = True;
 
 
@@ -228,6 +298,18 @@ def freeze_layers(num, system_dict):
 @accepts(dict, list, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def get_layer_uid(network_stack, count):
+    '''
+    Get a unique name for layer in custom network development
+
+    Args:
+        network_stack (list): List of list containing custom network details
+        count (dict): a unique dictionary mapping number of every type of layer in the network
+        system_dict (dict): System dict containing system state and parameters
+
+    Returns:
+        str: layer unique name
+        dict: updated layer type mapper count
+    '''
     if network_stack["uid"]:
         return network_stack["uid"], count;
     else:

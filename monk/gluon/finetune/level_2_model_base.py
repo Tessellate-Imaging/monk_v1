@@ -7,6 +7,14 @@ from gluon.finetune.level_1_dataset_base import finetune_dataset
 
 
 class finetune_model(finetune_dataset):
+    '''
+    Base class for Model setup
+
+    Args:
+        verbose (int): Set verbosity levels
+                        0 - Print Nothing
+                        1 - Print desired details
+    '''
     @accepts("self", verbose=int, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
@@ -16,6 +24,15 @@ class finetune_model(finetune_dataset):
     @accepts("self", path=[bool, str, list], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def set_model_final(self, path=False):
+        '''
+        Setup model based on set parameters
+
+        Args:
+            path (str): Dummy variable
+
+        Returns:
+            None
+        '''
         self.custom_print("Model Details");
         if(self.system_dict["model"]["params"]["model_path"]):
             if(os.path.isfile(self.system_dict["model"]["params"]["model_path"][0])):

@@ -5,6 +5,15 @@ from system.common import read_json
 @accepts(str, post_trace=True)
 @TraceFunction(trace_args=True, trace_rv=True)
 def print_summary(fname):
+    '''
+    Read a system dictionary file and print summary
+
+    Args:
+        fname (str): Path to file 
+
+    Returns:
+        None
+    '''
     system_dict = read_json(fname);
 
     #############################################################################################################################

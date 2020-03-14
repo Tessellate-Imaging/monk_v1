@@ -16,6 +16,20 @@ combined_list_lower = list(map(str.lower, combined_list))
 @accepts(str, bool, int, bool, int, post_trace=True)
 @TraceFunction(trace_args=True, trace_rv=False)
 def get_base_model(model_name, use_pretrained, num_classes, freeze_base_network, input_size):
+    '''
+    Get base network for transfer learning based on parameters selected
+
+    Args:
+        model_name (str): Select from available models. Check via List_Models() function
+        freeze_base_network (bool): If set as True, then base network's weights are freezed (cannot be trained)
+        use_gpu (bool): If set as True, uses GPU
+        use_pretrained (bool): If set as True, use weights trained on imagenet and coco like dataset
+                                Else, use randomly initialized weights.
+
+    Returns:
+        neural network: Base network
+        str: Name of the model
+    '''
     if(model_name not in combined_list_lower):
         print("Model name: {} not found".format(model_name));
     else:

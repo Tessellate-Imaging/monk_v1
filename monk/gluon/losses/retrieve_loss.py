@@ -5,6 +5,15 @@ from system.imports import *
 @accepts(dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def retrieve_loss(system_dict):
+	'''
+    Retrieve loss post state changes
+
+    Args:
+        system_dict (dict): System dictionary storing experiment state and set variables
+
+    Returns:
+        dict: updated system dict
+    '''
 	system_dict["local"]["criterion"] = system_dict["hyper-parameters"]["loss"]["name"];
 	name = system_dict["local"]["criterion"];
 
@@ -77,11 +86,5 @@ def retrieve_loss(system_dict):
 			margin=system_dict["hyper-parameters"]["loss"]["params"]["margin"],
 			weight=system_dict["hyper-parameters"]["loss"]["params"]["weight"],
 			batch_axis=system_dict["hyper-parameters"]["loss"]["params"]["batch_axis"]);	
-
-
-
-
-
-
 
 	return system_dict;

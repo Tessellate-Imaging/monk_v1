@@ -7,6 +7,30 @@ from system.imports import *
 @accepts(dict, [list, float, int], [list, float, int], [list, float, int], [list, float, int], bool, bool, bool, retrieve=bool, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def transform_color_jitter(system_dict, brightness, contrast, saturation, hue, train, val, test, retrieve=False):
+    '''
+    Apply Color jittering transformations
+
+    Args:
+        system_dict (dict): System dictionary storing experiment state and set variables
+        brightness (float): Levels to jitter brightness.
+                                    0 - min
+                                    1 - max
+        contrast (float): Levels to jitter contrast.
+                                    0 - min
+                                    1 - max
+        saturation (float): Levels to jitter saturation.
+                                    0 - min
+                                    1 - max
+        hue (float): Levels to jitter hue.
+                                    0 - min
+                                    1 - max
+        train (bool): If True, transform applied to training data
+        val (bool): If True, transform applied to validation data
+        test (bool): If True, transform applied to testing/inferencing data
+
+    Returns:
+        dict: updated system dict
+    '''
     tmp = {};
     tmp["ColorJitter"] = {};
     tmp["ColorJitter"]["brightness"] = brightness;
@@ -44,6 +68,21 @@ def transform_color_jitter(system_dict, brightness, contrast, saturation, hue, t
     bool, bool, bool, retrieve=bool, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def transform_random_affine(system_dict, degrees, translate, scale, shear, train, val, test, retrieve=False):
+    '''
+    Apply random affine transformations
+
+    Args:
+        system_dict (dict): System dictionary storing experiment state and set variables
+        degrees (float): Max Rotation range limit for transforms
+        scale (float, list): Range for randomly scaling 
+        shear (float, list): Range for randomly applying sheer changes
+        train (bool): If True, transform applied to training data
+        val (bool): If True, transform applied to validation data
+        test (bool): If True, transform applied to testing/inferencing data
+
+    Returns:
+        dict: updated system dict
+    '''
     tmp = {};
     tmp["RandomAffine"] = {};
     tmp["RandomAffine"]["degrees"] = degrees;
@@ -85,6 +124,19 @@ def transform_random_affine(system_dict, degrees, translate, scale, shear, train
 @accepts(dict, float, bool, bool, bool, retrieve=bool, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def transform_random_horizontal_flip(system_dict, probability, train, val, test, retrieve=False):
+    '''
+    Apply random horizontal flip transformations
+
+    Args:
+        system_dict (dict): System dictionary storing experiment state and set variables
+        probability (float): Probability of flipping the input image
+        train (bool): If True, transform applied to training data
+        val (bool): If True, transform applied to validation data
+        test (bool): If True, transform applied to testing/inferencing data
+
+    Returns:
+        dict: updated system dict
+    '''
     tmp = {};
     tmp["RandomHorizontalFlip"] = {};
     tmp["RandomHorizontalFlip"]["p"] = probability;
@@ -111,6 +163,19 @@ def transform_random_horizontal_flip(system_dict, probability, train, val, test,
 @accepts(dict, float, bool, bool, bool, retrieve=bool, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def transform_random_vertical_flip(system_dict, probability, train, val, test, retrieve=False):
+    '''
+    Apply random vertical flip transformations
+
+    Args:
+        system_dict (dict): System dictionary storing experiment state and set variables
+        probability (float): Probability of flipping the input image
+        train (bool): If True, transform applied to training data
+        val (bool): If True, transform applied to validation data
+        test (bool): If True, transform applied to testing/inferencing data
+
+    Returns:
+        dict: updated system dict
+    '''
     tmp = {};
     tmp["RandomVerticalFlip"] = {};
     tmp["RandomVerticalFlip"]["p"] = probability;
@@ -138,6 +203,19 @@ def transform_random_vertical_flip(system_dict, probability, train, val, test, r
 @accepts(dict, [float, int, list], bool, bool, bool, retrieve=bool, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def transform_random_rotation(system_dict, degrees, train, val, test, retrieve=False):
+    '''
+    Apply random rotation transformations
+
+    Args:
+        system_dict (dict): System dictionary storing experiment state and set variables
+        degrees (float): Max Rotation range limit for transforms
+        train (bool): If True, transform applied to training data
+        val (bool): If True, transform applied to validation data
+        test (bool): If True, transform applied to testing/inferencing data
+
+    Returns:
+        dict: updated system dict
+    '''
     tmp = {};
     tmp["RandomRotation"] = {};
     tmp["RandomRotation"]["degrees"] = degrees;
@@ -164,6 +242,19 @@ def transform_random_rotation(system_dict, degrees, train, val, test, retrieve=F
 @accepts(dict, [float, list], bool, bool, bool, retrieve=bool, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def transform_mean_subtraction(system_dict, mean, train, val, test, retrieve=False):
+    '''
+    Apply mean subtraction
+
+    Args:
+        system_dict (dict): System dictionary storing experiment state and set variables
+        mean (float, list): Mean value for subtraction
+        train (bool): If True, transform applied to training data
+        val (bool): If True, transform applied to validation data
+        test (bool): If True, transform applied to testing/inferencing data
+
+    Returns:
+        dict: updated system dict
+    '''
     tmp = {};
     tmp["MeanSubtraction"] = {};
     tmp["MeanSubtraction"]["mean"] = mean;
@@ -196,6 +287,20 @@ def transform_mean_subtraction(system_dict, mean, train, val, test, retrieve=Fal
 @accepts(dict, [float, list], [float, list], bool, bool, bool, retrieve=bool, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def transform_normalize(system_dict, mean, std, train, val, test, retrieve=False):
+    '''
+    Apply mean subtraction and standard normalization
+
+    Args:
+        system_dict (dict): System dictionary storing experiment state and set variables
+        mean (float, list): Mean value for subtraction
+        std (float, list): Normalization factor
+        train (bool): If True, transform applied to training data
+        val (bool): If True, transform applied to validation data
+        test (bool): If True, transform applied to testing/inferencing data
+
+    Returns:
+        dict: updated system dict
+    '''
     tmp = {};
     tmp["Normalize"] = {};
     tmp["Normalize"]["mean"] = mean;

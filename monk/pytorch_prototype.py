@@ -1,11 +1,18 @@
 from pytorch.finetune.imports import *
 from system.imports import *
-
 from pytorch.finetune.level_14_master_main import prototype_master
 
 
 
 class prototype(prototype_master):
+    '''
+    Main class for Mxnet Backend
+
+    Args:
+        verbose (int): Set verbosity levels
+                        0 - Print Nothing
+                        1 - Print desired details
+    '''
     @accepts("self", verbose=int, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
@@ -20,6 +27,21 @@ class prototype(prototype_master):
     @accepts("self", str, str, eval_infer=bool, resume_train=bool, copy_from=[list, bool], pseudo_copy_from=[list, bool], summary=bool, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def Prototype(self, project_name, experiment_name, eval_infer=False, resume_train=False, copy_from=False, pseudo_copy_from=False, summary=False):
+        '''
+        Create project and experiment for instantiation and running the experiments
+
+        Args:
+            project_name (str): Project Name
+            experiment_name (str): Experiment Name
+            eval_infer (bool): If set as True, model is loaded in evaluation mode
+            resume_train (bool): If set as True, model is loaded from last checkpoint
+            copy_from (list): [project, experiment] to copy from
+            pseudo_copy_from (list): For creating sub-experiments while in hyper-parametric analysis state
+            summary (list): Dummy variable
+
+        Returns:
+            None
+        ''' 
         self.set_system_project(project_name);
         self.set_system_experiment(experiment_name, eval_infer=eval_infer, resume_train=resume_train, copy_from=copy_from, 
             pseudo_copy_from=pseudo_copy_from, summary=summary);
@@ -42,6 +64,24 @@ class prototype(prototype_master):
         model_name=str, freeze_base_network=bool, num_epochs=int, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def Default(self, dataset_path=False, path_to_csv=False, delimiter=",", model_name="resnet18_v1", freeze_base_network=True, num_epochs=10):
+        '''
+        Use monk in default (quick prototyping) mode
+
+        Args:
+            dataset_path (str, list): Path to Dataset folder
+                                      1) Single string if validation data does not exist
+                                      2) List [train_path, val_path] in case of separate train and val data
+            path_to_csv (str, list): Path to csv file pointing towards images
+                                     1) Single string if validation data does not exist
+                                     2) List [train_path, val_path] in case of separate train and val data
+            delimiter (str): Delimiter for csv file
+            model_name (str): Base model name
+            freeze_base_network (bool): If True base network is freezed
+            num_epochs (int): Number of epochs to train the data
+
+        Returns:
+            None
+        '''
         if(self.system_dict["states"]["eval_infer"]):
             self.Dataset_Params(dataset_path=dataset_path, import_as_csv=import_as_csv, path_to_csv=path_to_csv, delimiter=delimiter);
             self.Dataset();
@@ -136,6 +176,15 @@ class prototype(prototype_master):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def Summary(self):
+        '''
+        Print summary of entire project
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         print_summary(self.system_dict["fname_relative"]);
     ###############################################################################################################################################
 
@@ -144,6 +193,15 @@ class prototype(prototype_master):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def List_Models(self):
+        '''
+        List all base models supported.
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         self.print_list_models();
     ###############################################################################################################################################
 
@@ -157,6 +215,15 @@ class prototype(prototype_master):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def List_Layers(self):
+        '''
+        List all layers available for appending the base model.
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         self.print_list_layers_transfer_learning();
     ###############################################################################################################################################
 
@@ -166,6 +233,15 @@ class prototype(prototype_master):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def List_Layers_Transfer_Learning(self):
+        '''
+        List all layers available for appending the base model.
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         self.print_list_layers_transfer_learning();
     ###############################################################################################################################################
 
@@ -176,6 +252,15 @@ class prototype(prototype_master):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def List_Layers_Custom_Model(self):
+        '''
+        List all layers available for building a custom model.
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         self.print_list_layers_custom_model();
     ###############################################################################################################################################
 
@@ -186,6 +271,15 @@ class prototype(prototype_master):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def List_Activations(self):
+        '''
+        List all activations available for appending the base model.
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         self.print_list_activations_transfer_learning();
     ###############################################################################################################################################
 
@@ -195,6 +289,15 @@ class prototype(prototype_master):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def List_Activations_Transfer_Learning(self):
+        '''
+        List all activations available for appending the base model.
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         self.print_list_activations_transfer_learning();
     ###############################################################################################################################################
 
@@ -204,6 +307,15 @@ class prototype(prototype_master):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def List_Activations_Custom_Model(self):
+        '''
+        List all activations available for building a custom model.
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         self.print_list_activations_custom_model();
     ###############################################################################################################################################
 
@@ -217,6 +329,15 @@ class prototype(prototype_master):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def List_Losses(self):
+        '''
+        List all loss functions available.
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         self.print_list_losses();
     ###############################################################################################################################################
 
@@ -230,6 +351,15 @@ class prototype(prototype_master):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def List_Optimizers(self):
+        '''
+        List all optimizers functions available.
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         self.print_list_optimizers();
     ###############################################################################################################################################
 
@@ -243,6 +373,15 @@ class prototype(prototype_master):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def List_Schedulers(self):
+        '''
+        List all learning rate scheduler functions available.
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         self.print_list_schedulers();
     ###############################################################################################################################################
 
@@ -253,6 +392,15 @@ class prototype(prototype_master):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def List_Transforms(self):
+        '''
+        List all data transformation functions available.
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         self.print_list_transforms();
     ###############################################################################################################################################
 
@@ -262,6 +410,15 @@ class prototype(prototype_master):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def List_Blocks(self):
+        '''
+        List all blocks available for building a custom model.
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         self.print_list_blocks();
     ###############################################################################################################################################
 
@@ -276,6 +433,23 @@ class prototype(prototype_master):
     @accepts("self", str, list, [int, float], num_epochs=int, state=str, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def Analyse_Learning_Rates(self, analysis_name, lr_list, percent_data, num_epochs=2, state="keep_all"):
+        '''
+        Hyperparameter Tuner - Analyse learning rate
+                               Takes in a list of learning rates and trains on a part of dataset
+                               Provides summaries and graphs on every sub-experiment created
+
+        Args:
+            analysis_name (str): A suitable name for analysis
+            lr_list (list): List of learning rates.
+            percent_data (int): Percentage of complete dataset to run experiments on.
+            num_epochs (int): Number of epochs for each sub-experiment
+            state ("str"): If set as "keep_all", keeps every file in the sub-experiment
+                           If set as "keep_none", keeps only comparison files for each experiment
+
+
+        Returns:
+            dict: Tabular data on training_accuracy, validation_accuracy, training_loss, validation_loss and training_time for each experiment.
+        '''
         from pytorch_prototype import prototype
         
         project = analysis_name;
@@ -407,6 +581,23 @@ class prototype(prototype_master):
     @accepts("self", str, list, [int, float], num_epochs=int, state=str, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def Analyse_Input_Sizes(self, analysis_name, inp_size_list, percent_data, num_epochs=2, state="keep_all"):
+        '''
+        Hyperparameter Tuner - Analyse input sizes
+                               Takes in a list of input sizes and trains on a part of dataset
+                               Provides summaries and graphs on every sub-experiment created
+
+        Args:
+            analysis_name (str): A suitable name for analysis
+            inp_size_list (list): List of input_sizes.
+            percent_data (int): Percentage of complete dataset to run experiments on.
+            num_epochs (int): Number of epochs for each sub-experiment
+            state ("str"): If set as "keep_all", keeps every file in the sub-experiment
+                           If set as "keep_none", keeps only comparison files for each experiment
+
+
+        Returns:
+            dict: Tabular data on training_accuracy, validation_accuracy, training_loss, validation_loss and training_time for each experiment.
+        '''
         from pytorch_prototype import prototype
         
         project = analysis_name;
@@ -536,6 +727,23 @@ class prototype(prototype_master):
     @accepts("self", str, list, [int, float], num_epochs=int, state=str, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def Analyse_Batch_Sizes(self, analysis_name, batch_size_list, percent_data, num_epochs=2, state="keep_all"):
+        '''
+        Hyperparameter Tuner - Analyse batch sizes
+                               Takes in a list of batch sizes and trains on a part of dataset
+                               Provides summaries and graphs on every sub-experiment created
+
+        Args:
+            analysis_name (str): A suitable name for analysis
+            inp_size_list (list): List of batch sizes.
+            percent_data (int): Percentage of complete dataset to run experiments on.
+            num_epochs (int): Number of epochs for each sub-experiment
+            state ("str"): If set as "keep_all", keeps every file in the sub-experiment
+                           If set as "keep_none", keeps only comparison files for each experiment
+
+
+        Returns:
+            dict: Tabular data on training_accuracy, validation_accuracy, training_loss, validation_loss and training_time for each experiment.
+        '''
         from pytorch_prototype import prototype
         
         project = analysis_name;
@@ -664,6 +872,27 @@ class prototype(prototype_master):
     @accepts("self", str, list, [int, float], num_epochs=int, state=str, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def Analyse_Models(self, analysis_name, model_list, percent_data, num_epochs=2, state="keep_all"):
+        '''
+        Hyperparameter Tuner - Analyse base models
+                               Takes in a list of base models and trains on a part of dataset
+                               Provides summaries and graphs on every sub-experiment created
+
+        Args:
+            analysis_name (str): A suitable name for analysis
+            inp_size_list (list of list): List of base models.
+                                          The format is [model_name_string, freeze_base_model_bool, use_pretrained_model_bool]
+                                          1) First arg - Model name in string
+                                          2) Second arg - Whether to freeze base model or not
+                                          3) Thrid arg - Whether to use pretrained model or use randomly initialized weights
+            percent_data (int): Percentage of complete dataset to run experiments on.
+            num_epochs (int): Number of epochs for each sub-experiment
+            state ("str"): If set as "keep_all", keeps every file in the sub-experiment
+                           If set as "keep_none", keeps only comparison files for each experiment
+
+
+        Returns:
+            dict: Tabular data on training_accuracy, validation_accuracy, training_loss, validation_loss and training_time for each experiment.
+        '''
         from pytorch_prototype import prototype
         
         project = analysis_name;
@@ -811,6 +1040,23 @@ class prototype(prototype_master):
     @accepts("self", str, list, [int, float], num_epochs=int, state=str, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def Analyse_Optimizers(self, analysis_name, optimizer_list, percent_data, num_epochs=2, state="keep_all"):
+        '''
+        Hyperparameter Tuner - Analyse optimizers
+                               Takes in a list of optimizers and trains on a part of dataset
+                               Provides summaries and graphs on every sub-experiment created
+
+        Args:
+            analysis_name (str): A suitable name for analysis
+            inp_size_list (list): List of optimizers.
+            percent_data (int): Percentage of complete dataset to run experiments on.
+            num_epochs (int): Number of epochs for each sub-experiment
+            state ("str"): If set as "keep_all", keeps every file in the sub-experiment
+                           If set as "keep_none", keeps only comparison files for each experiment
+
+
+        Returns:
+            dict: Tabular data on training_accuracy, validation_accuracy, training_loss, validation_loss and training_time for each experiment.
+        '''
         from pytorch_prototype import prototype
         
         project = analysis_name;

@@ -5,6 +5,16 @@ from gluon.finetune.level_7_aux_main import prototype_aux
 
 
 class prototype_layers(prototype_aux):
+    '''
+    Main class for all layers and activations
+        - Layers and activations while appending to base network
+        - Layers and activations while creating custom network
+
+    Args:
+        verbose (int): Set verbosity levels
+                        0 - Print Nothing
+                        1 - Print desired details
+    '''
     @accepts("self", verbose=int, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
@@ -16,6 +26,16 @@ class prototype_layers(prototype_aux):
     @accepts("self", num_neurons=[int, bool], final_layer=bool, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def append_linear(self, num_neurons=False, final_layer=False):
+        '''
+        Append dense (fully connected) layer to base network in transfer learning
+
+        Args:
+            num_neurons (int): Number of neurons in the dense layer
+            final_layer (bool): If True, then number of neurons are directly set as number of classes in dataset for single label type classification
+
+        Returns:
+            None
+        '''
         if(self.system_dict["model"]["final_layer"]):
             msg = "Cannot append more layers.\n";
             msg += "Tip: Previously appended layer termed as final layer";
@@ -33,6 +53,16 @@ class prototype_layers(prototype_aux):
     @accepts("self", probability=float, final_layer=bool, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def append_dropout(self, probability=0.5, final_layer=False):
+        '''
+        Append dropout layer to base network in transfer learning
+
+        Args:
+            probability (float): Droping probability of neurons in next layer
+            final_layer (bool): Indicator that this layer marks the end of network.
+
+        Returns:
+            None
+        '''
         if(self.system_dict["model"]["final_layer"]):
             msg = "Cannot append more layers.\n";
             msg += "Tip: Previously appended layer termed as final layer";
@@ -47,6 +77,15 @@ class prototype_layers(prototype_aux):
     @accepts("self", final_layer=bool, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def append_relu(self, final_layer=False):
+        '''
+        Append rectified linear unit activation to base network in transfer learning
+
+        Args:
+            final_layer (bool): Indicator that this layer marks the end of network.
+
+        Returns:
+            None
+        '''
         if(self.system_dict["model"]["final_layer"]):
             msg = "Cannot append more layers.\n";
             msg += "Tip: Previously appended layer termed as final layer";
@@ -62,6 +101,15 @@ class prototype_layers(prototype_aux):
     @accepts("self", final_layer=bool, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def append_sigmoid(self, final_layer=False):
+        '''
+        Append sigmoid activation to base network in transfer learning
+
+        Args:
+            final_layer (bool): Indicator that this layer marks the end of network.
+
+        Returns:
+            None
+        '''
         if(self.system_dict["model"]["final_layer"]):
             msg = "Cannot append more layers.\n";
             msg += "Tip: Previously appended layer termed as final layer";
@@ -76,6 +124,15 @@ class prototype_layers(prototype_aux):
     @accepts("self", final_layer=bool, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def append_tanh(self, final_layer=False):
+        '''
+        Append tanh activation to base network in transfer learning
+
+        Args:
+            final_layer (bool): Indicator that this layer marks the end of network.
+
+        Returns:
+            None
+        '''
         if(self.system_dict["model"]["final_layer"]):
             msg = "Cannot append more layers.\n";
             msg += "Tip: Previously appended layer termed as final layer";
@@ -90,6 +147,17 @@ class prototype_layers(prototype_aux):
     @accepts("self", beta=[float, int], threshold=[float, int], final_layer=bool, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def append_softplus(self, beta=1, threshold=20, final_layer=False):
+        '''
+        Append softplus activation to base network in transfer learning
+
+        Args:
+            beta (int): Multiplicative factor
+            threshold (int): softplus (thresholded relu) limit 
+            final_layer (bool): Indicator that this layer marks the end of network.
+
+        Returns:
+            None
+        '''
         if(self.system_dict["model"]["final_layer"]):
             msg = "Cannot append more layers.\n";
             msg += "Tip: Previously appended layer termed as final layer";
@@ -104,6 +172,15 @@ class prototype_layers(prototype_aux):
     @accepts("self", final_layer=bool, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def append_softsign(self, final_layer=False):
+        '''
+        Append softsign activation to base network in transfer learning
+
+        Args:
+            final_layer (bool): Indicator that this layer marks the end of network.
+
+        Returns:
+            None
+        '''
         if(self.system_dict["model"]["final_layer"]):
             msg = "Cannot append more layers.\n";
             msg += "Tip: Previously appended layer termed as final layer";
@@ -120,6 +197,16 @@ class prototype_layers(prototype_aux):
     @accepts("self", negative_slope=[float, int], final_layer=bool, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def append_leakyrelu(self, negative_slope=0.01, final_layer=False):
+        '''
+        Append Leaky - ReLU activation to base network in transfer learning
+
+        Args:
+            negative_slope (float): Multiplicatve factor towards negative spectrum of real numbers.
+            final_layer (bool): Indicator that this layer marks the end of network.
+
+        Returns:
+            None
+        '''
         if(self.system_dict["model"]["final_layer"]):
             msg = "Cannot append more layers.\n";
             msg += "Tip: Previously appended layer termed as final layer";
@@ -136,6 +223,16 @@ class prototype_layers(prototype_aux):
     @accepts("self", num_parameters=int, init=[int, float], final_layer=bool, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def append_prelu(self, num_parameters=1, init=0.25, final_layer=False):
+        '''
+        Append Learnable parameerized rectified linear unit activation to base network in transfer learning
+
+        Args:
+            init (float): Initialization value for multiplicatve factor towards negative spectrum of real numbers.
+            final_layer (bool): Indicator that this layer marks the end of network.
+
+        Returns:
+            None
+        '''
         if(self.system_dict["model"]["final_layer"]):
             msg = "Cannot append more layers.\n";
             msg += "Tip: Previously appended layer termed as final layer";
@@ -150,6 +247,16 @@ class prototype_layers(prototype_aux):
     @accepts("self", alpha=[float, int], final_layer=bool, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def append_elu(self, alpha=1.0, final_layer=False):
+        '''
+        Append exponential linear unit activation to base network in transfer learning
+
+        Args:
+            alpha (float): Multiplicatve factor.
+            final_layer (bool): Indicator that this layer marks the end of network.
+
+        Returns:
+            None
+        '''
         if(self.system_dict["model"]["final_layer"]):
             msg = "Cannot append more layers.\n";
             msg += "Tip: Previously appended layer termed as final layer";
@@ -164,6 +271,15 @@ class prototype_layers(prototype_aux):
     @accepts("self", final_layer=bool, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def append_selu(self, final_layer=False):
+        '''
+        Append scaled exponential linear unit activation to base network in transfer learning
+
+        Args:
+            final_layer (bool): Indicator that this layer marks the end of network.
+
+        Returns:
+            None
+        '''
         if(self.system_dict["model"]["final_layer"]):
             msg = "Cannot append more layers.\n";
             msg += "Tip: Previously appended layer termed as final layer";
@@ -180,6 +296,16 @@ class prototype_layers(prototype_aux):
     @accepts("self", beta=[float, int], final_layer=bool, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def append_swish(self, beta=1.0, final_layer=False):
+        '''
+        Append swish activation to base network in transfer learning
+
+        Args:
+            beta (bool): Multiplicative factor
+            final_layer (bool): Indicator that this layer marks the end of network.
+
+        Returns:
+            None
+        '''
         if(self.system_dict["model"]["final_layer"]):
             msg = "Cannot append more layers.\n";
             msg += "Tip: Previously appended layer termed as final layer";
@@ -202,6 +328,30 @@ class prototype_layers(prototype_aux):
     @TraceFunction(trace_args=True, trace_rv=True)
     def convolution1d(self, output_channels=3, kernel_size=3, stride=1, padding="in_eq_out", 
         groups=1, dilation=1, use_bias=True, layout='NCW', uid=None):
+        '''
+        Append 1d-convolution to custom network
+
+        Args:
+            output_channels (int): Number of output features for this layer
+            kernel_size (int, tuple): kernel matrix size 
+            stride (int, tuple): kernel movement stride  
+            padding (int, tuple, str): Zero padding applied to input
+                                        1) "in_eq_out": Automated padding applied to keep output shape same as input
+                                        2) integer or tuple value: Manually add padding 
+            groups (int): Number of groups for grouped convolution
+            dilation (int): Factor for dilated convolution
+            use_bias (bool): If True, learnable bias is added
+            layout (str): Either of these values (order)
+                            1) 'NCW' - order
+                            2) 'NWC' - order
+                            - N: Number of elements in batches
+                            - C: Number of channels
+                            - W: Number of features in layers
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp={};
         tmp["uid"] = uid;
         tmp["name"] = "convolution1d";
@@ -229,6 +379,31 @@ class prototype_layers(prototype_aux):
     @TraceFunction(trace_args=True, trace_rv=True)
     def convolution2d(self, output_channels=3, kernel_size=3, stride=1, padding="in_eq_out", 
         groups=1, dilation=1, use_bias=True, layout='NCHW', uid=None):
+        '''
+        Append 2d-convolution to custom network
+
+        Args:
+            output_channels (int): Number of output features for this layer
+            kernel_size (int, tuple): kernel matrix size 
+            stride (int, tuple): kernel movement stride  
+            padding (int, tuple, str): Zero padding applied to input
+                                        1) "in_eq_out": Automated padding applied to keep output shape same as input
+                                        2) integer or tuple value: Manually add padding 
+            groups (int): Number of groups for grouped convolution
+            dilation (int): Factor for dilated convolution
+            use_bias (bool): If True, learnable bias is added
+            layout (str): Either of these values (order)
+                            1) 'NCHW' - Order
+                            2) 'NHWC' - Order
+                            - N: Number of elements in batches
+                            - C: Number of channels
+                            - H: Height of features in layers
+                            - W: Number of features in layers
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp={};
         tmp["uid"] = uid;
         tmp["name"] = "convolution2d";
@@ -257,6 +432,31 @@ class prototype_layers(prototype_aux):
     @TraceFunction(trace_args=True, trace_rv=True)
     def convolution(self, output_channels=3, kernel_size=3, stride=1, padding="in_eq_out", 
         groups=1, dilation=1, use_bias=True, layout='NCHW', uid=None):
+        '''
+        Append 2d-convolution to custom network
+
+        Args:
+            output_channels (int): Number of output features for this layer
+            kernel_size (int, tuple): kernel matrix size 
+            stride (int, tuple): kernel movement stride  
+            padding (int, tuple, str): Zero padding applied to input
+                                        1) "in_eq_out": Automated padding applied to keep output shape same as input
+                                        2) integer or tuple value: Manually add padding 
+            groups (int): Number of groups for grouped convolution
+            dilation (int): Factor for dilated convolution
+            use_bias (bool): If True, learnable bias is added
+            layout (str): Either of these values (order)
+                            1) 'NCHW' - Order
+                            2) 'NHWC' - Order
+                            - N: Number of elements in batches
+                            - C: Number of channels
+                            - H: Height of features in layers
+                            - W: Number of features in layers
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp={};
         tmp["uid"] = uid;
         tmp["name"] = "convolution2d";
@@ -284,6 +484,32 @@ class prototype_layers(prototype_aux):
     @TraceFunction(trace_args=True, trace_rv=True)
     def convolution3d(self, output_channels=3, kernel_size=3, stride=1, padding="in_eq_out", 
         groups=1, dilation=1, use_bias=True, layout='NCDHW', uid=None):
+        '''
+        Append 3d-convolution to custom network
+
+        Args:
+            output_channels (int): Number of output features for this layer
+            kernel_size (int, tuple): kernel matrix size 
+            stride (int, tuple): kernel movement stride  
+            padding (int, tuple, str): Zero padding applied to input
+                                        1) "in_eq_out": Automated padding applied to keep output shape same as input
+                                        2) integer or tuple value: Manually add padding 
+            groups (int): Number of groups for grouped convolution
+            dilation (int): Factor for dilated convolution
+            use_bias (bool): If True, learnable bias is added
+            layout (str): Either of these values (order)
+                            1) 'NCDHW' - Order
+                            2) 'NDHWC' - Order
+                            - N: Number of elements in batches
+                            - C: Number of channels
+                            - D: Depth of features in layers
+                            - H: Height of features in layers
+                            - W: Number of features in layers
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp={};
         tmp["uid"] = uid;
         tmp["name"] = "convolution3d";
@@ -311,6 +537,31 @@ class prototype_layers(prototype_aux):
     @TraceFunction(trace_args=True, trace_rv=True)
     def transposed_convolution1d(self, output_channels=3, kernel_size=3, stride=1, padding="in_eq_out", 
         output_padding=0, groups=1, dilation=1, use_bias=True, layout='NCW', uid=None):
+        '''
+        Append 1d-transposed-convolution to custom network
+
+        Args:
+            output_channels (int): Number of output features for this layer
+            kernel_size (int, tuple): kernel matrix size 
+            stride (int, tuple): kernel movement stride  
+            padding (int, tuple, str): Zero padding applied to input
+                                        1) "in_eq_out": Automated padding applied to keep output shape same as input
+                                        2) integer or tuple value: Manually add padding 
+            output_padding (int): Additional padding applied to output
+            groups (int): Number of groups for grouped convolution
+            dilation (int): Factor for dilated convolution
+            use_bias (bool): If True, learnable bias is added
+            layout (str): Either of these values (order)
+                            1) 'NCW' - order
+                            2) 'NWC' - order
+                            - N: Number of elements in batches
+                            - C: Number of channels
+                            - W: Number of features in layers
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp={};
         tmp["uid"] = uid;
         tmp["name"] = "transposed_convolution1d";
@@ -339,6 +590,32 @@ class prototype_layers(prototype_aux):
     @TraceFunction(trace_args=True, trace_rv=True)
     def transposed_convolution(self, output_channels=3, kernel_size=3, stride=1, padding="in_eq_out", 
         output_padding=0, groups=1, dilation=1, use_bias=True, layout='NCHW', uid=None):
+        '''
+        Append 2d-transposed-convolution to custom network
+
+        Args:
+            output_channels (int): Number of output features for this layer
+            kernel_size (int, tuple): kernel matrix size 
+            stride (int, tuple): kernel movement stride  
+            padding (int, tuple, str): Zero padding applied to input
+                                        1) "in_eq_out": Automated padding applied to keep output shape same as input
+                                        2) integer or tuple value: Manually add padding 
+            output_padding (int): Additional padding applied to output
+            groups (int): Number of groups for grouped convolution
+            dilation (int): Factor for dilated convolution
+            use_bias (bool): If True, learnable bias is added
+            layout (str): Either of these values (order)
+                            1) 'NCHW' - Order
+                            2) 'NHWC' - Order
+                            - N: Number of elements in batches
+                            - C: Number of channels
+                            - H: Height of features in layers
+                            - W: Number of features in layers
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp={};
         tmp["uid"] = uid;
         tmp["name"] = "transposed_convolution2d";
@@ -367,6 +644,32 @@ class prototype_layers(prototype_aux):
     @TraceFunction(trace_args=True, trace_rv=True)
     def transposed_convolution2d(self, output_channels=3, kernel_size=3, stride=1, padding="in_eq_out", 
         output_padding=0, groups=1, dilation=1, use_bias=True, layout='NCHW', uid=None):
+        '''
+        Append 2d-transposed-convolution to custom network
+
+        Args:
+            output_channels (int): Number of output features for this layer
+            kernel_size (int, tuple): kernel matrix size 
+            stride (int, tuple): kernel movement stride  
+            padding (int, tuple, str): Zero padding applied to input
+                                        1) "in_eq_out": Automated padding applied to keep output shape same as input
+                                        2) integer or tuple value: Manually add padding 
+            output_padding (int): Additional padding applied to output
+            groups (int): Number of groups for grouped convolution
+            dilation (int): Factor for dilated convolution
+            use_bias (bool): If True, learnable bias is added
+            layout (str): Either of these values (order)
+                            1) 'NCHW' - Order
+                            2) 'NHWC' - Order
+                            - N: Number of elements in batches
+                            - C: Number of channels
+                            - H: Height of features in layers
+                            - W: Number of features in layers
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp={};
         tmp["uid"] = uid;
         tmp["name"] = "transposed_convolution2d";
@@ -396,6 +699,33 @@ class prototype_layers(prototype_aux):
     @TraceFunction(trace_args=True, trace_rv=True)
     def transposed_convolution3d(self, output_channels=3, kernel_size=3, stride=1, padding="in_eq_out", 
         output_padding=0, groups=1, dilation=1, use_bias=True, layout='NCDHW', uid=None):
+        '''
+        Append 3d-transposed-convolution to custom network
+
+        Args:
+            output_channels (int): Number of output features for this layer
+            kernel_size (int, tuple): kernel matrix size 
+            stride (int, tuple): kernel movement stride  
+            padding (int, tuple, str): Zero padding applied to input
+                                        1) "in_eq_out": Automated padding applied to keep output shape same as input
+                                        2) integer or tuple value: Manually add padding 
+            output_padding (int): Additional padding applied to output
+            groups (int): Number of groups for grouped convolution
+            dilation (int): Factor for dilated convolution
+            use_bias (bool): If True, learnable bias is added
+            layout (str): Either of these values (order)
+                            1) 'NCDHW' - Order
+                            2) 'NDHWC' - Order
+                            - N: Number of elements in batches
+                            - C: Number of channels
+                            - D: Depth of features in layers
+                            - H: Height of features in layers
+                            - W: Number of features in layers
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp={};
         tmp["uid"] = uid;
         tmp["name"] = "transposed_convolution3d";
@@ -425,6 +755,29 @@ class prototype_layers(prototype_aux):
     @TraceFunction(trace_args=True, trace_rv=True)
     def max_pooling1d(self, kernel_size=2, stride=None, padding=0, dilation=1, 
         return_indices=False, ceil_mode=False, layout='NCW', uid=None):
+        '''
+        Append 1d-max-pooling to custom network
+
+        Args:
+            kernel_size (int, tuple): kernel matrix size 
+            stride (int, tuple): kernel movement stride  
+            padding (int, tuple, str): Zero padding applied to input
+                                        1) "in_eq_out": Automated padding applied to keep output shape same as input
+                                        2) integer or tuple value: Manually add padding 
+            dilation (int): Factor for dilated pooling
+            return_indices (bool): Fixed value set as False
+            ceil_mode (bool): If True, apply ceil math operation post pooling
+            layout (str): Either of these values (order)
+                            1) 'NCW' - order
+                            2) 'NWC' - order
+                            - N: Number of elements in batches
+                            - C: Number of channels
+                            - W: Number of features in layers
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "max_pooling1d";
@@ -453,6 +806,30 @@ class prototype_layers(prototype_aux):
     @TraceFunction(trace_args=True, trace_rv=True)
     def max_pooling2d(self, kernel_size=2, stride=None, padding=0, dilation=1, 
         return_indices=False, ceil_mode=False, layout='NCHW', uid=None):
+        '''
+        Append 2d-max-pooling to custom network
+
+        Args:
+            kernel_size (int, tuple): kernel matrix size 
+            stride (int, tuple): kernel movement stride  
+            padding (int, tuple, str): Zero padding applied to input
+                                        1) "in_eq_out": Automated padding applied to keep output shape same as input
+                                        2) integer or tuple value: Manually add padding 
+            dilation (int): Factor for dilated pooling
+            return_indices (bool): Fixed value set as False
+            ceil_mode (bool): If True, apply ceil math operation post pooling
+            layout (str): Either of these values (order)
+                            1) 'NCHW' - Order
+                            2) 'NHWC' - Order
+                            - N: Number of elements in batches
+                            - C: Number of channels
+                            - H: Height of features in layers
+                            - W: Number of features in layers
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "max_pooling2d";
@@ -480,6 +857,30 @@ class prototype_layers(prototype_aux):
     @TraceFunction(trace_args=True, trace_rv=True)
     def max_pooling(self, kernel_size=2, stride=None, padding=0, dilation=1, 
         return_indices=False, ceil_mode=False, layout='NCHW', uid=None):
+        '''
+        Append 2d-max-pooling to custom network
+
+        Args:
+            kernel_size (int, tuple): kernel matrix size 
+            stride (int, tuple): kernel movement stride  
+            padding (int, tuple, str): Zero padding applied to input
+                                        1) "in_eq_out": Automated padding applied to keep output shape same as input
+                                        2) integer or tuple value: Manually add padding 
+            dilation (int): Factor for dilated pooling
+            return_indices (bool): Fixed value set as False
+            ceil_mode (bool): If True, apply ceil math operation post pooling
+            layout (str): Either of these values (order)
+                            1) 'NCHW' - Order
+                            2) 'NHWC' - Order
+                            - N: Number of elements in batches
+                            - C: Number of channels
+                            - H: Height of features in layers
+                            - W: Number of features in layers
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "max_pooling2d";
@@ -507,6 +908,31 @@ class prototype_layers(prototype_aux):
     @TraceFunction(trace_args=True, trace_rv=True)
     def max_pooling3d(self, kernel_size=2, stride=None, padding=0, dilation=1, 
         return_indices=False, ceil_mode=False, layout='NCDHW', uid=None):
+        '''
+        Append 3d-max-pooling to custom network
+
+        Args:
+            kernel_size (int, tuple): kernel matrix size 
+            stride (int, tuple): kernel movement stride  
+            padding (int, tuple, str): Zero padding applied to input
+                                        1) "in_eq_out": Automated padding applied to keep output shape same as input
+                                        2) integer or tuple value: Manually add padding 
+            dilation (int): Factor for dilated pooling
+            return_indices (bool): Fixed value set as False
+            ceil_mode (bool): If True, apply ceil math operation post pooling
+            layout (str): Either of these values (order)
+                            1) 'NCDHW' - Order
+                            2) 'NDHWC' - Order
+                            - N: Number of elements in batches
+                            - C: Number of channels
+                            - D: Depth of features in layers
+                            - H: Height of features in layers
+                            - W: Number of features in layers
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "max_pooling3d";
@@ -538,6 +964,30 @@ class prototype_layers(prototype_aux):
     def average_pooling1d(self, kernel_size=2, stride=None, padding=0, dilation=1, 
         return_indices=False, ceil_mode=False, include_padding_in_calculation=True, 
         layout='NCW', uid=None):
+        '''
+        Append 1d-average-pooling to custom network
+
+        Args:
+            kernel_size (int, tuple): kernel matrix size 
+            stride (int, tuple): kernel movement stride  
+            padding (int, tuple, str): Zero padding applied to input
+                                        1) "in_eq_out": Automated padding applied to keep output shape same as input
+                                        2) integer or tuple value: Manually add padding 
+            dilation (int): Factor for dilated pooling
+            return_indices (bool): Fixed value set as False
+            include_padding_in_calculation (bool): If True, padding will be considered.
+            ceil_mode (bool): If True, apply ceil math operation post pooling
+            layout (str): Either of these values (order)
+                            1) 'NCW' - order
+                            2) 'NWC' - order
+                            - N: Number of elements in batches
+                            - C: Number of channels
+                            - W: Number of features in layers
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "average_pooling1d";
@@ -569,6 +1019,31 @@ class prototype_layers(prototype_aux):
     def average_pooling2d(self, kernel_size=2, stride=None, padding=0, dilation=1, 
         return_indices=False, ceil_mode=False, include_padding_in_calculation=True, 
         layout='NCHW', uid=None):
+        '''
+        Append 2d-average-pooling to custom network
+
+        Args:
+            kernel_size (int, tuple): kernel matrix size 
+            stride (int, tuple): kernel movement stride  
+            padding (int, tuple, str): Zero padding applied to input
+                                        1) "in_eq_out": Automated padding applied to keep output shape same as input
+                                        2) integer or tuple value: Manually add padding 
+            dilation (int): Factor for dilated pooling
+            return_indices (bool): Fixed value set as False
+            ceil_mode (bool): If True, apply ceil math operation post pooling
+            include_padding_in_calculation (bool): If True, padding will be considered.
+            layout (str): Either of these values (order)
+                            1) 'NCHW' - Order
+                            2) 'NHWC' - Order
+                            - N: Number of elements in batches
+                            - C: Number of channels
+                            - H: Height of features in layers
+                            - W: Number of features in layers
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "average_pooling2d";
@@ -600,6 +1075,31 @@ class prototype_layers(prototype_aux):
     def average_pooling(self, kernel_size=2, stride=None, padding=0, dilation=1, 
         return_indices=False, ceil_mode=False, include_padding_in_calculation=True, 
         layout='NCHW', uid=None):
+        '''
+        Append 2d-average-pooling to custom network
+
+        Args:
+            kernel_size (int, tuple): kernel matrix size 
+            stride (int, tuple): kernel movement stride  
+            padding (int, tuple, str): Zero padding applied to input
+                                        1) "in_eq_out": Automated padding applied to keep output shape same as input
+                                        2) integer or tuple value: Manually add padding 
+            dilation (int): Factor for dilated pooling
+            return_indices (bool): Fixed value set as False
+            ceil_mode (bool): If True, apply ceil math operation post pooling
+            include_padding_in_calculation (bool): If True, padding will be considered.
+            layout (str): Either of these values (order)
+                            1) 'NCHW' - Order
+                            2) 'NHWC' - Order
+                            - N: Number of elements in batches
+                            - C: Number of channels
+                            - H: Height of features in layers
+                            - W: Number of features in layers
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "average_pooling2d";
@@ -631,6 +1131,32 @@ class prototype_layers(prototype_aux):
     def average_pooling3d(self, kernel_size=2, stride=None, padding=0, dilation=1, 
         return_indices=False, ceil_mode=False, include_padding_in_calculation=True, 
         layout='NCDHW', uid=None):
+        '''
+        Append 3d-average-pooling to custom network
+
+        Args:
+            kernel_size (int, tuple): kernel matrix size 
+            stride (int, tuple): kernel movement stride  
+            padding (int, tuple, str): Zero padding applied to input
+                                        1) "in_eq_out": Automated padding applied to keep output shape same as input
+                                        2) integer or tuple value: Manually add padding 
+            dilation (int): Factor for dilated pooling
+            return_indices (bool): Fixed value set as False
+            ceil_mode (bool): If True, apply ceil math operation post pooling
+            include_padding_in_calculation (bool): If True, padding will be considered.
+            layout (str): Either of these values (order)
+                            1) 'NCDHW' - Order
+                            2) 'NDHWC' - Order
+                            - N: Number of elements in batches
+                            - C: Number of channels
+                            - D: Depth of features in layers
+                            - H: Height of features in layers
+                            - W: Number of features in layers
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "average_pooling3d";
@@ -654,6 +1180,21 @@ class prototype_layers(prototype_aux):
     @accepts("self", layout=str, uid=[None, str], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def global_max_pooling1d(self, layout='NCW', uid=None):
+        '''
+        Append 1d-global-max-pooling to custom network
+
+        Args:
+            layout (str): Either of these values (order)
+                            1) 'NCW' - order
+                            2) 'NWC' - order
+                            - N: Number of elements in batches
+                            - C: Number of channels
+                            - W: Number of features in layers
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "global_max_pooling1d";
@@ -670,6 +1211,22 @@ class prototype_layers(prototype_aux):
     @accepts("self", layout=str, uid=[None, str], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def global_max_pooling2d(self, layout='NCHW', uid=None):
+        '''
+        Append 2d-global-max-pooling to custom network
+
+        Args:
+            layout (str): Either of these values (order)
+                            1) 'NCHW' - Order
+                            2) 'NHWC' - Order
+                            - N: Number of elements in batches
+                            - C: Number of channels
+                            - H: Height of features in layers
+                            - W: Number of features in layers
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "global_max_pooling2d";
@@ -687,6 +1244,22 @@ class prototype_layers(prototype_aux):
     @accepts("self", layout=str, uid=[None, str], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def global_max_pooling(self, layout='NCHW', uid=None):
+        '''
+        Append 2d-global-max-pooling to custom network
+
+        Args:
+            layout (str): Either of these values (order)
+                            1) 'NCHW' - Order
+                            2) 'NHWC' - Order
+                            - N: Number of elements in batches
+                            - C: Number of channels
+                            - H: Height of features in layers
+                            - W: Number of features in layers
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "global_max_pooling2d";
@@ -703,6 +1276,23 @@ class prototype_layers(prototype_aux):
     @accepts("self", layout=str, uid=[None, str], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def global_max_pooling3d(self, layout='NCDHW', uid=None):
+        '''
+        Append 3d-global-max-pooling to custom network
+
+        Args:
+            layout (str): Either of these values (order)
+                            1) 'NCDHW' - Order
+                            2) 'NDHWC' - Order
+                            - N: Number of elements in batches
+                            - C: Number of channels
+                            - D: Depth of features in layers
+                            - H: Height of features in layers
+                            - W: Number of features in layers
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "global_max_pooling3d";
@@ -719,6 +1309,21 @@ class prototype_layers(prototype_aux):
     @accepts("self", layout=str, uid=[None, str], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def global_average_pooling1d(self, layout='NCW', uid=None):
+        '''
+        Append 1d-global-average-pooling to custom network
+
+        Args:
+            layout (str): Either of these values (order)
+                            1) 'NCW' - order
+                            2) 'NWC' - order
+                            - N: Number of elements in batches
+                            - C: Number of channels
+                            - W: Number of features in layers
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "global_average_pooling1d";
@@ -735,6 +1340,22 @@ class prototype_layers(prototype_aux):
     @accepts("self", layout=str, uid=[None, str], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def global_average_pooling2d(self, layout='NCHW', uid=None):
+        '''
+        Append 2d-global-average-pooling to custom network
+
+        Args:
+            layout (str): Either of these values (order)
+                            1) 'NCHW' - Order
+                            2) 'NHWC' - Order
+                            - N: Number of elements in batches
+                            - C: Number of channels
+                            - H: Height of features in layers
+                            - W: Number of features in layers
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "global_average_pooling2d";
@@ -751,6 +1372,22 @@ class prototype_layers(prototype_aux):
     @accepts("self", layout=str, uid=[None, str], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def global_average_pooling(self, layout='NCHW', uid=None):
+        '''
+        Append 2d-global-average-pooling to custom network
+
+        Args:
+            layout (str): Either of these values (order)
+                            1) 'NCHW' - Order
+                            2) 'NHWC' - Order
+                            - N: Number of elements in batches
+                            - C: Number of channels
+                            - H: Height of features in layers
+                            - W: Number of features in layers
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "global_average_pooling2d";
@@ -767,6 +1404,23 @@ class prototype_layers(prototype_aux):
     @accepts("self", layout=str, uid=[None, str], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def global_average_pooling3d(self, layout='NCDHW', uid=None):
+        '''
+        Append 3d-global-average-pooling to custom network
+
+        Args:
+            layout (str): Either of these values (order)
+                            1) 'NCDHW' - Order
+                            2) 'NDHWC' - Order
+                            - N: Number of elements in batches
+                            - C: Number of channels
+                            - D: Depth of features in layers
+                            - H: Height of features in layers
+                            - W: Number of features in layers
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "global_average_pooling3d";
@@ -782,6 +1436,18 @@ class prototype_layers(prototype_aux):
     @accepts("self", units=int, use_bias=bool, flatten=bool, uid=[None, str], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def fully_connected(self, units=512, use_bias=True, flatten=True, uid=None):
+        '''
+        Append fully-connected (dense) layer to custom network
+
+        Args:
+            units (int): Number of neurons in the layer
+            use_bias (bool): If True, learnable bias is added
+            flatten (bool): Fixed to True
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "fully_connected";
@@ -800,6 +1466,17 @@ class prototype_layers(prototype_aux):
     @accepts("self", drop_probability=[int, float], axes=tuple, uid=[None, str], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def dropout(self, drop_probability=0.2, axes=(), uid=None):
+        '''
+        Append dropout layer to custom network
+
+        Args:
+            drop_probability (float): Probability for not considering neurons in the output
+            axes (tuple): Channel axis to implement dropout over
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "dropout";
@@ -817,6 +1494,15 @@ class prototype_layers(prototype_aux):
     @accepts("self", uid=[None, str], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def flatten(self, uid=None):
+        '''
+        Append flatten layer to custom network
+
+        Args:
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "flatten";
@@ -832,6 +1518,15 @@ class prototype_layers(prototype_aux):
     @accepts("self", uid=[None, str], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def identity(self, uid=None):
+        '''
+        Append identity layer to custom network
+
+        Args:
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "identity";
@@ -847,6 +1542,15 @@ class prototype_layers(prototype_aux):
     @accepts("self", uid=[None, str], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def add(self, uid=None):
+        '''
+        Append elementwise addition layer to custom network
+
+        Args:
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "add";
@@ -861,6 +1565,15 @@ class prototype_layers(prototype_aux):
     @accepts("self", uid=[None, str], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def concatenate(self, uid=None):
+        '''
+        Append concatenation layer to custom network
+
+        Args:
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "concatenate";
@@ -879,6 +1592,19 @@ class prototype_layers(prototype_aux):
     @TraceFunction(trace_args=True, trace_rv=True)
     def batch_normalization(self, moving_average_momentum=0.9, epsilon=0.00001, use_trainable_parameters=True, 
         activate_scale_shift_operation=False, uid=None):
+        '''
+        Append batch normalization layer to custom network
+
+        Args:
+            moving_average_momentum (float): Normalization momentum value
+            epsilon (float): Value to avoid division by zero
+            use_trainable_paramemetrs (bool): If True, batch norm turns into a trainable layer
+            activate_scale_shift_operation (bool): Fixed status - False
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "batch_normalization";
@@ -902,6 +1628,18 @@ class prototype_layers(prototype_aux):
     @TraceFunction(trace_args=True, trace_rv=True)
     def instance_normalization(self, moving_average_momentum=0.9, epsilon=0.00001, use_trainable_parameters=True, 
         uid=None):
+        '''
+        Append instace normalization layer to custom network
+
+        Args:
+            moving_average_momentum (float): Normalization momentum value
+            epsilon (float): Value to avoid division by zero
+            use_trainable_paramemetrs (bool): If True, batch norm turns into a trainable layer
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "instance_normalization";
@@ -923,6 +1661,18 @@ class prototype_layers(prototype_aux):
     @TraceFunction(trace_args=True, trace_rv=True)
     def layer_normalization(self, moving_average_momentum=0.9, epsilon=0.00001, use_trainable_parameters=True, 
         uid=None):
+        '''
+        Append layer normalization layer to custom network
+
+        Args:
+            moving_average_momentum (float): Normalization momentum value
+            epsilon (float): Value to avoid division by zero
+            use_trainable_paramemetrs (bool): If True, batch norm turns into a trainable layer
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "layer_normalization";
@@ -940,6 +1690,15 @@ class prototype_layers(prototype_aux):
     @accepts("self", uid=[None, str], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def relu(self, uid=None):
+        '''
+        Append rectified linear unit activation to custom network
+
+        Args:
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "relu";
@@ -955,6 +1714,15 @@ class prototype_layers(prototype_aux):
     @accepts("self", uid=[None, str], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def sigmoid(self, uid=None):
+        '''
+        Append sigmoid activation to custom network
+
+        Args:
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "sigmoid";
@@ -970,6 +1738,15 @@ class prototype_layers(prototype_aux):
     @accepts("self", uid=[None, str], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def tanh(self, uid=None):
+        '''
+        Append tanh activation to custom network
+
+        Args:
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "tanh";
@@ -985,6 +1762,17 @@ class prototype_layers(prototype_aux):
     @accepts("self", beta=[int, float], threshold=[int, float], uid=[None, str], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def softplus(self, beta=1, threshold=20, uid=None): 
+        '''
+        Append softplus activation to custom network
+
+        Args:
+            beta (int): Multiplicative factor
+            threshold (int): softplus (thresholded relu) limit 
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "softplus";
@@ -1002,6 +1790,15 @@ class prototype_layers(prototype_aux):
     @accepts("self", uid=[None, str], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def softsign(self, uid=None): 
+        '''
+        Append softsign activation to custom network
+
+        Args:
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "softsign";
@@ -1017,6 +1814,16 @@ class prototype_layers(prototype_aux):
     @accepts("self", alpha=float, uid=[None, str], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def elu(self, alpha=1.0, uid=None): 
+        '''
+        Append exponential linear unit activation to custom network
+
+        Args:
+            alpha (float): Multiplicative factor
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "elu";
@@ -1032,6 +1839,15 @@ class prototype_layers(prototype_aux):
     @accepts("self", uid=[None, str], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def gelu(self, uid=None): 
+        '''
+        Append gated exponential linear unit activation to custom network
+
+        Args:
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "gelu";
@@ -1046,6 +1862,16 @@ class prototype_layers(prototype_aux):
     @accepts("self", alpha=float, uid=[None, str], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def leaky_relu(self, alpha=0.01, uid=None): 
+        '''
+        Append leaky relu activation to custom network
+
+        Args:
+            alpha (float): Multiplicatve factor towards negative spectrum of real numbers.
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "leaky_relu";
@@ -1062,6 +1888,15 @@ class prototype_layers(prototype_aux):
     @accepts("self", uid=[None, str], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def prelu(self, uid=None): 
+        '''
+        Append paramemeterized rectified linear unit activation to custom network
+
+        Args:
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "prelu";
@@ -1077,6 +1912,15 @@ class prototype_layers(prototype_aux):
     @accepts("self", uid=[None, str], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def selu(self, uid=None): 
+        '''
+        Append scaled exponential linear unit activation to custom network
+
+        Args:
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "selu";
@@ -1092,6 +1936,16 @@ class prototype_layers(prototype_aux):
     @accepts("self", beta=float, uid=[None, str], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def swish(self, beta=1.0, uid=None): 
+        '''
+        Append swish activation to custom network
+
+        Args:
+            beta (float): Multiplicative factor
+            uid (str): Unique name for layer, if not mentioned then dynamically assigned
+
+        Returns:
+            dict: Containing all the parameters set as per function arguments
+        '''
         tmp = {};
         tmp["uid"] = uid;
         tmp["name"] = "swish";
@@ -1115,6 +1969,18 @@ class prototype_layers(prototype_aux):
     @accepts("self", output_channels=int, stride=[None, int, tuple], downsample=bool, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def resnet_v1_block(self, output_channels=16, stride=1, downsample=True):
+        '''
+        Append Resnet V1 Block to custom network
+
+        Args:
+            output_channels (int): Number of output features for this block
+            stride (int, tuple): kernel movement stride  
+            downsample (bool): If False, residual branch is a shortcut,
+                                Else, residual branch has non-identity layers
+
+        Returns:
+            list: Containing all the layer dictionaries arranged as per function arguments
+        '''
         network = [];
     
         subnetwork = [];
@@ -1150,6 +2016,18 @@ class prototype_layers(prototype_aux):
     @accepts("self", output_channels=int, stride=[None, int, tuple], downsample=bool, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def resnet_v2_block(self, output_channels=16, stride=1, downsample=True):
+        '''
+        Append Resnet V2 Block to custom network
+
+        Args:
+            output_channels (int): Number of output features for this block
+            stride (int, tuple): kernel movement stride  
+            downsample (bool): If False, residual branch is a shortcut,
+                                Else, residual branch has non-identity layers
+
+        Returns:
+            list: Containing all the layer dictionaries arranged as per function arguments
+        '''
         network = [];
         network.append(self.batch_normalization());
         network.append(self.relu());
@@ -1184,6 +2062,18 @@ class prototype_layers(prototype_aux):
     @accepts("self", output_channels=int, stride=[None, int, tuple], downsample=bool, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def resnet_v1_bottleneck_block(self, output_channels=16, stride=1, downsample=True):
+        '''
+        Append Resnet V1 Bottleneck Block to custom network
+
+        Args:
+            output_channels (int): Number of output features for this block
+            stride (int, tuple): kernel movement stride  
+            downsample (bool): If False, residual branch is a shortcut,
+                                Else, residual branch has non-identity layers
+
+        Returns:
+            list: Containing all the layer dictionaries arranged as per function arguments
+        '''
         network = [];
     
         subnetwork = [];
@@ -1223,6 +2113,18 @@ class prototype_layers(prototype_aux):
     @accepts("self", output_channels=int, stride=[None, int, tuple], downsample=bool, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def resnet_v2_bottleneck_block(self, output_channels=16, stride=1, downsample=True):
+        '''
+        Append Resnet V2 Bottleneck Block to custom network
+
+        Args:
+            output_channels (int): Number of output features for this block
+            stride (int): kernel movement stride  
+            downsample (bool): If False, residual branch is a shortcut,
+                                Else, residual branch has non-identity layers
+
+        Returns:
+            list: Containing all the layer dictionaries arranged as per function arguments
+        '''
         network = [];
         network.append(self.batch_normalization());
         network.append(self.relu());
@@ -1264,6 +2166,20 @@ class prototype_layers(prototype_aux):
         downsample=bool, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def resnext_block(self, output_channels=256, cardinality=8, bottleneck_width=4, stride=1, downsample=True):
+        '''
+        Append Resnext Block to custom network
+
+        Args:
+            output_channels (int): Number of output features for this block
+            cardinality (int): cardinality dimensions for complex transformations
+            bottleneck_width (int): Bottleneck dimensions for reducing number of features
+            stride (int): kernel movement stride  
+            downsample (bool): If False, residual branch is a shortcut,
+                                Else, residual branch has non-identity layers
+
+        Returns:
+            list: Containing all the layer dictionaries arranged as per function arguments
+        '''
         network = [];
     
         channels = output_channels//4;
@@ -1312,6 +2228,17 @@ class prototype_layers(prototype_aux):
         post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def mobilenet_v2_linear_bottleneck_block(self, output_channels=32, bottleneck_width=4, stride=1):
+        '''
+        Append Mobilenet V2 Linear Bottleneck Block to custom network
+
+        Args:
+            output_channels (int): Number of output features for this block
+            stride (int): kernel movement stride  
+            bottleneck_width (int): Bottleneck dimensions for reducing number of features
+
+        Returns:
+            list: Containing all the layer dictionaries arranged as per function arguments
+        '''
         network = [];
         
         subnetwork = [];
@@ -1354,6 +2281,19 @@ class prototype_layers(prototype_aux):
         padding=[None, int, tuple], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def separable_convolution_block(self, input_channels=16, output_channels=32, kernel_size=3, stride=1, padding=1):
+        '''
+        Append Separable convolution Block to custom network
+
+        Args:
+            input_channels (int): Number of input features for this block
+            output_channels (int): Number of output features for this block
+            kernel_size (int): Kernel matrix shape for all layers in this block
+            stride (int): kernel movement stride  
+            padding (int, tuple): external zero padding on input
+
+        Returns:
+            list: Containing all the layer dictionaries arranged as per function arguments
+        '''
         network = [];
         network.append(self.convolution(output_channels=input_channels, kernel_size=kernel_size, 
                                        stride=stride, padding=padding, groups=input_channels));
@@ -1375,6 +2315,17 @@ class prototype_layers(prototype_aux):
         post_trace=True)    
     @TraceFunction(trace_args=True, trace_rv=True)
     def mobilenet_v2_inverted_linear_bottleneck_block(self, output_channels=32, bottleneck_width=4, stride=1):
+        '''
+        Append Mobilenet V2 Inverted Linear Bottleneck Block to custom network
+
+        Args:
+            output_channels (int): Number of output features for this block
+            stride (int): kernel movement stride  
+            bottleneck_width (int): Bottleneck dimensions for reducing number of features
+
+        Returns:
+            list: Containing all the layer dictionaries arranged as per function arguments
+        '''
         network = [];
         
         subnetwork = [];
@@ -1418,6 +2369,18 @@ class prototype_layers(prototype_aux):
         post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def squeezenet_fire_block(self, squeeze_channels=16, expand_channels_1x1=32, expand_channels_3x3=64):
+        '''
+        Append Squeezenet Fire Block to custom network
+
+        Args:
+            squeeze_channels (int): Number of output features for this block
+            expand_channels_1x1 (int): Number of convolution_1x1 features for this block
+            expand_channels_3x3 (int): Number of convolution_3x3 features for this block
+            bottleneck_width (int): Bottleneck dimensions for reducing number of features
+
+        Returns:
+            list: Containing all the layer dictionaries arranged as per function arguments
+        '''
         network = [];
         
         network.append(self.convolution(output_channels=squeeze_channels, kernel_size=1, stride=1));
@@ -1454,6 +2417,17 @@ class prototype_layers(prototype_aux):
         post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def densenet_block(self, bottleneck_size=4, growth_rate=16, dropout=0.2):
+        '''
+        Append Densenet Block to custom network
+
+        Args:
+            bottleneck_size (int): Bottleneck dimensions for reducing number of features
+            growth_rate (int): Expansion rate for convolution layers for this block
+            dropout (float): Prbability for dropout layer post convolution
+
+        Returns:
+            list: Containing all the layer dictionaries arranged as per function arguments
+        '''
         network = [];
         
         subnetwork = [];
@@ -1491,6 +2465,18 @@ class prototype_layers(prototype_aux):
         padding=[None, int, tuple], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def conv_bn_relu_block(self, output_channels=64, kernel_size=1, stride=1, padding=None):
+        '''
+        Append Conv->batch_norm->relu Block to custom network
+
+        Args:
+            output_channels (int): Number of output features for this block
+            kernel_size (int): Kernel matrix shape for all layers in this block
+            stride (int): kernel movement stride  
+            padding (int, tuple): external zero padding on input
+
+        Returns:
+            list: Containing all the layer dictionaries arranged as per function arguments
+        '''
         network = [];
         if(padding):
             network.append(self.convolution(output_channels=output_channels, 
@@ -1517,6 +2503,18 @@ class prototype_layers(prototype_aux):
     @accepts("self", pooling_branch_channels=int, pool_type=str, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def inception_a_block(self, pooling_branch_channels=32, pool_type="avg"):
+        '''
+        Append Inception-A Block to custom network
+
+        Args:
+            pooling_branch_channels (int): Number of features for conv layers in pooling branch
+            pool_type (str): Either of these types
+                                - "avg" - Average pooling
+                                - "max" - Max pooling
+            
+        Returns:
+            list: Containing all the layer dictionaries arranged as per function arguments
+        '''
         network = [];
         
         subnetwork = [];
@@ -1559,6 +2557,17 @@ class prototype_layers(prototype_aux):
     @accepts("self", pool_type=str, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def inception_b_block(self, pool_type="avg"):
+        '''
+        Append Inception-B Block to custom network
+
+        Args:
+            pool_type (str): Either of these types
+                                - "avg" - Average pooling
+                                - "max" - Max pooling
+            
+        Returns:
+            list: Containing all the layer dictionaries arranged as per function arguments
+        '''
         network = [];
         
         subnetwork = [];
@@ -1597,6 +2606,18 @@ class prototype_layers(prototype_aux):
     @accepts("self", channels_7x7=int, pool_type=str, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def inception_c_block(self, channels_7x7=3, pool_type="avg"):
+        '''
+        Append Inception-C Block to custom network
+
+        Args:
+            channels_7x7 (int): Number of features for conv layers in channels_7x7 branch
+            pool_type (str): Either of these types
+                                - "avg" - Average pooling
+                                - "max" - Max pooling
+            
+        Returns:
+            list: Containing all the layer dictionaries arranged as per function arguments
+        '''
         network = [];
         
         subnetwork = [];
@@ -1644,6 +2665,17 @@ class prototype_layers(prototype_aux):
     @accepts("self", pool_type=str, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def inception_d_block(self, pool_type="avg"):
+        '''
+        Append Inception-D Block to custom network
+
+        Args:
+            pool_type (str): Either of these types
+                                - "avg" - Average pooling
+                                - "max" - Max pooling
+            
+        Returns:
+            list: Containing all the layer dictionaries arranged as per function arguments
+        '''
         network = [];
         
         subnetwork = [];
@@ -1685,7 +2717,16 @@ class prototype_layers(prototype_aux):
     @error_checks(None, post_trace=True)
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
-    def subbranch_block(self):    
+    def subbranch_block(self):  
+        '''
+        Append sub-branch Block to custom network
+
+        Args:
+            None
+            
+        Returns:
+            list: Containing all the layer dictionaries arranged as per function arguments
+        '''  
         subnetwork = [];
         branch_1 = [];
         branch_2 = [];
@@ -1706,6 +2747,17 @@ class prototype_layers(prototype_aux):
     @accepts("self", pool_type=str, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def inception_e_block(self, pool_type="avg"):
+        '''
+        Append Inception-C Block to custom network
+
+        Args:
+            pool_type (str): Either of these types
+                                - "avg" - Average pooling
+                                - "max" - Max pooling
+            
+        Returns:
+            list: Containing all the layer dictionaries arranged as per function arguments
+        '''
         network = [];
         
         subnetwork = [];

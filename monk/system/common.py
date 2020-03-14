@@ -7,6 +7,15 @@ from system.base_system_state import update_local_var
 @accepts(str, verbose=[int, str, bool], post_trace=True)
 @TraceFunction(trace_args=True, trace_rv=False)
 def read_json(fname, verbose=0):
+    '''
+    Read Json file - system dictionary file
+
+    Args:
+        fname (str): Path to file containing system states
+
+    Returns:
+        dict: loaded system dict
+    '''
     with open(fname) as json_file:
         system_dict = json.load(json_file);
         system_dict["verbose"] = verbose;
@@ -15,7 +24,16 @@ def read_json(fname, verbose=0):
 
 @accepts(dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
-def write_json(system_dict):    
+def write_json(system_dict):
+    '''
+    Write to Json file - system dictionary file
+
+    Args:
+        system_dict (dict): System dictionary storing experiment state and set variables
+
+    Returns:
+        None
+    '''
     fname = system_dict["fname_relative"];
     f = open(fname, 'w');
     wr = json.dumps(system_dict, indent=4)
@@ -26,6 +44,18 @@ def write_json(system_dict):
 @accepts(str, str, post_trace=True)
 @TraceFunction(trace_args=True, trace_rv=False)
 def parse_csv(fname, delimiter):
+    '''
+    Read CSV File - depricted function
+
+    Args:
+        fname (str): Path to CSV File
+        delimiter (str): Delimiter for csv file
+
+    Returns:
+        list: List of images in the csv file
+        list: List of corresponding labels
+        list: List of all the class names in the dataset
+    '''
     f = open(fname);
     lst = f.readlines();
     f.close();
@@ -46,6 +76,18 @@ def parse_csv(fname, delimiter):
 @accepts(str, str, post_trace=True)
 @TraceFunction(trace_args=True, trace_rv=False)
 def parse_csv_updated(fname, delimiter):
+    '''
+    Read CSV File
+
+    Args:
+        fname (str): Path to CSV File
+        delimiter (str): Delimiter for csv file
+
+    Returns:
+        list: List of images in the csv file
+        list: List of corresponding labels
+        list: List of all the class names in the dataset
+    '''
     df = pd.read_csv(fname);
     columns = df.columns;
     img_list = [];
@@ -67,6 +109,17 @@ def parse_csv_updated(fname, delimiter):
 
 
 def parse_csv2(fname, delimiter):
+    '''
+    Read CSV File - - General
+
+    Args:
+        fname (str): Path to CSV File
+        delimiter (str): Delimiter for csv file
+
+    Returns:
+        df: Dataframe from csv file
+        list: List of column names in csv file
+    '''
     df = pd.read_csv(fname, delimiter=delimiter);
     df = df.reindex(np.random.permutation(df.index));
     columns = df.columns;
@@ -82,6 +135,15 @@ def parse_csv2(fname, delimiter):
 @accepts(dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def save(system_dict):
+    '''
+    Save system dictionaries
+
+    Args:
+        system_dict (dict): System dictionary storing experiment state and set variables
+
+    Returns:
+        None
+    '''
     system_dict_copy = system_dict.copy();
     if(system_dict_copy["states"]["eval_infer"]):
         system_dict_tmp = read_json(system_dict_copy["fname_relative"]);
@@ -104,12 +166,31 @@ def save(system_dict):
 #@accepts(str, post_trace=True)
 @TraceFunction(trace_args=True, trace_rv=True)
 def create_dir(dir_path):
+    '''
+    Create a new directory
+
+    Args:
+        dir_path (str): Directory path and name
+
+    Returns:
+        None
+    '''
     if(not os.path.isdir(dir_path)):
         os.mkdir(dir_path);  
+
 
 #@accepts(str, post_trace=True)
 @TraceFunction(trace_args=True, trace_rv=True)
 def delete_dir(dir_path):
+    '''
+    Delete an existing directory
+
+    Args:
+        dir_path (str): Directory path and name
+
+    Returns:
+        None
+    '''
     if(os.path.isdir(dir_path)):
         shutil.rmtree(dir_path);
 

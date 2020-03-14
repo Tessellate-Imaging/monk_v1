@@ -1,5 +1,5 @@
+#Import Necessary Functions
 from system.imports import *
-
 from system.base_class import system
 from system.common import read_json
 from system.graphs.line import training_accuracy_curve
@@ -14,7 +14,15 @@ from system.graphs.bar import max_gpu_usage_plot
 
 
 class compare(system):
-    @accepts("self", verbose=[int, bool, str], post_trace=True)
+    '''
+    Class to compare multiple experiments
+
+    Args:
+        verbose (int): Set verbosity levels
+                        0 - Print Nothing
+                        1 - Print desired details
+    '''
+    @accepts("self", verbose=int, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
         super().__init__(verbose=verbose)
@@ -24,6 +32,15 @@ class compare(system):
     @accepts("self", str, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def Comparison(self, comparison_name):
+        '''
+        Create comparison project to compare and analyse multiple experiments 
+
+        Args:
+            comparison_name (str): Project Name
+
+        Returns:
+            None
+        '''  
         self.set_system_comparison(comparison_name); 
         self.custom_print("Comparison: - {}".format(comparison_name));
 
@@ -31,6 +48,16 @@ class compare(system):
     @accepts("self", str, str, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def Add_Experiment(self, project_name, experiment_name):
+        '''
+        Add experiment for comparison
+
+        Args:
+            project_name (str): Project Name
+            experiment_name (str): Experiment Name
+
+        Returns:
+            None
+        '''  
         json_file = self.system_dict["master_systems_dir_relative"] + project_name + "/" + experiment_name + "/experiment_state.json";
         if(not os.path.isfile(json_file)):
             msg = "Project - {}, Experiment - {} does not exist".format(project_name, experiment_name)
@@ -43,6 +70,15 @@ class compare(system):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def Generate_Statistics(self):
+        '''
+        Generate Statistics
+
+        Args:
+            None
+
+        Returns:
+            None
+        ''' 
         self.custom_print("Generating statistics...");
         data = [];
         for i in range(len(self.system_dict["local"]["experiments_list"])):

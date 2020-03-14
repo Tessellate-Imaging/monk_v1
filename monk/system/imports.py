@@ -16,9 +16,6 @@ from pylg import trace
 
   
 class ArgumentValidationError(ValueError):
-    '''
-    Raised when the type of an argument to a function is not what it should be.
-    '''
     def __init__(self, arg_num, func_name, accepted_arg_type, given_arg_type, list_type):
         if(list_type):
             self.error = 'The {0} argument of {1}() is not in the list {2}, but is {3}'.format(arg_num,
@@ -37,13 +34,6 @@ class ArgumentValidationError(ValueError):
  
  
 class InvalidArgumentNumberError(ValueError):
-    '''
-    Raised when the number of arguments supplied to a function is incorrect.
-    Note that this check is only performed from the number of arguments
-    specified in the validate_accept() decorator. If the validate_accept()
-    call is incorrect, it is possible to have a valid function where this
-    will report a false validation.
-    '''
     def __init__(self, func_name):
         self.error = 'Invalid number of arguments for {0}()'.format(func_name)
  
@@ -53,9 +43,6 @@ class InvalidArgumentNumberError(ValueError):
  
  
 class InvalidReturnType(ValueError):
-    '''
-    As the name implies, the return value is the wrong type.
-    '''
     def __init__(self, return_type, func_name):
         self.error = 'Invalid return type {0} for {1}()'.format(return_type,
                                                                 func_name)
@@ -66,10 +53,6 @@ class InvalidReturnType(ValueError):
 
 
 def ordinal(num):
-    '''
-    Returns the ordinal number of a given integer, as a string.
-    eg. 1 -> 1st, 2 -> 2nd, 3 -> 3rd, etc.
-    '''
     if 10 <= num % 100 < 20:
         return '{0}th'.format(num)
     else:
@@ -77,22 +60,8 @@ def ordinal(num):
         return '{0}{1}'.format(num, ord)
 
 
-def accepts(*accepted_arg_types, **accepted_arg_dicts):
-    '''
-    A decorator to validate the parameter types of a given function.
-    It is passed a tuple of types. eg. (<type 'tuple'>, <type 'int'>)
- 
-    Note: It doesn't do a deep check, for example checking through a
-          tuple of types. The argument passed must only be types.
-    '''
- 
+def accepts(*accepted_arg_types, **accepted_arg_dicts): 
     def accept_decorator(validate_function):
-        # Check if the number of arguments to the validator
-        # function is the same as the arguments provided
-        # to the actual function to validate. We don't need
-        # to check if the function to validate has the right
-        # amount of arguments, as Python will do this
-        # automatically (also with a TypeError).
         @functools.wraps(validate_function)
         def decorator_wrapper(*function_args, **function_args_dicts):
             if len(accepted_arg_types) is not len(accepted_arg_types):
@@ -178,9 +147,7 @@ def accepts(*accepted_arg_types, **accepted_arg_dicts):
 
 
 class ConstraintError(ValueError):
-    '''
-    Raised when the type of an argument to a function is not what it should be.
-    '''
+
     def __init__(self, msg):
         self.error = msg
  
@@ -855,165 +822,3 @@ def warning_checks(*arg_constraints, **kwargs_constraints):
         return decorator_wrapper
     return accept_decorator
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-"""
-def accepts(*accepted_arg_types, post_trace=False):
-    '''
-    A decorator to validate the parameter types of a given function.
-    It is passed a tuple of types. eg. (<type 'tuple'>, <type 'int'>)
- 
-    Note: It doesn't do a deep check, for example checking through a
-          tuple of types. The argument passed must only be types.
-    '''
- 
-    def accept_decorator(validate_function):
-        # Check if the number of arguments to the validator
-        # function is the same as the arguments provided
-        # to the actual function to validate. We don't need
-        # to check if the function to validate has the right
-        # amount of arguments, as Python will do this
-        # automatically (also with a TypeError).
-        @functools.wraps(validate_function)
-        def decorator_wrapper(*function_args, **function_args_dict):
-            if len(accepted_arg_types) is not len(accepted_arg_types):
-                raise InvalidArgumentNumberError(validate_function.__name__)
- 
-            # We're using enumerate to get the index, so we can pass the
-            # argument number with the incorrect type to ArgumentValidationError.
-            i = 0;
-            #print(function_args, accepted_arg_types);
-            for arg_num, (actual_arg, accepted_arg_type) in enumerate(zip(function_args, accepted_arg_types)):
-                if(accepted_arg_type=="self"):
-                    continue;
-                if(type(accepted_arg_type)) == list:
-                    print(actual_arg, accepted_arg_type)
-                    if type(actual_arg) not in accepted_arg_type:
-                        ord_num = ordinal(arg_num + 1)
-                        if(post_trace):
-                            raise ArgumentValidationError(ord_num,
-                                                      validate_function.function.function.__name__,
-                                                      accepted_arg_type)
-                        else:
-                            raise ArgumentValidationError(ord_num,
-                                                      validate_function.__name__,
-                                                      accepted_arg_type)
-                else:     
-                    if not type(actual_arg) is accepted_arg_type:
-                        ord_num = ordinal(arg_num + 1)
-                        if(post_trace):
-                            raise ArgumentValidationError(ord_num,
-                                                      validate_function.function.function.__name__,
-                                                      accepted_arg_type)
-                        else:
-                            raise ArgumentValidationError(ord_num,
-                                                      validate_function.__name__,
-                                                      accepted_arg_type)
-                i += 1;
-
-            return validate_function(*function_args, **function_args_dict)
-        return decorator_wrapper
-    return accept_decorator
-"""
-
-"""
-def returns(*accepted_return_type_tuple, post_trace=False):
-    '''
-    Validates the return type. Since there's only ever one
-    return type, this makes life simpler. Along with the
-    accepts() decorator, this also only does a check for
-    the top argument. For example you couldn't check
-    (<type 'tuple'>, <type 'int'>, <type 'str'>).
-    In that case you could only check if it was a tuple.
-    '''
-    def return_decorator(validate_function):
-        # No return type has been specified.
-        if len(accepted_return_type_tuple) == 0:
-            raise TypeError('You must specify a return type.')
- 
-        @functools.wraps(validate_function)
-        def decorator_wrapper(*function_args):
-            # More than one return type has been specified.
-            if len(accepted_return_type_tuple) > 1:
-                raise TypeError('You must specify one return type.')
- 
-            # Since the decorator receives a tuple of arguments
-            # and the is only ever one object returned, we'll just
-            # grab the first parameter.
-            accepted_return_type = accepted_return_type_tuple[0]
- 
-            # We'll execute the function, and
-            # take a look at the return type.
-            return_value = validate_function(*function_args)
-            return_value_type = type(return_value)
-
-            if return_value_type is not accepted_return_type:
-                if(post_trace):
-                    raise InvalidReturnType(return_value_type,
-                                        validate_function.function.function.__name__) 
-                else:
-                    raise InvalidReturnType(return_value_type,
-                                        validate_function.__name__) 
- 
-            return return_value
- 
-        return decorator_wrapper
-    return return_decorator
-
-
-
-
-#        new_f.__name__ = f.__name__
-#        return new_f
-#        check_accepts.__name__ = f.__name__
-
-
-'''
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-DATE_TIME = datetime.datetime.now()
-HANDLER = logging.FileHandler("process.log", 'w')
-HANDLER.setLevel(logging.DEBUG)
-FORMATTER = logging.Formatter('[%(asctime)s] p%(process)s {%(filename)s:%(lineno)d} %(levelname)s \
-    - %(message)s', '%m-%d %H:%M:%S')
-HANDLER.setFormatter(FORMATTER)
-logger.addHandler(HANDLER)
-
-def logged(class_func=False):
-    def wrap(function):
-        @functools.wraps(function)
-        def wrapper(*args, **kwargs):
-            if(class_func):
-                logger.debug("Calling function '{}' with args={} kwargs={}".format(function.__name__, args[1:], kwargs))
-            else:
-                logger.debug("Calling function '{}' with args={} kwargs={}".format(function.__name__, args, kwargs))
-            try:
-                response = function(*args, **kwargs)
-            except Exception as error:
-                logger.error("Function '{}' raised {} with error '{}'"
-                                 .format(function.__name__,
-                                         error.__class__.__name__,
-                                         str(error)))
-                raise error
-            logger.debug("Function '{}' returned {}"
-                             .format(function.__name__,
-                                     response))
-            return function(*args, **kwargs)
-        return wrapper
-    return wrap
-'''
-"""

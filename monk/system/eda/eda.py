@@ -7,6 +7,19 @@ from system.imports import *
 @accepts(dict, bool, bool, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def class_imbalance(system_dict, show_img, save_img):
+    '''
+    Find class imbalance
+
+    Args:
+        system_dict (dict): System dictionary storing experiment state and set variables
+        show_img (bool): If True, displays bar graph for images per class 
+        save_img (bool): If True, saves bar graph for images per class
+
+    Returns:
+        list: List of classes
+        list: List of number of images in every class
+    '''
+
     dataset_type = system_dict["dataset"]["dataset_type"];
     dataset_train_path = system_dict["dataset"]["train_path"];
     dataset_val_path = system_dict["dataset"]["val_path"];
@@ -36,6 +49,20 @@ def class_imbalance(system_dict, show_img, save_img):
 @accepts(dict, bool, bool, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def corrupted_missing_images(system_dict, check_missing, check_corrupt):
+    '''
+    Find corrupt and missing images in dataset
+
+    Args:
+        system_dict (dict): System dictionary storing experiment state and set variables
+        check_missing (bool): If True, checks for missing images in csv type dataset
+        check_corrupt (bool): If True, checks for corrupted images in foldered and csv dataset
+
+    Returns:
+        list: List of images missing from training set
+        list: List of images missing from validation set
+        list: List of images corrupted in training set
+        list: List of images corrupted in validation set
+    '''
     dataset_type = system_dict["dataset"]["dataset_type"];
     dataset_train_path = system_dict["dataset"]["train_path"];
     dataset_val_path = system_dict["dataset"]["val_path"];

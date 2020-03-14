@@ -5,6 +5,14 @@ from tf_keras_1.finetune.level_6_params_main import prototype_params
 
 
 class prototype_aux(prototype_params):
+    '''
+    Main class for all auxiliary functions - EDA, Estimate Training Time, Resetting params, switching modes, & debugging 
+
+    Args:
+        verbose (int): Set verbosity levels
+                        0 - Print Nothing
+                        1 - Print desired details
+    '''
     @accepts("self", verbose=int, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
@@ -15,6 +23,20 @@ class prototype_aux(prototype_params):
     @accepts("self", show_img=bool, save_img=bool, check_missing=bool, check_corrupt=bool, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def EDA(self, show_img=False, save_img=False, check_missing=False, check_corrupt=False):
+        '''
+        Experimental Data Analysis
+            - Finding number of images in each class
+            - Check missing images in case of csv type dataset
+            - Find all corrupt images
+        Args:
+            show_img (bool): If True, displays bar graph for images per class 
+            save_img (bool): If True, saves bar graph for images per class
+            check_missing (bool): If True, checks for missing images in csv type dataset
+            check_corrupt (bool): If True, checks for corrupted images in foldered and csv dataset
+
+        Returns:
+            None
+        '''
         if(not self.system_dict["dataset"]["train_path"]):
             msg = "Dataset train path not set. Cannot run EDA";
             raise ConstraintError(msg);
@@ -83,6 +105,16 @@ class prototype_aux(prototype_params):
     @accepts("self", num_epochs=[int, bool], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def Estimate_Train_Time(self, num_epochs=False):
+        '''
+        Estimate training time before running training
+
+
+        Args:
+            num_epochs (int): Number of epochs to be trained and get eestimation for it.
+
+        Returns:
+            None
+        '''
         self.system_dict = set_transform_estimate(self.system_dict);
         self.set_dataset_dataloader(estimate=True);
         total_time_per_epoch = self.get_training_estimate();
@@ -106,6 +138,14 @@ class prototype_aux(prototype_params):
     @accepts("self", num=int, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def Freeze_Layers(self, num=10):
+        '''
+        Freeze first "n" trainable layers in the network
+        Args:
+            num (int): Number of layers to freeze
+
+        Returns:
+            None
+        '''
         self.num_freeze = num;
         self.system_dict = freeze_layers(num, self.system_dict);
         self.custom_print("Model params post freezing");
@@ -120,6 +160,16 @@ class prototype_aux(prototype_params):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def Reload(self):
+        '''
+        Function to actuate all the updates in the update and expert modes
+
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         if(self.system_dict["states"]["eval_infer"]):
             del self.system_dict["local"]["data_loaders"];
             self.system_dict["local"]["data_loaders"] = {};
@@ -154,6 +204,17 @@ class prototype_aux(prototype_params):
     @accepts("self", test=bool, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def reset_transforms(self, test=False):
+        '''
+        Reset transforms to change them.
+
+
+        Args:
+            test (bool): If True, test transforms are reset,
+                          Else, train and validation transforms are reset.
+
+        Returns:
+            None
+        '''
         tmp = {};
         tmp["featurewise_center"] = False;
         tmp["featurewise_std_normalization"] = False;
@@ -192,6 +253,16 @@ class prototype_aux(prototype_params):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def reset_model(self):
+        '''
+        Reset model to update and reload it with custom weights.
+
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         if(self.system_dict["states"]["copy_from"]):
             msg = "Cannot reset model in Copy-From mode.\n";
             raise ConstraintError(msg)
@@ -207,6 +278,17 @@ class prototype_aux(prototype_params):
     @accepts("self", train=bool, eval_infer=bool, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def Switch_Mode(self, train=False, eval_infer=False):
+        '''
+        Switch modes between training an inference without reloading the experiment
+
+
+        Args:
+            train (bool): If True, switches to training mode
+            eval_infer (bool): If True, switches to validation and inferencing mode
+
+        Returns:
+            None
+        '''
         if(eval_infer):
             self.system_dict["states"]["eval_infer"] = True;
         elif(train):
@@ -219,6 +301,17 @@ class prototype_aux(prototype_params):
     @accepts("self", list, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def debug_custom_model_design(self, network_list):
+        '''
+        Debug model while creating it. 
+        Saves image as graph.png which is displayed 
+
+
+        Args:
+            network_list (list): List containing network design
+
+        Returns:
+            None
+        '''
         debug_create_network(network_list);
         if(not isnotebook()):
             self.custom_print("If not using notebooks check file generated graph.png");

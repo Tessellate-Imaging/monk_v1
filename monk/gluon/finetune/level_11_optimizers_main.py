@@ -5,6 +5,14 @@ from gluon.finetune.level_10_schedulers_main import prototype_schedulers
 
 
 class prototype_optimizers(prototype_schedulers):
+    '''
+    Main class for all optimizers in expert mode
+
+    Args:
+        verbose (int): Set verbosity levels
+                        0 - Print Nothing
+                        1 - Print desired details
+    '''
     @accepts("self", verbose=int, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
@@ -20,6 +28,20 @@ class prototype_optimizers(prototype_schedulers):
         clipnorm=[int, float], clipvalue=[int, float], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def optimizer_sgd(self, learning_rate, momentum=0, weight_decay=0, momentum_dampening_rate=0, clipnorm=0.0, clipvalue=0.0):
+        '''
+        Select stochastic gradient descent optimizer
+
+        Args:
+            learning_rate (float): Initial base learning rate
+            momentum (float): Momentum value for driving the weights towards minima
+            weight_decay (float): Value for regularizing weights post every update
+            momentum_dampening_rate (float): Reduction rate for momentum
+            clipnorm (float): Gradient clipping factor
+            clipvalue (float): Value for clipping
+
+        Returns:
+            None
+        '''
         self.system_dict = sgd(self.system_dict, learning_rate, 
                 momentum=momentum, weight_decay=weight_decay, momentum_dampening_rate=momentum_dampening_rate, clipnorm=clipnorm, clipvalue=clipvalue);
         self.custom_print("Optimizer");
@@ -45,6 +67,20 @@ class prototype_optimizers(prototype_schedulers):
         clipnorm=[int, float], clipvalue=[int, float], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def optimizer_nesterov_sgd(self, learning_rate, momentum=0, weight_decay=0, momentum_dampening_rate=0, clipnorm=0.0, clipvalue=0.0):
+        '''
+        Select stochastic gradient descent optimizer with nesterov acceleration
+
+        Args:
+            learning_rate (float): Initial base learning rate
+            momentum (float): Momentum value for driving the weights towards minima
+            weight_decay (float): Value for regularizing weights post every update
+            momentum_dampening_rate (float): Reduction rate for momentum
+            clipnorm (float): Gradient clipping factor
+            clipvalue (float): Value for clipping
+
+        Returns:
+            None
+        '''
         self.system_dict = nesterov_sgd(self.system_dict, learning_rate, 
                 momentum=momentum, weight_decay=weight_decay, momentum_dampening_rate=momentum_dampening_rate, clipnorm=clipnorm, clipvalue=clipvalue);
         self.custom_print("Optimizer");
@@ -70,6 +106,20 @@ class prototype_optimizers(prototype_schedulers):
         clipnorm=[int, float], clipvalue=[int, float], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def optimizer_rmsprop(self, learning_rate, decay_rate=0.99, epsilon=1e-08, weight_decay=0, clipnorm=0.0, clipvalue=0.0):
+        '''
+        Select root mean score prop optimizer
+
+        Args:
+            learning_rate (float): Initial base learning rate
+            decay_rate (float): A decay factor of moving average over past squared gradient.
+            epsilon (float): A value to avoid division by zero
+            weight_decay (float): Value for regularizing weights post every update
+            clipnorm (float): Gradient clipping factor
+            clipvalue (float): Value for clipping
+
+        Returns:
+            None
+        '''
         self.system_dict = rmsprop(self.system_dict , learning_rate, 
             decay_rate=decay_rate, epsilon=epsilon, weight_decay=weight_decay, clipnorm=clipnorm, clipvalue=clipvalue);
         self.custom_print("Optimizer");
@@ -92,6 +142,21 @@ class prototype_optimizers(prototype_schedulers):
         momentum=[int, float], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def optimizer_momentum_rmsprop(self, learning_rate, decay_rate=0.99, epsilon=1e-08, weight_decay=0, momentum=0.9):
+        '''
+        Select root mean score prop optimizer with momentum
+
+        Args:
+            learning_rate (float): Initial base learning rate
+            decay_rate (float): A decay factor of moving average over past squared gradient.
+            epsilon (float): A value to avoid division by zero
+            weight_decay (float): Value for regularizing weights post every update
+            momentum (float): Momentum value for driving the weights towards minima
+            clipnorm (float): Gradient clipping factor
+            clipvalue (float): Value for clipping
+
+        Returns:
+            None
+        '''
         self.system_dict = momentum_rmsprop(self.system_dict , learning_rate, 
             decay_rate=decay_rate, epsilon=epsilon, weight_decay=weight_decay, momentum=momentum);
         self.custom_print("Optimizer");
@@ -114,6 +179,22 @@ class prototype_optimizers(prototype_schedulers):
     @TraceFunction(trace_args=True, trace_rv=True)
     def optimizer_adam(self, learning_rate, beta1=0.9, beta2=0.999, epsilon=1e-08, weight_decay=0, amsgrad=False, 
         clipnorm=0.0, clipvalue=0.0):
+        '''
+        Select ADAM optimizer
+
+        Args:
+            learning_rate (float): Initial base learning rate
+            beta1 (float): Exponential decay rate for first momentum estimates
+            beta2 (float): Exponential decay rate for first second estimates
+            weight_decay (float): Value for regularizing weights post every update
+            amsgrad (bool): If True, AMSGrad variant of this algorithm is used
+            epsilon (float): A value to avoid division by zero
+            clipnorm (float): Gradient clipping factor
+            clipvalue (float): Value for clipping
+
+        Returns:
+            None
+        '''
         self.system_dict = adam(self.system_dict, learning_rate,
             beta1=beta1, beta2=beta2, epsilon=epsilon, weight_decay=weight_decay, amsgrad=amsgrad, clipnorm=clipnorm, clipvalue=clipvalue);
         
@@ -139,6 +220,21 @@ class prototype_optimizers(prototype_schedulers):
     @TraceFunction(trace_args=True, trace_rv=True)
     def optimizer_adamax(self, learning_rate, beta1=0.9, beta2=0.999, epsilon=1e-08, weight_decay=0,
         clipnorm=0.0, clipvalue=0.0):
+        '''
+        Select Adamax optimizer
+
+        Args:
+            learning_rate (float): Initial base learning rate
+            beta1 (float): Exponential decay rate for first momentum estimates
+            beta2 (float): Exponential decay rate for first second estimates
+            weight_decay (float): Value for regularizing weights post every update
+            epsilon (float): A value to avoid division by zero
+            clipnorm (float): Gradient clipping factor
+            clipvalue (float): Value for clipping
+
+        Returns:
+            None
+        '''
 
         self.system_dict = adamax(self.system_dict, learning_rate,
             beta1=beta1, beta2=beta2, epsilon=epsilon, weight_decay=weight_decay, clipnorm=clipnorm, clipvalue=clipvalue);  
@@ -163,6 +259,20 @@ class prototype_optimizers(prototype_schedulers):
     @TraceFunction(trace_args=True, trace_rv=True)
     def optimizer_adadelta(self, learning_rate, rho=0.9, epsilon=1e-06, weight_decay=0, 
         clipnorm=0.0, clipvalue=0.0):
+        '''
+        Select Adadelta optimizer
+
+        Args:
+            learning_rate (float): Initial base learning rate
+            rho (float): Exponential decay rate for momentum estimates
+            weight_decay (float): Value for regularizing weights post every update
+            epsilon (float): A value to avoid division by zero
+            clipnorm (float): Gradient clipping factor
+            clipvalue (float): Value for clipping
+
+        Returns:
+            None
+        '''
         self.system_dict = adadelta(self.system_dict, learning_rate,
             rho=rho, epsilon=epsilon, weight_decay=weight_decay, clipnorm=clipnorm, clipvalue=clipvalue);
         
@@ -186,6 +296,20 @@ class prototype_optimizers(prototype_schedulers):
     @TraceFunction(trace_args=True, trace_rv=True)
     def optimizer_adagrad(self, learning_rate, learning_rate_decay=0, weight_decay=0, epsilon=1e-08,
         clipnorm=0.0, clipvalue=0.0):
+        '''
+        Select Adagrad optimizer
+
+        Args:
+            learning_rate (float): Initial base learning rate
+            learning_rate_decay (float): Learning rate decay factor
+            weight_decay (float): Value for regularizing weights post every update
+            epsilon (float): A value to avoid division by zero
+            clipnorm (float): Gradient clipping factor
+            clipvalue (float): Value for clipping
+
+        Returns:
+            None
+        '''
         self.system_dict = adagrad(self.system_dict, learning_rate,
             learning_rate_decay=learning_rate_decay, weight_decay=weight_decay, epsilon=epsilon, 
             clipnorm=clipnorm, clipvalue=clipvalue);
@@ -213,6 +337,22 @@ class prototype_optimizers(prototype_schedulers):
     @TraceFunction(trace_args=True, trace_rv=True)
     def optimizer_nesterov_adam(self, learning_rate, beta1=0.9, beta2=0.999, epsilon=1e-08, weight_decay=0, amsgrad=False,
         momentum_decay=0.004, clipnorm=0.0, clipvalue=0.0):
+        '''
+        Select ADAM optimizer with nesterov momentum acceleration
+
+        Args:
+            learning_rate (float): Initial base learning rate
+            beta1 (float): Exponential decay rate for first momentum estimates
+            beta2 (float): Exponential decay rate for first second estimates
+            weight_decay (float): Value for regularizing weights post every update
+            amsgrad (bool): If True, AMSGrad variant of this algorithm is used
+            epsilon (float): A value to avoid division by zero
+            clipnorm (float): Gradient clipping factor
+            clipvalue (float): Value for clipping
+
+        Returns:
+            None
+        '''
         self.system_dict = nesterov_adam(self.system_dict, learning_rate,
             beta1=beta1, beta2=beta2, epsilon=epsilon, weight_decay=weight_decay, amsgrad=amsgrad,
             momentum_decay=momentum_decay, clipnorm=clipnorm, clipvalue=clipvalue);
@@ -236,6 +376,17 @@ class prototype_optimizers(prototype_schedulers):
     @accepts("self", [int, float], momentum=[int, float], weight_decay=[int, float], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def optimizer_signum(self, learning_rate, momentum=0, weight_decay=0):
+        '''
+        Select SIGNUM optimizer
+
+        Args:
+            learning_rate (float): Initial base learning rate
+            momentum (float): Momentum value for driving the weights towards minima
+            weight_decay (float): Value for regularizing weights post every update
+
+        Returns:
+            None
+        '''
         self.system_dict = signum(self.system_dict, learning_rate,
             momentum=momentum, weight_decay=weight_decay);
         

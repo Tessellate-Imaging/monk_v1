@@ -5,6 +5,15 @@ from system.imports import *
 @accepts(dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def load_loss(system_dict):
+    '''
+    Load loss function in native library
+
+    Args:
+        system_dict (dict): System dictionary storing experiment state and set variables
+
+    Returns:
+        dict: updated system dict
+    '''
     name = system_dict["local"]["criterion"];
 
     if(name == "l1"):
@@ -27,22 +36,5 @@ def load_loss(system_dict):
 
     elif(name == "squaredhinge"):
         system_dict["local"]["criterion"] = krlo.squared_hinge;
-
-
-
-    '''
-    if(name == "categoricalcrossentropy"):
-        system_dict["local"]["criterion"] = krlo.categorical_crossentropy;
-
-    elif(name == "sparsecategoricalcrossentropy"):
-        system_dict["local"]["criterion"] = krlo.sparse_categorical_crossentropy;
-
-    elif(name == "categoricalhinge"):
-        system_dict["local"]["criterion"] = krlo.categorical_hinge;
-
-    elif(name == "binarycrossentropy"):
-        system_dict["local"]["criterion"] = krlo.binary_crossentropy;
-    '''
-
 
     return system_dict;

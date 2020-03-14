@@ -5,6 +5,24 @@ from system.imports import *
 @accepts(dict, [str, list, bool], [float, int, bool], [str, list, bool], str, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def set_dataset_train_path(system_dict, path, split, path_to_csv, delimiter):
+    '''
+    Set dataset train path
+
+    Args:
+        system_dict (dict): System dictionary containing all the variables
+        path (str, list): Dataset folder path
+                          1) String : For dataset with no validation set
+                          2) List: For dataset with validation set in order [train_set, val_set]
+        split (float): Indicating train validation split
+                       Division happens as follows:
+                           train - total dataset * split * 100
+                           val   - total dataset * (1-split) * 100 
+        path_to_csv (str, list): Path to csv pointing to images
+        delimiter (str): Delimiter for the csv path provided
+
+    Returns:
+        dict: Updated System dictionary
+    ''' 
     dataset_type = None;
     dataset_train_path = None;
     dataset_val_path = None;
@@ -50,6 +68,20 @@ def set_dataset_train_path(system_dict, path, split, path_to_csv, delimiter):
 @accepts(dict, [str, bool], [str, bool], str, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def set_dataset_test_path(system_dict,  path, path_to_csv, delimiter):
+    '''
+    Set dataset train path
+
+    Args:
+        system_dict (dict): System dictionary containing all the variables
+        path (str, list): Dataset folder path
+                          1) String : For dataset with no validation set
+                          2) List: For dataset with validation set in order [train_set, val_set]
+        path_to_csv (str, list): Path to csv pointing to images
+        delimiter (str): Delimiter for the csv path provided
+
+    Returns:
+        dict: Updated System dictionary
+    ''' 
     dataset_test_type = None;
     dataset_test_path = None;
     csv_test = None;

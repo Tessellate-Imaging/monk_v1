@@ -8,6 +8,14 @@ from system.common import delete_dir
 
 
 class system():
+    '''
+    Base class for all system project management
+
+    Args:
+        verbose (int): Set verbosity levels
+                        0 - Print Nothing
+                        1 - Print desired details
+    '''
     @accepts("self", verbose=int, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
@@ -36,6 +44,15 @@ class system():
     @accepts("self", str, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def set_system_project(self, project_name):
+        '''
+        Create Project
+
+        Args:
+            project_name (str): Unique name to project
+
+        Returns:
+            None
+        '''
         self.system_dict["project_dir"] = self.system_dict["master_systems_dir"] + project_name + "/";
         self.system_dict["project_dir_relative"] = self.system_dict["master_systems_dir_relative"] + project_name + "/";
         if(not os.path.isdir(self.system_dict["project_dir"])):
@@ -48,6 +65,15 @@ class system():
     @accepts("self", str, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def set_system_select_project(self, project_name):
+        '''
+        Function to update system dictionary on project properties
+
+        Args:
+            project_name (str): Unique name to project
+
+        Returns:
+            None
+        '''
         self.system_dict["project_name"] = project_name;
         self.system_dict["local"]["experiments_list"] = os.listdir(self.system_dict["project_dir"]);
         self.system_dict["local"]["num_experiments"] = len(self.system_dict["local"]["experiments_list"]);
@@ -56,6 +82,15 @@ class system():
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def set_system_aux_list_projects(self):
+        '''
+        List all projects in current workspace
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         return os.listdir(self.system_dict["master_systems_dir"]);
     #############################################################################################################################
 
@@ -65,6 +100,20 @@ class system():
     @accepts("self", str, eval_infer=bool, copy_from=[list, bool], pseudo_copy_from=[list, bool], resume_train=bool, summary=bool, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def set_system_experiment(self, experiment_name, eval_infer=False, copy_from=False, pseudo_copy_from=False, resume_train=False, summary=False):
+        '''
+        Create Experiment or load it in different states
+
+        Args:
+            experiment_name (str): Unique name to experiment
+            eval_infer (bool): If set as True, model is loaded in evaluation mode
+            resume_train (bool): If set as True, model is loaded from last checkpoint
+            copy_from (list): [project, experiment] to copy from
+            pseudo_copy_from (list): For creating sub-experiments while in hyper-parametric analysis state
+            summary (list): Dummy variable
+
+        Returns:
+            None
+        '''
         if(summary):
             self.set_system_select_experiment(experiment_name);
             print_summary(self.system_dict["fname_relative"]);
@@ -96,6 +145,15 @@ class system():
     @accepts("self", str, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def set_system_select_experiment(self, experiment_name):
+        '''
+        Function to update system dictionary on experiment properties
+
+        Args:
+            experiment_name (str): Unique name to experiment
+
+        Returns:
+            None
+        '''
         self.system_dict["experiment_name"] = experiment_name;
         self.system_dict["output_dir"] = self.system_dict["experiment_dir"] + "output/";
         self.system_dict["output_dir_relative"] = self.system_dict["experiment_dir_relative"] + "output/";
@@ -113,6 +171,15 @@ class system():
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def set_system_delete_create_dir(self):
+        '''
+        Function to remove old directories and create new at the same place
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         delete_dir(self.system_dict["output_dir_relative"]);
         create_dir(self.system_dict["output_dir_relative"]);
         create_dir(self.system_dict["model_dir_relative"]);
@@ -126,6 +193,15 @@ class system():
     @accepts("self", str, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def set_system_comparison(self, comparison_name):
+        '''
+        Create comparison experiment
+
+        Args:
+            comparison_name (str): Unique name to comparison experiment
+
+        Returns:
+            None
+        '''
         create_dir(self.system_dict["master_comparison_dir"] + comparison_name + "/");
         self.system_dict["comparison_name"] = comparison_name;
         self.system_dict["comparison_dir"] = self.system_dict["master_comparison_dir"] + comparison_name + "/";
@@ -136,6 +212,15 @@ class system():
     @accepts("self", [str, int, list, dict, float, tuple], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def custom_print(self, msg):
+        '''
+        Overwritten print function, to switch off and on as per verbosity levels
+
+        Args:
+            msg (str): Message to print
+
+        Returns:
+            None
+        '''
         if(self.system_dict["verbose"]):
             print(msg);
     #############################################################################################################################
@@ -149,6 +234,15 @@ class system():
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def print_list_models(self):
+        '''
+        List all the available models in the selected backend.
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         self.custom_print("Models List: ");
 
         if(self.system_dict["library"] == "Mxnet"):
@@ -196,6 +290,15 @@ class system():
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def print_list_layers_transfer_learning(self):
+        '''
+        List all the available transfer learning layers in the selected backend.
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         self.custom_print("Layers List for transfer learning: ");
 
         if(self.system_dict["library"] == "Mxnet"):
@@ -220,6 +323,15 @@ class system():
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def print_list_layers_custom_model(self):
+        '''
+        List all the available custom network layers in the selected backend.
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         self.custom_print("Layers List for transfer learning: ");
 
         if(self.system_dict["library"] == "Mxnet"):
@@ -265,6 +377,15 @@ class system():
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def print_list_activations_transfer_learning(self):
+        '''
+        List all the available transfer learning activations in the selected backend.
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         self.custom_print("Activations List for transfer learning: ");
 
         if(self.system_dict["library"] == "Mxnet"):
@@ -300,6 +421,15 @@ class system():
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def print_list_activations_custom_model(self):
+        '''
+        List all the available custom network activations in the selected backend.
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         self.custom_print("Activations List for transfer learning: ");
 
         if(self.system_dict["library"] == "Mxnet"):
@@ -333,6 +463,15 @@ class system():
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def print_list_losses(self):
+        '''
+        List all the available loss functions in the selected backend.
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         self.custom_print("Losses List: ");
 
         if(self.system_dict["library"] == "Mxnet"):
@@ -369,6 +508,15 @@ class system():
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def print_list_optimizers(self):
+        '''
+        List all the available optimizers in the selected backend.
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         self.custom_print("Optimizers List: ");
 
         if(self.system_dict["library"] == "Mxnet"):
@@ -401,6 +549,15 @@ class system():
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def print_list_schedulers(self):
+        '''
+        List all the available learning rate schedulers in the selected backend.
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         self.custom_print("Optimizers List: ");
 
         if(self.system_dict["library"] == "Mxnet"):
@@ -429,6 +586,15 @@ class system():
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def print_list_transforms(self):
+        '''
+        List all the available data transforms in the selected backend.
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         self.custom_print("Transforms List: ");
 
         if(self.system_dict["library"] == "Mxnet"):
@@ -462,6 +628,15 @@ class system():
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def print_list_blocks(self):
+        '''
+        List all the available blocks for custom network creation in the selected backend.
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         self.custom_print("Blocks List: ");
 
         if(self.system_dict["library"] == "Mxnet"):

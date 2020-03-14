@@ -5,6 +5,14 @@ from system.base_class import system
 
 
 class finetune_dataset(system):
+    '''
+    Base class for dataset params
+
+    Args:
+        verbose (int): Set verbosity levels
+                        0 - Print Nothing
+                        1 - Print desired details
+    '''
     @accepts("self", verbose=int, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
@@ -15,6 +23,15 @@ class finetune_dataset(system):
     @accepts("self", test=bool, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def set_dataset_dataloader(self, test=False):
+        '''
+        Setup the dataloader.
+
+        Args:
+            test (bool): If True then test data is loaded, else train data is loaded.
+
+        Returns:
+            None
+        '''
         if(test):
             num_workers = self.system_dict["dataset"]["params"]["num_workers"];
             if(self.system_dict["dataset"]["params"]["dataset_test_type"] == "foldered"):
@@ -102,6 +119,16 @@ class finetune_dataset(system):
     @accepts("self", test=bool, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def set_dataset_final(self, test=False):
+        '''
+        Set the transforms and then invoke data loader.
+
+        Args:
+            test (bool): If True then test tranforms are set and test dataloader is prepared data, 
+                        else train transforms are set and train dataloader is prepared.
+
+        Returns:
+            None
+        '''
         if(test):
             self.system_dict = set_transform_test(self.system_dict);
         else:

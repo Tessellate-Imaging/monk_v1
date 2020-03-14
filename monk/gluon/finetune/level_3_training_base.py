@@ -5,6 +5,14 @@ from gluon.finetune.level_2_model_base import finetune_model
 
 
 class finetune_training(finetune_model):
+    '''
+    Base class for training and associated functions
+
+    Args:
+        verbose (int): Set verbosity levels
+                        0 - Print Nothing
+                        1 - Print desired details
+    '''
     @accepts("self", verbose=int, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
@@ -15,6 +23,15 @@ class finetune_training(finetune_model):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def get_training_estimate(self):
+        '''
+        Get estimated time for training a single epoch based on all set parameters
+
+        Args:
+            None
+
+        Returns:
+            float: Total time per epoch in seconds
+        '''
         total_time_per_epoch = 0;
 
         self.system_dict = load_scheduler(self.system_dict);
@@ -67,6 +84,16 @@ class finetune_training(finetune_model):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def set_training_evaluation(self):
+        '''
+        Base function for running validation while training
+
+        Args:
+            None
+
+        Returns:
+            dict: Validation metrics
+            float: Test Loss 
+        '''
         num_batch = len(self.system_dict["local"]["data_loaders"]["val"]);
 
         metric = mx.metric.Accuracy()
@@ -97,6 +124,15 @@ class finetune_training(finetune_model):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def set_training_final(self):
+        '''
+        Main training function
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         if(self.system_dict["states"]["resume_train"]):
             self.custom_print("Training Resume");
             self.system_dict = load_scheduler(self.system_dict);

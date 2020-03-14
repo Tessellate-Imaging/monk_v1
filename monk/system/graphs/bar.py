@@ -6,6 +6,20 @@ from system.imports import *
 @accepts([list, type(np.array([1, 2]))], [list, type(np.array([1, 2]))], str, show_img=bool, save_img=bool, post_trace=True)
 @TraceFunction(trace_args=True, trace_rv=True)
 def create_plot(labels, value, log_dir, show_img=False, save_img=False):
+    '''
+    Create bar plot
+
+    Args:
+        labels (list): X - Axis labels
+        value (list): Coresponding Y-Axis values
+        log_dir (str): Path to folder to save plot 
+        show_img (bool): If True, plot is displayed
+        save_img (bool): If True, plot is saved.
+        verbose (str): If True, prints logs for analysis 
+
+    Returns:
+        None
+    '''
     objects = tuple(labels)
     y_pos = np.arange(len(objects))
     plt.bar(y_pos, value, align='center', alpha=0.5, width=0.5)
@@ -27,6 +41,16 @@ def create_plot(labels, value, log_dir, show_img=False, save_img=False):
 @accepts([list, type(np.array([1, 2]))], dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=True)
 def training_time_plot(data, system_dict):
+    '''
+    Create training-time bar plot
+
+    Args:
+        data (list): Entire data
+        system_dict (dict): System dictionary storing experiment state and set variables
+
+    Returns:
+        None
+    '''
     labels = [ '\n'.join(wrap(l, 20)) for l in system_dict["local"]["project_experiment_list"] ]
     objects = tuple(labels)
     y_pos = np.arange(len(objects))
@@ -53,6 +77,16 @@ def training_time_plot(data, system_dict):
 @accepts([list, type(np.array([1, 2]))], dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=True)
 def max_accuracy_plot(data, system_dict):
+    '''
+    Create max-accuracy bar plot
+
+    Args:
+        data (list): Entire data
+        system_dict (dict): System dictionary storing experiment state and set variables
+
+    Returns:
+        None
+    '''
     labels = [ '\n'.join(wrap(l, 20)) for l in system_dict["local"]["project_experiment_list"] ]
     objects = tuple(labels)
     y_pos = np.arange(len(objects))
@@ -78,6 +112,16 @@ def max_accuracy_plot(data, system_dict):
 @accepts([list, type(np.array([1, 2]))], dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=True)
 def max_gpu_usage_plot(data, system_dict):
+    '''
+    Create gpu-usage bar plot
+
+    Args:
+        data (list): Entire data
+        system_dict (dict): System dictionary storing experiment state and set variables
+
+    Returns:
+        None
+    '''
     labels = [ '\n'.join(wrap(l, 20)) for l in system_dict["local"]["project_experiment_list"] ]
     objects = tuple(labels)
     y_pos = np.arange(len(objects))

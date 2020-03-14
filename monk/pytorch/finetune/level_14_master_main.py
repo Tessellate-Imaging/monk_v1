@@ -6,6 +6,14 @@ from pytorch.finetune.level_13_updates_main import prototype_updates
 
 
 class prototype_master(prototype_updates):
+    '''
+    Main class for all functions in expert mode
+
+    Args:
+        verbose (int): Set verbosity levels
+                        0 - Print Nothing
+                        1 - Print desired details
+    '''
     @accepts("self", verbose=int, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
@@ -16,6 +24,15 @@ class prototype_master(prototype_updates):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def Dataset(self):
+        '''
+        Load transforms and set dataloader
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         self.set_dataset_final(test=self.system_dict["states"]["eval_infer"]);
         save(self.system_dict);
 
@@ -52,6 +69,15 @@ class prototype_master(prototype_updates):
     @accepts("self", [int, float], post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def Dataset_Percent(self, percent):
+        '''
+        Select a portion of dataset
+
+        Args:
+            percent (bool): percentage of sub-dataset
+
+        Returns:
+            None
+        '''
         sampled_dataset = None;
         image_datasets = {};
         dataset_type = self.system_dict["dataset"]["dataset_type"];
@@ -137,6 +163,15 @@ class prototype_master(prototype_updates):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def Model(self):
+        '''
+        Load Model as per paraameters set
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         if(self.system_dict["states"]["copy_from"]):
             msg = "Cannot set model in Copy-From mode.\n";
             raise ConstraintError(msg)
@@ -150,6 +185,15 @@ class prototype_master(prototype_updates):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def Train(self):
+        '''
+        Master function for training
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         self.set_training_final();
         save(self.system_dict);
     ###############################################################################################################################################
@@ -161,6 +205,15 @@ class prototype_master(prototype_updates):
     @accepts("self", post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def Evaluate(self):
+        '''
+        Master function for external validation
+
+        Args:
+            None
+
+        Returns:
+            None
+        '''
         accuracy, class_based_accuracy = self.set_evaluation_final();
         save(self.system_dict);
         return accuracy, class_based_accuracy;
@@ -175,6 +228,19 @@ class prototype_master(prototype_updates):
     @accepts("self", img_name=[str, bool], img_dir=[str, bool], return_raw=bool, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def Infer(self, img_name=False, img_dir=False, return_raw=False):
+        '''
+        Master function for inference 
+
+        Args:
+            img_name (str): path to image
+            img_dir (str): path to folders containing images. 
+                            (Optional)
+            return_raw (bool): If True, then output dictionary contains image probability for every class in the set.
+                                Else, only the most probable class score is returned back.
+
+        Returns:
+            None
+        '''
         if(not img_dir):
             predictions = self.set_prediction_final(img_name=img_name, return_raw=return_raw);
         else:
@@ -188,6 +254,18 @@ class prototype_master(prototype_updates):
     @accepts("self", network=list, data_shape=[tuple, int], use_gpu=bool, network_initializer=str, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def Compile_Network(self, network, data_shape=(3, 224, 224), use_gpu=True, network_initializer="xavier_normal"):
+        '''
+        Master function for compiling custom network and initializing it 
+
+        Args:
+            network: Network stacked as list of lists
+            data_shape (tuple): Input shape of data in format C, H, W
+            use_gpu (bool): If True, model loaded on gpu
+            network_initializer (str): Initialize network with random weights. Select the random generator type function.
+
+        Returns:
+            None
+        '''
         self.system_dict["custom_model"]["network_stack"] = network;
         self.system_dict["custom_model"]["network_initializer"] = network_initializer;
         self.system_dict["model"]["type"] = "custom";
@@ -204,6 +282,16 @@ class prototype_master(prototype_updates):
     @accepts("self", data_shape=tuple, port=int, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def Visualize_With_Netron(self, data_shape=None, port=None):
+        '''
+        Visualize network with netron library 
+
+        Args:
+            data_shape (tuple): Input shape of data in format C, H, W
+            port (int): Local host free port.
+
+        Returns:
+            None
+        '''
         self.custom_print("Using Netron To Visualize");
         self.custom_print("Not compatible on kaggle");
         self.custom_print("Compatible only for Jupyter Notebooks");

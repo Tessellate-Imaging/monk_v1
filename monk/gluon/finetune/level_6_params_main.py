@@ -8,6 +8,14 @@ from gluon.finetune.level_5_state_base import finetune_state
 
 
 class prototype_params(finetune_state):
+    '''
+    Main class for all parameters in expert mode
+
+    Args:
+        verbose (int): Set verbosity levels
+                        0 - Print Nothing
+                        1 - Print desired details
+    '''
     @accepts("self", verbose=int, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
@@ -25,6 +33,28 @@ class prototype_params(finetune_state):
     @TraceFunction(trace_args=True, trace_rv=True)
     def Dataset_Params(self, dataset_path=False, path_to_csv=False, delimiter=",", split=0.9,
         input_size=224, batch_size=16, shuffle_data=True, num_processors=psutil.cpu_count()):
+        '''
+        Set all dataset params
+
+        Args:
+            dataset_path (str, list): Path to Dataset folder
+                                      1) Single string if validation data does not exist
+                                      2) List [train_path, val_path] in case of separate train and val data
+            path_to_csv (str, list): Path to csv file pointing towards images
+                                     1) Single string if validation data does not exist
+                                     2) List [train_path, val_path] in case of separate train and val data
+            delimiter (str): Delimiter for csv file
+            split (float): Indicating train validation split
+                            Division happens as follows:
+                                train - total dataset * split * 100
+                                val   - total dataset * (1-split) * 100 
+            batch_size (int): Set batch size for dataset
+            shuffle_data (bool): If True then data is shuffled before sampling into batches
+            num_processors (int): Max CPUs for data sampling
+
+        Returns:
+            None
+        '''
         if(self.system_dict["states"]["eval_infer"]):
             if(not self.system_dict["dataset"]["params"]["input_size"]):
                 self.system_dict = set_input_size(input_size, self.system_dict);
@@ -76,6 +106,20 @@ class prototype_params(finetune_state):
     @accepts("self", model_name=str, freeze_base_network=bool, use_gpu=bool, use_pretrained=bool, model_path=[bool, str, list],  post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
     def Model_Params(self, model_name="resnet18_v1", freeze_base_network=True, use_gpu=True, use_pretrained=True, model_path=False):
+        '''
+        Set all model params
+
+        Args:
+            model_name (str): Select from available models. Check via List_Models() function
+            freeze_base_network (bool): If set as True, then base network's weights are freezed (cannot be trained)
+            use_gpu (bool): If set as True, uses GPU
+            use_pretrained (bool): If set as True, use weights trained on imagenet and coco like dataset
+                                    Else, use randomly initialized weights
+            model_path (str): Path to custom model weights for initialization.
+
+        Returns:
+            None
+        '''
         if(self.system_dict["states"]["copy_from"]):
             msg = "Cannot set model params in Copy-From mode.\n";
             raise ConstraintError(msg)
@@ -110,6 +154,20 @@ class prototype_params(finetune_state):
     @TraceFunction(trace_args=True, trace_rv=True)
     def Training_Params(self, num_epochs=10, display_progress=True, display_progress_realtime=True, 
         save_intermediate_models=True, intermediate_model_prefix="intermediate_model_", save_training_logs=True):
+        '''
+        Set all training params
+
+        Args:
+            num_epochs (int): Number of epochs to train the network
+            display_progress (bool): If True, displays summary post every epoch
+            display_progress_realtime (bool): If True, displays progress for every iteration in the epoch
+            save_intermediate_models (bool): If True, saves model weight post every epoch
+            intermediate_model_prefix (str): Appends a prefix to intermediate weights
+            save_training_logs (bool): If True, saves all training and validation metrics. Required for comparison.
+
+        Returns:
+            None
+        '''
 
         if(save_intermediate_models):
             if(not os.access(self.system_dict["model_dir"], os.W_OK)):

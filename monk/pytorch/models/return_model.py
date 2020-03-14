@@ -12,6 +12,19 @@ from pytorch.models.layers import Net_Concat
 @accepts(dict, path=[str, bool], final=bool, resume=bool, external_path=[bool, str, list], post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def load_model(system_dict, path=False, final=False, resume=False, external_path=False):
+    '''
+    Load model based on the system state 
+
+    Args:
+        system_dict (dict): System Dictionary
+        path (str): Path to final or best model weights if Final flag is set
+        final (bool): If True, Load model generated from latest epoch training
+        resume (bool): If True, load model from last checkpoint to resume training
+        external_path (str): Path to custom model weights
+
+    Returns:
+        network: Neural network loaded with weights.
+    '''
     GPUs = GPUtil.getGPUs()
     if(len(GPUs)==0):
         if(final):
@@ -46,6 +59,15 @@ def load_model(system_dict, path=False, final=False, resume=False, external_path
 @accepts(dict, post_trace=True)
 @TraceFunction(trace_args=False, trace_rv=False)
 def setup_model(system_dict):
+    '''
+    Setup model based on the system state and parameters
+
+    Args:
+        system_dict (dict): System Dictionary
+
+    Returns:
+        dict: Updated system dictionary
+    '''
     if(system_dict["model"]["type"] == "pretrained"):
 
         model_name = system_dict["model"]["params"]["model_name"];
@@ -125,6 +147,26 @@ def setup_model(system_dict):
 
 @TraceFunction(trace_args=True, trace_rv=False)
 def create_block(network_stack, count, G, sequential_first, position, current_width, current_in_shape):
+    '''
+    Recursively create sub-blocks when designing custom networks
+
+    Args:
+        network_stack (list): List of lists containing information on layers for the sub-branch in the network
+        count (dict): A dictionary mapping to a count of every type of layer in the network
+        G (directed graph): NetworkX object
+        sequential_first (str): NAme of the current input layer
+        position (int): Vertical position on the directed graph
+        current_width (int): Horizontal position on the directed graph
+        current_in_shape (tuple): Input shape to sub-network
+    
+    Returns:
+        neural network: The required sub-branch
+        directed graph: Updated directed graph
+        str: Name of the outermost layer in the sub-network
+        int: Vertical position of the outer most layer in the sub-network 
+        int: Horizontal position of the outer most layer in the sub-network 
+        tuple: Output shape from this sub-network
+    '''
     position += 1;
     max_width = current_width
     net = nn.Sequential();
@@ -255,6 +297,15 @@ def create_block(network_stack, count, G, sequential_first, position, current_wi
 
 @TraceFunction(trace_args=True, trace_rv=False)
 def create_network(network_stack, current_in_shape):
+    '''
+    Main function to create network when designing custom networks
+
+    Args:
+        network_stack (list): List of lists containing information on layers in the network
+    
+    Returns:
+        neural network: The required complete network
+    '''
     count = [];
     for i in range(len(names)):
         count.append(1);
@@ -428,6 +479,26 @@ def create_network(network_stack, current_in_shape):
 
 @TraceFunction(trace_args=True, trace_rv=False)
 def debug_create_block(network_stack, count, G, sequential_first, position, current_width):
+    '''
+    Recursively visualize sub-blocks when designing custom networks
+
+    Args:
+        network_stack (list): List of lists containing information on layers for the sub-branch in the network
+        count (dict): A dictionary mapping to a count of every type of layer in the network
+        G (directed graph): NetworkX object
+        sequential_first (str): NAme of the current input layer
+        position (int): Vertical position on the directed graph
+        current_width (int): Horizontal position on the directed graph
+        current_in_shape (tuple): Input shape to sub-network
+    
+    Returns:
+        neural network: The required sub-branch
+        directed graph: Updated directed graph
+        str: Name of the outermost layer in the sub-network
+        int: Vertical position of the outer most layer in the sub-network 
+        int: Horizontal position of the outer most layer in the sub-network 
+        tuple: Output shape from this sub-network
+    '''
     position += 1;
     max_width = current_width
     for i in range(len(network_stack)): 
@@ -515,6 +586,15 @@ def debug_create_block(network_stack, count, G, sequential_first, position, curr
 
 @TraceFunction(trace_args=True, trace_rv=False)
 def debug_create_network(network_stack):
+    '''
+    Main function to visualize network when designing custom networks
+
+    Args:
+        network_stack (list): List of lists containing information on layers in the network
+    
+    Returns:
+        neural network: The required complete network
+    '''
     count = [];
     for i in range(len(names)):
         count.append(1);
