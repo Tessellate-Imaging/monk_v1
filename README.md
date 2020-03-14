@@ -10,10 +10,10 @@
 
 # Table of Contents
   - 1) [Sample Showcase](#1)
-  - 2) [Installation](#heading-1)
-  - 3) [Study Roadmaps, Examples, and Tutorials](#heading-2)
-  - 4) [Documentation](#heading-3)
-  - 5) [TODO](#heading-4)
+  - 2) [Installation](#2)
+  - 3) [Study Roadmaps, Examples, and Tutorials](#3)
+  - 4) [Documentation](#4)
+  - 5) [TODO](#5)
 
 <br />
 <br />
@@ -65,7 +65,7 @@ ctf.Generate_Statistics();
 <br />
 <br />
 
-
+<a id="2"></a>
 ## Installation
 
 Support for
@@ -88,18 +88,20 @@ For Installation instructions visit: [Link](https://clever-noyce-f9d43f.netlify.
 <br />
 
 
-
+<a id="3"></a>
 ## Study Roadmaps
     - [Getting started with Monk](study_roadmaps/1_getting_started_roadmap)
+    - [Python sample examples](study_roadmaps/python_sample_examples)
     - [Image Processing and Deep Learning](study_roadmaps/3_image_processing_deep_learning_roadmap)
     - [Transfer Learning](study_roadmaps/2_transfer_learning_roadmap)
     - [Image classification zoo](study_roadmaps/4_image_classification_zoo)
+    
 
 <br />
 <br />
 <br />
 
-
+<a id="4"></a>
 ## Documentation
 
 - 1) [Functional Documentation](https://abhi-kumar.github.io/monk_v1_docs/) (Will be merged with Latest docs soon)
@@ -131,6 +133,7 @@ For Installation instructions visit: [Link](https://clever-noyce-f9d43f.netlify.
 <br />
 
 
+<a id="5"></a>
 ## TODO-2020
 
 ### TODO-2020 - Features
