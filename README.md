@@ -7,18 +7,24 @@
 [![Version](https://img.shields.io/badge/version-v1.0-lightgrey)](https://github.com/Tessellate-Imaging/monk_v1) &nbsp; &nbsp;
 [![Build_Status](https://img.shields.io/badge/build-passing-green)](https://github.com/Tessellate-Imaging/monk_v1)
 
-## Documentation
-- [Introduction](https://clever-noyce-f9d43f.netlify.com/#/introduction)
-- [Setup](https://clever-noyce-f9d43f.netlify.com/#/setup/setup)
-- [Quick Mode](https://clever-noyce-f9d43f.netlify.com/#/quick_mode/quickmode_pytorch)
-- [Update Mode](https://clever-noyce-f9d43f.netlify.com/#/update_mode/update_dataset)
-- [Expert Mode](https://clever-noyce-f9d43f.netlify.com/#/expert_mode)
-- [Hyper Parameter Analyser](https://clever-noyce-f9d43f.netlify.com/#/hp_finder/model_finder)
-- [Compare Experiments](https://clever-noyce-f9d43f.netlify.com/#/compare_experiment)
-- [Resume Training](https://clever-noyce-f9d43f.netlify.com/#/resume_training)
 
-### Latest Docs
-- [LINK](https://li8bot.github.io/monkai/#/home)
+## Documentation
+
+- 1) [Functional Documentation](https://abhi-kumar.github.io/monk_v1_docs/) (Temporary)
+
+- 2) Features and Functions (In development):
+      - [Introduction](https://clever-noyce-f9d43f.netlify.com/#/introduction)
+      - [Setup](https://clever-noyce-f9d43f.netlify.com/#/setup/setup)
+      - [Quick Mode](https://clever-noyce-f9d43f.netlify.com/#/quick_mode/quickmode_pytorch)
+      - [Update Mode](https://clever-noyce-f9d43f.netlify.com/#/update_mode/update_dataset)
+      - [Expert Mode](https://clever-noyce-f9d43f.netlify.com/#/expert_mode)
+      - [Hyper Parameter Analyser](https://clever-noyce-f9d43f.netlify.com/#/hp_finder/model_finder)
+      - [Compare Experiments](https://clever-noyce-f9d43f.netlify.com/#/compare_experiment)
+      - [Resume Training](https://clever-noyce-f9d43f.netlify.com/#/resume_training)
+
+- 3) [Complete Latest Docs](https://li8bot.github.io/monkai/#/home) (In Progress)
+
+
 
 
 
@@ -64,6 +70,27 @@ ctf.Generate_Statistics();
 <br />
 <br />
 
+## TODO-2020 - Features
+- [x] Model Visualization
+- [ ] Pre-processed data visualization
+- [ ] Learned feature visualization
+- [ ] NDimensional data input
+- [ ] Data input from npy files
+- [ ] Data input from hdfs files
+- [ ] Support for Dicom data
+- [ ] Support for Tiff data
+- [ ] Multi-label Image Classification
+- [x] Custom model development
+
+
+## TODO-2020 - General
+- [ ] Incorporate pep coding standards
+- [x] Functional Documentation
+- [x] Tackle Multiple versions of libraries
+- [x] Add unit-testing
+- [ ] Contribution guidelines
+
+
 ## TODO-2020 - Backend Support
 
 - [ ] Tensorflow 2.0
@@ -78,29 +105,6 @@ ctf.Generate_Statistics();
 - [ ] TensorRT Acceleration
 - [ ] Intel Acceleration
 - [ ] Echo AI - for Activation functions
-
-
-## TODO-2020 - Features
-- [ ] Model Visualization
-- [ ] Pre-processed data visualization
-- [ ] Learned feature visualization
-- [ ] NDimensional data input
-- [ ] Data input from npy files
-- [ ] Data input from hdfs files
-- [ ] Support for Dicom data
-- [ ] Support for Tiff data
-- [ ] Multi-label Image Classification
-- [ ] Custom model development
-
-
-## TODO-2020 - General
-- [ ] Incorporate pep coding standards
-- [ ] Functional Documentation
-- [ ] Tackle Multiple versions of libraries
-- [ ] Add unit-testing
-- [ ] Contribution guidelines
-
-
 
 
 
