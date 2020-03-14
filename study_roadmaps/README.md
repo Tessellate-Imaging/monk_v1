@@ -107,4 +107,84 @@
 <br />
 
 <a id="3"></a>
-## Available Transfer Learning Layers
+## Available Custom Network Layers
+
+| Name in Monk             | Name in Keras backend  | Name in pytorch backend           | Name in mxnet backed |
+|--------------------------|------------------------|-----------------------------------|----------------------|
+| fully_connected          | Dense                  | Linear                            | Dense                |
+| Dropout                  | Dropout                | Dropout                           | Dropout              |
+| Flatten                  | Flatten                | Flatten                           | Flatten              |
+| convolution1d            | Conv1D                 | Conv1d                            | Conv1D               |
+| convolution              | Conv2D                 | Conv2d                            | Conv2D               |
+| convolution3d            | Conv3D                 | Conv3d                            | Conv3D               |
+| transposed_convolution1d | -                      | ConvTranspose1d                   | Conv1DTranspose      |
+| transposed_convolution   | Conv2DTranspose        | ConvTranspose2d                   | Conv2DTranspose      |
+| transposed_convolution3d | Conv3DTranspose        | ConvTranspose3d                   | Conv3DTranspose      |
+| max_pooling1d            | MaxPooling1D           | MaxPool1d                         | MaxPool1D            |
+| max_pooling              | MaxPooling2D           | MaxPool2d                         | MaxPool2D            |
+| max_pooling3d            | MaxPooling3D           | MaxPool3d                         | MaxPool3D            |
+| average_pooling1d        | AveragePooling1D       | AvgPool1d                         | AvgPool1D            |
+| average_pooling          | AveragePooling2D       | AvgPool2d                         | AvgPool2D            |
+| average_pooling3d        | AveragePooling3D       | AvgPool3d                         | AvgPool3D            |
+| global_max_pooling1d     | GlobalMaxPooling1D     | AdaptiveMaxPool1d (With size = 1) | GlobalMaxPool1D      |
+| global_max_pooling       | GlobalMaxPooling2D     | AdaptiveMaxPool2d (With size = 1) | GlobalMaxPool2D      |
+| global_max_pooling3d     | GlobalMaxPooling3D     | AdaptiveMaxPool3d (With size = 1) | GlobalMaxPool3D      |
+| global_average_pooling1d | GlobalAveragePooling1D | AdaptiveAvgPool1d (With size = 1) | GlobalAvgPool1D      |
+| global_average_pooling   | GlobalAveragePooling2D | AdaptiveAvgPool2d (With size = 1) | GlobalAvgPool2D      |
+| global_average_pooling3d | GlobalAveragePooling3D | AdaptiveAvgPool3d (With size = 1) | GlobalAvgPool3D      |
+| add                      | Add                    | Add                               | Add                  |
+| concatenate              | Concatenate            | Concatenate                       | Concatenate          |
+| batchnorm                | BatchNormalization     | BatchNorm1d                       | BatchNorm            |
+| batchnorm                | -                      | BatchNorm2d                       | -                    |
+| batchnorm                | -                      | BatchNorm3d                       | -                    |
+| instancenorm             | -                      | InstanceNorm1d                    | InstanceNorm         |
+| instancenorm             | -                      | InstanceNorm2d                    | -                    |
+| instancenorm             | -                      | InstanceNorm3d                    | -                    |
+| layernorm                | -                      | LayerNorm                         | LayerNorm            |
+| identity                 | activation.linear      | Identity                          | Identity             |
+
+
+
+<br />
+<br />
+<br />
+
+<a id="4"></a>
+## Available Custom Network Activation Functions
+
+| Name in Monk     | Original name in Keras backend | Original name in pytorch backend | Original name in mxnet backend |
+|------------------|--------------------------------|----------------------------------|--------------------------------|
+| relu             | relu                           | ReLU                             | Activation('relu')             |
+| sigmoid          | sigmoid                        | Sigmoid                          | Activation('sigmoid')          |
+| Tanh Shrink      | tanh                           | TanH                             | Activation('tanh')             |
+| softplus         | softplus                       | Softplus                         | Activation('softrelu')         |
+| softsign         | softsign                       | Softsign                         | Activation('softsign')         |
+| elu              | elu                            | ELU                              | ELU                            |
+| gelu             | -                              | -                                | GELU                           |
+| prelu            | PReLU                          | PReLU                            | PReLU                          |
+| selu             | selu                           | SELU                             | SELU                           |
+| swish            | -                              | -                                | Swish                          |
+| leakyrelu        | LeakyReLU                      | LeakyReLU                        | LeakyReLU                      |
+| hardshrink       | -                              | HardShrink                       | -                              |
+| hardtanh         | -                              | HardTanh                         | -                              |
+| logsigmoid       | -                              | LogSigmoid                       | -                              |
+| relu6            | -                              | ReLU6                            | -                              |
+| rrelu            | -                              | RReLU                            | -                              |
+| celu             | -                              | CELU                             | -                              |
+| softshrink       | -                              | Softshrink                       | -                              |
+| tanhshrink       | -                              | Tanhshrink                       | -                              |
+| threshold        | -                              | Threshold                        | -                              |
+| softmin          | -                              | Softmin                          | -                              |
+| softmax          | -                              | Softmax                          | -                              |
+| logsoftmax       | -                              | LogSoftmax                       | -                              |
+| hardsigmoid      | hard_sigmoid                   | -                                | -                              |
+| thresholded_relu | ThresholdedReLU                | -                                | -                              |
+
+
+
+<br />
+<br />
+<br />
+
+<a id="4"></a>
+## Available Optimizers
