@@ -9,11 +9,11 @@
 
 
 # Table of Contents
-  - 1) [Sample Showcase](#sub-heading)
-  - 2) [Installation](#sub-heading-1)
-  - 3) [Study Roadmaps, Examples, and Tutorials](#sub-heading-2)
-  - 4) [Documentation](#sub-heading-3)
-  - 5) [TODO](#sub-heading-4)
+  - 1) [Sample Showcase](#heading)
+  - 2) [Installation](#heading-1)
+  - 3) [Study Roadmaps, Examples, and Tutorials](#heading-2)
+  - 4) [Documentation](#heading-3)
+  - 5) [TODO](#heading-4)
 
 <br />
 <br />
