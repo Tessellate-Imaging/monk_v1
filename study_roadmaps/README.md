@@ -188,6 +188,8 @@
 
 <a id="4"></a>
 ## Available Optimizers
+
+
 | Name in Monk               | Original Name in Keras backend | Original Name in pytorch backend | Original Name in mxnet backend |
 |----------------------------|--------------------------------|----------------------------------|--------------------------------|
 | optimizer_adadelta         | Adadelta                       | Adadelta                         | AdaDelta                       |
@@ -201,3 +203,32 @@
 | optimizer_sgd              | SGD                            | SGD                              | SGD                            |
 | optimizer_signum           | -                              | -                                | Signum                         |
 | optimizer_adamw            | -                              | AdamW                            | -                              |
+
+
+
+<br />
+<br />
+<br />
+
+<a id="5"></a>
+## Available Loss functions
+
+| Name in Monk                     | Original Name in keras backend | Original Name in pytorch backend | Original Name in mxnet backend |
+|----------------------------------|--------------------------------|----------------------------------|--------------------------------|
+| loss_l2                          | mean_squared_error             | MSELoss                          | L2Loss                         |
+| loss_l1                          | mean_absolute_error            | L1Loss                           | L1Loss                         |
+| loss_squared_hinge               | squared_hinge                  | SoftMarginLoss (not exactly)     | SquaredHingeLoss               |
+| loss_hinge                       | hinge                          | HingeEmbeddingLoss               | HingeLoss                      |
+| loss_huber                       | huber_loss                     | SmoothL1Loss                     | HuberLoss                      |
+| loss_softmax_crossentropy        | -                              | CrossEntropyLoss                 | SoftmaxCrossEntropyLoss        |
+| loss_crossentropy                | categorical_crossentropy       | CrossEntropyLoss                 | SoftmaxCrossEntropyLoss        |
+| loss_multimargin                 | categorical_hinge              | MultiMarginLoss                  | -                              |
+| loss_multilabel_margin           | -                              | MultiLabelMarginLoss             | -                              |
+| loss_binary_crossentropy         | binary_crossentropy            | BCELoss                          | -                              |
+| loss_sigmoid_binary_crossentropy | -                              | BCEWithLogitsLoss                | SigmoidBinaryCrossEntropyLoss  |
+| loss_kldiv                       | kullback_leibler_divergence    | KLDivLoss                        | KLDivLoss                      |
+| loss_poison_nll                  | -                              | PoissonNLLLoss                   | PoissonNLLLoss                 |
+
+
+
+
