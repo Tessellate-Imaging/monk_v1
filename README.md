@@ -13,14 +13,14 @@
 - 1) [Functional Documentation](https://abhi-kumar.github.io/monk_v1_docs/) (Temporary)
 
 - 2) Features and Functions (In development):
-      - [Introduction](https://clever-noyce-f9d43f.netlify.com/#/introduction)
-      - [Setup](https://clever-noyce-f9d43f.netlify.com/#/setup/setup)
-      - [Quick Mode](https://clever-noyce-f9d43f.netlify.com/#/quick_mode/quickmode_pytorch)
-      - [Update Mode](https://clever-noyce-f9d43f.netlify.com/#/update_mode/update_dataset)
-      - [Expert Mode](https://clever-noyce-f9d43f.netlify.com/#/expert_mode)
-      - [Hyper Parameter Analyser](https://clever-noyce-f9d43f.netlify.com/#/hp_finder/model_finder)
-      - [Compare Experiments](https://clever-noyce-f9d43f.netlify.com/#/compare_experiment)
-      - [Resume Training](https://clever-noyce-f9d43f.netlify.com/#/resume_training)
+    - [Introduction](https://clever-noyce-f9d43f.netlify.com/#/introduction)
+    - [Setup](https://clever-noyce-f9d43f.netlify.com/#/setup/setup)
+    - [Quick Mode](https://clever-noyce-f9d43f.netlify.com/#/quick_mode/quickmode_pytorch)
+    - [Update Mode](https://clever-noyce-f9d43f.netlify.com/#/update_mode/update_dataset)
+    - [Expert Mode](https://clever-noyce-f9d43f.netlify.com/#/expert_mode)
+    - [Hyper Parameter Analyser](https://clever-noyce-f9d43f.netlify.com/#/hp_finder/model_finder)
+    - [Compare Experiments](https://clever-noyce-f9d43f.netlify.com/#/compare_experiment)
+    - [Resume Training](https://clever-noyce-f9d43f.netlify.com/#/resume_training)
 
 - 3) [Complete Latest Docs](https://li8bot.github.io/monkai/#/home) (In Progress)
 
