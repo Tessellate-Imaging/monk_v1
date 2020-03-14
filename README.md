@@ -97,6 +97,8 @@ For Installation instructions visit: [Link](https://clever-noyce-f9d43f.netlify.
   - 3) [Image Processing and Deep Learning](https://github.com/Tessellate-Imaging/monk_v1/tree/master/study_roadmaps/3_image_processing_deep_learning_roadmap)
   - 4) [Transfer Learning](https://github.com/Tessellate-Imaging/monk_v1/tree/master/study_roadmaps/2_transfer_learning_roadmap)
   - 5) [Image classification zoo](https://github.com/Tessellate-Imaging/monk_v1/tree/master/study_roadmaps/4_image_classification_zoo)
+
+### [List of available models, layers, blocks, optimizers](https://github.com/Tessellate-Imaging/monk_v1/tree/master/study_roadmaps)
     
 
 <br />
