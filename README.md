@@ -9,7 +9,7 @@
 
 
 # Table of Contents
-  - 1) [Sample Showcase](#heading)
+  - 1) [Sample Showcase](#1)
   - 2) [Installation](#heading-1)
   - 3) [Study Roadmaps, Examples, and Tutorials](#heading-2)
   - 4) [Documentation](#heading-3)
@@ -20,7 +20,7 @@
 <br />
 
 
-
+<a id="1"></a>
 ## Sample Showcase
 
 #### Create an image classification experiment.
