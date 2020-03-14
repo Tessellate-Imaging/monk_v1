@@ -10,9 +10,9 @@
 
 ## Documentation
 
-- [Functional Documentation](https://abhi-kumar.github.io/monk_v1_docs/) (Temporary)
+- 1) [Functional Documentation](https://abhi-kumar.github.io/monk_v1_docs/) (Temporary)
 
-- Features and Functions (In development):
+- 2) Features and Functions (In development):
       - [Introduction](https://clever-noyce-f9d43f.netlify.com/#/introduction)
       - [Setup](https://clever-noyce-f9d43f.netlify.com/#/setup/setup)
       - [Quick Mode](https://clever-noyce-f9d43f.netlify.com/#/quick_mode/quickmode_pytorch)
@@ -22,7 +22,7 @@
       - [Compare Experiments](https://clever-noyce-f9d43f.netlify.com/#/compare_experiment)
       - [Resume Training](https://clever-noyce-f9d43f.netlify.com/#/resume_training)
 
-- [Complete Latest Docs](https://li8bot.github.io/monkai/#/home) (In Progress)
+- 3) [Complete Latest Docs](https://li8bot.github.io/monkai/#/home) (In Progress)
 
 
 
