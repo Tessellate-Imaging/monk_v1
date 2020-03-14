@@ -83,6 +83,19 @@ Support for
 
 For Installation instructions visit: [Link](https://clever-noyce-f9d43f.netlify.com/#/setup/setup)
 
+#### Windows-CPU
+
+Install dependencies for Windows CPU-only
+
+```python
+cd monk_v1/installation
+pip install -r requirements_cpu_windows.txt
+```
+Install torch using
+```
+pip install torch==1.2.0+cpu torchvision==0.4.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
+```
+
 <br />
 <br />
 <br />
