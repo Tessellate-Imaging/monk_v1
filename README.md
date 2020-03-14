@@ -142,13 +142,10 @@ For Installation instructions visit: [Link](https://clever-noyce-f9d43f.netlify.
 - [x] Model Visualization
 - [ ] Pre-processed data visualization
 - [ ] Learned feature visualization
-- [ ] NDimensional data input
-- [ ] Data input from npy files
-- [ ] Data input from hdfs files
-- [ ] Support for Dicom data
-- [ ] Support for Tiff data
+- [ ] NDimensional data input - npy - hdf5 - dicom - tiff
 - [ ] Multi-label Image Classification
 - [x] Custom model development
+
 
 
 ### TODO-2020 - General
@@ -163,13 +160,9 @@ For Installation instructions visit: [Link](https://clever-noyce-f9d43f.netlify.
 
 - [ ] Tensorflow 2.0
 - [ ] Chainer
-- [ ] Intel VINO toolkit
 
 
 ### TODO-2020 - External Libraries
-- [ ] OpenCV
-- [ ] Dlib
-- [ ] Python PIL
 - [ ] TensorRT Acceleration
 - [ ] Intel Acceleration
 - [ ] Echo AI - for Activation functions
