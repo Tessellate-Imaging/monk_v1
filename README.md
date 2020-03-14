@@ -11,15 +11,19 @@
 # Table of Contents
   - 1) [Sample Showcase](#sub-heading)
   - 2) [Installation](#sub-heading-1)
-  - 3) [Study Roadmaps](#sub-heading-2)
+  - 3) [Study Roadmaps, Examples, and Tutorials](#sub-heading-2)
   - 4) [Documentation](#sub-heading-3)
   - 5) [TODO](#sub-heading-4)
+
+<br />
+<br />
+<br />
 
 
 
 ## Sample Showcase
 
-### Create an image classification experiment.
+#### Create an image classification experiment.
 - Load foldered dataset
 - Set number of epochs
 - Run training
@@ -32,7 +36,7 @@ ptf.Default(dataset_path="./dataset_cats_dogs_train/",
 ptf.Train()
 ```
 
-### Inference
+#### Inference
 
 ```python
 img_name = "./monk/datasets/test/0.jpg";
@@ -41,7 +45,7 @@ print(predictions)
 ```
 
 
-### Compare Experiments
+#### Compare Experiments
 
 - Add created experiments with different hyperparameters
 - Generate comparison plots
@@ -86,10 +90,10 @@ For Installation instructions visit: [Link](https://clever-noyce-f9d43f.netlify.
 
 
 ## Study Roadmaps
-    - Getting started with monk
-    - Image Processing and Deep Learning
-    - Transfer Learning
-    - Image classification zoo
+    - [Getting started with Monk](study_roadmaps/1_getting_started_roadmap)
+    - [Image Processing and Deep Learning](study_roadmaps/3_image_processing_deep_learning_roadmap)
+    - [Transfer Learning](study_roadmaps/2_transfer_learning_roadmap)
+    - [Image classification zoo](study_roadmaps/4_image_classification_zoo)
 
 <br />
 <br />
