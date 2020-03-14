@@ -188,3 +188,16 @@
 
 <a id="4"></a>
 ## Available Optimizers
+| Name in Monk               | Original Name in Keras backend | Original Name in pytorch backend | Original Name in mxnet backend |
+|----------------------------|--------------------------------|----------------------------------|--------------------------------|
+| optimizer_adadelta         | Adadelta                       | Adadelta                         | AdaDelta                       |
+| optimizer_adagrad          | Adagrad                        | Adagrad                          | AdaGrad                        |
+| optimizer_adam             | Adam                           | Adam                             | Adam                           |
+| optimizer_adamax           | Adamax                         | Adamax                           | Adamax                         |
+| optimizer_nesterov_sgd     | SGD (With nesterov)            | SGD (With nesterov)              | NAG                            |
+| optimizer_nesterov_adam    | Nadam                          | -                                | Nadam                          |
+| optimizer_rmsprop          | RMSprop                        | RMSprop                          | RMSProp                        |
+| optimizer_momentum_rmsprop | -                              | RMSprop (With momentum)          | RMSprop (With momentum)        |
+| optimizer_sgd              | SGD                            | SGD                              | SGD                            |
+| optimizer_signum           | -                              | -                                | Signum                         |
+| optimizer_adamw            | -                              | AdamW                            | -                              |
