@@ -28,7 +28,7 @@ Note:
   
   - GPU with tensorflow 2.0 support:
         
-        pip install -r Linux/requirements_tensorflow2_cpu.txt
+        pip install -r Linux/requirements_tensorflow2_gpu.txt
         
         
 ## MacOS
