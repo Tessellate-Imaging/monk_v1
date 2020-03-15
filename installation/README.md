@@ -35,11 +35,11 @@ Note:
 
    - CPU:
    
-        pip install -r Mac/requirements_cpu_macos.txt
+         pip install -r Mac/requirements_cpu_macos.txt
         
         
    - GPU:
-          (Not available)
+         (Not available)
           
           
           
