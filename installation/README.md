@@ -45,26 +45,14 @@ Note:
           
 ## Windows
 
-    - CPU:
+   - CPU:
     
-        pip install -r Windows/requirements_cpu_windows.txt
+         pip install -r Windows/requirements_cpu_windows.txt
+         pip install torch==1.2.0+cpu torchvision==0.4.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
         
         
-    - GPU:
+   - GPU:
     
           (In development)
   
 
-
-#### Windows-CPU
-
-Install dependencies for Windows CPU-only
-
-```python
-cd monk_v1/installation/Windows
-pip install -r requirements_cpu_windows.txt
-```
-Install torch using
-```
-pip install torch==1.2.0+cpu torchvision==0.4.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
-```
