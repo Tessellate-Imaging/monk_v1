@@ -88,7 +88,7 @@ For Installation instructions visit: [Link](https://clever-noyce-f9d43f.netlify.
 Install dependencies for Windows CPU-only
 
 ```python
-cd monk_v1/installation
+cd monk_v1/installation/Windows
 pip install -r requirements_cpu_windows.txt
 ```
 Install torch using
