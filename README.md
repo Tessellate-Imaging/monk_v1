@@ -9,11 +9,11 @@
 
 
 # Table of Contents
-  - 1) [Sample Showcase](#1)
-  - 2) [Installation](#2)
-  - 3) [Study Roadmaps, Examples, and Tutorials](#3)
-  - 4) [Documentation](#4)
-  - 5) [TODO](#5)
+  - [Sample Showcase](#1)
+  - [Installation](#2)
+  - [Study Roadmaps, Examples, and Tutorials](#3)
+  - [Documentation](#4)
+  - [TODO](#5)
 
 <br />
 <br />
@@ -95,11 +95,11 @@ For Installation instructions visit: [Link](https://github.com/Tessellate-Imagin
 ## Study Roadmaps
 
 
-  - 1) [Getting started with Monk](https://github.com/Tessellate-Imaging/monk_v1/tree/master/study_roadmaps/1_getting_started_roadmap)
-  - 2) [Python sample examples](https://github.com/Tessellate-Imaging/monk_v1/tree/master/study_roadmaps/python_sample_examples)
-  - 3) [Image Processing and Deep Learning](https://github.com/Tessellate-Imaging/monk_v1/tree/master/study_roadmaps/3_image_processing_deep_learning_roadmap)
-  - 4) [Transfer Learning](https://github.com/Tessellate-Imaging/monk_v1/tree/master/study_roadmaps/2_transfer_learning_roadmap)
-  - 5) [Image classification zoo](https://github.com/Tessellate-Imaging/monk_v1/tree/master/study_roadmaps/4_image_classification_zoo)
+  - [Getting started with Monk](https://github.com/Tessellate-Imaging/monk_v1/tree/master/study_roadmaps/1_getting_started_roadmap)
+  - [Python sample examples](https://github.com/Tessellate-Imaging/monk_v1/tree/master/study_roadmaps/python_sample_examples)
+  - [Image Processing and Deep Learning](https://github.com/Tessellate-Imaging/monk_v1/tree/master/study_roadmaps/3_image_processing_deep_learning_roadmap)
+  - [Transfer Learning](https://github.com/Tessellate-Imaging/monk_v1/tree/master/study_roadmaps/2_transfer_learning_roadmap)
+  - [Image classification zoo](https://github.com/Tessellate-Imaging/monk_v1/tree/master/study_roadmaps/4_image_classification_zoo)
 
 
 <br />
@@ -109,9 +109,9 @@ For Installation instructions visit: [Link](https://github.com/Tessellate-Imagin
 <a id="4"></a>
 ## Documentation
 
-- 1) [List of available models, layers, blocks, optimizers](https://github.com/Tessellate-Imaging/monk_v1/tree/master/monk)
+- [List of available models, layers, blocks, optimizers](https://github.com/Tessellate-Imaging/monk_v1/tree/master/monk)
 
-- 2) [Functional Documentation](https://abhi-kumar.github.io/monk_v1_docs/) (Will be merged with Latest docs soon)
+- [Functional Documentation](https://abhi-kumar.github.io/monk_v1_docs/) (Will be merged with Latest docs soon)
     - Main Prototype Functions
         - [Mxnet Backend](https://abhi-kumar.github.io/monk_v1_docs/gluon_prototype.html)
         - [Pytorch Backend](https://abhi-kumar.github.io/monk_v1_docs/pytorch_prototype.html)
@@ -122,7 +122,7 @@ For Installation instructions visit: [Link](https://github.com/Tessellate-Imagin
     - [Pytorch Backend base Functions](https://abhi-kumar.github.io/monk_v1_docs/pytorch/index.html)
     - [Keras Backend base Funtions](https://abhi-kumar.github.io/monk_v1_docs/tf_keras_1/index.html)
 
-- 3) Features and Functions (In development):
+- Features and Functions (In development):
     - [Introduction](https://clever-noyce-f9d43f.netlify.com/#/introduction)
     - [Setup](https://clever-noyce-f9d43f.netlify.com/#/setup/setup)
     - [Quick Mode](https://clever-noyce-f9d43f.netlify.com/#/quick_mode/quickmode_pytorch)
@@ -132,7 +132,7 @@ For Installation instructions visit: [Link](https://github.com/Tessellate-Imagin
     - [Compare Experiments](https://clever-noyce-f9d43f.netlify.com/#/compare_experiment)
     - [Resume Training](https://clever-noyce-f9d43f.netlify.com/#/resume_training)
 
-- 4) [Complete Latest Docs](https://li8bot.github.io/monkai/#/home) (In Progress)
+- [Complete Latest Docs](https://li8bot.github.io/monkai/#/home) (In Progress)
 
 
 <br />
