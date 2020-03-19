@@ -29,7 +29,7 @@
 <a id="2"></a>
 ## Available Transfer Learning Models
 
-| monk name           | Original Name in Keras | Original Name in Pytorch | Original Name in Pytorch |
+| monk name           | Original Name in Keras | Original Name in Pytorch | Original Name in MXNet   |
 |---------------------|------------------------|--------------------------|--------------------------|
 | alexnet             | -                      | alexnet                  | AlexNet                  |
 | darknet             | -                      | -                        | Darnet53                 |
