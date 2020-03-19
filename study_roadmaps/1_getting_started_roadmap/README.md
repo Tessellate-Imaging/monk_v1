@@ -6,7 +6,7 @@
       - Dog Vs Cat Classifier Using Pytorch Backend - train, validate, infer
       - Dog Vs Cat Classifier Using Keras Backend - train, validate, infer
       
-  - 2_elemenal_features_of_monk
+  - 2_elemental_features_of_monk
       - Feature - Experiment Summaries
       - Feature - Resume an interrupted training
       - Feature - Compare experiments - compare experiments within same backend
@@ -27,7 +27,7 @@
       - Intro to quick prototyping using Keras backend
       
       
-   - 5_update_hyper_params
+   - 5_update_hyperparams
       - 1_model_params
         - How to select processing system - CPU vs GPU
         - Select to use pretrained-weights or randomly initialized weights
@@ -54,7 +54,7 @@
         - Select Losses
         - Select Learning Rate schedulers
         
-   - 6_hyperparameter_tuner
+   - 6_hyperparameter_tuning
       - Analyse learning rate
       - Analyse batch sizes
       - Analyse base model
