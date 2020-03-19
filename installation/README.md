@@ -4,7 +4,7 @@ Note:
   
         pip commands mentioned below are to be run from parent directory monk_v1/installation. 
   
-        If you are running it froma  different directory, accordingly adjust the relatve path to requirements files
+        If you are running it from a  different directory, accordingly adjust the relative path to requirements files
 
 
 
