@@ -8,6 +8,6 @@ Descriptions
     
 2. Dog Vs Cat Classifier Using Pytorch Backend - train, validate, infer
 	
-	Run on Colab: [Click Here](https://colab.research.google.com/drive/1DheW6A8_0FzyBt1cbejCTvpHck7w08Fp#scrollTo=dLs6mmMJ9BMq)
+	Run on Colab: [Click Here](https://colab.research.google.com/drive/1DheW6A8_0FzyBt1cbejCTvpHck7w08Fp)
 
 3. Dog Vs Cat Classifier Using Keras Backend - train, validate, infer
