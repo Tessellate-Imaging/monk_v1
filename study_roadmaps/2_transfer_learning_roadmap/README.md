@@ -39,5 +39,25 @@
             - Comparing a vgg network across backend - mxnet, pytorch and keras 
             
             
+         - 3_resnet
+            - Intro to resnet18-v1 network - mxnet backend
+            - Intro to resnet34-v1 network - mxnet backend
+            - Intro to resnet50-v1 network - mxnet backend
+            - Intro to resnet18-v1 network - pytorch backend
+            - Intro to resnet34-v1 network - pytorch backend
+            - Intro to resnet50-v1 network - pytorch backend
+            - Intro to resnet50-v1 network - keras backend
+            - Intro to resnet18-v2 network - mxnet backend
+            - Intro to resnet34-v2 network - mxnet backend
+            - Intro to resnet50-v2 network - mxnet backend
+            - Intro to resnet50-v2 network - keras backend
+            - Understanding the impact of depth in network - resnet-v1 variants
+            - Understanding the impact of depth in network - resnet-v2
+            - Comparing resnet v1 and v2 variants - mxnet backend
+            - Comparing resnet v1 and v2 variants - keras backend
+            - Comparing a resnet network across backend - mxnet, pytorch and keras
+
+            
+            
             
 (More notebooks to be added)
