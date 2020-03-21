@@ -62,9 +62,18 @@
         
         
  - 6_freeze_base_network
-     - Understand the effect of freezing base model in transfer learning - mxnet
-     - Understand the effect of freezing base model in transfer learning - pytorch
-     - Understand the effect of freezing base model in transfer learning - ker
+     - Understand the effect of freezing base model in transfer learning - 1 - mxnet (Dataset: Legos Classification)
+     - Understand the effect of freezing base model in transfer learning - 1 - pytorch (Dataset: Legos Classification)
+     - Understand the effect of freezing base model in transfer learning - 1 - keras (Dataset: Legos Classification)
+     - Understand the effect of freezing base model in transfer learning - 2 - mxnet (Dataset: Legos Classification)
+     - Understand the effect of freezing base model in transfer learning - 2 - pytorch (Dataset: Legos Classification)
+     - Understand the effect of freezing base model in transfer learning - 2 - keras (Dataset: Legos Classification)
+     
+     
+ - 7_effect_of_pretrained_weights 
+     - Effect of using pretrained-weights or randomly initialized weights - mxnet (Dataset: Bird Species Classification) 
+     - Effect of using pretrained-weights or randomly initialized weights - pytorch (Dataset: Bird Species Classification)
+     - Effect of using pretrained-weights or randomly initialized weights - keras (Dataset: Bird Species Classification)
             
             
             
