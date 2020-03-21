@@ -59,7 +59,12 @@
         - Comparing resnet v1 and v2 variants - mxnet backend (Dataset: Chest X-ray - Pneumonia Classification)
         - Comparing resnet v1 and v2 variants - keras backend (Dataset: Chest X-ray - Pneumonia Classification)
         - Comparing a resnet network across backend - mxnet, pytorch and keras (Dataset: Food Vs No-Food Classification)
-
+        
+        
+  - 6_freeze_base_network
+     - Understand the effect of freezing base model in transfer learning - mxnet
+     - Understand the effect of freezing base model in transfer learning - pytorch
+     - Understand the effect of freezing base model in transfer learning - ker
             
             
             
