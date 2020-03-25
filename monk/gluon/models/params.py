@@ -36,7 +36,7 @@ def set_device(value, system_dict):
     Returns:
         dict: Updated system dictionary.
     '''
-    if(value and torch.cuda.is_available()==0):
+    if(value and mx.context.num_gpus()==0):
         msg = "GPU not accessible yet requested."
         ConstraintWarning(msg)
         system_dict["model"]["params"]["use_gpu"] = False;
