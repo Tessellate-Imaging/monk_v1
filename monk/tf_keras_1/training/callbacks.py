@@ -44,10 +44,13 @@ class MemoryHistory(krc.Callback):
         return
  
     def on_epoch_end(self, batch, logs={}):
-        import GPUtil
-        GPUs = GPUtil.getGPUs()
-        if(len(GPUs) > 0):
-            gpuMemoryUsed = GPUs[0].memoryUsed
-            if(self.max_gpu_usage < int(gpuMemoryUsed)):
-                self.max_gpu_usage = int(gpuMemoryUsed);
+        if(os.getcwd() == "/kaggle/working"):
+            import GPUtil
+            GPUs = GPUtil.getGPUs()
+            if(len(GPUs) > 0):
+                gpuMemoryUsed = GPUs[0].memoryUsed
+                if(self.max_gpu_usage < int(gpuMemoryUsed)):
+                    self.max_gpu_usage = int(gpuMemoryUsed);
+        else:
+            self.max_gpu_usage = 0;        
         return

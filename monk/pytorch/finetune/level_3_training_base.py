@@ -204,11 +204,16 @@ class finetune_training(finetune_model):
                     epoch_acc = running_corrects.double() / len(self.system_dict["local"]["data_loaders"][phase].dataset)
 
 
-                    if(self.system_dict["model"]["params"]["use_gpu"]):
-                        GPUs = GPUtil.getGPUs()
-                        gpuMemoryUsed = GPUs[0].memoryUsed
-                        if(self.system_dict["training"]["outputs"]["max_gpu_memory_usage"] < int(gpuMemoryUsed)):
-                            self.system_dict["training"]["outputs"]["max_gpu_memory_usage"] = int(gpuMemoryUsed);
+                    if(not os.getcwd() == "/kaggle/working"):
+                        if(self.system_dict["model"]["params"]["use_gpu"]):
+                            GPUs = GPUtil.getGPUs()
+                            gpuMemoryUsed = GPUs[0].memoryUsed
+                            if(self.system_dict["training"]["outputs"]["max_gpu_memory_usage"] < int(gpuMemoryUsed)):
+                                self.system_dict["training"]["outputs"]["max_gpu_memory_usage"] = int(gpuMemoryUsed);
+                    else:
+                        gpuMemoryUsed = 0;
+                        self.system_dict["training"]["outputs"]["max_gpu_memory_usage"] = 0;
+
 
 
                     if(self.system_dict["training"]["settings"]["save_training_logs"]):
@@ -380,11 +385,15 @@ class finetune_training(finetune_model):
                     epoch_acc = running_corrects.double() / len(self.system_dict["local"]["data_loaders"][phase].dataset)
 
 
-                    if(self.system_dict["model"]["params"]["use_gpu"]):
-                        GPUs = GPUtil.getGPUs()
-                        gpuMemoryUsed = GPUs[0].memoryUsed
-                        if(self.system_dict["training"]["outputs"]["max_gpu_memory_usage"] < int(gpuMemoryUsed)):
-                            self.system_dict["training"]["outputs"]["max_gpu_memory_usage"] = int(gpuMemoryUsed);
+                    if(not os.getcwd() == "/kaggle/working"):
+                        if(self.system_dict["model"]["params"]["use_gpu"]):
+                            GPUs = GPUtil.getGPUs()
+                            gpuMemoryUsed = GPUs[0].memoryUsed
+                            if(self.system_dict["training"]["outputs"]["max_gpu_memory_usage"] < int(gpuMemoryUsed)):
+                                self.system_dict["training"]["outputs"]["max_gpu_memory_usage"] = int(gpuMemoryUsed);
+                    else:
+                        gpuMemoryUsed = 0;
+                        self.system_dict["training"]["outputs"]["max_gpu_memory_usage"] = 0;
 
 
                     if(self.system_dict["training"]["settings"]["save_training_logs"]):
