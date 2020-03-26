@@ -25,8 +25,7 @@ def load_model(system_dict, path=False, final=False, resume=False, external_path
     Returns:
         network: Neural network loaded with weights.
     '''
-    GPUs = GPUtil.getGPUs()
-    if(len(GPUs)==0):
+    if(not torch.cuda.is_available()):
         if(final):
             if(path):
                 finetune_net = torch.load(path + "final", map_location=torch.device('cpu'));

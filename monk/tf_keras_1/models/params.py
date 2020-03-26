@@ -53,8 +53,7 @@ def set_device(value, system_dict):
     Returns:
         dict: Updated system dictionary.
     '''
-    GPUs = GPUtil.getGPUs()
-    if(value and len(GPUs)==0):
+    if(value and tf.test.is_gpu_available()==0):
         msg = "GPU not accessible yet requested."
         ConstraintWarning(msg)
         system_dict["model"]["params"]["use_gpu"] = False;

@@ -300,7 +300,10 @@ class prototype_master(prototype_updates):
 
         
         batch_size=1;
-        x = tf.placeholder(tf.float32, shape=(batch_size, h, w, c))
+        if(tf.__version__.split(".")[0] == "2"):
+            x = tf.backend.placeholder(tf.float32, shape=(batch_size, h, w, c)) 
+        else:
+            x = tf.placeholder(tf.float32, shape=(batch_size, h, w, c))
         y = self.system_dict["local"]["model"](x)
 
         self.system_dict["local"]["model"].save("final.h5");

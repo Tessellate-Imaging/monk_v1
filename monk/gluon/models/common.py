@@ -115,8 +115,7 @@ def model_to_device(system_dict):
     Returns:
         dict: Updated system dict 
     '''
-    GPUs = GPUtil.getGPUs()
-    if(len(GPUs)==0):
+    if(not mx.context.num_gpus()):
         system_dict["local"]["ctx"] = [mx.cpu()];
     else:
         if(system_dict["model"]["params"]["use_gpu"]):
