@@ -53,7 +53,7 @@ Contributors
 9) Sayan Chakraborty [Linkedin](https://www.linkedin.com/in/sayanchakraborty581/), [Github](https://github.com/sayangoogle) 
   - Mar 2020 - Present
 
-10) Rohit Lal [Linkedin](https://www.linkedin.com/in/rohit-lal/%20-%209521403830), [Github](https://github.com/take2rohit) 
+10) Rohit Lal [Linkedin](https://www.linkedin.com/in/rohit-lal/), [Github](https://github.com/take2rohit) 
   - Mar 2020 - Present
 
 11) Shubham Gupta [Linkedin](https://www.linkedin.com/in/shubham-gupta-gim/), [Github]() 
