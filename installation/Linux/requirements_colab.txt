@@ -1,0 +1,4 @@
+GPUtil
+mxnet-cu101
+pylg
+gluoncv
