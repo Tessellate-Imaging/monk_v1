@@ -56,3 +56,15 @@ Note:
           (In development)
   
 
+
+## Miscellaneous
+
+    - Kaggle
+    
+          pip install -r Misc/requirements_kaggle.txt
+          
+    
+    - Colab
+    
+          pip install -r Misc/requirements_colab.txt
+          
