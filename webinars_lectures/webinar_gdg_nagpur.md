@@ -8,6 +8,8 @@ Created by : Abhishek Kumar, Akash Deep Singh
 
 ## Dates and time: 28th and 29th March 2020, 11 AM to 1 PM IST (GMT + 05:30)
 
+## Registration link: https://www.meetup.com/GDG-Nagpur/events/269663498/
+
 ## Joining Link
 Link:
   - (DAY- 1 ) https://www.youtube.com/watch?v=hsGTrGyz6LE
