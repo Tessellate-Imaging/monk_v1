@@ -6,20 +6,20 @@
 Create powerful applications for the real world with MonkAI
 Created by : Abhishek Kumar, Akash Deep Singh
 
-## What you'll learn
-##### - Brief Introduction to Computer Vision and Deep Learning
-##### - What is MonkAI and how to setup your Computer Vision workbench
-##### - Getting Started with Transfer Learning for Image Classification
-##### - Creating Custom Convolution Neural Networks with MonkAI
-##### - Building an Object Detector
-
-
 ## Dates and time: 28th and 29th March 2020, 11 AM to 1 PM IST (GMT + 05:30)
 
 ## Joining Link
 Link:
 (DAY- 1 ) https://www.youtube.com/watch?v=hsGTrGyz6LE
 (DAY -2) https://www.youtube.com/watch?v=PkROnono6kk
+
+
+## What you'll learn
+##### - Brief Introduction to Computer Vision and Deep Learning
+##### - What is MonkAI and how to setup your Computer Vision workbench
+##### - Getting Started with Transfer Learning for Image Classification
+##### - Creating Custom Convolution Neural Networks with MonkAI
+##### - Building an Object Detector
 
 
 ## Contents
