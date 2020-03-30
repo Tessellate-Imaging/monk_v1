@@ -13,7 +13,7 @@ Created by : Abhishek Kumar, Akash Deep Singh
 ## Joining Link
 Link:
   - (DAY- 1 ) https://www.youtube.com/watch?v=hsGTrGyz6LE
-  - (DAY -2) https://www.youtube.com/watch?v=PkROnono6kk
+  - (DAY -2) https://www.youtube.com/watch?v=hCIW07E-4tc
 
 
 ## What you'll learn
