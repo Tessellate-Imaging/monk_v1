@@ -84,7 +84,7 @@ def parse_csv(fname, delimiter):
         label_list.append(df[columns[1]][i]);
 
     classes = list(np.unique(sorted(label_list)))
-    for i in range(len(lst)):
+    for i in range(len(label_list)):
         label_list[i] = classes.index(label_list[i]);
 
     return img_list, label_list, classes;
