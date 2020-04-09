@@ -84,6 +84,10 @@ def parse_csv(fname, delimiter):
         label_list.append(df[columns[1]][i]);
 
     classes = list(np.unique(sorted(label_list)))
+
+    if(type(classes[0]) == int):
+        classes = list(map(int, classes))
+
     for i in range(len(label_list)):
         label_list[i] = classes.index(label_list[i]);
 
@@ -120,7 +124,6 @@ def parse_csv_updated(fname, delimiter):
         for j in range(len(tmp)):
             if(tmp[j] not in classes):
                 classes.append(tmp[j]);
-    
 
     return img_list, label_list, sorted(classes);
 
