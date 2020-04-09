@@ -181,8 +181,8 @@ def populate_corrupt_from_foldered(dataset_path, verbose=1):
             for j in range(len(list_imgs)):
                 img_name = dataset_path + "/" + classes_folder[i] + "/" + list_imgs[j]
                 if(os.path.isfile(img_name)):
-                    img = Image.open(img_name)
                     try:
+                        img = Image.open(img_name)
                         img.verify()
                     except Exception:
                         corrupt_images.append(img_name)
@@ -192,8 +192,8 @@ def populate_corrupt_from_foldered(dataset_path, verbose=1):
             for j in range(len(list_imgs)):
                 img_name = dataset_path + "/" + classes_folder[i] + "/" + list_imgs[j]
                 if(os.path.isfile(img_name)):
-                    img = Image.open(img_name)
                     try:
+                        img = Image.open(img_name)
                         img.verify()
                     except Exception:
                         corrupt_images.append(img_name)
@@ -220,8 +220,8 @@ def populate_corrupt_from_csv(tpath, dataset_path, delimiter, verbose=1):
             img_name, label = lst[i][:len(lst[i])-1].split(delimiter);
             img_name = dataset_path + "/" + img_name
             if(os.path.isfile(img_name)):
-                img = Image.open(img_name)
                 try:
+                    img = Image.open(img_name)
                     img.verify()
                 except Exception:
                     corrupt_images.append(img_name)
@@ -230,8 +230,8 @@ def populate_corrupt_from_csv(tpath, dataset_path, delimiter, verbose=1):
             img_name, label = lst[i][:len(lst[i])-1].split(delimiter);
             img_name = dataset_path + "/" + img_name
             if(os.path.isfile(img_name)):
-                img = Image.open(img_name)
                 try:
+                    img = Image.open(img_name)
                     img.verify()
                 except Exception:
                     corrupt_images.append(img_name)

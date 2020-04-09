@@ -104,3 +104,5 @@ def corrupted_missing_images(system_dict, check_missing, check_corrupt):
             corrupt_images_val = populate_corrupt_from_csv(csv_val, dataset_val_path, delimiter, verbose=system_dict["verbose"]);
 
     return missing_images_train, missing_images_val, corrupt_images_train, corrupt_images_val;
+
+    
