@@ -56,21 +56,39 @@ def parse_csv(fname, delimiter):
         list: List of corresponding labels
         list: List of all the class names in the dataset
     '''
-    f = open(fname);
-    lst = f.readlines();
-    f.close();
-    del lst[0]
+
+    #Old format
+    #f = open(fname);
+    #lst = f.readlines();
+    #f.close();
+    #del lst[0]
+    #img_list = [];
+    #label_list = [];
+    #for i in range(len(lst)):
+    #    img, label = lst[i][:len(lst[i])-1].split(delimiter);
+    #    img_list.append(img);
+    #    label_list.append(label);
+    #classes = list(np.unique(sorted(label_list)))
+    #for i in range(len(lst)):
+    #    label_list[i] = classes.index(label_list[i]);
+    #return img_list, label_list, classes;
+
+
+    #New format
+    df = pd.read_csv(fname);
+    columns = df.columns;
     img_list = [];
     label_list = [];
-    for i in range(len(lst)):
-        img, label = lst[i][:len(lst[i])-1].split(delimiter);
-        img_list.append(img);
-        label_list.append(label);
+    for i in range(len(df)):
+        img_list.append(df[columns[0]][i]);
+        label_list.append(df[columns[1]][i]);
+
     classes = list(np.unique(sorted(label_list)))
     for i in range(len(lst)):
         label_list[i] = classes.index(label_list[i]);
 
     return img_list, label_list, classes;
+
 
 
 @accepts(str, str, post_trace=True)
