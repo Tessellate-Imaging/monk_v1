@@ -1,6 +1,7 @@
 import os 
 import sys
 import numpy as np
+import mxnet as mx
 from mxnet.gluon.data import Dataset
 from mxnet import image
 

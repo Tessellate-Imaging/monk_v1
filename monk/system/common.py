@@ -84,10 +84,9 @@ def parse_csv(fname, delimiter):
         label_list.append(df[columns[1]][i]);
 
     classes = list(np.unique(sorted(label_list)))
-
-    if(type(classes[0]) != str):
+    if(type(classes[0]) == int):
         classes = list(map(int, classes))
-
+        
     for i in range(len(label_list)):
         label_list[i] = classes.index(label_list[i]);
 
@@ -116,14 +115,15 @@ def parse_csv_updated(fname, delimiter):
     label_list = [];
     for i in range(len(df)):
         img_list.append(df[columns[0]][i]);
-        label_list.append(df[columns[1]][i]);
+        label_list.append(df[columns[1]][i].split(delimiter));
 
     classes = [];
     for i in range(len(label_list)):
-        tmp = label_list[i].split(delimiter);
+        tmp = label_list[i];
         for j in range(len(tmp)):
             if(tmp[j] not in classes):
-                classes.append(str(tmp[j]));
+                classes.append(tmp[j]);
+    
 
     return img_list, label_list, sorted(classes);
 
@@ -131,7 +131,7 @@ def parse_csv_updated(fname, delimiter):
 
 def parse_csv2(fname, delimiter):
     '''
-    Read CSV File - - General
+    Read CSV File - - General Keras
 
     Args:
         fname (str): Path to CSV File
@@ -146,6 +146,29 @@ def parse_csv2(fname, delimiter):
     columns = df.columns;
     df[columns[1]] = df[columns[1]].astype(str);
     return df, columns;
+
+
+
+def parse_csv2_updated(fname, delimiter):
+    '''
+    Read CSV File - - Multilabel Keras
+
+    Args:
+        fname (str): Path to CSV File
+        delimiter (str): Delimiter for csv file
+
+    Returns:
+        df: Dataframe from csv file
+        list: List of column names in csv file
+    '''
+    df = pd.read_csv(fname);
+    df = df.reindex(np.random.permutation(df.index));
+    columns = df.columns;
+    df[columns[1]] = df[columns[1]].astype(str);
+    df[columns[1]]=df[columns[1]].apply(lambda x:x.split(delimiter))
+    return df, columns;
+
+
 
 #############################################################################################################################
 

@@ -214,8 +214,12 @@ class prototype_master(prototype_updates):
         Returns:
             None
         '''
-        accuracy, class_based_accuracy = self.set_evaluation_final();
-        save(self.system_dict);
+        if(self.system_dict["dataset"]["label_type"] == "single" or self.system_dict["dataset"]["label_type"] == False):
+            accuracy, class_based_accuracy = self.set_evaluation_final();
+            save(self.system_dict);
+        else:
+            accuracy, class_based_accuracy = self.set_evaluation_final_multiple();
+            save(self.system_dict);
         return accuracy, class_based_accuracy;
     ###############################################################################################################################################
 
@@ -224,10 +228,10 @@ class prototype_master(prototype_updates):
 
 
     ###############################################################################################################################################
-    @error_checks(None, img_name=["file", "r"], img_dir=["folder", "r"], return_raw=False, post_trace=True)
-    @accepts("self", img_name=[str, bool], img_dir=[str, bool], return_raw=bool, post_trace=True)
+    @error_checks(None, img_name=["file", "r"], img_dir=["folder", "r"], return_raw=False, img_thresh=["gte", 0.0, "lte", 1.0], post_trace=True)
+    @accepts("self", img_name=[str, bool], img_dir=[str, bool], return_raw=bool, img_thresh=float, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
-    def Infer(self, img_name=False, img_dir=False, return_raw=False):
+    def Infer(self, img_name=False, img_dir=False, return_raw=False, img_thresh=0.5):
         '''
         Master function for inference 
 
@@ -237,15 +241,23 @@ class prototype_master(prototype_updates):
                             (Optional)
             return_raw (bool): If True, then output dictionary contains image probability for every class in the set.
                                 Else, only the most probable class score is returned back.
+            img_thresh (float): Thresholding for multi label image classification.
 
         Returns:
-            None
+            dict: Dictionary containing details on predictions.
         '''
-        if(not img_dir):
-            predictions = self.set_prediction_final(img_name=img_name, return_raw=return_raw);
+        if(self.system_dict["dataset"]["label_type"] == "single" or self.system_dict["dataset"]["label_type"] == False):
+            if(not img_dir):
+                predictions = self.set_prediction_final(img_name=img_name, return_raw=return_raw);
+            else:
+                predictions = self.set_prediction_final(img_dir=img_dir, return_raw=return_raw);
+            return predictions;
         else:
-            predictions = self.set_prediction_final(img_dir=img_dir, return_raw=return_raw);
-        return predictions;
+            if(not img_dir):
+                predictions = self.set_prediction_final_multiple(img_name=img_name, return_raw=return_raw, img_thresh=img_thresh);
+            else:
+                predictions = self.set_prediction_final_multiple(img_dir=img_dir, return_raw=return_raw, img_thresh=img_thresh);
+            return predictions;
     ###############################################################################################################################################
 
 

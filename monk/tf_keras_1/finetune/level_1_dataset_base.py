@@ -39,6 +39,7 @@ class finetune_dataset(system):
             csv_test = self.system_dict["dataset"]["csv_test"];
             dataset_test_path = self.system_dict["dataset"]["test_path"];
             delimiter = self.system_dict["dataset"]["params"]["test_delimiter"];
+            label_type = self.system_dict["dataset"]["label_type"];
 
             if(type(self.system_dict["dataset"]["params"]["input_size"]) == tuple or type(self.system_dict["dataset"]["params"]["input_size"]) == list):
                 h = self.system_dict["dataset"]["params"]["input_size"][0];
@@ -51,28 +52,45 @@ class finetune_dataset(system):
             color_mode='rgb';
             class_mode='categorical';
 
-            if(self.system_dict["dataset"]["params"]["dataset_test_type"] == "foldered"):
-                self.system_dict["local"]["data_loaders"]["test"] = self.system_dict["local"]["data_generators"]["test"].flow_from_directory(dataset_test_path, 
-                                                                 target_size=target_size,
-                                                                 color_mode=color_mode,
-                                                                 batch_size=1,
-                                                                 class_mode=class_mode,
-                                                                 shuffle=False
-                                                                 );
+            if(label_type == "single" or label_type == False):
+                if(self.system_dict["dataset"]["params"]["dataset_test_type"] == "foldered"):
+                    self.system_dict["local"]["data_loaders"]["test"] = self.system_dict["local"]["data_generators"]["test"].flow_from_directory(dataset_test_path, 
+                                                                     target_size=target_size,
+                                                                     color_mode=color_mode,
+                                                                     batch_size=1,
+                                                                     class_mode=class_mode,
+                                                                     shuffle=False
+                                                                     );
 
-            elif(self.system_dict["dataset"]["params"]["dataset_test_type"] == "csv"):
-                test_df, columns = parse_csv2(csv_test, delimiter);
+                elif(self.system_dict["dataset"]["params"]["dataset_test_type"] == "csv"):
+                    test_df, columns = parse_csv2(csv_test, delimiter);
+                    self.system_dict["local"]["data_loaders"]["test"] = self.system_dict["local"]["data_generators"]["test"].flow_from_dataframe(
+                                                                    dataframe=test_df,
+                                                                    directory=dataset_test_path,
+                                                                    x_col=columns[0],
+                                                                    y_col=columns[1],
+                                                                    target_size=target_size,
+                                                                    color_mode=color_mode,
+                                                                    batch_size=1,
+                                                                    class_mode=class_mode,
+                                                                    shuffle=False
+                                                                    );
+            else:
+                test_df, columns = parse_csv2_updated(csv_train, delimiter);
                 self.system_dict["local"]["data_loaders"]["test"] = self.system_dict["local"]["data_generators"]["test"].flow_from_dataframe(
-                                                                dataframe=test_df,
-                                                                directory=dataset_test_path,
-                                                                x_col=columns[0],
-                                                                y_col=columns[1],
-                                                                target_size=target_size,
-                                                                color_mode=color_mode,
-                                                                batch_size=1,
-                                                                class_mode=class_mode,
-                                                                shuffle=False
-                                                                );
+                                                                    dataframe=test_df,
+                                                                    directory=dataset_test_path,
+                                                                    x_col=columns[0],
+                                                                    y_col=columns[1],
+                                                                    target_size=target_size,
+                                                                    color_mode=color_mode,
+                                                                    batch_size=1,
+                                                                    class_mode=class_mode,
+                                                                    shuffle=False
+                                                                    );
+
+
+
 
             if(not self.system_dict["dataset"]["params"]["classes"]):
                 self.system_dict["dataset"]["params"]["classes"] = self.system_dict["local"]["data_loaders"]["test"].class_indices;
@@ -93,6 +111,7 @@ class finetune_dataset(system):
             batch_size = self.system_dict["dataset"]["params"]["batch_size"];
             shuffle = self.system_dict["dataset"]["params"]["train_shuffle"];
             num_workers = self.system_dict["dataset"]["params"]["num_workers"];
+            label_type = self.system_dict["dataset"]["label_type"];
 
             if(type(self.system_dict["dataset"]["params"]["input_size"]) == tuple or type(self.system_dict["dataset"]["params"]["input_size"]) == list):
                 h = self.system_dict["dataset"]["params"]["input_size"][0];
@@ -107,28 +126,43 @@ class finetune_dataset(system):
             class_mode='categorical';
 
 
-            if("csv" in dataset_type):
-                train_df, columns = parse_csv2(csv_train, delimiter);
-                self.system_dict["local"]["data_loaders"]["estimate"] = self.system_dict["local"]["data_generators"]["estimate"].flow_from_dataframe(
-                                                                dataframe=train_df,
-                                                                directory=dataset_train_path,
-                                                                x_col=columns[0],
-                                                                y_col=columns[1],
-                                                                subset="training",
-                                                                target_size=target_size,
-                                                                color_mode=color_mode,
-                                                                batch_size=batch_size,
-                                                                class_mode=class_mode,
-                                                                shuffle=shuffle
-                                                            );
+            if(label_type == "single" or label_type == False):
+                if("csv" in dataset_type):
+                    train_df, columns = parse_csv2(csv_train, delimiter);
+                    self.system_dict["local"]["data_loaders"]["estimate"] = self.system_dict["local"]["data_generators"]["estimate"].flow_from_dataframe(
+                                                                    dataframe=train_df,
+                                                                    directory=dataset_train_path,
+                                                                    x_col=columns[0],
+                                                                    y_col=columns[1],
+                                                                    subset="training",
+                                                                    target_size=target_size,
+                                                                    color_mode=color_mode,
+                                                                    batch_size=batch_size,
+                                                                    class_mode=class_mode,
+                                                                    shuffle=shuffle
+                                                                );
+                else:
+                    self.system_dict["local"]["data_loaders"]["estimate"] = self.system_dict["local"]["data_generators"]["estimate"].flow_from_directory(dataset_train_path, 
+                                                                     target_size=target_size,
+                                                                     color_mode=color_mode,
+                                                                     batch_size=batch_size,
+                                                                     class_mode=class_mode,
+                                                                     shuffle=shuffle,
+                                                                     subset='training');
             else:
-                self.system_dict["local"]["data_loaders"]["estimate"] = self.system_dict["local"]["data_generators"]["estimate"].flow_from_directory(dataset_train_path, 
-                                                                 target_size=target_size,
-                                                                 color_mode=color_mode,
-                                                                 batch_size=batch_size,
-                                                                 class_mode=class_mode,
-                                                                 shuffle=shuffle,
-                                                                 subset='training');
+                train_df, columns = parse_csv2_updated(csv_train, delimiter);
+                self.system_dict["local"]["data_loaders"]["estimate"] = self.system_dict["local"]["data_generators"]["estimate"].flow_from_dataframe(
+                                                                    dataframe=train_df,
+                                                                    directory=dataset_train_path,
+                                                                    x_col=columns[0],
+                                                                    y_col=columns[1],
+                                                                    subset="training",
+                                                                    target_size=target_size,
+                                                                    color_mode=color_mode,
+                                                                    batch_size=batch_size,
+                                                                    class_mode=class_mode,
+                                                                    shuffle=shuffle
+                                                                );
 
 
         else:
@@ -144,6 +178,7 @@ class finetune_dataset(system):
             batch_size = self.system_dict["dataset"]["params"]["batch_size"];
             shuffle = self.system_dict["dataset"]["params"]["train_shuffle"];
             num_workers = self.system_dict["dataset"]["params"]["num_workers"];
+            label_type = self.system_dict["dataset"]["label_type"];
 
 
             if(type(self.system_dict["dataset"]["params"]["input_size"]) == tuple or type(self.system_dict["dataset"]["params"]["input_size"]) == list):
@@ -158,99 +193,164 @@ class finetune_dataset(system):
             color_mode='rgb';
             class_mode='categorical';
 
-            if(dataset_type == "train"):
-                self.system_dict["local"]["data_loaders"]["train"] = self.system_dict["local"]["data_generators"]["train"].flow_from_directory(dataset_train_path, 
-                                                                 target_size=target_size,
-                                                                 color_mode=color_mode,
-                                                                 batch_size=batch_size,
-                                                                 class_mode=class_mode,
-                                                                 shuffle=shuffle,
-                                                                 subset='training');
-
-                self.system_dict["local"]["data_loaders"]["val"] = self.system_dict["local"]["data_generators"]["train"].flow_from_directory(dataset_train_path, 
-                                                                 target_size=target_size,
-                                                                 color_mode=color_mode,
-                                                                 batch_size=batch_size,
-                                                                 class_mode=class_mode,
-                                                                 shuffle=shuffle,
-                                                                 subset='validation');
-
-            elif(dataset_type == "train-val"):
-                self.system_dict["local"]["data_loaders"]["train"] = self.system_dict["local"]["data_generators"]["train"].flow_from_directory(dataset_train_path, 
-                                                                 target_size=target_size,
-                                                                 color_mode=color_mode,
-                                                                 batch_size=batch_size,
-                                                                 class_mode=class_mode,
-                                                                 shuffle=shuffle);
-
-                self.system_dict["local"]["data_loaders"]["val"] = self.system_dict["local"]["data_generators"]["val"].flow_from_directory(dataset_val_path, 
-                                                                 target_size=target_size,
-                                                                 color_mode=color_mode,
-                                                                 batch_size=batch_size,
-                                                                 class_mode=class_mode,
-                                                                 shuffle=shuffle);
 
 
-            elif(dataset_type == "csv_train"):
-                train_df, columns = parse_csv2(csv_train, delimiter);
+            if(label_type == "single" or label_type == False):
+                if(dataset_type == "train"):
+                    self.system_dict["local"]["data_loaders"]["train"] = self.system_dict["local"]["data_generators"]["train"].flow_from_directory(dataset_train_path, 
+                                                                     target_size=target_size,
+                                                                     color_mode=color_mode,
+                                                                     batch_size=batch_size,
+                                                                     class_mode=class_mode,
+                                                                     shuffle=shuffle,
+                                                                     subset='training');
 
-                self.system_dict["local"]["data_loaders"]["train"] = self.system_dict["local"]["data_generators"]["train"].flow_from_dataframe(
-                                                                dataframe=train_df,
-                                                                directory=dataset_train_path,
-                                                                x_col=columns[0],
-                                                                y_col=columns[1],
-                                                                subset="training",
-                                                                target_size=target_size,
-                                                                color_mode=color_mode,
-                                                                batch_size=batch_size,
-                                                                class_mode=class_mode,
-                                                                shuffle=shuffle
-                                                            );
+                    self.system_dict["local"]["data_loaders"]["val"] = self.system_dict["local"]["data_generators"]["train"].flow_from_directory(dataset_train_path, 
+                                                                     target_size=target_size,
+                                                                     color_mode=color_mode,
+                                                                     batch_size=batch_size,
+                                                                     class_mode=class_mode,
+                                                                     shuffle=shuffle,
+                                                                     subset='validation');
 
-                self.system_dict["local"]["data_loaders"]["val"] = self.system_dict["local"]["data_generators"]["train"].flow_from_dataframe(
-                                                                dataframe=train_df,
-                                                                directory=dataset_train_path,
-                                                                x_col=columns[0],
-                                                                y_col=columns[1],
-                                                                subset="validation",
-                                                                target_size=target_size,
-                                                                color_mode=color_mode,
-                                                                batch_size=batch_size,
-                                                                class_mode=class_mode,
-                                                                shuffle=shuffle
-                                                            );
+                elif(dataset_type == "train-val"):
+                    self.system_dict["local"]["data_loaders"]["train"] = self.system_dict["local"]["data_generators"]["train"].flow_from_directory(dataset_train_path, 
+                                                                     target_size=target_size,
+                                                                     color_mode=color_mode,
+                                                                     batch_size=batch_size,
+                                                                     class_mode=class_mode,
+                                                                     shuffle=shuffle);
 
-
-            elif(dataset_type == "csv_train-val"):
-                train_df, columns = parse_csv2(csv_train, delimiter);
-
-
-                self.system_dict["local"]["data_loaders"]["train"] = self.system_dict["local"]["data_generators"]["train"].flow_from_dataframe(
-                                                                dataframe=train_df,
-                                                                directory=dataset_train_path,
-                                                                x_col=columns[0],
-                                                                y_col=columns[1],
-                                                                target_size=target_size,
-                                                                color_mode=color_mode,
-                                                                batch_size=batch_size,
-                                                                class_mode=class_mode,
-                                                                shuffle=shuffle
-                                                            );
+                    self.system_dict["local"]["data_loaders"]["val"] = self.system_dict["local"]["data_generators"]["val"].flow_from_directory(dataset_val_path, 
+                                                                     target_size=target_size,
+                                                                     color_mode=color_mode,
+                                                                     batch_size=batch_size,
+                                                                     class_mode=class_mode,
+                                                                     shuffle=shuffle);
 
 
-                val_df, columns = parse_csv2(csv_val, delimiter);
+                elif(dataset_type == "csv_train"):
+                    train_df, columns = parse_csv2(csv_train, delimiter);
 
-                self.system_dict["local"]["data_loaders"]["val"] = self.system_dict["local"]["data_generators"]["val"].flow_from_dataframe(
-                                                                dataframe=val_df,
-                                                                directory=dataset_val_path,
-                                                                x_col=columns[0],
-                                                                y_col=columns[1],
-                                                                target_size=target_size,
-                                                                color_mode=color_mode,
-                                                                batch_size=batch_size,
-                                                                class_mode=class_mode,
-                                                                shuffle=shuffle
-                                                            );
+                    self.system_dict["local"]["data_loaders"]["train"] = self.system_dict["local"]["data_generators"]["train"].flow_from_dataframe(
+                                                                    dataframe=train_df,
+                                                                    directory=dataset_train_path,
+                                                                    x_col=columns[0],
+                                                                    y_col=columns[1],
+                                                                    subset="training",
+                                                                    target_size=target_size,
+                                                                    color_mode=color_mode,
+                                                                    batch_size=batch_size,
+                                                                    class_mode=class_mode,
+                                                                    shuffle=shuffle
+                                                                );
+
+                    self.system_dict["local"]["data_loaders"]["val"] = self.system_dict["local"]["data_generators"]["train"].flow_from_dataframe(
+                                                                    dataframe=train_df,
+                                                                    directory=dataset_train_path,
+                                                                    x_col=columns[0],
+                                                                    y_col=columns[1],
+                                                                    subset="validation",
+                                                                    target_size=target_size,
+                                                                    color_mode=color_mode,
+                                                                    batch_size=batch_size,
+                                                                    class_mode=class_mode,
+                                                                    shuffle=shuffle
+                                                                );
+
+
+                elif(dataset_type == "csv_train-val"):
+                    train_df, columns = parse_csv2(csv_train, delimiter);
+
+
+                    self.system_dict["local"]["data_loaders"]["train"] = self.system_dict["local"]["data_generators"]["train"].flow_from_dataframe(
+                                                                    dataframe=train_df,
+                                                                    directory=dataset_train_path,
+                                                                    x_col=columns[0],
+                                                                    y_col=columns[1],
+                                                                    target_size=target_size,
+                                                                    color_mode=color_mode,
+                                                                    batch_size=batch_size,
+                                                                    class_mode=class_mode,
+                                                                    shuffle=shuffle
+                                                                );
+
+
+                    val_df, columns = parse_csv2(csv_val, delimiter);
+
+                    self.system_dict["local"]["data_loaders"]["val"] = self.system_dict["local"]["data_generators"]["val"].flow_from_dataframe(
+                                                                    dataframe=val_df,
+                                                                    directory=dataset_val_path,
+                                                                    x_col=columns[0],
+                                                                    y_col=columns[1],
+                                                                    target_size=target_size,
+                                                                    color_mode=color_mode,
+                                                                    batch_size=batch_size,
+                                                                    class_mode=class_mode,
+                                                                    shuffle=shuffle
+                                                                );
+
+            else:
+                if(dataset_type == "csv_train"):
+                    train_df, columns = parse_csv2_updated(csv_train, delimiter);
+
+                    self.system_dict["local"]["data_loaders"]["train"] = self.system_dict["local"]["data_generators"]["train"].flow_from_dataframe(
+                                                                    dataframe=train_df,
+                                                                    directory=dataset_train_path,
+                                                                    x_col=columns[0],
+                                                                    y_col=columns[1],
+                                                                    subset="training",
+                                                                    target_size=target_size,
+                                                                    color_mode=color_mode,
+                                                                    batch_size=batch_size,
+                                                                    class_mode=class_mode,
+                                                                    shuffle=shuffle
+                                                                );
+
+                    self.system_dict["local"]["data_loaders"]["val"] = self.system_dict["local"]["data_generators"]["train"].flow_from_dataframe(
+                                                                    dataframe=train_df,
+                                                                    directory=dataset_train_path,
+                                                                    x_col=columns[0],
+                                                                    y_col=columns[1],
+                                                                    subset="validation",
+                                                                    target_size=target_size,
+                                                                    color_mode=color_mode,
+                                                                    batch_size=batch_size,
+                                                                    class_mode=class_mode,
+                                                                    shuffle=shuffle
+                                                                );
+
+
+                elif(dataset_type == "csv_train-val"):
+                    train_df, columns = parse_csv2_updated(csv_train, delimiter);
+
+
+                    self.system_dict["local"]["data_loaders"]["train"] = self.system_dict["local"]["data_generators"]["train"].flow_from_dataframe(
+                                                                    dataframe=train_df,
+                                                                    directory=dataset_train_path,
+                                                                    x_col=columns[0],
+                                                                    y_col=columns[1],
+                                                                    target_size=target_size,
+                                                                    color_mode=color_mode,
+                                                                    batch_size=batch_size,
+                                                                    class_mode=class_mode,
+                                                                    shuffle=shuffle
+                                                                );
+
+
+                    val_df, columns = parse_csv2(csv_val, delimiter);
+
+                    self.system_dict["local"]["data_loaders"]["val"] = self.system_dict["local"]["data_generators"]["val"].flow_from_dataframe(
+                                                                    dataframe=val_df,
+                                                                    directory=dataset_val_path,
+                                                                    x_col=columns[0],
+                                                                    y_col=columns[1],
+                                                                    target_size=target_size,
+                                                                    color_mode=color_mode,
+                                                                    batch_size=batch_size,
+                                                                    class_mode=class_mode,
+                                                                    shuffle=shuffle
+                                                                );
 
 
             self.system_dict["dataset"]["params"]["classes"] = self.system_dict["local"]["data_loaders"]["train"].class_indices;

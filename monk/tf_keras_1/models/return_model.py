@@ -77,8 +77,12 @@ def setup_model(system_dict):
             x = krl.Dense(512)(x);
             x = krl.ReLU()(x)
             x = krl.Dropout(0.5)(x);
-            x = krl.Dense(num_classes)(x);
-            preds = krl.Softmax()(x);
+            if(system_dict["dataset"]["label_type"] == "single" or system_dict["dataset"]["label_type"] == False):
+                x = krl.Dense(num_classes)(x);
+                preds = krl.Softmax()(x);
+            else:
+                x = krl.Dense(num_classes)(x);
+                preds = krl.Activation('sigmoid')(x);
             finetune_net = keras.models.Model(inputs=finetune_net.input, outputs=preds);
 
         system_dict["local"]["model"] = finetune_net;

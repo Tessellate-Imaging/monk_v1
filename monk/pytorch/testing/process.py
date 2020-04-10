@@ -33,3 +33,44 @@ def process_single(img_name, return_raw, system_dict):
         return prediction, score, outputs.data.cpu().numpy()[0];
     else:
         return prediction, score, "";
+
+
+
+@accepts(str, bool, float, dict, post_trace=True)
+@TraceFunction(trace_args=False, trace_rv=False)
+def process_multi(img_name, return_raw, img_thresh, system_dict):
+    '''
+    Run inference on a single image when label type is multi-label
+
+    Args:
+        img_name (str): path to image
+        return_raw (bool): If True, then output dictionary contains image probability for every class in the set.
+                            Else, only the most probable class score is returned back.
+        img_thresh (float): Thresholding for multi label image classification.
+                            
+
+    Returns:
+        list: list of predicted classes
+        list: list of predicted scores
+    '''
+    img = Image.open(img_name).convert('RGB');
+    img = system_dict["local"]["data_transforms"]["test"](img);
+    img = img.unsqueeze(0);
+    img = Variable(img);
+    img = img.to(system_dict["local"]["device"])
+    outputs = system_dict["local"]["model"](img)
+    list_classes = [];
+    raw_scores = outputs.cpu().detach().numpy()[0];
+    list_scores = [];
+
+    for i in range(len(raw_scores)):
+        prob = logistic.cdf(raw_scores[i])
+        if(prob > img_thresh):
+            list_classes.append(system_dict["dataset"]["params"]["classes"][i])
+            list_scores.append(prob)
+
+
+    if(return_raw):
+        return list_classes, list_scores, raw_scores;
+    else:
+        return list_classes, list_scores, "";

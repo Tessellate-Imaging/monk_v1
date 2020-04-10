@@ -164,6 +164,7 @@ class finetune_training(finetune_model):
 
                     running_loss = 0.0
                     running_corrects = 0
+                    total_labels = 0
 
 
                     for inputs, labels in self.system_dict["local"]["data_loaders"][phase]:
@@ -197,11 +198,43 @@ class finetune_training(finetune_model):
 
 
                         running_loss += loss.item() * inputs.size(0)
-                        running_corrects += torch.sum(preds == labels.data)
+                        if(self.system_dict["dataset"]["label_type"] == "single"):
+                            running_corrects += torch.sum(preds == labels.data)
+                        else:
+                            labels = labels.cpu().detach().numpy()[0]
+                            list_classes = [];
+                            list_labels = [];
+                            raw_scores = outputs.cpu().detach().numpy()[0];
+
+                            for i in range(len(raw_scores)):
+                                prob = logistic.cdf(raw_scores[i])
+                                if(prob > 0.5):
+                                    list_classes.append(self.system_dict["dataset"]["params"]["classes"][i])
+
+                            for i in range(len(labels)):
+                                if(labels[i]):
+                                    list_labels.append(self.system_dict["dataset"]["params"]["classes"][i])
+
+                            for i in range(len(list_labels)):
+                                actual = list_labels[i];
+                                if actual in list_classes:
+                                    correct = True;
+                                else:
+                                    correct = False;
+
+                                index = self.system_dict["dataset"]["params"]["classes"].index(actual);
+                                total_labels += 1;
+
+                                if(correct):
+                                    running_corrects += 1;
 
 
                     epoch_loss = running_loss / len(self.system_dict["local"]["data_loaders"][phase].dataset)
-                    epoch_acc = running_corrects.double() / len(self.system_dict["local"]["data_loaders"][phase].dataset)
+
+                    if(self.system_dict["dataset"]["label_type"] == "single"):
+                        epoch_acc = running_corrects.double() / len(self.system_dict["local"]["data_loaders"][phase].dataset)
+                    else:
+                        epoch_acc = running_corrects/total_labels;
 
 
                     if(not os.getcwd() == "/kaggle/working"):
@@ -217,16 +250,28 @@ class finetune_training(finetune_model):
 
 
                     if(self.system_dict["training"]["settings"]["save_training_logs"]):
-                        if phase == 'val':
-                            val_acc = epoch_acc;
-                            val_loss = epoch_loss;
-                            val_acc_history.append(epoch_acc.cpu().detach().numpy());
-                            val_loss_history.append(epoch_loss);
+                        if(self.system_dict["dataset"]["label_type"] == "single"):
+                            if phase == 'val':
+                                val_acc = epoch_acc;
+                                val_loss = epoch_loss;
+                                val_acc_history.append(epoch_acc.cpu().detach().numpy());
+                                val_loss_history.append(epoch_loss);
+                            else:
+                                train_acc = epoch_acc;
+                                train_loss = epoch_loss;
+                                train_acc_history.append(epoch_acc.cpu().detach().numpy());
+                                train_loss_history.append(epoch_loss);
                         else:
-                            train_acc = epoch_acc;
-                            train_loss = epoch_loss;
-                            train_acc_history.append(epoch_acc.cpu().detach().numpy());
-                            train_loss_history.append(epoch_loss);
+                            if phase == 'val':
+                                val_acc = epoch_acc;
+                                val_loss = epoch_loss;
+                                val_acc_history.append(epoch_acc);
+                                val_loss_history.append(epoch_loss);
+                            else:
+                                train_acc = epoch_acc;
+                                train_loss = epoch_loss;
+                                train_acc_history.append(epoch_acc);
+                                train_loss_history.append(epoch_loss);
 
                 if(self.system_dict["training"]["settings"]["save_intermediate_models"]):
                     torch.save(self.system_dict["local"]["model"], self.system_dict["model_dir"] + 
@@ -234,13 +279,25 @@ class finetune_training(finetune_model):
 
 
 
-                if(val_acc > best_acc):
-                    best_acc = val_acc;
-                    best_acc_epoch = epoch;
-                    best_model_wts = copy.deepcopy(self.system_dict["local"]["model"].state_dict());
-                    torch.save(self.system_dict["local"]["model"], self.system_dict["model_dir"] + "best_model");
-                    self.system_dict["training"]["outputs"]["best_val_acc"] = "{:4f}".format(best_acc);
-                    self.system_dict["training"]["outputs"]["best_val_acc_epoch_num"] = best_acc_epoch;
+                if(self.system_dict["dataset"]["label_type"] == "single"):
+                    if(val_acc > best_acc):
+                        best_acc = val_acc;
+                        best_acc_epoch = epoch;
+                        best_model_wts = copy.deepcopy(self.system_dict["local"]["model"].state_dict());
+                        torch.save(self.system_dict["local"]["model"], self.system_dict["model_dir"] + "best_model");
+                        self.system_dict["training"]["outputs"]["best_val_acc"] = "{:4f}".format(best_acc);
+                        self.system_dict["training"]["outputs"]["best_val_acc_epoch_num"] = best_acc_epoch;
+                else:
+                    if(val_loss < best_loss):
+                        best_loss = val_loss;
+                        best_acc_epoch = epoch;
+                        best_model_wts = copy.deepcopy(self.system_dict["local"]["model"].state_dict());
+                        torch.save(self.system_dict["local"]["model"], self.system_dict["model_dir"] + "best_model");
+                        self.system_dict["training"]["outputs"]["best_val_acc"] = "{:4f}".format(best_acc);
+                        self.system_dict["training"]["outputs"]["best_val_acc_epoch_num"] = best_acc_epoch;
+                    if(val_acc > best_acc):
+                        best_acc = val_acc;
+
 
                 time_elapsed_since = time.time() - since;
                 if("training_time" in self.system_dict["training"]["outputs"].keys()):
@@ -277,7 +334,7 @@ class finetune_training(finetune_model):
                         curr_lr = param_group['lr'];
                     self.custom_print("    curr_lr - {}".format(curr_lr));
                     self.custom_print('    [Epoch %d] Train-acc: %.3f, Train-loss: %.3f | Val-acc: %3f, Val-loss: %.3f, | time: %.1f sec' %
-                             (epoch+1, train_acc, train_loss, val_acc, val_loss, time.time() - since));
+                                 (epoch+1, train_acc, train_loss, val_acc, val_loss, time.time() - since));
                     self.custom_print("");
                 self.system_dict["training"]["outputs"]["epochs_completed"] = epoch+1;
                 save(self.system_dict);
@@ -323,6 +380,7 @@ class finetune_training(finetune_model):
             num_batch_val = len(self.system_dict["local"]["data_loaders"]["val"]);
 
             best_acc = 0.0;
+            best_loss = 1000.0;
             best_acc_epoch = 0;
             max_gpu_usage = 0;
             best_model_wts = copy.deepcopy(self.system_dict["local"]["model"].state_dict());
@@ -345,6 +403,7 @@ class finetune_training(finetune_model):
 
                     running_loss = 0.0
                     running_corrects = 0
+                    total_labels = 0
 
 
                     for inputs, labels in self.system_dict["local"]["data_loaders"][phase]:
@@ -378,11 +437,43 @@ class finetune_training(finetune_model):
 
 
                         running_loss += loss.item() * inputs.size(0)
-                        running_corrects += torch.sum(preds == labels.data)
+                        if(self.system_dict["dataset"]["label_type"] == "single"):
+                            running_corrects += torch.sum(preds == labels.data)
+                        else:
+                            labels = labels.cpu().detach().numpy()[0]
+                            list_classes = [];
+                            list_labels = [];
+                            raw_scores = outputs.cpu().detach().numpy()[0];
+
+                            for i in range(len(raw_scores)):
+                                prob = logistic.cdf(raw_scores[i])
+                                if(prob > 0.5):
+                                    list_classes.append(self.system_dict["dataset"]["params"]["classes"][i])
+
+                            for i in range(len(labels)):
+                                if(labels[i]):
+                                    list_labels.append(self.system_dict["dataset"]["params"]["classes"][i])
+
+                            for i in range(len(list_labels)):
+                                actual = list_labels[i];
+                                if actual in list_classes:
+                                    correct = True;
+                                else:
+                                    correct = False;
+
+                                index = self.system_dict["dataset"]["params"]["classes"].index(actual);
+                                total_labels += 1;
+
+                                if(correct):
+                                    running_corrects += 1;
 
 
                     epoch_loss = running_loss / len(self.system_dict["local"]["data_loaders"][phase].dataset)
-                    epoch_acc = running_corrects.double() / len(self.system_dict["local"]["data_loaders"][phase].dataset)
+                    
+                    if(self.system_dict["dataset"]["label_type"] == "single"):
+                        epoch_acc = running_corrects.double() / len(self.system_dict["local"]["data_loaders"][phase].dataset);
+                    else:
+                        epoch_acc = running_corrects/total_labels;
 
 
                     if(not os.getcwd() == "/kaggle/working"):
@@ -397,16 +488,28 @@ class finetune_training(finetune_model):
 
 
                     if(self.system_dict["training"]["settings"]["save_training_logs"]):
-                        if phase == 'val':
-                            val_acc = epoch_acc;
-                            val_loss = epoch_loss;
-                            val_acc_history.append(epoch_acc.cpu().detach().numpy());
-                            val_loss_history.append(epoch_loss);
+                        if(self.system_dict["dataset"]["label_type"] == "single"):
+                            if phase == 'val':
+                                val_acc = epoch_acc;
+                                val_loss = epoch_loss;
+                                val_acc_history.append(epoch_acc.cpu().detach().numpy());
+                                val_loss_history.append(epoch_loss);
+                            else:
+                                train_acc = epoch_acc;
+                                train_loss = epoch_loss;
+                                train_acc_history.append(epoch_acc.cpu().detach().numpy());
+                                train_loss_history.append(epoch_loss);
                         else:
-                            train_acc = epoch_acc;
-                            train_loss = epoch_loss;
-                            train_acc_history.append(epoch_acc.cpu().detach().numpy());
-                            train_loss_history.append(epoch_loss);
+                            if phase == 'val':
+                                val_acc = epoch_acc;
+                                val_loss = epoch_loss;
+                                val_acc_history.append(epoch_acc);
+                                val_loss_history.append(epoch_loss);
+                            else:
+                                train_acc = epoch_acc;
+                                train_loss = epoch_loss;
+                                train_acc_history.append(epoch_acc);
+                                train_loss_history.append(epoch_loss);
 
 
                 if(self.system_dict["training"]["settings"]["save_intermediate_models"]):
@@ -414,14 +517,24 @@ class finetune_training(finetune_model):
                         self.system_dict["training"]["settings"]["intermediate_model_prefix"] + "{}".format(epoch));
 
 
-
-                if(val_acc > best_acc):
-                    best_acc = val_acc;
-                    best_acc_epoch = epoch;
-                    best_model_wts = copy.deepcopy(self.system_dict["local"]["model"].state_dict());
-                    torch.save(self.system_dict["local"]["model"], self.system_dict["model_dir"] + "best_model");
-                    self.system_dict["training"]["outputs"]["best_val_acc"] = "{:4f}".format(best_acc);
-                    self.system_dict["training"]["outputs"]["best_val_acc_epoch_num"] = best_acc_epoch;
+                if(self.system_dict["dataset"]["label_type"] == "single"):
+                    if(val_acc > best_acc):
+                        best_acc = val_acc;
+                        best_acc_epoch = epoch;
+                        best_model_wts = copy.deepcopy(self.system_dict["local"]["model"].state_dict());
+                        torch.save(self.system_dict["local"]["model"], self.system_dict["model_dir"] + "best_model");
+                        self.system_dict["training"]["outputs"]["best_val_acc"] = "{:4f}".format(best_acc);
+                        self.system_dict["training"]["outputs"]["best_val_acc_epoch_num"] = best_acc_epoch;
+                else:
+                    if(val_loss < best_loss):
+                        best_loss = val_loss;
+                        best_acc_epoch = epoch;
+                        best_model_wts = copy.deepcopy(self.system_dict["local"]["model"].state_dict());
+                        torch.save(self.system_dict["local"]["model"], self.system_dict["model_dir"] + "best_model");
+                        self.system_dict["training"]["outputs"]["best_val_acc"] = "{:4f}".format(best_acc);
+                        self.system_dict["training"]["outputs"]["best_val_acc_epoch_num"] = best_acc_epoch;
+                    if(val_acc > best_acc):
+                        best_acc = val_acc;
 
                 time_elapsed_since = time.time() - since;
                 if("training_time" in self.system_dict["training"]["outputs"].keys()):
@@ -458,7 +571,7 @@ class finetune_training(finetune_model):
                         curr_lr = param_group['lr'];
                     self.custom_print("    curr_lr - {}".format(curr_lr));
                     self.custom_print('    [Epoch %d] Train-acc: %.3f, Train-loss: %.3f | Val-acc: %3f, Val-loss: %.3f, | time: %.1f sec' %
-                             (epoch+1, train_acc, train_loss, val_acc, val_loss, time.time() - since));
+                                 (epoch+1, train_acc, train_loss, val_acc, val_loss, time.time() - since));
                     self.custom_print("");
                 self.system_dict["training"]["outputs"]["epochs_completed"] = epoch+1;
                 save(self.system_dict);

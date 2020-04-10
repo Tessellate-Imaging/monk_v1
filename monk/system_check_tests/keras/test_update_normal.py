@@ -149,7 +149,7 @@ def test_update_normal(system_dict):
     print_start(test, system_dict["total_tests"])
     if(forward):
         try:
-            ktf.update_freeze_layers(170);
+            ktf.update_freeze_layers(50);
             system_dict["successful_tests"] += 1;
             print_status("Pass");
         except Exception as e:

@@ -96,7 +96,11 @@ class finetune_training(finetune_model):
         '''
         num_batch = len(self.system_dict["local"]["data_loaders"]["val"]);
 
-        metric = mx.metric.Accuracy()
+        if(self.system_dict["dataset"]["label_type"] == "single"):
+            metric = mx.metric.Accuracy();
+        else:
+            metric = mx.metric.CustomMetric(feval=self.custom_metric)
+            
         if(self.system_dict["training"]["settings"]["display_progress_realtime"] and self.system_dict["verbose"]):
             pbar = tqdm(total=num_batch);
         
@@ -139,7 +143,11 @@ class finetune_training(finetune_model):
             self.system_dict = load_optimizer(self.system_dict);
             self.system_dict = load_loss(self.system_dict);
 
-            metric = mx.metric.Accuracy();
+            if(self.system_dict["dataset"]["label_type"] == "single"):
+                metric = mx.metric.Accuracy();
+            else:
+                metric = mx.metric.CustomMetric(feval=self.custom_metric)
+
             trainer = mx.gluon.Trainer(self.system_dict["local"]["model"].collect_params(), optimizer=self.system_dict["local"]["optimizer"]);
 
             self.system_dict["training"]["status"] = False;
@@ -275,7 +283,10 @@ class finetune_training(finetune_model):
             self.system_dict = load_optimizer(self.system_dict);
             self.system_dict = load_loss(self.system_dict);
 
-            metric = mx.metric.Accuracy();
+            if(self.system_dict["dataset"]["label_type"] == "single"):
+                metric = mx.metric.Accuracy();
+            else:
+                metric = mx.metric.CustomMetric(feval=self.custom_metric)
             trainer = mx.gluon.Trainer(self.system_dict["local"]["model"].collect_params(), optimizer=self.system_dict["local"]["optimizer"]);
 
             self.system_dict["training"]["status"] = False;
@@ -397,6 +408,7 @@ class finetune_training(finetune_model):
                 self.custom_print('    Best val Acc:          {:4f}'.format(best_acc))
                 self.custom_print("");
 
+
         if(not self.system_dict["states"]["eval_infer"]):
             self.custom_print("Training End");
             self.custom_print("");
@@ -441,5 +453,38 @@ class finetune_training(finetune_model):
                 create_train_test_plots_loss([train_loss_history, val_loss_history], ["Epoch Num", "Loss"], self.system_dict["log_dir"], show_img=False, save_img=True);
 
             self.system_dict["training"]["status"] = True;
+        
 
     ###############################################################################################################################################
+
+
+
+
+
+
+    ###############################################################################################################################################
+    def custom_metric(self, labels, raw_scores):
+        num_correct = 0;
+        total_labels = 0;
+
+        list_classes = [];
+
+        for i in range(labels.shape[0]):
+            for j in range(labels.shape[1]):
+                score = logistic.cdf(raw_scores[i][j])
+                pred = False
+                if(score > 0.5):
+                    pred = True
+                else:
+                    pred = False
+                if(pred and labels[i][j]):
+                    num_correct += 1;
+
+                if(labels[i][j]):
+                    total_labels += 1;
+
+        return num_correct/total_labels;
+
+    ###############################################################################################################################################
+
+

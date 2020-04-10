@@ -71,13 +71,14 @@ class prototype_params(finetune_state):
             self.custom_print("    Train path:     {}".format(self.system_dict["dataset"]["train_path"]));
             self.custom_print("    Val path:       {}".format(self.system_dict["dataset"]["val_path"]));
             self.custom_print("    CSV train path: {}".format(self.system_dict["dataset"]["csv_train"]));
-            self.custom_print("    CSV val path:  {}".format(self.system_dict["dataset"]["csv_val"]));
+            self.custom_print("    CSV val path:   {}".format(self.system_dict["dataset"]["csv_val"]));
+            self.custom_print("    Label Type:     {}".format(self.system_dict["dataset"]["label_type"]));
             self.custom_print("");
 
 
             self.custom_print("Dataset Params");
-            self.custom_print("    Input Size:  {}".format(self.system_dict["dataset"]["params"]["input_size"]));
-            self.custom_print("    Batch Size:  {}".format(self.system_dict["dataset"]["params"]["batch_size"]));
+            self.custom_print("    Input Size:   {}".format(self.system_dict["dataset"]["params"]["input_size"]));
+            self.custom_print("    Batch Size:   {}".format(self.system_dict["dataset"]["params"]["batch_size"]));
             self.custom_print("    Data Shuffle: {}".format(self.system_dict["dataset"]["params"]["train_shuffle"]));
             self.custom_print("    Processors:   {}".format(self.system_dict["dataset"]["params"]["num_workers"]));
             if("val" not in self.system_dict["dataset"]["dataset_type"]):

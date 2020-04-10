@@ -481,7 +481,7 @@ class system():
                                     "loss_squared_hinge"];
 
         elif(self.system_dict["library"] == "Keras"):
-            combined_list_lower = ["loss_l1", "loss_l2", "loss_crossentropy", "loss_binary_crossentropy"
+            combined_list_lower = ["loss_l1", "loss_l2", "loss_crossentropy", "loss_binary_crossentropy", 
                                     "loss_kldiv", "loss_hinge", "loss_squared_hinge"];
 
 

@@ -190,3 +190,95 @@ class finetune_evaluation(finetune_training):
 
             return output
     ###############################################################################################################################################
+
+
+
+
+
+    ###############################################################################################################################################
+    @accepts("self", img_name=[str, bool], img_dir=[str, bool], return_raw=bool, img_thresh=float, post_trace=True)
+    @TraceFunction(trace_args=True, trace_rv=True)
+    def set_prediction_final_multiple(self, img_name=False, img_dir=False, return_raw=False, img_thresh=0.5):
+        '''
+        Main function for external inferencing on single image or folder of images post training
+        - For multi-label image classification
+
+        Args:
+            img_name (str): path to image
+            img_dir (str): path to folders containing images. 
+                            (Optional)
+            return_raw (bool): If True, then output dictionary contains image probability for every class in the set.
+                                Else, only the most probable class score is returned back.
+            img_thresh (float): Thresholding for multi label image classification.
+                                
+
+        Returns:
+            float: Accuracy in percentage
+            dict: Inference output
+                   1) Image name
+                   2) Predicted classes list
+                   3) Predicted score
+        '''
+
+        self.custom_print("Prediction");
+
+        if(not self.system_dict["dataset"]["params"]["input_size"]):
+            msg = "Input Size not set for experiment.\n";
+            msg += "Tip: Use update_input_size";
+            raise ConstraintError(msg);
+
+        self.system_dict = set_transform_test(self.system_dict);
+
+        if(not self.system_dict["dataset"]["params"]["classes"]):
+            msg = "Class information unavailabe.\n";
+            msg += "Labels returned - Indexes instead of classes";
+            ConstraintWarning(msg);
+
+
+        if(img_name):
+            self.custom_print("    Image name:         {}".format(img_name));
+
+            labels, scores, raw_output = process_multi(img_name, return_raw, img_thresh, self.system_dict);
+
+            self.custom_print("    Predicted classes:      {}".format(labels));
+            self.custom_print("    Predicted scorees:      {}".format(scores));
+            tmp = {};
+            tmp["img_name"] = img_name;
+            tmp["predicted_classes"] = labels;
+            tmp["scores"] = scores;
+            if(return_raw):
+                tmp["raw"] = raw_output;
+            self.custom_print("");                
+            return tmp;
+
+        
+        if(img_dir):
+            output = [];
+            self.custom_print("    Dir path:           {}".format(img_dir));
+            img_list = os.listdir(img_dir);
+            self.custom_print("    Total Images:       {}".format(len(img_list)));
+            self.custom_print("Processing Images");
+            if(self.system_dict["verbose"]):
+                pbar = tqdm(total=len(img_list));
+
+
+            for i in range(len(img_list)):
+                if(self.system_dict["verbose"]):
+                    pbar.update();
+
+                img_name = img_dir + "/" + img_list[i];
+                
+                labels, scores, raw_output = process_multi(img_name, return_raw, img_thresh, self.system_dict);
+
+                tmp = {};
+                tmp["img_name"] = img_list[i];
+                tmp["predicted_classes"] = labels;
+                tmp["scores"] = scores;
+                if(return_raw):
+                    tmp["raw"] = raw_output;
+                output.append(tmp);
+            self.custom_print("");
+
+            return output
+        
+    ###############################################################################################################################################

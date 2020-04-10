@@ -35,6 +35,7 @@ def set_dataset_train_path(system_dict, path, split, path_to_csv, delimiter):
             csv_train = path_to_csv;
             dataset_train_path = path;
             train_val_split = split;
+            label_type = find_label_type(path_to_csv)
         elif(type(path) == list):
             dataset_type = "csv_train-val";
             csv_train = path_to_csv[0];
@@ -42,16 +43,19 @@ def set_dataset_train_path(system_dict, path, split, path_to_csv, delimiter):
             dataset_train_path = path[0];
             dataset_val_path = path[1];
             train_val_split = None;
+            label_type = find_label_type(path_to_csv[0])
     else:
         if(type(path) == str):
             dataset_type = "train";
             dataset_train_path = path;
             train_val_split = split;
+            label_type = "single";
         elif(type(path) == list):
             dataset_type = "train-val";
             dataset_train_path = path[0];
             dataset_val_path = path[1];
             train_val_split = None;
+            label_type = "single";
 
 
     system_dict["dataset"]["dataset_type"] = dataset_type;
@@ -61,8 +65,34 @@ def set_dataset_train_path(system_dict, path, split, path_to_csv, delimiter):
     system_dict["dataset"]["csv_val"] = csv_val;
     system_dict["dataset"]["params"]["train_val_split"] = train_val_split;
     system_dict["dataset"]["params"]["delimiter"] = delimiter;
+    system_dict["dataset"]["label_type"] = label_type;
 
     return system_dict;
+
+
+
+@accepts(str, post_trace=True)
+@TraceFunction(trace_args=True, trace_rv=True)
+def find_label_type(csv_file):
+    '''
+    Find label type - single or multiple
+
+    Args:
+        csv_file (str): Path to training csv file
+
+    Returns:
+        str: Label Type
+    '''
+    label_type = "single";
+    df = pd.read_csv(csv_file);
+    columns = df.columns;
+    for i in range(len(df)):
+        if(len(df[columns[1]][i].split(" ")) > 1):
+            label_type = "multiple";
+            break;
+    return label_type;
+
+
 
 
 @accepts(dict, [str, bool], [str, bool], str, post_trace=True)
