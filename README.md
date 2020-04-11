@@ -148,7 +148,7 @@ For Installation instructions visit: [Link](https://github.com/Tessellate-Imagin
 - [ ] Pre-processed data visualization
 - [ ] Learned feature visualization
 - [ ] NDimensional data input - npy - hdf5 - dicom - tiff
-- [ ] Multi-label Image Classification
+- [x] Multi-label Image Classification
 - [x] Custom model development
 
 
