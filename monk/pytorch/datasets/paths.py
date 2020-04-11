@@ -86,9 +86,10 @@ def find_label_type(csv_file):
     df = pd.read_csv(csv_file);
     columns = df.columns;
     for i in range(len(df)):
-        if(len(df[columns[1]][i].split(" ")) > 1):
-            label_type = "multiple";
-            break;
+        if type(df[columns[-1]][i])==str:
+            if len(df[columns[-1]][i].split(" ")) > 1:
+                label_type = "multiple";
+                break;
     return label_type;
 
 
