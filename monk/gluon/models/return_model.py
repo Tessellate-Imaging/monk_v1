@@ -109,7 +109,7 @@ def setup_model(system_dict):
         return system_dict;
 
     else:
-        net = create_network(system_dict["custom_model"]["network_stack"]);
+        net = create_network(system_dict["custom_model"]["network_stack"], debug=system_dict["custom_model"]["debug"]);
         net = initialize_network(net, system_dict["custom_model"]["network_initializer"]);
         system_dict["local"]["model"] = net;
 
@@ -240,7 +240,7 @@ def create_block(network_stack, count, G, sequential_first, position, current_wi
 
 
 @TraceFunction(trace_args=True, trace_rv=False)
-def create_network(network_stack):
+def create_network(network_stack, debug=True):
     '''
     Main function to create network when designing custom networks
 
@@ -385,9 +385,16 @@ def create_network(network_stack):
     pos = nx.get_node_attributes(G, 'pos')
 
 
-    plt.figure(3, figsize=(12, 12 + position//6)) 
-    nx.draw_networkx(G, pos, with_label=True, font_size=16, node_color="yellow", node_size=100)
-    plt.savefig("graph.png");
+    if(not debug):
+        plt.ioff();
+        plt.figure(3, figsize=(12, 12 + position//6)) 
+        nx.draw_networkx(G, pos, with_label=True, font_size=16, node_color="yellow", node_size=100)
+        plt.savefig("graph.png");
+        plt.clf();
+    else:
+        plt.figure(3, figsize=(12, 12 + position//6)) 
+        nx.draw_networkx(G, pos, with_label=True, font_size=16, node_color="yellow", node_size=100)
+        plt.savefig("graph.png");
 
     return net;
 

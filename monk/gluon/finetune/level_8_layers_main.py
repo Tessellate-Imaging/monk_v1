@@ -2794,3 +2794,428 @@ class prototype_layers(prototype_aux):
         
         return network;
     #####################################################################################################################################
+
+
+
+
+
+
+
+
+    #####################################################################################################################################
+    @warning_checks(None, None, num_filters=None, post_trace=True)
+    @error_checks(None, None, num_filters=None, post_trace=True)
+    @accepts("self", str, num_filters=int, post_trace=True)
+    @TraceFunction(trace_args=True, trace_rv=True)
+    def study_convolution_filters(self, img_name, num_filters=4):
+        """
+        Visualize the effect of a parameter in convolution - number of filters
+
+        Args:
+            img_name (str): Path to test images
+            num_filters(int): Number of filters to use
+
+        Returns:
+            None
+
+        """
+
+        network = [];
+        network.append(self.convolution(output_channels=num_filters));
+
+        self.Compile_Network(network, 
+                           data_shape=(3, 224, 224), 
+                           use_gpu=False, 
+                           network_initializer="xavier_normal",
+                           debug=False);
+
+
+        self.system_dict["local"]["transforms_test"] = [];
+        self.system_dict["local"]["transforms_test"].append(transforms.Resize(size=(224, 224)));
+        self.system_dict["local"]["transforms_test"].append(transforms.ToTensor());
+        self.system_dict["local"]["data_transforms"]["test"] = transforms.Compose(self.system_dict["local"]["transforms_test"]);
+
+
+        img = image.imread(img_name)
+        img = self.system_dict["local"]["data_transforms"]["test"](img).expand_dims(axis=0);
+        img = img.copyto(self.system_dict["local"]["ctx"][0]);
+        print("Input shape - {}".format(img.shape))
+        outputs = self.system_dict["local"]["model"].forward(img); 
+        print("Output shape - {}".format(outputs.shape))
+
+        
+        if(os.path.isdir("tmp")):
+            os.system("rm -r tmp");
+            os.system("mkdir tmp");
+        else:
+            os.system("mkdir tmp");
+
+
+        out = outputs[0];
+        for i in range(out.shape[0]):
+            tmp = out[i].asnumpy()
+            cv2.imwrite("tmp/test" + str(i) + ".jpg", tmp*255)
+
+        weights = self.system_dict["local"]["model"][0].weight.data().asnumpy()
+
+        for i in range(weights.shape[0]):
+            tmp = weights[i]
+            cv2.imwrite("tmp/test_filter" + str(i) + ".jpg", tmp*255)
+
+    #####################################################################################################################################
+
+
+
+
+    
+    #####################################################################################################################################
+    @warning_checks(None, None, kernel_size=None, post_trace=True)
+    @error_checks(None, None, kernel_size=["gt", 0], post_trace=True)
+    @accepts("self", str, kernel_size=[int, tuple], post_trace=True)
+    @TraceFunction(trace_args=True, trace_rv=True)
+    def study_convolution_kernels(self, img_name, kernel_size=4):
+        """
+        Visualize the effect of a parameter in convolution - KErnel size
+
+        Args:
+            img_name (str): Path to test images
+            kernel_size(int): Convolution kernel shape
+
+        Returns:
+            None
+
+        """
+
+        network = [];
+        network.append(self.convolution(output_channels=4,
+                                        kernel_size=kernel_size));
+
+        self.Compile_Network(network, 
+                           data_shape=(3, 224, 224), 
+                           use_gpu=False, 
+                           network_initializer="xavier_normal",
+                           debug=False);
+
+
+        self.system_dict["local"]["transforms_test"] = [];
+        self.system_dict["local"]["transforms_test"].append(transforms.Resize(size=(224, 224)));
+        self.system_dict["local"]["transforms_test"].append(transforms.ToTensor());
+        self.system_dict["local"]["data_transforms"]["test"] = transforms.Compose(self.system_dict["local"]["transforms_test"]);
+
+
+        img = image.imread(img_name)
+        img = self.system_dict["local"]["data_transforms"]["test"](img).expand_dims(axis=0);
+        img = img.copyto(self.system_dict["local"]["ctx"][0]);
+        print("Input shape - {}".format(img.shape))
+        outputs = self.system_dict["local"]["model"].forward(img); 
+        print("Output shape - {}".format(outputs.shape))
+
+        
+        if(os.path.isdir("tmp")):
+            os.system("rm -r tmp");
+            os.system("mkdir tmp");
+        else:
+            os.system("mkdir tmp");
+
+
+        out = outputs[0];
+        for i in range(out.shape[0]):
+            tmp = out[i].asnumpy()
+            cv2.imwrite("tmp/test" + str(i) + ".jpg", tmp*255)
+
+        weights = self.system_dict["local"]["model"][0].weight.data().asnumpy()
+
+        for i in range(weights.shape[0]):
+            tmp = weights[i]
+            tmp = np.swapaxes(tmp, 0, 1)
+            tmp = np.swapaxes(tmp, 1, 2)
+            cv2.imwrite("tmp/test_filter" + str(i) + ".jpg", tmp*255)
+        
+    #####################################################################################################################################
+
+
+
+    
+
+    #####################################################################################################################################
+    @warning_checks(None, None, stride=None, post_trace=True)
+    @error_checks(None, None, stride=["gt", 0], post_trace=True)
+    @accepts("self", str, stride=[int, tuple], post_trace=True)
+    @TraceFunction(trace_args=True, trace_rv=True)
+    def study_convolution_stride(self, img_name, stride=4):
+        """
+        Visualize the effect of a parameter in convolution - KErnel size
+
+        Args:
+            img_name (str): Path to test images
+            kernel_size(int): Convolution kernel shape
+
+        Returns:
+            None
+
+        """
+
+        network = [];
+        network.append(self.convolution(output_channels=4,
+                                        kernel_size=5,
+                                        stride=stride));
+
+        self.Compile_Network(network, 
+                           data_shape=(3, 224, 224), 
+                           use_gpu=False, 
+                           network_initializer="xavier_normal",
+                           debug=False);
+
+
+        self.system_dict["local"]["transforms_test"] = [];
+        self.system_dict["local"]["transforms_test"].append(transforms.Resize(size=(224, 224)));
+        self.system_dict["local"]["transforms_test"].append(transforms.ToTensor());
+        self.system_dict["local"]["data_transforms"]["test"] = transforms.Compose(self.system_dict["local"]["transforms_test"]);
+
+
+        img = image.imread(img_name)
+        img = self.system_dict["local"]["data_transforms"]["test"](img).expand_dims(axis=0);
+        img = img.copyto(self.system_dict["local"]["ctx"][0]);
+        print("Input shape - {}".format(img.shape))
+        outputs = self.system_dict["local"]["model"].forward(img); 
+        print("Output shape - {}".format(outputs.shape))
+
+        
+        if(os.path.isdir("tmp")):
+            os.system("rm -r tmp");
+            os.system("mkdir tmp");
+        else:
+            os.system("mkdir tmp");
+
+
+        out = outputs[0];
+        for i in range(out.shape[0]):
+            tmp = out[i].asnumpy()
+            cv2.imwrite("tmp/test" + str(i) + ".jpg", tmp*255)
+
+        weights = self.system_dict["local"]["model"][0].weight.data().asnumpy()
+
+        for i in range(weights.shape[0]):
+            tmp = weights[i]
+            tmp = np.swapaxes(tmp, 0, 1)
+            tmp = np.swapaxes(tmp, 1, 2)
+            cv2.imwrite("tmp/test_filter" + str(i) + ".jpg", tmp*255)
+        
+    #####################################################################################################################################
+
+
+
+    
+    #####################################################################################################################################
+    @warning_checks(None, None, padding=None, post_trace=True)
+    @error_checks(None, None, padding=["gte", 0], post_trace=True)
+    @accepts("self", str, padding=[int, tuple], post_trace=True)
+    @TraceFunction(trace_args=True, trace_rv=True)
+    def study_convolution_padding(self, img_name, padding=0):
+        """
+        Visualize the effect of a parameter in convolution - KErnel size
+
+        Args:
+            img_name (str): Path to test images
+            kernel_size(int): Convolution kernel shape
+
+        Returns:
+            None
+
+        """
+
+        network = [];
+        network.append(self.convolution(output_channels=4,
+                                        kernel_size=5,
+                                        stride=1,
+                                        padding=padding));
+
+        self.Compile_Network(network, 
+                           data_shape=(3, 224, 224), 
+                           use_gpu=False, 
+                           network_initializer="xavier_normal",
+                           debug=False);
+
+
+        self.system_dict["local"]["transforms_test"] = [];
+        self.system_dict["local"]["transforms_test"].append(transforms.Resize(size=(224, 224)));
+        self.system_dict["local"]["transforms_test"].append(transforms.ToTensor());
+        self.system_dict["local"]["data_transforms"]["test"] = transforms.Compose(self.system_dict["local"]["transforms_test"]);
+
+
+        img = image.imread(img_name)
+        img = self.system_dict["local"]["data_transforms"]["test"](img).expand_dims(axis=0);
+        img = img.copyto(self.system_dict["local"]["ctx"][0]);
+        print("Input shape - {}".format(img.shape))
+        outputs = self.system_dict["local"]["model"].forward(img); 
+        print("Output shape - {}".format(outputs.shape))
+
+        
+        if(os.path.isdir("tmp")):
+            os.system("rm -r tmp");
+            os.system("mkdir tmp");
+        else:
+            os.system("mkdir tmp");
+
+
+        out = outputs[0];
+        for i in range(out.shape[0]):
+            tmp = out[i].asnumpy()
+            cv2.imwrite("tmp/test" + str(i) + ".jpg", tmp*255)
+
+        weights = self.system_dict["local"]["model"][0].weight.data().asnumpy()
+
+        for i in range(weights.shape[0]):
+            tmp = weights[i]
+            tmp = np.swapaxes(tmp, 0, 1)
+            tmp = np.swapaxes(tmp, 1, 2)
+            cv2.imwrite("tmp/test_filter" + str(i) + ".jpg", tmp*255)
+        
+    #####################################################################################################################################
+
+
+    
+    #####################################################################################################################################
+    @warning_checks(None, None, groups=None, post_trace=True)
+    @error_checks(None, None, groups=["gt", 0], post_trace=True)
+    @accepts("self", str, groups=int, post_trace=True)
+    @TraceFunction(trace_args=True, trace_rv=True)
+    def study_convolution_grouping(self, img_name, groups=1):
+        """
+        Visualize the effect of a parameter in convolution - KErnel size
+
+        Args:
+            img_name (str): Path to test images
+            kernel_size(int): Convolution kernel shape
+
+        Returns:
+            None
+
+        """
+
+        network = [];
+        network.append(self.convolution(output_channels=4*groups,
+                                        kernel_size=5,
+                                        stride=1,
+                                        groups=1));
+
+        network.append(self.convolution(output_channels=groups*4,
+                                        kernel_size=5,
+                                        stride=1,
+                                        groups=groups));
+
+        self.Compile_Network(network, 
+                           data_shape=(3, 224, 224), 
+                           use_gpu=False, 
+                           network_initializer="xavier_normal",
+                           debug=False);
+
+
+        self.system_dict["local"]["transforms_test"] = [];
+        self.system_dict["local"]["transforms_test"].append(transforms.Resize(size=(224, 224)));
+        self.system_dict["local"]["transforms_test"].append(transforms.ToTensor());
+        self.system_dict["local"]["data_transforms"]["test"] = transforms.Compose(self.system_dict["local"]["transforms_test"]);
+
+
+        img = image.imread(img_name)
+        img = self.system_dict["local"]["data_transforms"]["test"](img).expand_dims(axis=0);
+        img = img.copyto(self.system_dict["local"]["ctx"][0]);
+        print("Input shape - {}".format(img.shape))
+        outputs = self.system_dict["local"]["model"].forward(img); 
+        print("Output shape - {}".format(outputs.shape))
+
+        
+        if(os.path.isdir("tmp")):
+            os.system("rm -r tmp");
+            os.system("mkdir tmp");
+        else:
+            os.system("mkdir tmp");
+
+
+        out = outputs[0];
+        for i in range(out.shape[0]):
+            tmp = out[i].asnumpy()
+            cv2.imwrite("tmp/test" + str(i) + ".jpg", tmp*255)
+
+        weights = self.system_dict["local"]["model"][0].weight.data().asnumpy()
+
+        for i in range(weights.shape[0]):
+            tmp = weights[i]
+            tmp = np.swapaxes(tmp, 0, 1)
+            tmp = np.swapaxes(tmp, 1, 2)
+            cv2.imwrite("tmp/test_filter" + str(i) + ".jpg", tmp*255)
+        
+    #####################################################################################################################################
+
+
+
+
+
+    
+    #####################################################################################################################################
+    @warning_checks(None, None, factor=None, post_trace=True)
+    @error_checks(None, None, factor=["gt", 0], post_trace=True)
+    @accepts("self", str, factor=int, post_trace=True)
+    @TraceFunction(trace_args=True, trace_rv=True)
+    def study_convolution_dilation(self, img_name, factor=0):
+        """
+        Visualize the effect of a parameter in convolution - KErnel size
+
+        Args:
+            img_name (str): Path to test images
+            kernel_size(int): Convolution kernel shape
+
+        Returns:
+            None
+
+        """
+
+        network = [];
+
+        network.append(self.convolution(output_channels=4,
+                                        kernel_size=5,
+                                        stride=1,
+                                        dilation=factor));
+
+        self.Compile_Network(network, 
+                           data_shape=(3, 224, 224), 
+                           use_gpu=False, 
+                           network_initializer="xavier_normal",
+                           debug=False);
+
+
+        self.system_dict["local"]["transforms_test"] = [];
+        self.system_dict["local"]["transforms_test"].append(transforms.Resize(size=(224, 224)));
+        self.system_dict["local"]["transforms_test"].append(transforms.ToTensor());
+        self.system_dict["local"]["data_transforms"]["test"] = transforms.Compose(self.system_dict["local"]["transforms_test"]);
+
+
+        img = image.imread(img_name)
+        img = self.system_dict["local"]["data_transforms"]["test"](img).expand_dims(axis=0);
+        img = img.copyto(self.system_dict["local"]["ctx"][0]);
+        print("Input shape - {}".format(img.shape))
+        outputs = self.system_dict["local"]["model"].forward(img); 
+        print("Output shape - {}".format(outputs.shape))
+
+        
+        if(os.path.isdir("tmp")):
+            os.system("rm -r tmp");
+            os.system("mkdir tmp");
+        else:
+            os.system("mkdir tmp");
+
+
+        out = outputs[0];
+        for i in range(out.shape[0]):
+            tmp = out[i].asnumpy()
+            cv2.imwrite("tmp/test" + str(i) + ".jpg", tmp*255)
+
+        weights = self.system_dict["local"]["model"][0].weight.data().asnumpy()
+
+        for i in range(weights.shape[0]):
+            tmp = weights[i]
+            tmp = np.swapaxes(tmp, 0, 1)
+            tmp = np.swapaxes(tmp, 1, 2)
+            cv2.imwrite("tmp/test_filter" + str(i) + ".jpg", tmp*255)
+        
+    #####################################################################################################################################

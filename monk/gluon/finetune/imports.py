@@ -36,6 +36,8 @@ import torch
 from mxnet import autograd as ag
 from tabulate import tabulate
 from scipy.stats import logistic
+from mxnet import image
+from mxnet.gluon.data.vision import transforms
 
 ################################################################################3
 from system.common import read_json

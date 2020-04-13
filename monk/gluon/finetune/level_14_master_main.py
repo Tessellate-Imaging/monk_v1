@@ -258,9 +258,9 @@ class prototype_master(prototype_updates):
 
 
     ###############################################################################################################################################
-    @accepts("self", network=list, data_shape=tuple, use_gpu=bool, network_initializer=str, post_trace=True)
+    @accepts("self", network=list, data_shape=tuple, use_gpu=bool, network_initializer=str, debug=bool, post_trace=True)
     @TraceFunction(trace_args=True, trace_rv=True)
-    def Compile_Network(self, network, data_shape=(3, 224, 224), use_gpu=True, network_initializer="xavier_normal"):
+    def Compile_Network(self, network, data_shape=(3, 224, 224), use_gpu=True, network_initializer="xavier_normal", debug=True):
         '''
         Master function for compiling custom network and initializing it 
 
@@ -277,6 +277,7 @@ class prototype_master(prototype_updates):
         self.system_dict["custom_model"]["network_initializer"] = network_initializer;
         self.system_dict["model"]["type"] = "custom";
         self.system_dict["dataset"]["params"]["data_shape"] = data_shape;
+        self.system_dict["custom_model"]["debug"] = debug;
         self.system_dict = set_device(use_gpu, self.system_dict);
         save(self.system_dict);
         self.set_model_final();
