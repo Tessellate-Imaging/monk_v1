@@ -5,7 +5,7 @@ from system.base_system_state import update_local_var
 
 #############################################################################################################################
 @accepts(str, verbose=[int, str, bool], post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def read_json(fname, verbose=0):
     '''
     Read Json file - system dictionary file
@@ -23,7 +23,7 @@ def read_json(fname, verbose=0):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def write_json(system_dict):
     '''
     Write to Json file - system dictionary file
@@ -42,7 +42,7 @@ def write_json(system_dict):
 
 
 @accepts(str, str, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def parse_csv(fname, delimiter):
     '''
     Read CSV File - depricted function
@@ -95,7 +95,7 @@ def parse_csv(fname, delimiter):
 
 
 @accepts(str, str, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def parse_csv_updated(fname, delimiter):
     '''
     Read CSV File
@@ -177,7 +177,7 @@ def parse_csv2_updated(fname, delimiter):
 
 #############################################################################################################################
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def save(system_dict):
     '''
     Save system dictionaries
@@ -208,7 +208,7 @@ def save(system_dict):
 
 #############################################################################################################################
 #@accepts(str, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=True)
+#@TraceFunction(trace_args=True, trace_rv=True)
 def create_dir(dir_path):
     '''
     Create a new directory
@@ -224,7 +224,7 @@ def create_dir(dir_path):
 
 
 #@accepts(str, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=True)
+#@TraceFunction(trace_args=True, trace_rv=True)
 def delete_dir(dir_path):
     '''
     Delete an existing directory

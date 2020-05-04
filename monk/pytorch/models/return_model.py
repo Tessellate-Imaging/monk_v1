@@ -10,7 +10,7 @@ from pytorch.models.layers import Net_Concat
 
 
 @accepts(dict, path=[str, bool], final=bool, resume=bool, external_path=[bool, str, list], post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def load_model(system_dict, path=False, final=False, resume=False, external_path=False):
     '''
     Load model based on the system state 
@@ -56,7 +56,7 @@ def load_model(system_dict, path=False, final=False, resume=False, external_path
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def setup_model(system_dict):
     '''
     Setup model based on the system state and parameters
@@ -144,7 +144,7 @@ def setup_model(system_dict):
 
 
 
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def create_block(network_stack, count, G, sequential_first, position, current_width, current_in_shape):
     '''
     Recursively create sub-blocks when designing custom networks
@@ -294,7 +294,7 @@ def create_block(network_stack, count, G, sequential_first, position, current_wi
     
 
 
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def create_network(network_stack, current_in_shape):
     '''
     Main function to create network when designing custom networks
@@ -476,7 +476,7 @@ def create_network(network_stack, current_in_shape):
 
 
 
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def debug_create_block(network_stack, count, G, sequential_first, position, current_width):
     '''
     Recursively visualize sub-blocks when designing custom networks
@@ -583,7 +583,7 @@ def debug_create_block(network_stack, count, G, sequential_first, position, curr
     return G, count, sequential_second, position, max_width
     
 
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def debug_create_network(network_stack):
     '''
     Main function to visualize network when designing custom networks

@@ -5,7 +5,7 @@ from tf_keras_1.schedulers.common import PolynomialDecay
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def load_scheduler(system_dict):
     '''
     Load schedulers for training state

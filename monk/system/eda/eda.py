@@ -5,7 +5,7 @@ from system.imports import *
 
 
 @accepts(dict, bool, bool, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def class_imbalance(system_dict, show_img, save_img):
     '''
     Find class imbalance
@@ -47,7 +47,7 @@ def class_imbalance(system_dict, show_img, save_img):
 
 
 @accepts(dict, bool, bool, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def corrupted_missing_images(system_dict, check_missing, check_corrupt):
     '''
     Find corrupt and missing images in dataset

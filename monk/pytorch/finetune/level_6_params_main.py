@@ -5,7 +5,7 @@ from pytorch.finetune.level_5_state_base import finetune_state
 
 class prototype_params(finetune_state):
     @accepts("self", verbose=int, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
         super().__init__(verbose=verbose);
 
@@ -17,7 +17,7 @@ class prototype_params(finetune_state):
         split=["gt", 0.0, "lt", 1.0], input_size=["gt", 0], batch_size=["gt", 0], shuffle_data=None, num_processors=["gt", 0],  post_trace=True)
     @accepts("self", dataset_path=[str, list, bool], path_to_csv=[str, list, bool], delimiter=str, split=float, 
         input_size=[int, tuple], batch_size=int, shuffle_data=bool, num_processors=int, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def Dataset_Params(self, dataset_path=False, path_to_csv=False, delimiter=",", split=0.9,
         input_size=224, batch_size=16, shuffle_data=True, num_processors=psutil.cpu_count()):
         '''
@@ -93,7 +93,7 @@ class prototype_params(finetune_state):
     ###############################################################################################################################################
     @error_checks(None, model_name=None, freeze_base_network=None, use_gpu=None, use_pretrained=None, model_path=["file", 'r'], post_trace=True)
     @accepts("self", model_name=str, freeze_base_network=bool, use_gpu=bool, use_pretrained=bool, model_path=[bool, str, list],  post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def Model_Params(self, model_name="resnet18", freeze_base_network=True, use_gpu=True, use_pretrained=True, model_path=False):
         '''
         Set all model params
@@ -141,7 +141,7 @@ class prototype_params(finetune_state):
         save_intermediate_models=None, intermediate_model_prefix=["name", ["A-Z", "a-z", "0-9", "-", "_"]], save_training_logs=False, post_trace=True)
     @accepts("self", num_epochs=int, display_progress=bool, display_progress_realtime=bool, 
         save_intermediate_models=bool, intermediate_model_prefix=str, save_training_logs=bool, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def Training_Params(self, num_epochs=10, display_progress=True, display_progress_realtime=True, 
         save_intermediate_models=True, intermediate_model_prefix="intermediate_model_", save_training_logs=True):
         '''

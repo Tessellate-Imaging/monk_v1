@@ -4,7 +4,7 @@ from system.imports import *
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def set_transform_trainval(system_dict):
     '''
     Load training and validation transforms in main state
@@ -37,7 +37,7 @@ def set_transform_trainval(system_dict):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def set_transform_test(system_dict):
     '''
     Load testing transforms in main state

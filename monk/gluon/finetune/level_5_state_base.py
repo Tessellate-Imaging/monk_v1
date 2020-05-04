@@ -16,7 +16,7 @@ class finetune_state(finetune_evaluation):
                         1 - Print desired details
     '''
     @accepts("self", verbose=int, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
         super().__init__(verbose=verbose);
 
@@ -24,7 +24,7 @@ class finetune_state(finetune_evaluation):
     
     ###############################################################################################################################################
     @accepts("self", post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def set_system_state_eval_infer(self):
         '''
         Set system for eval_infer state
@@ -54,7 +54,7 @@ class finetune_state(finetune_evaluation):
 
     ###############################################################################################################################################
     @accepts("self", post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def set_system_state_resume_train(self):
         '''
         Set system for resume training state
@@ -93,7 +93,7 @@ class finetune_state(finetune_evaluation):
 
     ###############################################################################################################################################
     @accepts("self", list, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def set_system_state_copy_from(self, copy_from):
         '''
         Set system for copied state
@@ -145,7 +145,7 @@ class finetune_state(finetune_evaluation):
 
     ###############################################################################################################################################
     @accepts("self", list, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def set_system_state_pseudo_copy_from(self, pseudo_copy_from):
         '''
         Set system for copied state in hyper-parameter analysis mode 

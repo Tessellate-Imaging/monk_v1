@@ -2,7 +2,7 @@ from system.imports import *
 
 
 @accepts(post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=True)
+#@TraceFunction(trace_args=True, trace_rv=True)
 def get_base_system_dict():
     system_dict = {};
 
@@ -179,7 +179,7 @@ def get_base_system_dict():
     return system_dict;
 
 #@accepts(post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def update_local_var(system_dict):
     system_dict["local"] = {};
 

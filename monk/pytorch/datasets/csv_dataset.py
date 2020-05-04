@@ -14,7 +14,7 @@ class DatasetCustom(Dataset):
         transform (torchvision transforms): List of compiled transforms
     '''
     @accepts("self", list, list, str, transform="self", post_trace=True)
-    @TraceFunction(trace_args=False, trace_rv=False)
+    #@TraceFunction(trace_args=False, trace_rv=False)
     def __init__(self, img_list, label_list, prefix, transform=None):
         self.img_list = img_list;
         self.label_list = label_list;
@@ -22,7 +22,7 @@ class DatasetCustom(Dataset):
         self.prefix = prefix;
     
     @accepts("self", post_trace=True)
-    @TraceFunction(trace_args=False, trace_rv=False)
+    #@TraceFunction(trace_args=False, trace_rv=False)
     def __len__(self):
         '''
         Returns length of images in dataset
@@ -67,7 +67,7 @@ class DatasetCustomMultiLabel(Dataset):
         transform (torchvision transforms): List of compiled transforms
     '''
     @accepts("self", list, list, list, str, transform="self", post_trace=True)
-    @TraceFunction(trace_args=False, trace_rv=False)
+    #@TraceFunction(trace_args=False, trace_rv=False)
     def __init__(self, img_list, label_list, class_list, prefix, transform=None):
         self.img_list = img_list;
         self.label_list = label_list;
@@ -78,7 +78,7 @@ class DatasetCustomMultiLabel(Dataset):
 
 
     @accepts("self", post_trace=True)
-    @TraceFunction(trace_args=False, trace_rv=False)
+    #@TraceFunction(trace_args=False, trace_rv=False)
     def __len__(self):
         '''
         Returns length of images in dataset

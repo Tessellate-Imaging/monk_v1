@@ -4,7 +4,7 @@ from system.imports import *
 
 
 @accepts([list, type(np.array([1, 2]))], [list, type(np.array([1, 2]))], str, show_img=bool, save_img=bool, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=True)
+#@TraceFunction(trace_args=True, trace_rv=True)
 def create_plot(labels, value, log_dir, show_img=False, save_img=False):
     '''
     Create bar plot
@@ -39,7 +39,7 @@ def create_plot(labels, value, log_dir, show_img=False, save_img=False):
 
 
 @accepts([list, type(np.array([1, 2]))], dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=True)
+#@TraceFunction(trace_args=False, trace_rv=True)
 def training_time_plot(data, system_dict):
     '''
     Create training-time bar plot
@@ -75,7 +75,7 @@ def training_time_plot(data, system_dict):
 
 
 @accepts([list, type(np.array([1, 2]))], dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=True)
+#@TraceFunction(trace_args=False, trace_rv=True)
 def max_accuracy_plot(data, system_dict):
     '''
     Create max-accuracy bar plot
@@ -110,7 +110,7 @@ def max_accuracy_plot(data, system_dict):
 
 
 @accepts([list, type(np.array([1, 2]))], dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=True)
+#@TraceFunction(trace_args=False, trace_rv=True)
 def max_gpu_usage_plot(data, system_dict):
     '''
     Create gpu-usage bar plot

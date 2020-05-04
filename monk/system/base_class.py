@@ -17,7 +17,7 @@ class system():
                         1 - Print desired details
     '''
     @accepts("self", verbose=int, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
         self.system_dict = get_base_system_dict();
         self.system_dict["verbose"] = verbose;
@@ -42,7 +42,7 @@ class system():
 
     #############################################################################################################################
     @accepts("self", str, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def set_system_project(self, project_name):
         '''
         Create Project
@@ -63,7 +63,7 @@ class system():
     
     
     @accepts("self", str, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def set_system_select_project(self, project_name):
         '''
         Function to update system dictionary on project properties
@@ -80,7 +80,7 @@ class system():
 
 
     @accepts("self", post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def set_system_aux_list_projects(self):
         '''
         List all projects in current workspace
@@ -98,7 +98,7 @@ class system():
 
     #############################################################################################################################
     @accepts("self", str, eval_infer=bool, copy_from=[list, bool], pseudo_copy_from=[list, bool], resume_train=bool, summary=bool, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def set_system_experiment(self, experiment_name, eval_infer=False, copy_from=False, pseudo_copy_from=False, resume_train=False, summary=False):
         '''
         Create Experiment or load it in different states
@@ -143,7 +143,7 @@ class system():
 
     
     @accepts("self", str, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def set_system_select_experiment(self, experiment_name):
         '''
         Function to update system dictionary on experiment properties
@@ -169,7 +169,7 @@ class system():
 
     #############################################################################################################################
     @accepts("self", post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def set_system_delete_create_dir(self):
         '''
         Function to remove old directories and create new at the same place
@@ -191,7 +191,7 @@ class system():
 
     #############################################################################################################################
     @accepts("self", str, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def set_system_comparison(self, comparison_name):
         '''
         Create comparison experiment
@@ -210,7 +210,7 @@ class system():
 
     #############################################################################################################################
     @accepts("self", [str, int, list, dict, float, tuple], post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def custom_print(self, msg):
         '''
         Overwritten print function, to switch off and on as per verbosity levels
@@ -232,7 +232,7 @@ class system():
 
     #############################################################################################################################
     @accepts("self", post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def print_list_models(self):
         '''
         List all the available models in the selected backend.
@@ -288,7 +288,7 @@ class system():
 
     #############################################################################################################################
     @accepts("self", post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def print_list_layers_transfer_learning(self):
         '''
         List all the available transfer learning layers in the selected backend.
@@ -321,7 +321,7 @@ class system():
 
     #############################################################################################################################
     @accepts("self", post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def print_list_layers_custom_model(self):
         '''
         List all the available custom network layers in the selected backend.
@@ -375,7 +375,7 @@ class system():
 
     #############################################################################################################################
     @accepts("self", post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def print_list_activations_transfer_learning(self):
         '''
         List all the available transfer learning activations in the selected backend.
@@ -419,7 +419,7 @@ class system():
 
     #############################################################################################################################
     @accepts("self", post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def print_list_activations_custom_model(self):
         '''
         List all the available custom network activations in the selected backend.
@@ -461,7 +461,7 @@ class system():
 
     #############################################################################################################################
     @accepts("self", post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def print_list_losses(self):
         '''
         List all the available loss functions in the selected backend.
@@ -506,7 +506,7 @@ class system():
 
     #############################################################################################################################
     @accepts("self", post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def print_list_optimizers(self):
         '''
         List all the available optimizers in the selected backend.
@@ -547,7 +547,7 @@ class system():
 
     #############################################################################################################################
     @accepts("self", post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def print_list_schedulers(self):
         '''
         List all the available learning rate schedulers in the selected backend.
@@ -584,7 +584,7 @@ class system():
 
     #############################################################################################################################
     @accepts("self", post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def print_list_transforms(self):
         '''
         List all the available data transforms in the selected backend.
@@ -626,7 +626,7 @@ class system():
 
     #############################################################################################################################
     @accepts("self", post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def print_list_blocks(self):
         '''
         List all the available blocks for custom network creation in the selected backend.

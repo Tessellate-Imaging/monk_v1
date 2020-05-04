@@ -4,7 +4,7 @@ from system.imports import *
 
 
 @accepts(dict, [str, list, bool], [float, int, bool], [str, list, bool], str, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def set_dataset_train_path(system_dict, path, split, path_to_csv, delimiter):
     '''
     Set dataset train path
@@ -72,7 +72,7 @@ def set_dataset_train_path(system_dict, path, split, path_to_csv, delimiter):
 
 
 @accepts(str, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=True)
+#@TraceFunction(trace_args=True, trace_rv=True)
 def find_label_type(csv_file):
     '''
     Find label type - single or multiple
@@ -98,7 +98,7 @@ def find_label_type(csv_file):
 
 
 @accepts(dict, [str, bool], [str, bool], str, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def set_dataset_test_path(system_dict,  path, path_to_csv, delimiter):
     '''
     Set dataset train path

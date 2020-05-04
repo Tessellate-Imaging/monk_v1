@@ -6,14 +6,14 @@ from pytorch.finetune.level_9_transforms_main import prototype_transforms
 
 class prototype_schedulers(prototype_transforms):
     @accepts("self", verbose=int, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
         super().__init__(verbose=verbose);
 
 
     ###############################################################################################################################################
     @accepts("self", post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def lr_fixed(self):
         '''
         Set learning rate fixed
@@ -39,7 +39,7 @@ class prototype_schedulers(prototype_transforms):
     @warning_checks(None, None, gamma=["gt", 0.01, "lt", 1], last_epoch=None, post_trace=True)
     @error_checks(None, ["gt", 0], gamma=["gt", 0], last_epoch=None, post_trace=True)
     @accepts("self", int, gamma=float, last_epoch=int, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def lr_step_decrease(self, step_size, gamma=0.1, last_epoch=-1):
         '''
         Set learning rate to decrease in regular steps
@@ -67,7 +67,7 @@ class prototype_schedulers(prototype_transforms):
     @warning_checks(None, None, gamma=["gt", 0.01, "lt", 1], last_epoch=None, post_trace=True)
     @error_checks(None, ["inc", None], gamma=["gt", 0], last_epoch=None, post_trace=True)
     @accepts("self", [list, int], gamma=float, last_epoch=int, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def lr_multistep_decrease(self, milestones, gamma=0.1, last_epoch=-1):
         '''
         Set learning rate to decrease in irregular steps
@@ -96,7 +96,7 @@ class prototype_schedulers(prototype_transforms):
     @warning_checks(None, ["gt", 0.01, "lt", 1], last_epoch=None, post_trace=True)
     @error_checks(None, ["gt", 0], last_epoch=None, post_trace=True)
     @accepts("self", [float, int], last_epoch=int, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def lr_exponential_decrease(self, gamma, last_epoch=-1):
         '''
         Set learning rate to decrease exponentially every step
@@ -128,7 +128,7 @@ class prototype_schedulers(prototype_transforms):
         threshold_mode=["in", ["rel", "abs"]], cooldown=["gte", 0], min_lr=["gte", 0], epsilon=["gte", 0], post_trace=True)
     @accepts("self", mode=str, factor=[float, int], patience=int, verbose=bool, threshold=[float, int], 
         threshold_mode=str, cooldown=int, min_lr=[float, list, int], epsilon=float, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def lr_plateau_decrease(self, mode='min', factor=0.1, patience=10, verbose=False, threshold=0.0001, \
         threshold_mode='rel', cooldown=0, min_lr=0, epsilon=1e-08):
         '''

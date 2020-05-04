@@ -15,14 +15,14 @@ class finetune_dataset(system):
     '''
 
     @accepts("self", verbose=int, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
         super().__init__(verbose=verbose);
 
 
     ###############################################################################################################################################
     @accepts("self", test=bool, estimate=bool, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def set_dataset_dataloader(self, test=False, estimate=False):
         '''
         Setup the dataloader.
@@ -370,7 +370,7 @@ class finetune_dataset(system):
 
     ###############################################################################################################################################
     @accepts("self", test=bool, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def set_dataset_final(self, test=False):
         '''
         Set the transforms and then invoke data loader.

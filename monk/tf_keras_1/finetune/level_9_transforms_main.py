@@ -14,7 +14,7 @@ class prototype_transforms(prototype_layers):
                         1 - Print desired details
     '''
     @accepts("self", verbose=int, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
         super().__init__(verbose=verbose);
         tmp = {};
@@ -44,7 +44,7 @@ class prototype_transforms(prototype_layers):
         train=None, val=None, test=None, post_trace=True)
     @accepts("self", brightness=[int, float], contrast=[int, float], saturation=[int, float], hue=[int, float], 
         train=bool, val=bool, test=bool, post_trace=True)
-    @TraceFunction(trace_args=False, trace_rv=False)
+    #@TraceFunction(trace_args=False, trace_rv=False)
     def apply_color_jitter(self, brightness=0, contrast=0, saturation=0, hue=0, train=False, val=False, test=False):
         '''
         Apply Color jittering transformations
@@ -82,7 +82,7 @@ class prototype_transforms(prototype_layers):
         train=None, val=None, test=None, post_trace=True)
     @accepts("self", [list, float, int], translate=[tuple, type(None)], scale=[tuple, type(None)], 
         shear=[list, float, int, tuple, type(None)], train=bool, val=bool, test=bool, post_trace=True)
-    @TraceFunction(trace_args=False, trace_rv=False)
+    #@TraceFunction(trace_args=False, trace_rv=False)
     def apply_random_affine(self, degrees, translate=None, scale=None, shear=None, train=False, val=False, test=False):
         '''
         Apply random affine transformations
@@ -106,7 +106,7 @@ class prototype_transforms(prototype_layers):
     ###############################################################################################################################################
     @error_checks(None, probability=["gt", 0, "lt", 1], train=None, val=None, test=None, post_trace=True)
     @accepts("self", probability=float, train=bool, val=bool, test=bool, post_trace=True)
-    @TraceFunction(trace_args=False, trace_rv=False)
+    #@TraceFunction(trace_args=False, trace_rv=False)
     def apply_random_horizontal_flip(self, probability=0.5, train=False, val=False, test=False):
         '''
         Apply random horizontal flip transformations
@@ -128,7 +128,7 @@ class prototype_transforms(prototype_layers):
     ###############################################################################################################################################
     @error_checks(None, probability=["gt", 0, "lt", 1], train=None, val=None, test=None, post_trace=True)
     @accepts("self", probability=float, train=bool, val=bool, test=bool, post_trace=True)
-    @TraceFunction(trace_args=False, trace_rv=False)
+    #@TraceFunction(trace_args=False, trace_rv=False)
     def apply_random_vertical_flip(self, probability=0.5, train=False, val=False, test=False):
         '''
         Apply random vertical flip transformations
@@ -151,7 +151,7 @@ class prototype_transforms(prototype_layers):
     @warning_checks(None, ["lt", 30], train=None, val=None, test=None, post_trace=True)
     @error_checks(None, ["gte", 0.0], train=None, val=None, test=None, post_trace=True)
     @accepts("self", [float, int, list], train=bool, val=bool, test=bool, post_trace=True)
-    @TraceFunction(trace_args=False, trace_rv=False)
+    #@TraceFunction(trace_args=False, trace_rv=False)
     def apply_random_rotation(self, degrees, train=False, val=False, test=False):
         '''
         Apply random rotation transformations
@@ -174,7 +174,7 @@ class prototype_transforms(prototype_layers):
     ###############################################################################################################################################
     @error_checks(None, mean=["gt", 0, "lt", 1], train=None, val=None, test=None, post_trace=True)
     @accepts("self", mean=[list, float], train=bool, val=bool, test=bool, post_trace=True)
-    @TraceFunction(trace_args=False, trace_rv=False)
+    #@TraceFunction(trace_args=False, trace_rv=False)
     def apply_mean_subtraction(self, mean=[123, 116, 103], train=False, val=False, test=False):
         '''
         Apply mean subtraction
@@ -198,7 +198,7 @@ class prototype_transforms(prototype_layers):
     ###############################################################################################################################################
     @error_checks(None, mean=["gt", 0, "lt", 1], std=["gt", 0, "lt", 1], train=None, val=None, test=None, post_trace=True)
     @accepts("self", mean=[list, float], std=[list, float], train=bool, val=bool, test=bool, post_trace=True)
-    @TraceFunction(trace_args=False, trace_rv=False)
+    #@TraceFunction(trace_args=False, trace_rv=False)
     def apply_normalize(self, mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225], train=False, val=False, test=False):
         '''
         Apply mean subtraction and standard normalization

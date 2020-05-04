@@ -3,7 +3,7 @@ from system.imports import *
 
 
 @accepts([int, tuple], dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def set_input_size(input_size, system_dict):
     '''
     Set Input data size
@@ -20,7 +20,7 @@ def set_input_size(input_size, system_dict):
 
 
 @accepts(int, dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def set_batch_size(batch_size, system_dict):
     '''
     Set Input batch size
@@ -35,7 +35,7 @@ def set_batch_size(batch_size, system_dict):
     return system_dict;
     
 @accepts(bool, dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def set_data_shuffle(value, system_dict):
     '''
     Set weather to shuffle data
@@ -54,7 +54,7 @@ def set_data_shuffle(value, system_dict):
     
 
 @accepts(int, dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def set_num_processors(num_workers, system_dict):
     '''
     Set Number of processors for data sampling
@@ -70,7 +70,7 @@ def set_num_processors(num_workers, system_dict):
 
 
 @accepts(bool, dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def set_weighted_sampling(sample, system_dict):
     '''
             

@@ -14,7 +14,7 @@ class prototype_updates(prototype_losses):
                         1 - Print desired details
     '''
     @accepts("self", verbose=int, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
         super().__init__(verbose=verbose);
 
@@ -23,7 +23,7 @@ class prototype_updates(prototype_losses):
     @warning_checks(None, ["gte", 32, "lte", 1024], post_trace=True)
     @error_checks(None, ["gt", 0], post_trace=True)
     @accepts("self", int, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def update_input_size(self, input_size):
         '''
         Update input size.
@@ -43,7 +43,7 @@ class prototype_updates(prototype_losses):
     @warning_checks(None, ["lte", 128], post_trace=True)
     @error_checks(None, ["gt", 0], post_trace=True)
     @accepts("self", int, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def update_batch_size(self, batch_size):
         '''
         Update batch size.
@@ -61,7 +61,7 @@ class prototype_updates(prototype_losses):
         
 
     @accepts("self", bool, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def update_shuffle_data(self, shuffle):
         '''
         Update to shuffle data or not.
@@ -81,7 +81,7 @@ class prototype_updates(prototype_losses):
     @warning_checks(None, ["lte", psutil.cpu_count()], post_trace=True)
     @error_checks(None, ["gt", 0], post_trace=True)
     @accepts("self", int, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True) 
+    #@TraceFunction(trace_args=True, trace_rv=True) 
     def update_num_processors(self, num_processors):
         '''
         Update num processors for data loader.
@@ -99,7 +99,7 @@ class prototype_updates(prototype_losses):
         
 
     @accepts("self", bool, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def update_weighted_sampling(self, sample):
         '''
         Function inactive
@@ -114,7 +114,7 @@ class prototype_updates(prototype_losses):
     @warning_checks(None, ["gt", 0.5, "lt", 1], post_trace=True)
     @error_checks(None, ["gt", 0, "lt", 1], post_trace=True)
     @accepts("self", float, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def update_trainval_split(self, value):
         '''
         Update training-validation split
@@ -150,7 +150,7 @@ class prototype_updates(prototype_losses):
     @warning_checks(None, dataset_path=None, split=["gt", 0.5, "lt", 1], path_to_csv=None, delimiter=None, post_trace=True)
     @error_checks(None, dataset_path=["folder", 'r'], split=["gt", 0, "lt", 1], path_to_csv=["file", 'r'], delimiter=["in", [",", ";", "-", " "]], post_trace=True)
     @accepts("self", dataset_path=[str, list], split=float, path_to_csv=[str, list, bool], delimiter=str, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def update_dataset(self, dataset_path=False, split=0.9, path_to_csv=False, delimiter=","):
         '''
         Update dataset path
@@ -180,7 +180,7 @@ class prototype_updates(prototype_losses):
 
     ##########################################################################################################################################################
     @accepts("self", str, force=bool, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def update_model_name(self, model_name, force=False):
         '''
         Update model name
@@ -218,7 +218,7 @@ class prototype_updates(prototype_losses):
 
     ##########################################################################################################################################################
     @accepts("self", [str, list], force=bool, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def update_model_path(self, model_path, force=False):
         '''
         Update to use gpu or cpu
@@ -255,7 +255,7 @@ class prototype_updates(prototype_losses):
 
     ##########################################################################################################################################################
     @accepts("self", bool, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def update_use_gpu(self, gpu):
         '''
         Update to use gpu or cpu
@@ -275,7 +275,7 @@ class prototype_updates(prototype_losses):
 
     ##########################################################################################################################################################
     @accepts("self", bool, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def update_use_pretrained(self, pretrained):
         '''
         Update to use pretrained wights or randomly initialized weights
@@ -297,7 +297,7 @@ class prototype_updates(prototype_losses):
 
     ##########################################################################################################################################################
     @accepts("self", bool, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def update_freeze_base_network(self, freeze):
         '''
         Update whether freeze base network or not
@@ -318,7 +318,7 @@ class prototype_updates(prototype_losses):
     ##########################################################################################################################################################
     @error_checks(None, ["gte", 0], post_trace=True)
     @accepts("self", int, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def update_freeze_layers(self, num_freeze):
         '''
         Update to freeze certain layers in the network
@@ -342,7 +342,7 @@ class prototype_updates(prototype_losses):
     @warning_checks(None, ["lt", 100], post_trace=True)
     @error_checks(None, ["gt", 0], post_trace=True)
     @accepts("self", int, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def update_num_epochs(self, num_epochs):
         '''
         Update number of epochs to train the network
@@ -364,7 +364,7 @@ class prototype_updates(prototype_losses):
     @warning_checks(None, ["lt", 1], post_trace=True)
     @error_checks(None, ["gt", 0], post_trace=True)
     @accepts("self", [int, float], post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def update_learning_rate(self, learning_rate):
         '''
         Update base learning rate for training
@@ -385,7 +385,7 @@ class prototype_updates(prototype_losses):
 
     ##########################################################################################################################################################
     @accepts("self", bool, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def update_display_progress_realtime(self, value):    
         '''
         Update display progress param
@@ -405,7 +405,7 @@ class prototype_updates(prototype_losses):
 
     ##########################################################################################################################################################
     @accepts("self", bool, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def update_display_progress(self, value): 
         '''
         Update display progress param
@@ -426,7 +426,7 @@ class prototype_updates(prototype_losses):
     ##########################################################################################################################################################
     @error_checks(None, None, prefix=["name", ["A-Z", "a-z", "0-9", "-", "_"]], post_trace=True)
     @accepts("self", bool, prefix=str, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def update_save_intermediate_models(self, value, prefix="intermediate_model_"): 
         '''
         Update whether to save intermediate models or not
@@ -456,7 +456,7 @@ class prototype_updates(prototype_losses):
 
     ##########################################################################################################################################################
     @accepts("self", bool, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def update_save_training_logs(self, value):
         '''
         Update whether to save training logs or not

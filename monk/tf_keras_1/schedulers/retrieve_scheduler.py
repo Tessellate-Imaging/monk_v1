@@ -2,7 +2,7 @@ from tf_keras_1.schedulers.imports import *
 from system.imports import *
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def retrieve_scheduler(system_dict):
     '''
     Retrieve schedulers in validation, testing, copy-from and resume states

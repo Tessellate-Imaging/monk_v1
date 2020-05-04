@@ -14,7 +14,7 @@ class finetune_training(finetune_model):
                         1 - Print desired details
     '''
     @accepts("self", verbose=int, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
         super().__init__(verbose=verbose);
 
@@ -22,7 +22,7 @@ class finetune_training(finetune_model):
 
     ###############################################################################################################################################
     @accepts("self", post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def get_training_estimate(self):
         '''
         Get estimated time for training a single epoch based on all set parameters
@@ -71,7 +71,7 @@ class finetune_training(finetune_model):
 
     ###############################################################################################################################################
     @accepts("self", post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def set_training_final(self):
         '''
         Main training function

@@ -2,7 +2,7 @@ from tf_keras_1.models.imports import *
 from system.imports import *
 
 
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def get_initializer(initializer):
     '''
     Get the right initializer for custom network weight initialization

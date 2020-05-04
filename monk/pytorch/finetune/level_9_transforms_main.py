@@ -14,7 +14,7 @@ class prototype_transforms(prototype_layers):
                         1 - Print desired details
     '''
     @accepts("self", verbose=int, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
         super().__init__(verbose=verbose);
 
@@ -23,7 +23,7 @@ class prototype_transforms(prototype_layers):
     @warning_checks(None, ["gte", 32, "lte", 1024], train=None, val=None, test=None, post_trace=True)
     @error_checks(None, ["gt", 0], train=None, val=None, test=None, post_trace=True)
     @accepts("self", int, train=bool, val=bool, test=bool, post_trace=True)
-    @TraceFunction(trace_args=False, trace_rv=False)
+    #@TraceFunction(trace_args=False, trace_rv=False)
     def apply_center_crop(self, input_size, train=False, val=False, test=False):
         '''
         Apply Center Cropping transformation
@@ -47,7 +47,7 @@ class prototype_transforms(prototype_layers):
         train=None, val=None, test=None, post_trace=True)
     @accepts("self", brightness=[int, float], contrast=[int, float], saturation=[int, float], hue=[int, float], 
         train=bool, val=bool, test=bool, post_trace=True)
-    @TraceFunction(trace_args=False, trace_rv=False)
+    #@TraceFunction(trace_args=False, trace_rv=False)
     def apply_color_jitter(self, brightness=0, contrast=0, saturation=0, hue=0, train=False, val=False, test=False):
         '''
         Apply Color jittering transformations
@@ -85,7 +85,7 @@ class prototype_transforms(prototype_layers):
         train=None, val=None, test=None, post_trace=True)
     @accepts("self", [list, float, int], translate=[tuple, type(None)], scale=[tuple, type(None)], 
         shear=[list, float, int, tuple, type(None)], train=bool, val=bool, test=bool, post_trace=True)
-    @TraceFunction(trace_args=False, trace_rv=False)
+    #@TraceFunction(trace_args=False, trace_rv=False)
     def apply_random_affine(self, degrees, translate=None, scale=None, shear=None, train=False, val=False, test=False):
         '''
         Apply random affine transformations
@@ -111,7 +111,7 @@ class prototype_transforms(prototype_layers):
     @warning_checks(None, ["gte", 32, "lte", 1024], train=None, val=None, test=None, post_trace=True)
     @error_checks(None, ["gt", 0], train=None, val=None, test=None, post_trace=True)
     @accepts("self", int, train=bool, val=bool, test=bool, post_trace=True)
-    @TraceFunction(trace_args=False, trace_rv=False)
+    #@TraceFunction(trace_args=False, trace_rv=False)
     def apply_random_crop(self, input_size, train=False, val=False, test=False):  
         '''
         Apply Random Cropping transformation
@@ -133,7 +133,7 @@ class prototype_transforms(prototype_layers):
     ###############################################################################################################################################
     @error_checks(None, probability=["gt", 0, "lt", 1], train=None, val=None, test=None, post_trace=True)
     @accepts("self", probability=float, train=bool, val=bool, test=bool, post_trace=True)
-    @TraceFunction(trace_args=False, trace_rv=False)
+    #@TraceFunction(trace_args=False, trace_rv=False)
     def apply_random_horizontal_flip(self, probability=0.5, train=False, val=False, test=False):
         '''
         Apply random horizontal flip transformations
@@ -156,7 +156,7 @@ class prototype_transforms(prototype_layers):
     ###############################################################################################################################################
     @error_checks(None, distortion_scale=["gt", 0, "lt", 1], probability=["gt", 0, "lt", 1], train=None, val=None, test=None, post_trace=True)
     @accepts("self", distortion_scale=float, probability=float, train=bool, val=bool, test=bool, post_trace=True)
-    @TraceFunction(trace_args=False, trace_rv=False)
+    #@TraceFunction(trace_args=False, trace_rv=False)
     def apply_random_perspective(self, distortion_scale=0.5, probability=0.5, train=False, val=False, test=False):
         '''
         Apply random perspective transformations
@@ -182,7 +182,7 @@ class prototype_transforms(prototype_layers):
     @warning_checks(None, ["gte", 32, "lte", 1024], scale=None, ratio=["lt", 2.5], train=None, val=None, test=None, post_trace=True)
     @error_checks(None, ["gt", 0], scale=["gt", 0, "lt", 1], ratio=["gt", 0], train=None, val=None, test=None, post_trace=True)
     @accepts("self", int, scale=[tuple, float], ratio=[tuple, float], train=bool, val=bool, test=bool, post_trace=True)
-    @TraceFunction(trace_args=False, trace_rv=False)
+    #@TraceFunction(trace_args=False, trace_rv=False)
     def apply_random_resized_crop(self, input_size, scale=(0.08, 1.0), ratio=(0.75, 1.3333333333333333), train=False, val=False, test=False):
         '''
         Apply Random Resized Cropping transformation
@@ -207,7 +207,7 @@ class prototype_transforms(prototype_layers):
     ###############################################################################################################################################
     @error_checks(None, num_output_channels=["in", [1, 3]], train=None, val=None, test=None, post_trace=True)
     @accepts("self", int, train=bool, val=bool, test=bool, post_trace=True)
-    @TraceFunction(trace_args=False, trace_rv=False)
+    #@TraceFunction(trace_args=False, trace_rv=False)
     def apply_grayscale(self, num_output_channels=3, train=False, val=False, test=False):
         '''
         Not active
@@ -222,7 +222,7 @@ class prototype_transforms(prototype_layers):
     @warning_checks(None, ["lt", 30], train=None, val=None, test=None, post_trace=True)
     @error_checks(None, ["gte", 0.0], train=None, val=None, test=None, post_trace=True)
     @accepts("self", [float, int, list], train=bool, val=bool, test=bool, post_trace=True)
-    @TraceFunction(trace_args=False, trace_rv=False)
+    #@TraceFunction(trace_args=False, trace_rv=False)
     def apply_random_rotation(self, degrees, train=False, val=False, test=False):
         '''
         Apply random rotation transformations
@@ -244,7 +244,7 @@ class prototype_transforms(prototype_layers):
     ###############################################################################################################################################
     @error_checks(None, probability=["gt", 0, "lt", 1], train=None, val=None, test=None, post_trace=True)
     @accepts("self", probability=float, train=bool, val=bool, test=bool, post_trace=True)
-    @TraceFunction(trace_args=False, trace_rv=False)
+    #@TraceFunction(trace_args=False, trace_rv=False)
     def apply_random_vertical_flip(self, probability=0.5, train=False, val=False, test=False):
         '''
         Apply random vertical flip transformations
@@ -267,7 +267,7 @@ class prototype_transforms(prototype_layers):
     @warning_checks(None, ["gte", 32, "lte", 1024], train=None, val=None, test=None, post_trace=True)
     @error_checks(None, ["gt", 0], train=None, val=None, test=None, post_trace=True)
     @accepts("self", int, train=bool, val=bool, test=bool, post_trace=True)
-    @TraceFunction(trace_args=False, trace_rv=False)
+    #@TraceFunction(trace_args=False, trace_rv=False)
     def apply_resize(self, input_size, train=False, val=False, test=False):
         '''
         Apply standard resizing
@@ -288,7 +288,7 @@ class prototype_transforms(prototype_layers):
     ###############################################################################################################################################
     @error_checks(None, mean=["gt", 0, "lt", 1], std=["gt", 0, "lt", 1], train=None, val=None, test=None, post_trace=True)
     @accepts("self", mean=[list, float], std=[list, float], train=bool, val=bool, test=bool, post_trace=True)
-    @TraceFunction(trace_args=False, trace_rv=False)
+    #@TraceFunction(trace_args=False, trace_rv=False)
     def apply_normalize(self, mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225], train=False, val=False, test=False):
         '''
         Apply mean subtraction and standard normalization

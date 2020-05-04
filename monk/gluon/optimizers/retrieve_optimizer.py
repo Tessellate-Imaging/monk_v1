@@ -3,7 +3,7 @@ from system.imports import *
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def retrieve_optimizer(system_dict):
     '''
     Retrieve Optimizers in validation, testing, copy-from and resume modes

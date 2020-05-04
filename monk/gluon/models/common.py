@@ -4,7 +4,7 @@ from gluon.models.layers import get_layer
 
 
 @accepts("self", bool, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def set_parameter_requires_grad(finetune_net, freeze_base_network):
     '''
     Freeze based network as per params set
@@ -23,7 +23,7 @@ def set_parameter_requires_grad(finetune_net, freeze_base_network):
 
 
 @accepts(dict, activation=str, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=True)
+#@TraceFunction(trace_args=True, trace_rv=True)
 def get_final_layer(network_layer, activation='relu'):
     '''
     Setup final layer
@@ -47,7 +47,7 @@ def get_final_layer(network_layer, activation='relu'):
 
 
 @accepts("self", list, int, set=int, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def create_final_layer(finetune_net, custom_network, num_classes, set=1):
     '''
     Create final sub-network 
@@ -104,7 +104,7 @@ def create_final_layer(finetune_net, custom_network, num_classes, set=1):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def model_to_device(system_dict):
     '''
     Load model weights on device - cpu or gpu 
@@ -130,7 +130,7 @@ def model_to_device(system_dict):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def print_grad_stats(system_dict):
     '''
     Print details on which layers are trainable
@@ -151,7 +151,7 @@ def print_grad_stats(system_dict):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def get_num_layers(system_dict):
     '''
     Get number of potentially trainable layers
@@ -184,7 +184,7 @@ def get_num_layers(system_dict):
 
 
 @accepts(int, dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def freeze_layers(num, system_dict):
     '''
     Main function responsible to freeze layers in network
@@ -295,7 +295,7 @@ def freeze_layers(num, system_dict):
 
 
 @accepts(dict, list, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def get_layer_uid(network_stack, count):
     '''
     Get a unique name for layer in custom network development

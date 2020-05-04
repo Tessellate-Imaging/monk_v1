@@ -15,7 +15,8 @@ class prototype_aux(prototype_params):
                         0 - Print Nothing
                         1 - Print desired details
     '''
-
+    @accepts("self", verbose=int, post_trace=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
         super().__init__(verbose=verbose);
 

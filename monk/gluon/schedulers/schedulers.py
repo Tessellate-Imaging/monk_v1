@@ -3,7 +3,7 @@ from system.imports import *
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def scheduler_fixed(system_dict):
     '''
     Set learning rate fixed
@@ -20,7 +20,7 @@ def scheduler_fixed(system_dict):
 
 
 @accepts(dict, int,  gamma=[float, int], last_epoch=int, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def scheduler_step(system_dict, step_size, gamma=0.1, last_epoch=-1):
     '''
     Set learning rate to decrease in regular steps
@@ -44,7 +44,7 @@ def scheduler_step(system_dict, step_size, gamma=0.1, last_epoch=-1):
 
 
 @accepts(dict, [list, int], gamma=[float, int], last_epoch=int, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def scheduler_multistep(system_dict, milestones, gamma=0.1, last_epoch=-1):
     '''
     Set learning rate to decrease in irregular steps

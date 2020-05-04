@@ -14,14 +14,14 @@ class prototype_losses(prototype_optimizers):
                         1 - Print desired details
     '''
     @accepts("self", verbose=int, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
         super().__init__(verbose=verbose);
 
 
     ###############################################################################################################################################
     @accepts("self", weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def loss_l1(self, weight=None, batch_axis=0):
         '''
         Select L1 Loss
@@ -45,7 +45,7 @@ class prototype_losses(prototype_optimizers):
 
     ###############################################################################################################################################
     @accepts("self", weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def loss_l2(self, weight=1.0, batch_axis=0):
         '''
         Select L2 Loss
@@ -70,7 +70,7 @@ class prototype_losses(prototype_optimizers):
     ###############################################################################################################################################
     @accepts("self", weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int,
         axis_to_sum_over=int, label_as_categories=bool, label_smoothing=bool, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def loss_softmax_crossentropy(self, weight=None, batch_axis=0, axis_to_sum_over=-1, 
                                     label_as_categories=True, label_smoothing=False):
         '''
@@ -100,7 +100,7 @@ class prototype_losses(prototype_optimizers):
     ###############################################################################################################################################
     @accepts("self", weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int,
         axis_to_sum_over=int, label_as_categories=bool, label_smoothing=bool, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def loss_crossentropy(self, weight=None, batch_axis=0, axis_to_sum_over=-1, 
                                     label_as_categories=True, label_smoothing=False):
         '''
@@ -130,7 +130,7 @@ class prototype_losses(prototype_optimizers):
 
     ###############################################################################################################################################
     @accepts("self", weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def loss_sigmoid_binary_crossentropy(self, weight=None, batch_axis=0):
         '''
         Select sigmoid binary crossentropy Loss - Auto sigmoid before applying loss 
@@ -154,7 +154,7 @@ class prototype_losses(prototype_optimizers):
 
     ###############################################################################################################################################
     @accepts("self", weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, post_trace=True)    
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def loss_binary_crossentropy(self, weight=None, batch_axis=0):
         '''
         Select binary crossentropy Loss - Need to manually apply sigmoid
@@ -178,7 +178,7 @@ class prototype_losses(prototype_optimizers):
     ###############################################################################################################################################
     @accepts("self", log_pre_applied=bool, weight=[list, type(np.array([1, 2, 3])), float, type(None)], 
         batch_axis=int, axis_to_sum_over=int, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def loss_kldiv(self, log_pre_applied=False, weight=None, batch_axis=0, axis_to_sum_over=-1):
         '''
         Select lkdiv Loss
@@ -205,7 +205,7 @@ class prototype_losses(prototype_optimizers):
     ###############################################################################################################################################
     @accepts("self", log_pre_applied=bool, weight=[list, type(np.array([1, 2, 3])), float, type(None)], 
         batch_axis=int, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def loss_poisson_nll(self, log_pre_applied=False, weight=None, batch_axis=0):
         '''
         Select poisson_nll Loss
@@ -231,7 +231,7 @@ class prototype_losses(prototype_optimizers):
     ###############################################################################################################################################
     @accepts("self", weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int,
         threshold_for_mean_estimator=[int, float], post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def loss_huber(self, weight=None, batch_axis=0, threshold_for_mean_estimator=1):
         '''
         Select huber Loss
@@ -257,7 +257,7 @@ class prototype_losses(prototype_optimizers):
     ###############################################################################################################################################
     @accepts("self", weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int,
         margin=[int, float], post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def loss_hinge(self, weight=None, batch_axis=0, margin=1):
         '''
         Select hinge Loss
@@ -284,7 +284,7 @@ class prototype_losses(prototype_optimizers):
     ###############################################################################################################################################
     @accepts("self", weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int,
         margin=[int, float], post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def loss_squared_hinge(self, weight=None, batch_axis=0, margin=1):
         '''
         Select squared hinge Loss

@@ -3,7 +3,7 @@ from system.imports import *
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def retrieve_loss(system_dict):
 	'''
     Retrieve loss post state changes

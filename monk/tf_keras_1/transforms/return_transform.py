@@ -4,7 +4,7 @@ from system.imports import *
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def set_transform_estimate(system_dict):
     '''
     Load training and validation transforms in main state
@@ -52,7 +52,7 @@ def set_transform_estimate(system_dict):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def set_transform_trainval(system_dict):
     '''
     Load testing transforms in main state
@@ -156,7 +156,7 @@ def set_transform_trainval(system_dict):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def set_transform_test(system_dict):
     if(system_dict["local"]["transforms_test"]["featurewise_center"]):
         rescale_val = 1/256;

@@ -3,7 +3,7 @@ from system.imports import *
 from gluon.models.models import combined_list_lower
 
 @accepts(str, dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def set_model_name(name, system_dict):
     '''
     Set base model name for transfer learning.
@@ -24,7 +24,7 @@ def set_model_name(name, system_dict):
 
 
 @accepts(bool, dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def set_device(value, system_dict):
     '''
     Set whether to use gpu or not
@@ -46,7 +46,7 @@ def set_device(value, system_dict):
 
 
 @accepts(bool, dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def set_pretrained(value, system_dict):
     '''
     Set whether to use pretrained models or randomly initialized weights
@@ -64,7 +64,7 @@ def set_pretrained(value, system_dict):
 
 
 @accepts(bool, dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def set_freeze_base_network(value, system_dict):
     '''
     Set whether to freeze base network or not
@@ -81,7 +81,7 @@ def set_freeze_base_network(value, system_dict):
 
 
 @accepts([str, list], dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def set_model_path(path, system_dict):
     '''
     Set path to custom weights for model

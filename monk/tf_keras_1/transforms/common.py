@@ -12,7 +12,7 @@ from tf_keras_1.transforms.transforms import transform_normalize
 
 
 @accepts(dict, list, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def set_transforms(system_dict, set_phases):
     '''
     Set transforms depending on the training, validation and testing phases.

@@ -2,7 +2,7 @@ from gluon.optimizers.imports import *
 from system.imports import *
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def load_optimizer(system_dict):
     '''
     Load Optimizers in training states

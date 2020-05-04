@@ -1,7 +1,7 @@
 from gluon.models.imports import *
 from system.imports import *
 
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def initialize_network(net, initializer):
     '''
     Get the right initializer for custom network weight initialization
@@ -31,7 +31,7 @@ def initialize_network(net, initializer):
     
 
 
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def initializer_xavier_normal():
     '''
     Get Xavier normal initialization
@@ -46,7 +46,7 @@ def initializer_xavier_normal():
 
 
 
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def initializer_xavier_uniform():
     '''
     Get Xavier uniform initialization
@@ -61,7 +61,7 @@ def initializer_xavier_uniform():
 
 
 
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def initializer_msra():
     '''
     Get MSRA initialization
@@ -76,7 +76,7 @@ def initializer_msra():
 
 
 
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def initializer_normal():
     '''
     Get normal initialization
@@ -91,7 +91,7 @@ def initializer_normal():
 
 
 
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def initializer_orthogonal_normal():
     '''
     Get orthogonal normal initialization
@@ -107,7 +107,7 @@ def initializer_orthogonal_normal():
 
 
 
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def initializer_orthogonal_uniform():
     '''
     Get orthogonal uniform initialization
@@ -123,7 +123,7 @@ def initializer_orthogonal_uniform():
 
 
 
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def initializer_uniform():
     '''
     Get uniform initialization

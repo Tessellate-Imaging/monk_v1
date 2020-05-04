@@ -2,7 +2,7 @@ from pytorch.testing.imports import *
 from system.imports import *
 
 @accepts(str, bool, dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def process_single(img_name, return_raw, system_dict):
     '''
     Run inference on a single image
@@ -37,7 +37,7 @@ def process_single(img_name, return_raw, system_dict):
 
 
 @accepts(str, bool, float, dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def process_multi(img_name, return_raw, img_thresh, system_dict):
     '''
     Run inference on a single image when label type is multi-label

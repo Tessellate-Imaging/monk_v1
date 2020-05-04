@@ -3,7 +3,7 @@ from system.imports import *
 
 
 @accepts(str, str, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def get_img_label(fname, delimiter):
     '''
     Find list of images and corresponding labels in csv file
@@ -32,7 +32,7 @@ def get_img_label(fname, delimiter):
 
 
 @accepts(str, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def read_csv(fname):
     '''
     Read CSV File
@@ -53,7 +53,7 @@ def read_csv(fname):
 
 
 @accepts(str, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def populate_from_folder_train(tpath):
     '''
     Find number of images in every class image folder - train
@@ -75,7 +75,7 @@ def populate_from_folder_train(tpath):
 
 
 @accepts(str, str, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def populate_from_folder_trainval(tpath, vpath):
     '''
     Find number of images in every class image folder - train and val
@@ -95,7 +95,7 @@ def populate_from_folder_trainval(tpath, vpath):
 
 
 @accepts(str, str, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def populate_from_csv_train(tpath, delimiter):
     '''
     Find number of images in every class image csv - train
@@ -116,7 +116,7 @@ def populate_from_csv_train(tpath, delimiter):
     return classes_folder, classes_folder_strength;
 
 @accepts(str, str, str, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def populate_from_csv_trainval(tpath, vpath, delimiter):
     '''
     Find number of images in every class image csv - train and val
@@ -138,7 +138,7 @@ def populate_from_csv_trainval(tpath, vpath, delimiter):
 
 
 @accepts(str, str, str, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def populate_missing(tpath, dataset_path, delimiter):
     '''
     Find number of missing images in imageset
@@ -161,7 +161,7 @@ def populate_missing(tpath, dataset_path, delimiter):
 
 
 @accepts(str, verbose=[bool, str, int], post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def populate_corrupt_from_foldered(dataset_path, verbose=1):
     '''
     Find number of corrupted images in imageset - foldered type
@@ -201,7 +201,7 @@ def populate_corrupt_from_foldered(dataset_path, verbose=1):
 
 
 @accepts(str, str, str, verbose=[bool, str, int], post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def populate_corrupt_from_csv(tpath, dataset_path, delimiter, verbose=1):
     '''
     Find number of corrupted images in imageset - csv type

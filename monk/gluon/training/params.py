@@ -3,7 +3,7 @@ from system.imports import *
 
 
 @accepts(int, dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def set_num_epochs(num_epochs, system_dict):
     '''
     Set number of training epochs
@@ -21,7 +21,7 @@ def set_num_epochs(num_epochs, system_dict):
 
 
 @accepts(bool, dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def set_display_progress_realtime(value, system_dict):
     '''
     Set verbosity levels for iterations
@@ -38,7 +38,7 @@ def set_display_progress_realtime(value, system_dict):
 
 
 @accepts(bool, dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def set_display_progress(value, system_dict):
     '''
     Set all training params for epochs
@@ -55,7 +55,7 @@ def set_display_progress(value, system_dict):
 
 
 @accepts(bool, dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def set_save_intermediate_models(value, system_dict):
     '''
     Set whether to save models post every epoch or not
@@ -72,7 +72,7 @@ def set_save_intermediate_models(value, system_dict):
 
 
 @accepts(bool, dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def set_save_training_logs(value, system_dict):
     '''
     Set whether to save training logs or not
@@ -90,7 +90,7 @@ def set_save_training_logs(value, system_dict):
 
 
 @accepts(str, dict, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def set_intermediate_model_prefix(value, system_dict):
     '''
     Set a prefix to names of intermediate models being saved

@@ -2,7 +2,7 @@ from gluon.models.imports import *
 from system.imports import *
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=True)
+#@TraceFunction(trace_args=True, trace_rv=True)
 def get_layer(network_layer):
     '''
     Get layer for appending it to transfer learning base model
@@ -54,7 +54,7 @@ def get_layer(network_layer):
 
 
 @accepts(dict, probability=float, final_layer=bool, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def layer_dropout(system_dict, probability=0.5, final_layer=False):
     '''
     Append dropout layer to base network in transfer learning
@@ -78,7 +78,7 @@ def layer_dropout(system_dict, probability=0.5, final_layer=False):
 
 
 @accepts(dict, num_neurons=int, final_layer=bool, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def layer_linear(system_dict, num_neurons=512, final_layer=False):
     '''
     Append dense (fully connected) layer to base network in transfer learning
@@ -105,7 +105,7 @@ def layer_linear(system_dict, num_neurons=512, final_layer=False):
 
 
 @accepts(dict, alpha=[int, float], final_layer=bool, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def activation_elu(system_dict, alpha=1.0, final_layer=False):
     '''
     Append exponential linear unit activation to base network in transfer learning
@@ -128,7 +128,7 @@ def activation_elu(system_dict, alpha=1.0, final_layer=False):
     return system_dict;
 
 @accepts(dict, negative_slope=[int, float], final_layer=bool, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def activation_leakyrelu(system_dict, negative_slope=0.01, final_layer=False):
     '''
     Append Leaky - ReLU activation to base network in transfer learning
@@ -152,7 +152,7 @@ def activation_leakyrelu(system_dict, negative_slope=0.01, final_layer=False):
 
 
 @accepts(dict, num_parameters=int, init=[int, float], final_layer=bool, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def activation_prelu(system_dict, num_parameters=1, init=0.25, final_layer=False):
     '''
     Append Learnable parameterized rectified linear unit activation to base network in transfer learning
@@ -177,7 +177,7 @@ def activation_prelu(system_dict, num_parameters=1, init=0.25, final_layer=False
 
 
 @accepts(dict, final_layer=bool, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def activation_relu(system_dict, final_layer=False):
     '''
     Append rectified linear unit activation to base network in transfer learning
@@ -199,7 +199,7 @@ def activation_relu(system_dict, final_layer=False):
 
 
 @accepts(dict, final_layer=bool, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def activation_selu(system_dict, final_layer=False):
     '''
     Append scaled exponential linear unit activation to base network in transfer learning
@@ -222,7 +222,7 @@ def activation_selu(system_dict, final_layer=False):
 
 
 @accepts(dict, final_layer=bool, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def activation_sigmoid(system_dict, final_layer=False):
     '''
     Append sigmoid activation to base network in transfer learning
@@ -244,7 +244,7 @@ def activation_sigmoid(system_dict, final_layer=False):
 
 
 @accepts(dict, beta=[int, float], threshold=[int, float], final_layer=bool, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def activation_softplus(system_dict, beta=1, threshold=20, final_layer=False):
     '''
     Append softplus activation to base network in transfer learning
@@ -270,7 +270,7 @@ def activation_softplus(system_dict, beta=1, threshold=20, final_layer=False):
 
 
 @accepts(dict, final_layer=bool, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def activation_softsign(system_dict, final_layer=False):
     '''
     Append softsign activation to base network in transfer learning
@@ -292,7 +292,7 @@ def activation_softsign(system_dict, final_layer=False):
 
 
 @accepts(dict, beta=[int, float], final_layer=bool, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def activation_swish(system_dict, beta=1.0, final_layer=False):
     '''
     Append swish activation to base network in transfer learning
@@ -316,7 +316,7 @@ def activation_swish(system_dict, beta=1.0, final_layer=False):
 
 
 @accepts(dict, final_layer=bool, post_trace=True)
-@TraceFunction(trace_args=False, trace_rv=False)
+#@TraceFunction(trace_args=False, trace_rv=False)
 def activation_tanh(system_dict, final_layer=False):
     '''
     Append tanh activation to base network in transfer learning
@@ -340,7 +340,7 @@ def activation_tanh(system_dict, final_layer=False):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=True)
+#@TraceFunction(trace_args=True, trace_rv=True)
 def custom_model_get_layer(network_layer):
     '''
     Get layer for custom network design
@@ -442,7 +442,7 @@ def custom_model_get_layer(network_layer):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_convolution1d(params):
     '''
     Append 1d-convolution to custom network
@@ -475,7 +475,7 @@ def custom_model_layer_convolution1d(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_convolution2d(params):
     '''
     Append 2d-convolution to custom network
@@ -508,7 +508,7 @@ def custom_model_layer_convolution2d(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_convolution3d(params):
     '''
     Append 3d-convolution to custom network
@@ -540,7 +540,7 @@ def custom_model_layer_convolution3d(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_transposed_convolution1d(params):
     '''
     Append 1d-transposed-convolution to custom network
@@ -571,7 +571,7 @@ def custom_model_layer_transposed_convolution1d(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_transposed_convolution2d(params):
     '''
     Append 2d-transposed-convolution to custom network
@@ -603,7 +603,7 @@ def custom_model_layer_transposed_convolution2d(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_transposed_convolution3d(params):
     '''
     Append 3d-transposed-convolution to custom network
@@ -634,7 +634,7 @@ def custom_model_layer_transposed_convolution3d(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_max_pooling1d(params):
     '''
     Append 1d-max-pooling to custom network
@@ -654,7 +654,7 @@ def custom_model_layer_max_pooling1d(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_max_pooling2d(params):
     '''
     Append 2d-max-pooling to custom network
@@ -674,7 +674,7 @@ def custom_model_layer_max_pooling2d(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_max_pooling3d(params):
     '''
     Append 3d-max-pooling to custom network
@@ -694,7 +694,7 @@ def custom_model_layer_max_pooling3d(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_average_pooling1d(params):
     '''
     Append 1d-average-pooling to custom network
@@ -715,7 +715,7 @@ def custom_model_layer_average_pooling1d(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_average_pooling2d(params):
     '''
     Append 2d-average-pooling to custom network
@@ -737,7 +737,7 @@ def custom_model_layer_average_pooling2d(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_average_pooling3d(params):
     '''
     Append 3d-average-pooling to custom network
@@ -759,7 +759,7 @@ def custom_model_layer_average_pooling3d(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_global_max_pooling1d(params):
     '''
     Append 1d-global-max-pooling to custom network
@@ -775,7 +775,7 @@ def custom_model_layer_global_max_pooling1d(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_global_max_pooling2d(params):
     '''
     Append 2d-global-max-pooling to custom network
@@ -791,7 +791,7 @@ def custom_model_layer_global_max_pooling2d(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_global_max_pooling3d(params):
     '''
     Append 3d-global-max-pooling to custom network
@@ -807,7 +807,7 @@ def custom_model_layer_global_max_pooling3d(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_global_average_pooling1d(params):
     '''
     Append 1d-global-average-pooling to custom network
@@ -823,7 +823,7 @@ def custom_model_layer_global_average_pooling1d(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_global_average_pooling2d(params):
     '''
     Append 2d-global-average-pooling to custom network
@@ -839,7 +839,7 @@ def custom_model_layer_global_average_pooling2d(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_global_average_pooling3d(params):
     '''
     Append 3d-global-average-pooling to custom network
@@ -855,7 +855,7 @@ def custom_model_layer_global_average_pooling3d(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_fully_connected(params):
     '''
     Append fc (dense) to custom network
@@ -878,7 +878,7 @@ def custom_model_layer_fully_connected(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_dropout(params):
     '''
     Append dropout to custom network
@@ -895,7 +895,7 @@ def custom_model_layer_dropout(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_flatten(params):
     '''
     Append flatten to custom network
@@ -911,7 +911,7 @@ def custom_model_layer_flatten(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_identity(params):
     '''
     Append idenity to custom network
@@ -927,7 +927,7 @@ def custom_model_layer_identity(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_batch_normalization(params):
     '''
     Append batchnorm to custom network
@@ -948,7 +948,7 @@ def custom_model_layer_batch_normalization(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_instance_normalization(params):
     '''
     Append instancenorm to custom network
@@ -967,7 +967,7 @@ def custom_model_layer_instance_normalization(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_layer_normalization(params):
     '''
     Append layernorm to custom network
@@ -986,7 +986,7 @@ def custom_model_layer_layer_normalization(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_activation_relu(params):
     '''
     Append relu to custom network
@@ -1002,7 +1002,7 @@ def custom_model_activation_relu(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_activation_sigmoid(params):
     '''
     Append sigmoid to custom network
@@ -1018,7 +1018,7 @@ def custom_model_activation_sigmoid(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_activation_tanh(params):
     '''
     Append tanh to custom network
@@ -1034,7 +1034,7 @@ def custom_model_activation_tanh(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_activation_softplus(params):
     '''
     Append softplus to custom network
@@ -1050,7 +1050,7 @@ def custom_model_activation_softplus(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_activation_softsign(params):
     '''
     Append softsign to custom network
@@ -1066,7 +1066,7 @@ def custom_model_activation_softsign(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_activation_elu(params):
     '''
     Append elu to custom network
@@ -1082,7 +1082,7 @@ def custom_model_activation_elu(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_activation_gelu(params):
     '''
     Append gelu to custom network
@@ -1098,7 +1098,7 @@ def custom_model_activation_gelu(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_activation_prelu(params):
     '''
     Append prelu to custom network
@@ -1114,7 +1114,7 @@ def custom_model_activation_prelu(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_activation_leaky_relu(params):
     '''
     Append leaky-relu to custom network
@@ -1130,7 +1130,7 @@ def custom_model_activation_leaky_relu(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_activation_selu(params):
     '''
     Append selu to custom network
@@ -1146,7 +1146,7 @@ def custom_model_activation_selu(params):
 
 
 @accepts(dict, post_trace=True)
-@TraceFunction(trace_args=True, trace_rv=False)
+#@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_activation_swish(params):
     '''
     Append swish to custom network

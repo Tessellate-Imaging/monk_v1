@@ -15,14 +15,14 @@ class prototype_master(prototype_updates):
                         1 - Print desired details
     '''
     @accepts("self", verbose=int, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
         super().__init__(verbose=verbose);
 
 
     ###############################################################################################################################################
     @accepts("self", post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def Dataset(self):
         '''
         Load transforms and set dataloader
@@ -66,7 +66,7 @@ class prototype_master(prototype_updates):
 
     ###############################################################################################################################################
     @accepts("self", [int, float], post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def Dataset_Percent(self, percent):
         '''
         Select a portion of dataset
@@ -158,7 +158,7 @@ class prototype_master(prototype_updates):
 
     ###############################################################################################################################################
     @accepts("self", post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def Model(self):
         '''
         Load Model as per paraameters set
@@ -179,7 +179,7 @@ class prototype_master(prototype_updates):
 
     ###############################################################################################################################################
     @accepts("self", post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def Train(self):
         '''
         Master function for training
@@ -200,7 +200,7 @@ class prototype_master(prototype_updates):
 
     ###############################################################################################################################################
     @accepts("self", post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def Evaluate(self):
         '''
         Master function for external validation
@@ -222,7 +222,7 @@ class prototype_master(prototype_updates):
     ###############################################################################################################################################
     @error_checks(None, img_name=["file", "r"], img_dir=["folder", "r"], return_raw=False, img_thresh=["gte", 0.0, "lte", 1.0], post_trace=True)
     @accepts("self", img_name=[str, bool], img_dir=[str, bool], return_raw=bool, img_thresh=float, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def Infer(self, img_name=False, img_dir=False, return_raw=False, img_thresh=0.5):
         '''
         Master function for inference 
@@ -256,7 +256,7 @@ class prototype_master(prototype_updates):
 
     ###############################################################################################################################################
     @accepts("self", network=list, data_shape=tuple, use_gpu=bool, network_initializer=str, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def Compile_Network(self, network, data_shape=(3, 224, 224), use_gpu=True, network_initializer="xavier_normal"):
         '''
         Master function for compiling custom network and initializing it 
@@ -284,7 +284,7 @@ class prototype_master(prototype_updates):
 
     ###############################################################################################################################################
     @accepts("self", data_shape=tuple, port=int, post_trace=True)
-    @TraceFunction(trace_args=True, trace_rv=True)
+    #@TraceFunction(trace_args=True, trace_rv=True)
     def Visualize_With_Netron(self, data_shape=None, port=None):
         '''
         Visualize network with netron library 
