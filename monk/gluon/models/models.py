@@ -18,7 +18,7 @@ combined_list = set1+set2+set3
 combined_list_lower = list(map(str.lower, combined_list))
 
 
-@accepts(str, bool, int, bool, post_trace=True)
+@accepts(str, bool, int, bool, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def get_base_model(model_name, use_pretrained, num_classes, freeze_base_network):
     '''

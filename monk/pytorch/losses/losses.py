@@ -2,7 +2,7 @@ from pytorch.losses.imports import *
 from system.imports import *
 
 
-@accepts(dict, weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, post_trace=True)
+@accepts(dict, weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def l1(system_dict, weight=None, batch_axis=0):
     '''
@@ -24,7 +24,7 @@ def l1(system_dict, weight=None, batch_axis=0):
     return system_dict;
 
 
-@accepts(dict, weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, post_trace=True)
+@accepts(dict, weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def l2(system_dict, weight=None, batch_axis=0):
     '''
@@ -47,7 +47,7 @@ def l2(system_dict, weight=None, batch_axis=0):
 
 
 @accepts(dict, weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, 
-    axis_to_sum_over=int, label_as_categories=bool, label_smoothing=bool, post_trace=True)
+    axis_to_sum_over=int, label_as_categories=bool, label_smoothing=bool, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def softmax_crossentropy(system_dict, weight=None, batch_axis=0, axis_to_sum_over=-1, 
     label_as_categories=True, label_smoothing=False):
@@ -77,7 +77,7 @@ def softmax_crossentropy(system_dict, weight=None, batch_axis=0, axis_to_sum_ove
 
 
 @accepts(dict, weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, 
-    axis_to_sum_over=int, label_as_categories=bool, label_smoothing=bool, post_trace=True)
+    axis_to_sum_over=int, label_as_categories=bool, label_smoothing=bool, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def crossentropy(system_dict, weight=None, batch_axis=0, axis_to_sum_over=-1, 
     label_as_categories=True, label_smoothing=False):
@@ -106,7 +106,7 @@ def crossentropy(system_dict, weight=None, batch_axis=0, axis_to_sum_over=-1,
     return system_dict;
 
 
-@accepts(dict, weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, post_trace=True)
+@accepts(dict, weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def sigmoid_binary_crossentropy(system_dict, weight=None, batch_axis=0):
     '''
@@ -127,7 +127,7 @@ def sigmoid_binary_crossentropy(system_dict, weight=None, batch_axis=0):
     system_dict["hyper-parameters"]["status"] = True;
     return system_dict;
 
-@accepts(dict, weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, post_trace=True)
+@accepts(dict, weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def binary_crossentropy(system_dict, weight=None, batch_axis=0):
     '''
@@ -150,7 +150,7 @@ def binary_crossentropy(system_dict, weight=None, batch_axis=0):
 
 
 @accepts(dict, log_pre_applied=bool, weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, 
-    axis_to_sum_over=int, post_trace=True)
+    axis_to_sum_over=int, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def kldiv(system_dict, log_pre_applied=False, weight=None, batch_axis=0, axis_to_sum_over=-1):
     '''
@@ -175,7 +175,7 @@ def kldiv(system_dict, log_pre_applied=False, weight=None, batch_axis=0, axis_to
     system_dict["hyper-parameters"]["status"] = True;
     return system_dict;
 
-@accepts(dict, log_pre_applied=bool, weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, post_trace=True)
+@accepts(dict, log_pre_applied=bool, weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def poisson_nll(system_dict, log_pre_applied=False, weight=None, batch_axis=0):
     '''
@@ -199,7 +199,7 @@ def poisson_nll(system_dict, log_pre_applied=False, weight=None, batch_axis=0):
     return system_dict;
 
 
-@accepts(dict, weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, threshold_for_mean_estimator=int, post_trace=True)
+@accepts(dict, weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, threshold_for_mean_estimator=int, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def huber(system_dict, weight=None, batch_axis=0, threshold_for_mean_estimator=1):
     '''
@@ -223,7 +223,7 @@ def huber(system_dict, weight=None, batch_axis=0, threshold_for_mean_estimator=1
     return system_dict;
 
 
-@accepts(dict, weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, margin=int, post_trace=True)
+@accepts(dict, weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, margin=int, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def hinge(system_dict, weight=None, batch_axis=0, margin=1):
     '''
@@ -247,7 +247,7 @@ def hinge(system_dict, weight=None, batch_axis=0, margin=1):
     return system_dict;
 
 
-@accepts(dict, weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, margin=int, post_trace=True)
+@accepts(dict, weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, margin=int, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def squared_hinge(system_dict, weight=None, batch_axis=0, margin=1):
     '''
@@ -271,7 +271,7 @@ def squared_hinge(system_dict, weight=None, batch_axis=0, margin=1):
     return system_dict;
 
 
-@accepts(dict, weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, margin=int, post_trace=True)
+@accepts(dict, weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, margin=int, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def multimargin(system_dict, weight=None, batch_axis=0, margin=1):
     '''
@@ -295,7 +295,7 @@ def multimargin(system_dict, weight=None, batch_axis=0, margin=1):
     return system_dict;
 
 
-@accepts(dict, weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, margin=int, post_trace=True)
+@accepts(dict, weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, margin=int, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def squared_multimargin(system_dict, weight=None, batch_axis=0, margin=1):
     '''
@@ -318,7 +318,7 @@ def squared_multimargin(system_dict, weight=None, batch_axis=0, margin=1):
     system_dict["hyper-parameters"]["status"] = True;
     return system_dict;
 
-@accepts(dict, weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, post_trace=True)
+@accepts(dict, weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def multilabelmargin(system_dict, weight=None, batch_axis=0):
     '''
@@ -339,7 +339,7 @@ def multilabelmargin(system_dict, weight=None, batch_axis=0):
     system_dict["hyper-parameters"]["status"] = True;
     return system_dict;
 
-@accepts(dict, weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, post_trace=True)
+@accepts(dict, weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def multilabelsoftmargin(system_dict, weight=None, batch_axis=0):
     '''

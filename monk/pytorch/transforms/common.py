@@ -16,7 +16,7 @@ from pytorch.transforms.transforms import transform_normalize
 
 
 
-@accepts(dict, list, post_trace=True)
+@accepts(dict, list, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def set_transforms(system_dict, set_phases):
     '''

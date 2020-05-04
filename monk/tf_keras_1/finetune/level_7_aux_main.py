@@ -13,14 +13,14 @@ class prototype_aux(prototype_params):
                         0 - Print Nothing
                         1 - Print desired details
     '''
-    @accepts("self", verbose=int, post_trace=True)
+    @accepts("self", verbose=int, post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
         super().__init__(verbose=verbose);
 
 
     ###############################################################################################################################################
-    @accepts("self", show_img=bool, save_img=bool, check_missing=bool, check_corrupt=bool, post_trace=True)
+    @accepts("self", show_img=bool, save_img=bool, check_missing=bool, check_corrupt=bool, post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def EDA(self, show_img=False, save_img=False, check_missing=False, check_corrupt=False):
         '''
@@ -100,9 +100,9 @@ class prototype_aux(prototype_params):
 
 
     ###############################################################################################################################################
-    @warning_checks(None, num_epochs=["lt", 1000], post_trace=True)
-    @error_checks(None, num_epochs=["gt", 0], post_trace=True)
-    @accepts("self", num_epochs=[int, bool], post_trace=True)
+    @warning_checks(None, num_epochs=["lt", 1000], post_trace=False)
+    @error_checks(None, num_epochs=["gt", 0], post_trace=False)
+    @accepts("self", num_epochs=[int, bool], post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def Estimate_Train_Time(self, num_epochs=False):
         '''
@@ -134,8 +134,8 @@ class prototype_aux(prototype_params):
 
 
     ###############################################################################################################################################
-    @error_checks(None, num=["gte", 0], post_trace=True)
-    @accepts("self", num=int, post_trace=True)
+    @error_checks(None, num=["gte", 0], post_trace=False)
+    @accepts("self", num=int, post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def Freeze_Layers(self, num=10):
         '''
@@ -157,7 +157,7 @@ class prototype_aux(prototype_params):
 
 
     ##########################################################################################################################################################
-    @accepts("self", post_trace=True)
+    @accepts("self", post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def Reload(self):
         '''
@@ -201,7 +201,7 @@ class prototype_aux(prototype_params):
 
 
     ##########################################################################################################################################################
-    @accepts("self", test=bool, post_trace=True)
+    @accepts("self", test=bool, post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def reset_transforms(self, test=False):
         '''
@@ -250,7 +250,7 @@ class prototype_aux(prototype_params):
 
 
     ##########################################################################################################################################################
-    @accepts("self", post_trace=True)
+    @accepts("self", post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def reset_model(self):
         '''
@@ -275,7 +275,7 @@ class prototype_aux(prototype_params):
 
 
     ##########################################################################################################################################################
-    @accepts("self", train=bool, eval_infer=bool, post_trace=True)
+    @accepts("self", train=bool, eval_infer=bool, post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def Switch_Mode(self, train=False, eval_infer=False):
         '''
@@ -298,7 +298,7 @@ class prototype_aux(prototype_params):
 
 
     ##########################################################################################################################################################
-    @accepts("self", list, post_trace=True)
+    @accepts("self", list, post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def debug_custom_model_design(self, network_list):
         '''

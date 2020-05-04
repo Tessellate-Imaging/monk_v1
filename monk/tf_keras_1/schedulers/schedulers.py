@@ -2,7 +2,7 @@ from tf_keras_1.schedulers.imports import *
 from system.imports import *
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def scheduler_fixed(system_dict):
     '''
@@ -19,7 +19,7 @@ def scheduler_fixed(system_dict):
     return system_dict;
 
 
-@accepts(dict, int,  gamma=[float, int], last_epoch=int, post_trace=True)
+@accepts(dict, int,  gamma=[float, int], last_epoch=int, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def scheduler_step(system_dict, step_size, gamma=0.1, last_epoch=-1):
     '''
@@ -42,7 +42,7 @@ def scheduler_step(system_dict, step_size, gamma=0.1, last_epoch=-1):
     return system_dict;
 
 
-@accepts(dict, [float, int], last_epoch=int, post_trace=True)
+@accepts(dict, [float, int], last_epoch=int, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def scheduler_exponential(system_dict, gamma, last_epoch=-1):
     '''
@@ -64,7 +64,7 @@ def scheduler_exponential(system_dict, gamma, last_epoch=-1):
 
 
 @accepts(dict, mode=str, factor=[float, int], patience=int, verbose=bool, threshold=[float, int],
-    threshold_mode=str, cooldown=int, min_lr=[float, list, int], epsilon=float, post_trace=True)
+    threshold_mode=str, cooldown=int, min_lr=[float, list, int], epsilon=float, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def scheduler_plateau(system_dict, mode='min', factor=0.1, patience=10, verbose=False, threshold=0.0001, 
     threshold_mode='rel', cooldown=0, min_lr=0, epsilon=1e-08):

@@ -13,7 +13,7 @@ class finetune_training(finetune_model):
                         0 - Print Nothing
                         1 - Print desired details
     '''
-    @accepts("self", verbose=int, post_trace=True)
+    @accepts("self", verbose=int, post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
         super().__init__(verbose=verbose);
@@ -21,7 +21,7 @@ class finetune_training(finetune_model):
 
 
     ###############################################################################################################################################
-    @accepts("self", post_trace=True)
+    @accepts("self", post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def get_training_estimate(self):
         '''
@@ -104,7 +104,7 @@ class finetune_training(finetune_model):
 
 
     ###############################################################################################################################################
-    @accepts("self", post_trace=True)
+    @accepts("self", post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def set_training_final(self):
         '''

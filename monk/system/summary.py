@@ -2,7 +2,7 @@ from system.imports import *
 from system.common import read_json
 
 
-@accepts(str, post_trace=True)
+@accepts(str, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=True)
 def print_summary(fname):
     '''

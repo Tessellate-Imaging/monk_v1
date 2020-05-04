@@ -2,7 +2,7 @@ from system.graphs.imports import *
 from system.imports import * 
 
 
-@accepts([list, type(np.array([1, 2]))], [list, type(np.array([1, 2]))], str, show_img=bool, save_img=bool, post_trace=True)
+@accepts([list, type(np.array([1, 2]))], [list, type(np.array([1, 2]))], str, show_img=bool, save_img=bool, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=True)
 def create_train_test_plots_accuracy(plots, labels, log_dir, show_img=False, save_img=False):
     '''
@@ -30,7 +30,7 @@ def create_train_test_plots_accuracy(plots, labels, log_dir, show_img=False, sav
     plt.clf()
 
 
-@accepts([list, type(np.array([1, 2]))], [list, type(np.array([1, 2]))], str, show_img=bool, save_img=bool, post_trace=True)
+@accepts([list, type(np.array([1, 2]))], [list, type(np.array([1, 2]))], str, show_img=bool, save_img=bool, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=True)
 def create_train_test_plots_loss(plots, labels, log_dir, show_img=False, save_img=False):
     '''
@@ -58,7 +58,7 @@ def create_train_test_plots_loss(plots, labels, log_dir, show_img=False, save_im
     plt.clf()
 
 
-@accepts([list, type(np.array([1, 2]))], dict, post_trace=True)
+@accepts([list, type(np.array([1, 2]))], dict, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=True)
 def training_accuracy_curve(data, system_dict):
     '''
@@ -92,7 +92,7 @@ def training_accuracy_curve(data, system_dict):
     plt.clf()
 
 
-@accepts([list, type(np.array([1, 2]))], dict, post_trace=True)
+@accepts([list, type(np.array([1, 2]))], dict, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=True)
 def validation_accuracy_curve(data, system_dict):
     '''
@@ -125,7 +125,7 @@ def validation_accuracy_curve(data, system_dict):
     plt.clf()
 
 
-@accepts([list, type(np.array([1, 2]))], dict, post_trace=True)
+@accepts([list, type(np.array([1, 2]))], dict, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=True)
 def training_loss_curve(data, system_dict):
     '''
@@ -158,7 +158,7 @@ def training_loss_curve(data, system_dict):
     plt.clf()
 
 
-@accepts([list, type(np.array([1, 2]))], dict, post_trace=True)
+@accepts([list, type(np.array([1, 2]))], dict, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=True)
 def validation_loss_curve(data, system_dict):
     '''

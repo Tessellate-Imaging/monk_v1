@@ -3,7 +3,7 @@ from system.imports import *
 from tf_keras_1.models.models import combined_list_lower
 
 
-@accepts(str, dict, post_trace=True)
+@accepts(str, dict, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def set_model_name(name, system_dict):
     '''
@@ -23,7 +23,7 @@ def set_model_name(name, system_dict):
     return system_dict;
 
 
-@accepts(float, dict, post_trace=True)
+@accepts(float, dict, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def set_gpu_memory_fraction(value, system_dict):
     '''
@@ -40,7 +40,7 @@ def set_gpu_memory_fraction(value, system_dict):
     return system_dict;
 
 
-@accepts(bool, dict, post_trace=True)
+@accepts(bool, dict, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def set_device(value, system_dict):
     '''
@@ -65,7 +65,7 @@ def set_device(value, system_dict):
 
 
 
-@accepts(bool, dict, post_trace=True)
+@accepts(bool, dict, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def set_pretrained(value, system_dict):
     '''
@@ -83,7 +83,7 @@ def set_pretrained(value, system_dict):
     return system_dict;
 
 
-@accepts(bool, dict, post_trace=True)
+@accepts(bool, dict, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def set_freeze_base_network(value, system_dict):
     '''
@@ -100,7 +100,7 @@ def set_freeze_base_network(value, system_dict):
     return system_dict;
 
 
-@accepts([str, list], dict, post_trace=True)
+@accepts([str, list], dict, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def set_model_path(path, system_dict):
     '''

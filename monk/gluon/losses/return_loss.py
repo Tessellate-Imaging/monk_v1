@@ -2,7 +2,7 @@ from gluon.losses.imports import *
 from system.imports import *
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def load_loss(system_dict):
 	'''

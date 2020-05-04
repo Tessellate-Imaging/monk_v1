@@ -3,7 +3,7 @@ from system.imports import *
 
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def set_transform_estimate(system_dict):
     '''
@@ -51,7 +51,7 @@ def set_transform_estimate(system_dict):
 
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def set_transform_trainval(system_dict):
     '''
@@ -155,7 +155,7 @@ def set_transform_trainval(system_dict):
     return system_dict;
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def set_transform_test(system_dict):
     if(system_dict["local"]["transforms_test"]["featurewise_center"]):

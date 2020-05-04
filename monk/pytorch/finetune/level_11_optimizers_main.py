@@ -13,7 +13,7 @@ class prototype_optimizers(prototype_schedulers):
                         0 - Print Nothing
                         1 - Print desired details
     '''
-    @accepts("self", verbose=int, post_trace=True)
+    @accepts("self", verbose=int, post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
         super().__init__(verbose=verbose);
@@ -21,11 +21,11 @@ class prototype_optimizers(prototype_schedulers):
 
     ###############################################################################################################################################
     @warning_checks(None, ["lt", 1], momentum=["lt", 1.5], weight_decay=["lt", 0.01], momentum_dampening_rate=None, 
-        clipnorm=None, clipvalue=None, post_trace=True)
+        clipnorm=None, clipvalue=None, post_trace=False)
     @error_checks(None, ["gt", 0], momentum=["gte", 0], weight_decay=["gte", 0], momentum_dampening_rate=None, 
-        clipnorm=None, clipvalue=None, post_trace=True)
+        clipnorm=None, clipvalue=None, post_trace=False)
     @accepts("self", [int, float], momentum=[int, float], weight_decay=[int, float], momentum_dampening_rate=[int, float], 
-        clipnorm=[int, float], clipvalue=[int, float], post_trace=True)
+        clipnorm=[int, float], clipvalue=[int, float], post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def optimizer_sgd(self, learning_rate, momentum=0, weight_decay=0, momentum_dampening_rate=0, clipnorm=0.0, clipvalue=0.0):
         '''
@@ -58,11 +58,11 @@ class prototype_optimizers(prototype_schedulers):
 
     ###############################################################################################################################################
     @warning_checks(None, ["lt", 1], momentum=["lt", 1.5], weight_decay=["lt", 0.01], momentum_dampening_rate=None, 
-        clipnorm=None, clipvalue=None, post_trace=True)
+        clipnorm=None, clipvalue=None, post_trace=False)
     @error_checks(None, ["gt", 0], momentum=["gte", 0], weight_decay=["gte", 0], momentum_dampening_rate=None, 
-        clipnorm=None, clipvalue=None, post_trace=True)
+        clipnorm=None, clipvalue=None, post_trace=False)
     @accepts("self", [int, float], momentum=[int, float], weight_decay=[int, float], momentum_dampening_rate=[int, float], 
-        clipnorm=[int, float], clipvalue=[int, float], post_trace=True)
+        clipnorm=[int, float], clipvalue=[int, float], post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def optimizer_nesterov_sgd(self, learning_rate, momentum=0, weight_decay=0, momentum_dampening_rate=0, clipnorm=0.0, clipvalue=0.0):
         '''
@@ -97,9 +97,9 @@ class prototype_optimizers(prototype_schedulers):
     @warning_checks(None, ["lt", 1], decay_rate=["lt", 1], epsilon=["lt", 0.001], weight_decay=["lt", 0.01], 
         clipnorm=None, clipvalue=None, post_trace=None)
     @error_checks(None, ["gt", 0], decay_rate=["gt", 0], epsilon=["gte", 0], weight_decay=["gte", 0], 
-        clipnorm=None, clipvalue=None, post_trace=True)
+        clipnorm=None, clipvalue=None, post_trace=False)
     @accepts("self", [int, float], decay_rate=[int, float], epsilon=[int, float], weight_decay=[int, float], 
-        clipnorm=[int, float], clipvalue=[int, float], post_trace=True)
+        clipnorm=[int, float], clipvalue=[int, float], post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def optimizer_rmsprop(self, learning_rate, decay_rate=0.99, epsilon=1e-08, weight_decay=0, clipnorm=0.0, clipvalue=0.0):
         '''
@@ -132,9 +132,9 @@ class prototype_optimizers(prototype_schedulers):
     @warning_checks(None, ["lt", 1], decay_rate=["lt", 1], epsilon=["lt", 0.001], weight_decay=["lt", 0.01], 
         momentum=["lt", 1.5], post_trace=None)
     @error_checks(None, ["gt", 0], decay_rate=["gt", 0], epsilon=["gte", 0], weight_decay=["gte", 0], 
-        momentum=["gte", 0], post_trace=True)
+        momentum=["gte", 0], post_trace=False)
     @accepts("self", [int, float], decay_rate=[int, float], epsilon=[int, float], weight_decay=[int, float], 
-        momentum=[int, float], post_trace=True)
+        momentum=[int, float], post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def optimizer_momentum_rmsprop(self, learning_rate, decay_rate=0.99, epsilon=1e-08, weight_decay=0, momentum=0.9):
         '''
@@ -164,11 +164,11 @@ class prototype_optimizers(prototype_schedulers):
 
     ###############################################################################################################################################
     @warning_checks(None, ["lt, 1"], beta1=["lt", 1], beta2=["lt", 1], epsilon=["lt", 0.001],  weight_decay=["lt", 0.01], amsgrad=None, 
-        clipnorm=None, clipvalue=None, post_trace=True)
+        clipnorm=None, clipvalue=None, post_trace=False)
     @error_checks(None, ["gt", 0], beta1=["gte", 0], beta2=["gte", 0], epssilon=["gte", 0], weight_decay=["gte", 0], amsgrad=None, 
-        clipnorm=None, clipvalue=None, post_trace=True)
+        clipnorm=None, clipvalue=None, post_trace=False)
     @accepts("self", [int, float], beta1=[int, float], beta2=[int, float], epsilon=[int, float], weight_decay=[int, float], amsgrad=bool, 
-        clipnorm=[int, float], clipvalue=[int, float], post_trace=True)
+        clipnorm=[int, float], clipvalue=[int, float], post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def optimizer_adam(self, learning_rate, beta1=0.9, beta2=0.999, epsilon=1e-08, weight_decay=0, amsgrad=False, 
         clipnorm=0.0, clipvalue=0.0):
@@ -205,11 +205,11 @@ class prototype_optimizers(prototype_schedulers):
 
     ###############################################################################################################################################
     @warning_checks(None, ["lt", 1], beta1=["lt", 1], beta2=["lt", 1], epsilon=["lt", 0.001], weight_decay=["lt", 0.01], 
-        clipnorm=None, clipvalue=None, post_trace=True)
+        clipnorm=None, clipvalue=None, post_trace=False)
     @error_checks(None, ["gt", 0], beta1=["gte", 0], beta2=["gte", 0], epsilon=["gte", 0], weight_decay=["gte", 0], 
-        clipnorm=None, clipvalue=None, post_trace=True)
+        clipnorm=None, clipvalue=None, post_trace=False)
     @accepts("self", [int, float], beta1=[int, float], beta2=[int, float], epsilon=[int, float], weight_decay=[int, float], 
-        clipnorm=[int, float], clipvalue=[int, float], post_trace=True)
+        clipnorm=[int, float], clipvalue=[int, float], post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def optimizer_adamax(self, learning_rate, beta1=0.9, beta2=0.999, epsilon=1e-08, weight_decay=0,
         clipnorm=0.0, clipvalue=0.0):
@@ -243,9 +243,9 @@ class prototype_optimizers(prototype_schedulers):
 
 
     ###############################################################################################################################################
-    @warning_checks(None, ["lt, 1"], beta1=["lt", 1], beta2=["lt", 1], epsilon=["lt", 0.001],  weight_decay=["lt", 0.01], amsgrad=None, post_trace=True)
-    @error_checks(None, ["gt", 0], beta1=["gte", 0], beta2=["gte", 0], epssilon=["gte", 0], weight_decay=["gte", 0], amsgrad=None, post_trace=True)
-    @accepts("self", [int, float], beta1=[int, float], beta2=[int, float], epsilon=[int, float], weight_decay=[int, float], amsgrad=bool, post_trace=True)
+    @warning_checks(None, ["lt, 1"], beta1=["lt", 1], beta2=["lt", 1], epsilon=["lt", 0.001],  weight_decay=["lt", 0.01], amsgrad=None, post_trace=False)
+    @error_checks(None, ["gt", 0], beta1=["gte", 0], beta2=["gte", 0], epssilon=["gte", 0], weight_decay=["gte", 0], amsgrad=None, post_trace=False)
+    @accepts("self", [int, float], beta1=[int, float], beta2=[int, float], epsilon=[int, float], weight_decay=[int, float], amsgrad=bool, post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def optimizer_adamw(self, learning_rate, beta1=0.9, beta2=0.999, epsilon=1e-08, weight_decay=0, amsgrad=False):
         '''
@@ -279,11 +279,11 @@ class prototype_optimizers(prototype_schedulers):
 
     ###############################################################################################################################################
     @warning_checks(None, ["lt", 1], rho=["lt", 1], epsilon=["lt", 0.001], weight_decay=["lt", 0.01], 
-        clipnorm=None, clipvalue=None, post_trace=True)
+        clipnorm=None, clipvalue=None, post_trace=False)
     @error_checks(None, ["gt", 0], rho=["gt", 0], epsilon=["gte", 0], weight_decay=["gte", 0], 
-        clipnorm=None, clipvalue=None, post_trace=True)
+        clipnorm=None, clipvalue=None, post_trace=False)
     @accepts("self", [int, float], rho=[int, float], epsilon=[int, float], weight_decay=[int, float], 
-        clipnorm=[int, float], clipvalue=[int, float], post_trace=True)
+        clipnorm=[int, float], clipvalue=[int, float], post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def optimizer_adadelta(self, learning_rate, rho=0.9, epsilon=1e-06, weight_decay=0, 
         clipnorm=0.0, clipvalue=0.0):
@@ -317,11 +317,11 @@ class prototype_optimizers(prototype_schedulers):
 
     ###############################################################################################################################################
     @warning_checks(None, ["lt", 1], learning_rate_decay=None, weight_decay=["lt", 0.01], epsilon=None, 
-        clipnorm=None, clipvalue=None, post_trace=True)
+        clipnorm=None, clipvalue=None, post_trace=False)
     @error_checks(None, ["gt", 0], learning_rate_decay=None, weight_decay=["gte", 0], epsilon=None, 
-        clipnorm=None, clipvalue=None, post_trace=True)
+        clipnorm=None, clipvalue=None, post_trace=False)
     @accepts("self", [int, float], learning_rate_decay=[int, float], weight_decay=[int, float], 
-        epsilon=[int, float], clipnorm=[int, float], clipvalue=[int, float], post_trace=True)
+        epsilon=[int, float], clipnorm=[int, float], clipvalue=[int, float], post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def optimizer_adagrad(self, learning_rate, learning_rate_decay=0, weight_decay=0, epsilon=1e-08,
         clipnorm=0.0, clipvalue=0.0):

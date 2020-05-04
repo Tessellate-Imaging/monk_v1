@@ -13,13 +13,13 @@ class prototype_schedulers(prototype_transforms):
                         0 - Print Nothing
                         1 - Print desired details
     '''
-    @accepts("self", verbose=int, post_trace=True)
+    @accepts("self", verbose=int, post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
         super().__init__(verbose=verbose);
 
     ###############################################################################################################################################
-    @accepts("self", post_trace=True)
+    @accepts("self", post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def lr_fixed(self):
         '''
@@ -41,9 +41,9 @@ class prototype_schedulers(prototype_transforms):
         
 
     ###############################################################################################################################################
-    @warning_checks(None, None, gamma=["gt", 0.01, "lt", 1], last_epoch=None, post_trace=True)
-    @error_checks(None, ["gt", 0], gamma=["gt", 0], last_epoch=None, post_trace=True)
-    @accepts("self", int, gamma=float, last_epoch=int, post_trace=True)
+    @warning_checks(None, None, gamma=["gt", 0.01, "lt", 1], last_epoch=None, post_trace=False)
+    @error_checks(None, ["gt", 0], gamma=["gt", 0], last_epoch=None, post_trace=False)
+    @accepts("self", int, gamma=float, last_epoch=int, post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def lr_step_decrease(self, step_size, gamma=0.1, last_epoch=-1):
         '''
@@ -67,9 +67,9 @@ class prototype_schedulers(prototype_transforms):
         
 
     ###############################################################################################################################################
-    @warning_checks(None, None, gamma=["gt", 0.01, "lt", 1], last_epoch=None, post_trace=True)
-    @error_checks(None, ["inc", None], gamma=["gt", 0], last_epoch=None, post_trace=True)
-    @accepts("self", [list, int], gamma=float, last_epoch=int, post_trace=True)
+    @warning_checks(None, None, gamma=["gt", 0.01, "lt", 1], last_epoch=None, post_trace=False)
+    @error_checks(None, ["inc", None], gamma=["gt", 0], last_epoch=None, post_trace=False)
+    @accepts("self", [list, int], gamma=float, last_epoch=int, post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def lr_multistep_decrease(self, milestones, gamma=0.1, last_epoch=-1):
         '''

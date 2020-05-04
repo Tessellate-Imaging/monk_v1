@@ -4,7 +4,7 @@ from system.graphs.bar import create_plot
 from system.imports import *
 
 
-@accepts(dict, bool, bool, post_trace=True)
+@accepts(dict, bool, bool, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def class_imbalance(system_dict, show_img, save_img):
     '''
@@ -46,7 +46,7 @@ def class_imbalance(system_dict, show_img, save_img):
     return classes_folder, classes_folder_strength;
 
 
-@accepts(dict, bool, bool, post_trace=True)
+@accepts(dict, bool, bool, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def corrupted_missing_images(system_dict, check_missing, check_corrupt):
     '''

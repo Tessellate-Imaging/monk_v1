@@ -4,7 +4,7 @@ from tf_keras_1.schedulers.common import StepDecay
 from tf_keras_1.schedulers.common import PolynomialDecay
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def load_scheduler(system_dict):
     '''

@@ -13,7 +13,7 @@ class DatasetCustom(Dataset):
         prefix (str): Path to folder containing images
         transform (torchvision transforms): List of compiled transforms
     '''
-    @accepts("self", list, list, str, transform="self", post_trace=True)
+    @accepts("self", list, list, str, transform="self", post_trace=False)
     #@TraceFunction(trace_args=False, trace_rv=False)
     def __init__(self, img_list, label_list, prefix, transform=None):
         self.img_list = img_list;
@@ -21,7 +21,7 @@ class DatasetCustom(Dataset):
         self.transform = transform;
         self.prefix = prefix;
     
-    @accepts("self", post_trace=True)
+    @accepts("self", post_trace=False)
     #@TraceFunction(trace_args=False, trace_rv=False)
     def __len__(self):
         '''
@@ -66,7 +66,7 @@ class DatasetCustomMultiLabel(Dataset):
         prefix (str): Path to folder containing images
         transform (torchvision transforms): List of compiled transforms
     '''
-    @accepts("self", list, list, list, str, transform="self", post_trace=True)
+    @accepts("self", list, list, list, str, transform="self", post_trace=False)
     #@TraceFunction(trace_args=False, trace_rv=False)
     def __init__(self, img_list, label_list, class_list, prefix, transform=None):
         self.img_list = img_list;
@@ -77,7 +77,7 @@ class DatasetCustomMultiLabel(Dataset):
         self.num_classes = len(self.class_list);
 
 
-    @accepts("self", post_trace=True)
+    @accepts("self", post_trace=False)
     #@TraceFunction(trace_args=False, trace_rv=False)
     def __len__(self):
         '''

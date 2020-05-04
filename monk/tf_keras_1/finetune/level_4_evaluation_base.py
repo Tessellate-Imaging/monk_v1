@@ -13,14 +13,14 @@ class finetune_evaluation(finetune_training):
                         0 - Print Nothing
                         1 - Print desired details
     '''
-    @accepts("self", verbose=int, post_trace=True)
+    @accepts("self", verbose=int, post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
         super().__init__(verbose=verbose);
 
 
     ###############################################################################################################################################
-    @accepts("self", post_trace=True)
+    @accepts("self", post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def set_evaluation_final(self):
         '''
@@ -106,7 +106,7 @@ class finetune_evaluation(finetune_training):
 
 
     ###############################################################################################################################################
-    @accepts("self", img_name=[str, bool], img_dir=[str, bool], return_raw=bool, post_trace=True)
+    @accepts("self", img_name=[str, bool], img_dir=[str, bool], return_raw=bool, post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def set_prediction_final(self, img_name=False, img_dir=False, return_raw=False):
         '''
@@ -196,7 +196,7 @@ class finetune_evaluation(finetune_training):
 
 
     ###############################################################################################################################################
-    @accepts("self", img_name=[str, bool], img_dir=[str, bool], return_raw=bool, img_thresh=float, post_trace=True)
+    @accepts("self", img_name=[str, bool], img_dir=[str, bool], return_raw=bool, img_thresh=float, post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def set_prediction_final_multiple(self, img_name=False, img_dir=False, return_raw=False, img_thresh=0.5):
         '''

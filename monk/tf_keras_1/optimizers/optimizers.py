@@ -2,7 +2,7 @@ from tf_keras_1.optimizers.imports import *
 from system.imports import *
 
 @accepts(dict, [int, float], momentum=[int, float], momentum_dampening_rate=[int, float], weight_decay=[int, float], 
-    clipnorm=[int, float], clipvalue=[int, float], post_trace=True)
+    clipnorm=[int, float], clipvalue=[int, float], post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def sgd(system_dict, learning_rate, momentum=0, weight_decay=0, momentum_dampening_rate=0, clipnorm=0.0, clipvalue=0.0):
     '''
@@ -33,7 +33,7 @@ def sgd(system_dict, learning_rate, momentum=0, weight_decay=0, momentum_dampeni
 
 
 @accepts(dict, [int, float], momentum=[int, float], momentum_dampening_rate=[int, float], weight_decay=[int, float], 
-    clipnorm=[int, float], clipvalue=[int, float], post_trace=True)
+    clipnorm=[int, float], clipvalue=[int, float], post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def nesterov_sgd(system_dict, learning_rate, momentum=0, weight_decay=0, momentum_dampening_rate=0, clipnorm=0.0, clipvalue=0.0):
     '''
@@ -64,7 +64,7 @@ def nesterov_sgd(system_dict, learning_rate, momentum=0, weight_decay=0, momentu
 
 
 @accepts(dict, [int, float], decay_rate=[int, float], epsilon=[int, float], weight_decay=[int, float], 
-    clipnorm=[int, float], clipvalue=[int, float], post_trace=True)
+    clipnorm=[int, float], clipvalue=[int, float], post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def rmsprop(system_dict, learning_rate, decay_rate=0.99, epsilon=1e-08, weight_decay=0, 
     clipnorm=0.0, clipvalue=0.0):
@@ -96,7 +96,7 @@ def rmsprop(system_dict, learning_rate, decay_rate=0.99, epsilon=1e-08, weight_d
 
 
 @accepts(dict, [int, float], beta1=[int, float], beta2=[int, float], epsilon=[int, float], weight_decay=[int, float], amsgrad=bool, 
-    clipnorm=[int, float], clipvalue=[int, float], post_trace=True)
+    clipnorm=[int, float], clipvalue=[int, float], post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def adam(system_dict, learning_rate, beta1=0.9, beta2=0.999, epsilon=1e-08, weight_decay=0, amsgrad=False, clipnorm=0.0, clipvalue=0.0):
     '''
@@ -131,7 +131,7 @@ def adam(system_dict, learning_rate, beta1=0.9, beta2=0.999, epsilon=1e-08, weig
 
 
 @accepts(dict, [int, float], beta1=[int, float], beta2=[int, float], epsilon=[int, float], weight_decay=[int, float], amsgrad=bool, 
-    momentum_decay=[int, float], clipnorm=[int, float], clipvalue=[int, float], post_trace=True)
+    momentum_decay=[int, float], clipnorm=[int, float], clipvalue=[int, float], post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def nesterov_adam(system_dict, learning_rate, beta1=0.9, beta2=0.999, epsilon=1e-08, weight_decay=0, amsgrad=False,
     momentum_decay=0.004, clipnorm=0.0, clipvalue=0.0):
@@ -169,7 +169,7 @@ def nesterov_adam(system_dict, learning_rate, beta1=0.9, beta2=0.999, epsilon=1e
 
 
 @accepts(dict, [int, float], beta1=[int, float], beta2=[int, float], epsilon=[int, float], weight_decay=[int, float], 
-    clipnorm=[int, float], clipvalue=[int, float], post_trace=True)
+    clipnorm=[int, float], clipvalue=[int, float], post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def adamax(system_dict, learning_rate, beta1=0.9, beta2=0.999, epsilon=1e-08, weight_decay=0, clipnorm=0.0, clipvalue=0.0):
     '''
@@ -201,7 +201,7 @@ def adamax(system_dict, learning_rate, beta1=0.9, beta2=0.999, epsilon=1e-08, we
     return system_dict;
 
 @accepts(dict, [int, float], rho=[int, float], epsilon=[int, float], weight_decay=[int, float], 
-    clipnorm=[int, float], clipvalue=[int, float], post_trace=True)
+    clipnorm=[int, float], clipvalue=[int, float], post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def adadelta(system_dict, learning_rate, rho=0.9, epsilon=1e-06, weight_decay=0, clipnorm=0.0, clipvalue=0.0):
     '''
@@ -232,7 +232,7 @@ def adadelta(system_dict, learning_rate, rho=0.9, epsilon=1e-06, weight_decay=0,
 
 
 @accepts(dict, [int, float], learning_rate_decay=[int, float], weight_decay=[int, float], epsilon=[int, float], 
-    clipnorm=[int, float], clipvalue=[int, float], post_trace=True)
+    clipnorm=[int, float], clipvalue=[int, float], post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def adagrad(system_dict, learning_rate, learning_rate_decay=0, weight_decay=0, epsilon=0, clipnorm=0.0, clipvalue=0.0):
     '''

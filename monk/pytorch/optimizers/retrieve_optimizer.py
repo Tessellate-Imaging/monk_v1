@@ -2,7 +2,7 @@ from pytorch.optimizers.imports import *
 from system.imports import *
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def retrieve_optimizer(system_dict):
     '''

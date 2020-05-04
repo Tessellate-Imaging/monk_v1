@@ -2,7 +2,7 @@ from system.eda.imports import *
 from system.imports import *
 
 
-@accepts(str, str, post_trace=True)
+@accepts(str, str, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def get_img_label(fname, delimiter):
     '''
@@ -31,7 +31,7 @@ def get_img_label(fname, delimiter):
 
 
 
-@accepts(str, post_trace=True)
+@accepts(str, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def read_csv(fname):
     '''
@@ -52,7 +52,7 @@ def read_csv(fname):
 
 
 
-@accepts(str, post_trace=True)
+@accepts(str, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def populate_from_folder_train(tpath):
     '''
@@ -74,7 +74,7 @@ def populate_from_folder_train(tpath):
 
 
 
-@accepts(str, str, post_trace=True)
+@accepts(str, str, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def populate_from_folder_trainval(tpath, vpath):
     '''
@@ -94,7 +94,7 @@ def populate_from_folder_trainval(tpath, vpath):
     return classes_folder, classes_folder_strength;
 
 
-@accepts(str, str, post_trace=True)
+@accepts(str, str, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def populate_from_csv_train(tpath, delimiter):
     '''
@@ -115,7 +115,7 @@ def populate_from_csv_train(tpath, delimiter):
         classes_folder_strength.append(label_list.count(classes_folder[i]));
     return classes_folder, classes_folder_strength;
 
-@accepts(str, str, str, post_trace=True)
+@accepts(str, str, str, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def populate_from_csv_trainval(tpath, vpath, delimiter):
     '''
@@ -137,7 +137,7 @@ def populate_from_csv_trainval(tpath, vpath, delimiter):
     return classes_folder, classes_folder_strength;
 
 
-@accepts(str, str, str, post_trace=True)
+@accepts(str, str, str, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def populate_missing(tpath, dataset_path, delimiter):
     '''
@@ -160,7 +160,7 @@ def populate_missing(tpath, dataset_path, delimiter):
     return missing_images;
 
 
-@accepts(str, verbose=[bool, str, int], post_trace=True)
+@accepts(str, verbose=[bool, str, int], post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def populate_corrupt_from_foldered(dataset_path, verbose=1):
     '''
@@ -200,7 +200,7 @@ def populate_corrupt_from_foldered(dataset_path, verbose=1):
     return corrupt_images;
 
 
-@accepts(str, str, str, verbose=[bool, str, int], post_trace=True)
+@accepts(str, str, str, verbose=[bool, str, int], post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def populate_corrupt_from_csv(tpath, dataset_path, delimiter, verbose=1):
     '''

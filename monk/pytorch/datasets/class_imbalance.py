@@ -2,7 +2,7 @@ from pytorch.datasets.imports import *
 from system.imports import *
 
 
-@accepts(list, int, post_trace=True)
+@accepts(list, int, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def balance_class_weights(label_list, nclasses):                        
     count = [0] * nclasses

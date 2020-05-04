@@ -3,7 +3,7 @@ from tf_keras_1.transforms.common import set_transforms
 from system.imports import *
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def retrieve_trainval_transforms(system_dict):
     '''
@@ -20,7 +20,7 @@ def retrieve_trainval_transforms(system_dict):
     return system_dict;
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def retrieve_test_transforms(system_dict):
     '''

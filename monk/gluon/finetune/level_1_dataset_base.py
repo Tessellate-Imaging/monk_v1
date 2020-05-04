@@ -14,13 +14,13 @@ class finetune_dataset(system):
                         1 - Print desired details
     '''
 
-    @accepts("self", verbose=int, post_trace=True)
+    @accepts("self", verbose=int, post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
         super().__init__(verbose=verbose);
 
     ###############################################################################################################################################
-    @accepts("self", test=bool, post_trace=True)
+    @accepts("self", test=bool, post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def set_dataset_dataloader(self, test=False):
         '''
@@ -180,7 +180,7 @@ class finetune_dataset(system):
 
 
     ###############################################################################################################################################
-    @accepts("self", test=bool, post_trace=True)
+    @accepts("self", test=bool, post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def set_dataset_final(self, test=False):
         '''

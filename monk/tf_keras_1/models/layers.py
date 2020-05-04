@@ -4,7 +4,7 @@ from tf_keras_1.models.initializers import get_initializer
 
 
 
-@accepts(dict, "self", post_trace=True)
+@accepts(dict, "self", post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=True)
 def get_layer(network_layer, inp):
     '''
@@ -72,7 +72,7 @@ def get_layer(network_layer, inp):
 
 
 
-@accepts(dict, num_neurons=int, final_layer=bool, post_trace=True)
+@accepts(dict, num_neurons=int, final_layer=bool, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def layer_linear(system_dict, num_neurons=512, final_layer=False):
     '''
@@ -97,7 +97,7 @@ def layer_linear(system_dict, num_neurons=512, final_layer=False):
 
 
 
-@accepts(dict, probability=float, final_layer=bool, post_trace=True)
+@accepts(dict, probability=float, final_layer=bool, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def layer_dropout(system_dict, probability=0.5, final_layer=False):
     '''
@@ -122,7 +122,7 @@ def layer_dropout(system_dict, probability=0.5, final_layer=False):
 
 
 
-@accepts(dict, final_layer=bool, post_trace=True)
+@accepts(dict, final_layer=bool, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def layer_globalaveragepooling(system_dict, final_layer=False):
     '''
@@ -145,7 +145,7 @@ def layer_globalaveragepooling(system_dict, final_layer=False):
 
 
 
-@accepts(dict, final_layer=bool, post_trace=True)
+@accepts(dict, final_layer=bool, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def layer_flatten(system_dict, final_layer=False):
     '''
@@ -168,7 +168,7 @@ def layer_flatten(system_dict, final_layer=False):
 
 
 
-@accepts(dict, negative_slope=[int, float], final_layer=bool, post_trace=True)
+@accepts(dict, negative_slope=[int, float], final_layer=bool, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def activation_leakyrelu(system_dict, negative_slope=0.01, final_layer=False):
     '''
@@ -194,7 +194,7 @@ def activation_leakyrelu(system_dict, negative_slope=0.01, final_layer=False):
 
 
 
-@accepts(dict, num_parameters=int, init=[int, float], final_layer=bool, post_trace=True)
+@accepts(dict, num_parameters=int, init=[int, float], final_layer=bool, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def activation_prelu(system_dict, num_parameters=1, init=0.25, final_layer=False):
     '''
@@ -221,7 +221,7 @@ def activation_prelu(system_dict, num_parameters=1, init=0.25, final_layer=False
 
 
 
-@accepts(dict, alpha=[int, float], final_layer=bool, post_trace=True)
+@accepts(dict, alpha=[int, float], final_layer=bool, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def activation_elu(system_dict, alpha=1.0, final_layer=False):
     '''
@@ -247,7 +247,7 @@ def activation_elu(system_dict, alpha=1.0, final_layer=False):
 
 
 
-@accepts(dict, [int, float], [int, float], final_layer=bool, post_trace=True)
+@accepts(dict, [int, float], [int, float], final_layer=bool, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def activation_threshold(system_dict, threshold, value, final_layer=False):
     '''
@@ -276,7 +276,7 @@ def activation_threshold(system_dict, threshold, value, final_layer=False):
 
 
 
-@accepts(dict, final_layer=bool, post_trace=True)
+@accepts(dict, final_layer=bool, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def activation_softmax(system_dict, final_layer=False):
     '''
@@ -300,7 +300,7 @@ def activation_softmax(system_dict, final_layer=False):
 
 
 
-@accepts(dict, final_layer=bool, post_trace=True)
+@accepts(dict, final_layer=bool, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def activation_relu(system_dict, final_layer=False):
     '''
@@ -323,7 +323,7 @@ def activation_relu(system_dict, final_layer=False):
 
 
 
-@accepts(dict, final_layer=bool, post_trace=True)
+@accepts(dict, final_layer=bool, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def activation_selu(system_dict, final_layer=False):
     '''
@@ -347,7 +347,7 @@ def activation_selu(system_dict, final_layer=False):
 
 
 
-@accepts(dict, beta=[int, float], threshold=[int, float], final_layer=bool, post_trace=True)
+@accepts(dict, beta=[int, float], threshold=[int, float], final_layer=bool, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def activation_softplus(system_dict, beta=1, threshold=20, final_layer=False):
     '''
@@ -375,7 +375,7 @@ def activation_softplus(system_dict, beta=1, threshold=20, final_layer=False):
 
 
 
-@accepts(dict, final_layer=bool, post_trace=True)
+@accepts(dict, final_layer=bool, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def activation_softsign(system_dict, final_layer=False):
     '''
@@ -399,7 +399,7 @@ def activation_softsign(system_dict, final_layer=False):
 
 
 
-@accepts(dict, final_layer=bool, post_trace=True)
+@accepts(dict, final_layer=bool, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def activation_tanh(system_dict, final_layer=False):
     '''
@@ -423,7 +423,7 @@ def activation_tanh(system_dict, final_layer=False):
 
 
 
-@accepts(dict, final_layer=bool, post_trace=True)
+@accepts(dict, final_layer=bool, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def activation_sigmoid(system_dict, final_layer=False):
     '''
@@ -452,7 +452,7 @@ def activation_sigmoid(system_dict, final_layer=False):
 
 
 
-@accepts(dict, str, post_trace=True)
+@accepts(dict, str, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=True)
 def custom_model_get_layer(network_layer, network_initializer):
     '''
@@ -549,7 +549,7 @@ def custom_model_get_layer(network_layer, network_initializer):
 
 
 
-@accepts(dict, str, post_trace=True)
+@accepts(dict, str, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_convolution1d(params, network_initializer):
     '''
@@ -599,7 +599,7 @@ def custom_model_layer_convolution1d(params, network_initializer):
     return layer
 
 
-@accepts(dict, str, post_trace=True)
+@accepts(dict, str, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_convolution2d(params, network_initializer):
     '''
@@ -650,7 +650,7 @@ def custom_model_layer_convolution2d(params, network_initializer):
 
 
 
-@accepts(dict, str, post_trace=True)
+@accepts(dict, str, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_convolution3d(params, network_initializer):
     '''
@@ -701,7 +701,7 @@ def custom_model_layer_convolution3d(params, network_initializer):
 
 
 
-@accepts(dict, str, post_trace=True)
+@accepts(dict, str, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_transposed_convolution2d(params, network_initializer):
     '''
@@ -751,7 +751,7 @@ def custom_model_layer_transposed_convolution2d(params, network_initializer):
     return layer
 
 
-@accepts(dict, str, post_trace=True)
+@accepts(dict, str, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_transposed_convolution3d(params, network_initializer):
     '''
@@ -801,7 +801,7 @@ def custom_model_layer_transposed_convolution3d(params, network_initializer):
     return layer
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_max_pooling1d(params):
     '''
@@ -834,7 +834,7 @@ def custom_model_layer_max_pooling1d(params):
     return layer
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_max_pooling2d(params):
     '''
@@ -868,7 +868,7 @@ def custom_model_layer_max_pooling2d(params):
     return layer
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_max_pooling3d(params):
     '''
@@ -901,7 +901,7 @@ def custom_model_layer_max_pooling3d(params):
     return layer
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_average_pooling1d(params):
     '''
@@ -935,7 +935,7 @@ def custom_model_layer_average_pooling1d(params):
     return layer
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_average_pooling2d(params):
     '''
@@ -969,7 +969,7 @@ def custom_model_layer_average_pooling2d(params):
     return layer
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_average_pooling3d(params):
     '''
@@ -1004,7 +1004,7 @@ def custom_model_layer_average_pooling3d(params):
 
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_global_max_pooling1d(params):
     '''
@@ -1025,7 +1025,7 @@ def custom_model_layer_global_max_pooling1d(params):
     return layer
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_global_max_pooling2d(params):
     '''
@@ -1046,7 +1046,7 @@ def custom_model_layer_global_max_pooling2d(params):
     return layer
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_global_max_pooling3d(params):
     '''
@@ -1067,7 +1067,7 @@ def custom_model_layer_global_max_pooling3d(params):
     return layer
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_global_average_pooling1d(params):
     '''
@@ -1088,7 +1088,7 @@ def custom_model_layer_global_average_pooling1d(params):
     return layer
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_global_average_pooling2d(params):
     '''
@@ -1109,7 +1109,7 @@ def custom_model_layer_global_average_pooling2d(params):
     return layer
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_global_average_pooling3d(params):
     '''
@@ -1130,7 +1130,7 @@ def custom_model_layer_global_average_pooling3d(params):
     return layer
 
 
-@accepts(dict, str, post_trace=True)
+@accepts(dict, str, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_flatten(params):
     '''
@@ -1152,7 +1152,7 @@ def custom_model_layer_flatten(params):
 
 
 
-@accepts(dict, str, post_trace=True)
+@accepts(dict, str, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_fully_connected(params, network_initializer):
     '''
@@ -1186,7 +1186,7 @@ def custom_model_layer_fully_connected(params, network_initializer):
     return layer
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_dropout(params):
     '''
@@ -1204,7 +1204,7 @@ def custom_model_layer_dropout(params):
     return layer;
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_identity(params):
     '''
@@ -1220,7 +1220,7 @@ def custom_model_layer_identity(params):
     return layer
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_layer_batch_normalization(params):
     '''
@@ -1261,7 +1261,7 @@ def custom_model_layer_batch_normalization(params):
 
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_activation_relu(params):
     '''
@@ -1277,7 +1277,7 @@ def custom_model_activation_relu(params):
     return layer
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_activation_softmax(params):
     '''
@@ -1295,7 +1295,7 @@ def custom_model_activation_softmax(params):
     return layer
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_activation_thresholded_relu(params):
     '''
@@ -1313,7 +1313,7 @@ def custom_model_activation_thresholded_relu(params):
     return layer
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_activation_elu(params):
     '''
@@ -1332,7 +1332,7 @@ def custom_model_activation_elu(params):
 
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_activation_prelu(params):
     '''
@@ -1348,7 +1348,7 @@ def custom_model_activation_prelu(params):
     return layer
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_activation_leaky_relu(params):
     '''
@@ -1367,7 +1367,7 @@ def custom_model_activation_leaky_relu(params):
 
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_activation_selu(params):
     '''
@@ -1383,7 +1383,7 @@ def custom_model_activation_selu(params):
     return layer
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_activation_softplus(params):
     '''
@@ -1399,7 +1399,7 @@ def custom_model_activation_softplus(params):
     return layer
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_activation_softsign(params):
     '''
@@ -1415,7 +1415,7 @@ def custom_model_activation_softsign(params):
     return layer
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_activation_tanh(params):
     '''
@@ -1431,7 +1431,7 @@ def custom_model_activation_tanh(params):
     return layer
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_activation_sigmoid(params):
     '''
@@ -1447,7 +1447,7 @@ def custom_model_activation_sigmoid(params):
     return layer
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def custom_model_activation_hard_sigmoid(params):
     '''

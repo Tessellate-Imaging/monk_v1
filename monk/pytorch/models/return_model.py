@@ -9,7 +9,7 @@ from pytorch.models.layers import Net_Concat
 
 
 
-@accepts(dict, path=[str, bool], final=bool, resume=bool, external_path=[bool, str, list], post_trace=True)
+@accepts(dict, path=[str, bool], final=bool, resume=bool, external_path=[bool, str, list], post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def load_model(system_dict, path=False, final=False, resume=False, external_path=False):
     '''
@@ -55,7 +55,7 @@ def load_model(system_dict, path=False, final=False, resume=False, external_path
 
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def setup_model(system_dict):
     '''

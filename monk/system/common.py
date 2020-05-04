@@ -4,7 +4,7 @@ from system.base_system_state import update_local_var
 
 
 #############################################################################################################################
-@accepts(str, verbose=[int, str, bool], post_trace=True)
+@accepts(str, verbose=[int, str, bool], post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def read_json(fname, verbose=0):
     '''
@@ -22,7 +22,7 @@ def read_json(fname, verbose=0):
     return system_dict;
 
 
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def write_json(system_dict):
     '''
@@ -41,7 +41,7 @@ def write_json(system_dict):
     f.close();
 
 
-@accepts(str, str, post_trace=True)
+@accepts(str, str, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def parse_csv(fname, delimiter):
     '''
@@ -94,7 +94,7 @@ def parse_csv(fname, delimiter):
 
 
 
-@accepts(str, str, post_trace=True)
+@accepts(str, str, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=False)
 def parse_csv_updated(fname, delimiter):
     '''
@@ -176,7 +176,7 @@ def parse_csv2_updated(fname, delimiter):
 
 
 #############################################################################################################################
-@accepts(dict, post_trace=True)
+@accepts(dict, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def save(system_dict):
     '''
@@ -207,7 +207,7 @@ def save(system_dict):
 
 
 #############################################################################################################################
-#@accepts(str, post_trace=True)
+#@accepts(str, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=True)
 def create_dir(dir_path):
     '''
@@ -223,7 +223,7 @@ def create_dir(dir_path):
         os.mkdir(dir_path);  
 
 
-#@accepts(str, post_trace=True)
+#@accepts(str, post_trace=False)
 #@TraceFunction(trace_args=True, trace_rv=True)
 def delete_dir(dir_path):
     '''

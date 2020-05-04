@@ -13,7 +13,7 @@ class prototype(prototype_master):
                         0 - Print Nothing
                         1 - Print desired details
     '''
-    @accepts("self", verbose=int, post_trace=True)
+    @accepts("self", verbose=int, post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
         super().__init__(verbose=verbose);
@@ -25,8 +25,8 @@ class prototype(prototype_master):
 
     ###############################################################################################################################################
     @error_checks(None, ["name", ["A-Z", "a-z", "0-9", "-", "_", "."]], ["name", ["A-Z", "a-z", "0-9", "-", "_", "."]], 
-        eval_infer=None, resume_train=None, copy_from=None, pseudo_copy_from=None, summary=None, post_trace=True)
-    @accepts("self", str, str, eval_infer=bool, resume_train=bool, copy_from=[list, bool], pseudo_copy_from=[list, bool], summary=bool, post_trace=True)
+        eval_infer=None, resume_train=None, copy_from=None, pseudo_copy_from=None, summary=None, post_trace=False)
+    @accepts("self", str, str, eval_infer=bool, resume_train=bool, copy_from=[list, bool], pseudo_copy_from=[list, bool], summary=bool, post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def Prototype(self, project_name, experiment_name, eval_infer=False, resume_train=False, copy_from=False, pseudo_copy_from=False, summary=False):
         '''
@@ -59,11 +59,11 @@ class prototype(prototype_master):
 
     ###############################################################################################################################################
     @warning_checks(None, dataset_path=None, path_to_csv=None, delimiter=None,
-        model_name=None, freeze_base_network=None, num_epochs=["lt", 100], post_trace=True)
+        model_name=None, freeze_base_network=None, num_epochs=["lt", 100], post_trace=False)
     @error_checks(None, dataset_path=["folder", "r"], path_to_csv=["file", "r"], delimiter=["in", [",", ";", "-", " "]],
-        model_name=None, freeze_base_network=None, num_epochs=["gte", 1], post_trace=True)
+        model_name=None, freeze_base_network=None, num_epochs=["gte", 1], post_trace=False)
     @accepts("self", dataset_path=[str, list, bool], path_to_csv=[str, list, bool], delimiter=str, 
-        model_name=str, freeze_base_network=bool, num_epochs=int, post_trace=True)
+        model_name=str, freeze_base_network=bool, num_epochs=int, post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def Default(self, dataset_path=False, path_to_csv=False, delimiter=",", model_name="resnet18_v1", freeze_base_network=True, num_epochs=10):
         '''
@@ -131,7 +131,7 @@ class prototype(prototype_master):
 
 
     ###############################################################################################################################################
-    @accepts("self", post_trace=True)
+    @accepts("self", post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def Summary(self):
         '''
@@ -148,7 +148,7 @@ class prototype(prototype_master):
 
 
     ###############################################################################################################################################
-    @accepts("self", post_trace=True)
+    @accepts("self", post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def List_Models(self):
         '''
@@ -168,7 +168,7 @@ class prototype(prototype_master):
 
     ## Will be depricated in v2.0
     ###############################################################################################################################################
-    @accepts("self", post_trace=True)
+    @accepts("self", post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def List_Layers(self):
         '''
@@ -186,7 +186,7 @@ class prototype(prototype_master):
 
     
     ###############################################################################################################################################
-    @accepts("self", post_trace=True)
+    @accepts("self", post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def List_Layers_Transfer_Learning(self):
         '''
@@ -205,7 +205,7 @@ class prototype(prototype_master):
 
 
     ###############################################################################################################################################
-    @accepts("self", post_trace=True)
+    @accepts("self", post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def List_Layers_Custom_Model(self):
         '''
@@ -224,7 +224,7 @@ class prototype(prototype_master):
 
     ## Will be depricated in v2.0
     ###############################################################################################################################################
-    @accepts("self", post_trace=True)
+    @accepts("self", post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def List_Activations(self):
         '''
@@ -242,7 +242,7 @@ class prototype(prototype_master):
 
 
     ###############################################################################################################################################
-    @accepts("self", post_trace=True)
+    @accepts("self", post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def List_Activations_Transfer_Learning(self):
         '''
@@ -260,7 +260,7 @@ class prototype(prototype_master):
 
 
     ###############################################################################################################################################
-    @accepts("self", post_trace=True)
+    @accepts("self", post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def List_Activations_Custom_Model(self):
         '''
@@ -282,7 +282,7 @@ class prototype(prototype_master):
 
 
     ###############################################################################################################################################
-    @accepts("self", post_trace=True)
+    @accepts("self", post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def List_Losses(self):
         '''
@@ -304,7 +304,7 @@ class prototype(prototype_master):
 
 
     ###############################################################################################################################################
-    @accepts("self", post_trace=True)
+    @accepts("self", post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def List_Optimizers(self):
         '''
@@ -326,7 +326,7 @@ class prototype(prototype_master):
 
 
     ###############################################################################################################################################
-    @accepts("self", post_trace=True)
+    @accepts("self", post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def List_Schedulers(self):
         '''
@@ -346,7 +346,7 @@ class prototype(prototype_master):
 
 
     ###############################################################################################################################################
-    @accepts("self", post_trace=True)
+    @accepts("self", post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def List_Transforms(self):
         '''
@@ -364,7 +364,7 @@ class prototype(prototype_master):
 
 
     ###############################################################################################################################################
-    @accepts("self", post_trace=True)
+    @accepts("self", post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def List_Blocks(self):
         '''
@@ -384,10 +384,10 @@ class prototype(prototype_master):
 
 
     ###############################################################################################################################################
-    @warning_checks(None, None, None, ["lt", 50], num_epochs=["lte", 10], state=None, post_trace=True)
+    @warning_checks(None, None, None, ["lt", 50], num_epochs=["lte", 10], state=None, post_trace=False)
     @error_checks(None, ["name", ["A-Z", "a-z", "0-9", "-", "_", "."]], None, ["gt", 0, "lte", 100], num_epochs=["gt", 0], 
-        state=["in", ["keep_all", "keep_none"]], post_trace=True)
-    @accepts("self", str, list, [int, float], num_epochs=int, state=str, post_trace=True)
+        state=["in", ["keep_all", "keep_none"]], post_trace=False)
+    @accepts("self", str, list, [int, float], num_epochs=int, state=str, post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def Analyse_Learning_Rates(self, analysis_name, lr_list, percent_data, num_epochs=2, state="keep_all"):
         '''
@@ -531,10 +531,10 @@ class prototype(prototype_master):
 
 
     ###############################################################################################################################################
-    @warning_checks(None, None, None, ["lt", 50], num_epochs=["lte", 10], state=None, post_trace=True)
+    @warning_checks(None, None, None, ["lt", 50], num_epochs=["lte", 10], state=None, post_trace=False)
     @error_checks(None, ["name", ["A-Z", "a-z", "0-9", "-", "_", "."]], None, ["gt", 0, "lte", 100], num_epochs=["gt", 0], 
-        state=["in", ["keep_all", "keep_none"]], post_trace=True)
-    @accepts("self", str, list, [int, float], num_epochs=int, state=str, post_trace=True)
+        state=["in", ["keep_all", "keep_none"]], post_trace=False)
+    @accepts("self", str, list, [int, float], num_epochs=int, state=str, post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def Analyse_Input_Sizes(self, analysis_name, inp_size_list, percent_data, num_epochs=2, state="keep_all"):
         '''
@@ -683,10 +683,10 @@ class prototype(prototype_master):
 
 
     ###############################################################################################################################################
-    @warning_checks(None, None, None, ["lt", 50], num_epochs=["lte", 10], state=None, post_trace=True)
+    @warning_checks(None, None, None, ["lt", 50], num_epochs=["lte", 10], state=None, post_trace=False)
     @error_checks(None, ["name", ["A-Z", "a-z", "0-9", "-", "_", "."]], None, ["gt", 0, "lte", 100], num_epochs=["gt", 0], 
-        state=["in", ["keep_all", "keep_none"]], post_trace=True)
-    @accepts("self", str, list, [int, float], num_epochs=int, state=str, post_trace=True)
+        state=["in", ["keep_all", "keep_none"]], post_trace=False)
+    @accepts("self", str, list, [int, float], num_epochs=int, state=str, post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def Analyse_Batch_Sizes(self, analysis_name, batch_size_list, percent_data, num_epochs=2, state="keep_all"):
         '''
@@ -829,10 +829,10 @@ class prototype(prototype_master):
 
 
     ###############################################################################################################################################
-    @warning_checks(None, None, None, ["lt", 50], num_epochs=["lte", 10], state=None, post_trace=True)
+    @warning_checks(None, None, None, ["lt", 50], num_epochs=["lte", 10], state=None, post_trace=False)
     @error_checks(None, ["name", ["A-Z", "a-z", "0-9", "-", "_", "."]], None, ["gt", 0, "lte", 100], num_epochs=["gt", 0], 
-        state=["in", ["keep_all", "keep_none"]], post_trace=True)
-    @accepts("self", str, list, [int, float], num_epochs=int, state=str, post_trace=True)
+        state=["in", ["keep_all", "keep_none"]], post_trace=False)
+    @accepts("self", str, list, [int, float], num_epochs=int, state=str, post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def Analyse_Models(self, analysis_name, model_list, percent_data, num_epochs=2, state="keep_all"):
         '''
@@ -999,10 +999,10 @@ class prototype(prototype_master):
 
 
     ###############################################################################################################################################
-    @warning_checks(None, None, None, ["lt", 50], num_epochs=["lte", 10], state=None, post_trace=True)
+    @warning_checks(None, None, None, ["lt", 50], num_epochs=["lte", 10], state=None, post_trace=False)
     @error_checks(None, ["name", ["A-Z", "a-z", "0-9", "-", "_", "."]], None, ["gt", 0, "lte", 100], num_epochs=["gt", 0], 
-        state=["in", ["keep_all", "keep_none"]], post_trace=True)
-    @accepts("self", str, list, [int, float], num_epochs=int, state=str, post_trace=True)
+        state=["in", ["keep_all", "keep_none"]], post_trace=False)
+    @accepts("self", str, list, [int, float], num_epochs=int, state=str, post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def Analyse_Optimizers(self, analysis_name, optimizer_list, percent_data, num_epochs=2, state="keep_all"):
         '''

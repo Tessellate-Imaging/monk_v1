@@ -3,7 +3,7 @@ from system.imports import *
 
 
 
-@accepts(dict, int, [tuple, list, float], [tuple, list, float], bool, bool, bool, retrieve=bool, post_trace=True)
+@accepts(dict, int, [tuple, list, float], [tuple, list, float], bool, bool, bool, retrieve=bool, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def transform_random_resized_crop(system_dict, input_size, scale, ratio, train, val, test, retrieve=False):
     '''
@@ -45,7 +45,7 @@ def transform_random_resized_crop(system_dict, input_size, scale, ratio, train, 
     return system_dict;
 
 
-@accepts(dict, int, bool, bool, bool, retrieve=bool, post_trace=True)
+@accepts(dict, int, bool, bool, bool, retrieve=bool, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def transform_center_crop(system_dict, input_size, train, val, test, retrieve=False):
     '''
@@ -81,7 +81,7 @@ def transform_center_crop(system_dict, input_size, train, val, test, retrieve=Fa
     return system_dict;
 
 
-@accepts(dict, [list, float, int], [list, float, int], [list, float, int], [list, float, int], bool, bool, bool, retrieve=bool, post_trace=True)
+@accepts(dict, [list, float, int], [list, float, int], [list, float, int], [list, float, int], bool, bool, bool, retrieve=bool, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def transform_color_jitter(system_dict, brightness, contrast, saturation, hue, train, val, test, retrieve=False):
     '''
@@ -133,7 +133,7 @@ def transform_color_jitter(system_dict, brightness, contrast, saturation, hue, t
 
 
 
-@accepts(dict, float, bool, bool, bool, retrieve=bool, post_trace=True)
+@accepts(dict, float, bool, bool, bool, retrieve=bool, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def transform_random_horizontal_flip(system_dict, probability, train, val, test, retrieve=False):
     '''
@@ -170,7 +170,7 @@ def transform_random_horizontal_flip(system_dict, probability, train, val, test,
     return system_dict;
 
 
-@accepts(dict, float, bool, bool, bool, retrieve=bool, post_trace=True)
+@accepts(dict, float, bool, bool, bool, retrieve=bool, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def transform_random_vertical_flip(system_dict, probability, train, val, test, retrieve=False):
     '''
@@ -206,7 +206,7 @@ def transform_random_vertical_flip(system_dict, probability, train, val, test, r
     return system_dict;
 
 
-@accepts(dict, [float, int], bool, bool, bool, retrieve=bool, post_trace=True)
+@accepts(dict, [float, int], bool, bool, bool, retrieve=bool, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def transform_random_lighting(system_dict, alpha, train, val, test, retrieve=False):
     '''
@@ -244,7 +244,7 @@ def transform_random_lighting(system_dict, alpha, train, val, test, retrieve=Fal
     return system_dict;
 
 
-@accepts(dict, int, bool, bool, bool, retrieve=bool, post_trace=True)
+@accepts(dict, int, bool, bool, bool, retrieve=bool, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def transform_resize(system_dict, input_size, train, val, test, retrieve=False):
     '''
@@ -287,7 +287,7 @@ def transform_resize(system_dict, input_size, train, val, test, retrieve=False):
     return system_dict;
 
 
-@accepts(dict, [float, list], [float, list], bool, bool, bool, retrieve=bool, post_trace=True)
+@accepts(dict, [float, list], [float, list], bool, bool, bool, retrieve=bool, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)
 def transform_normalize(system_dict, mean, std, train, val, test, retrieve=False):
     '''

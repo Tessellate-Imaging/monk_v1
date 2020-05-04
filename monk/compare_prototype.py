@@ -22,14 +22,14 @@ class compare(system):
                         0 - Print Nothing
                         1 - Print desired details
     '''
-    @accepts("self", verbose=int, post_trace=True)
+    @accepts("self", verbose=int, post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def __init__(self, verbose=1):
         super().__init__(verbose=verbose)
     
 
-    @error_checks(None, ["name", ["A-Z", "a-z", "0-9", "-", "_"]], post_trace=True)
-    @accepts("self", str, post_trace=True)
+    @error_checks(None, ["name", ["A-Z", "a-z", "0-9", "-", "_"]], post_trace=False)
+    @accepts("self", str, post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def Comparison(self, comparison_name):
         '''
@@ -45,7 +45,7 @@ class compare(system):
         self.custom_print("Comparison: - {}".format(comparison_name));
 
 
-    @accepts("self", str, str, post_trace=True)
+    @accepts("self", str, str, post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def Add_Experiment(self, project_name, experiment_name):
         '''
@@ -67,7 +67,7 @@ class compare(system):
         self.custom_print("Project - {}, Experiment - {} added".format(project_name, experiment_name));
 
 
-    @accepts("self", post_trace=True)
+    @accepts("self", post_trace=False)
     #@TraceFunction(trace_args=True, trace_rv=True)
     def Generate_Statistics(self):
         '''
