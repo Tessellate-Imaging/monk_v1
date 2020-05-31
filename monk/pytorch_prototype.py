@@ -1196,3 +1196,465 @@ class prototype(prototype_master):
         return return_dict
         
     ###############################################################################################################################################
+
+
+
+
+
+    ###############################################################################################################################################
+    @warning_checks(None, None, None, ["lt", 50], num_epochs=["lte", 10], state=None, post_trace=False)
+    @error_checks(None, ["name", ["A-Z", "a-z", "0-9", "-", "_", "."]], None, ["gt", 0, "lte", 100], num_epochs=["gt", 0], 
+        state=["in", ["keep_all", "keep_none"]], post_trace=False)
+    @accepts("self", str, list, [int, float], num_epochs=int, state=str, post_trace=False)
+    #@TraceFunction(trace_args=True, trace_rv=True)
+    def Analyse_Trainval_Splits(self, analysis_name, split_list, percent_data, num_epochs=2, state="keep_all"):
+        '''
+        Hyperparameter Tuner - Analyse train-val splits
+                               Takes in a list of training and validation data split values and trains on a part of dataset
+                               Provides summaries and graphs on every sub-experiment created
+
+        Args:
+            analysis_name (str): A suitable name for analysis
+            split_list (list): List of trainval splits.
+            percent_data (int): Percentage of complete dataset to run experiments on.
+            num_epochs (int): Number of epochs for each sub-experiment
+            state ("str"): If set as "keep_all", keeps every file in the sub-experiment
+                           If set as "keep_none", keeps only comparison files for each experiment
+
+
+        Returns:
+            dict: Tabular data on training_accuracy, validation_accuracy, training_loss, validation_loss and training_time for each experiment.
+        '''
+        from pytorch_prototype import prototype
+        
+        project = analysis_name;
+        self.custom_print("");
+        self.custom_print("Running Trainval split value analysis");                                    #Change 1
+        self.custom_print("Analysis Name      : {}".format(project));
+        self.custom_print("");
+
+        for i in range(len(split_list)):                                                               #Change 2
+            ptf_ = prototype(verbose=0);
+            self.custom_print("Running experiment : {}/{}".format(i+1, len(split_list)));              #Change 3
+
+            experiment = "Trainval_split" + str(split_list[i]);                                        #Change 4
+            self.custom_print("Experiment name    : {}".format(experiment))
+            
+            ptf_.Prototype(project, experiment, pseudo_copy_from=[self.system_dict["project_name"], self.system_dict["experiment_name"]]);
+
+            ptf_.Dataset_Percent(percent_data);
+            dataset_type = ptf_.system_dict["dataset"]["dataset_type"];
+            dataset_train_path = ptf_.system_dict["dataset"]["train_path"];
+            dataset_val_path = ptf_.system_dict["dataset"]["val_path"];
+            csv_train = ptf_.system_dict["dataset"]["csv_train"];
+            csv_val = ptf_.system_dict["dataset"]["csv_val"];
+            if(dataset_type=="train"):
+                ptf_.update_dataset(dataset_path=dataset_train_path, path_to_csv="sampled_dataset_train.csv");
+            elif(dataset_type=="train-val"):
+                ptf_.update_dataset(dataset_path=[dataset_train_path, dataset_val_path], 
+                    path_to_csv=["sampled_dataset_train.csv", "sampled_dataset_val.csv"]);
+            elif(dataset_type=="csv_train"):
+                ptf_.update_dataset(dataset_path=dataset_train_path, path_to_csv="sampled_dataset_train.csv");
+            elif(dataset_type=="csv_train-val"):
+                ptf_.update_dataset(dataset_path=[dataset_train_path, dataset_val_path], 
+                    path_to_csv=["sampled_dataset_train.csv", "sampled_dataset_val.csv"]);
+
+
+            ptf_.update_trainval_split(split_list[i]);                                                      #Change 5
+            ptf_.Reload();                                                                                  #Change 6
+            
+
+            
+            ptf_.update_num_epochs(num_epochs);
+            ptf_.update_display_progress_realtime(False)
+            ptf_.update_save_intermediate_models(False); 
+
+            total_time_per_epoch = ptf_.get_training_estimate();
+            total_time = total_time_per_epoch*num_epochs;
+            if(int(total_time//60) == 0):
+                self.custom_print("Estimated time     : {} sec".format(total_time));
+            else:
+                self.custom_print("Estimated time     : {} min".format(int(total_time//60)+1));
+
+            ptf_.Train();
+            self.custom_print("Experiment Complete");
+            self.custom_print("\n");
+            
+
+        self.custom_print("Comparing Experiments");
+        from compare_prototype import compare
+
+        ctf_ = compare(verbose=0);
+        ctf_.Comparison("Comparison_" + analysis_name);
+        self.custom_print("Comparison ID:      {}".format("Comparison_" + analysis_name));
+
+
+        training_accuracies = [];
+        validation_accuracies = [];
+        training_losses = [];
+        validation_losses = [];
+
+        tabular_data = [];
+
+        for i in range(len(split_list)):                                                            #Change 7
+            project = analysis_name;
+            experiment = "Trainval_split" + str(split_list[i]);                                     #Change 8
+            ctf_.Add_Experiment(project, experiment)
+
+            tmp = [];
+            tmp.append(experiment);
+            training_accuracy_file = self.system_dict["master_systems_dir_relative"] + "/" + project + "/" + experiment + "/output/logs/train_acc_history.npy";
+            tmp.append(np.load(training_accuracy_file, allow_pickle=True)[-1]);
+            validation_accuracy_file = self.system_dict["master_systems_dir_relative"] + "/" + project + "/" + experiment + "/output/logs/val_acc_history.npy";
+            tmp.append(np.load(validation_accuracy_file, allow_pickle=True)[-1]);
+            training_loss_file = self.system_dict["master_systems_dir_relative"] + "/" + project + "/" + experiment + "/output/logs/train_loss_history.npy";
+            tmp.append(np.load(training_loss_file, allow_pickle=True)[-1]);
+            validation_loss_file = self.system_dict["master_systems_dir_relative"] + "/" + project + "/" + experiment + "/output/logs/val_loss_history.npy";
+            tmp.append(np.load(validation_loss_file, allow_pickle=True)[-1]);
+            tabular_data.append(tmp)
+
+        
+        ctf_.Generate_Statistics();
+
+        self.custom_print("Generated statistics post all epochs");
+        self.custom_print(tabulate(tabular_data, headers=['Experiment Name', 'Train Acc', 'Val Acc', 'Train Loss', 'Val Loss'], tablefmt='orgtbl'));
+        self.custom_print("");
+
+
+        
+        return_dict = {};
+        for i in range(len(tabular_data)):
+            return_dict[tabular_data[i][0]] = {};
+            return_dict[tabular_data[i][0]]["training_accuracy"] = tabular_data[i][1];
+            return_dict[tabular_data[i][0]]["validation_accuracy"] = tabular_data[i][2];
+            return_dict[tabular_data[i][0]]["training_loss"] = tabular_data[i][3];
+            return_dict[tabular_data[i][0]]["validation_loss"] = tabular_data[i][4];
+
+            fname = self.system_dict["master_systems_dir_relative"] + analysis_name + "/" + tabular_data[i][0] + "/experiment_state.json";
+            system_dict = read_json(fname);
+            return_dict[tabular_data[i][0]]["training_time"] = system_dict["training"]["outputs"]["training_time"];
+
+
+        
+        if(state=="keep_none"):
+            shutil.rmtree(self.system_dict["master_systems_dir_relative"] + analysis_name);
+
+        return return_dict
+        
+    ###############################################################################################################################################
+
+
+
+
+
+    ###############################################################################################################################################
+    @warning_checks(None, None, None, ["lt", 50], num_epochs=["lte", 10], state=None, post_trace=False)
+    @error_checks(None, ["name", ["A-Z", "a-z", "0-9", "-", "_", "."]], None, ["gt", 0, "lte", 100], num_epochs=["gt", 0], 
+        state=["in", ["keep_all", "keep_none"]], post_trace=False)
+    @accepts("self", str, list, [int, float], num_epochs=int, state=str, post_trace=False)
+    #@TraceFunction(trace_args=True, trace_rv=True)
+    def Analyse_Freeze_Layers(self, analysis_name, num_list, percent_data, num_epochs=2, state="keep_all"):
+        '''
+        Hyperparameter Tuner - Analyse train-val splits
+                               Takes in a list of number of layers to freeze in network and runs experiments for each element in list
+                               Provides summaries and graphs on every sub-experiment created
+
+        Args:
+            analysis_name (str): A suitable name for analysis
+            num_list (list): List of number of layers to freeze.
+            percent_data (int): Percentage of complete dataset to run experiments on.
+            num_epochs (int): Number of epochs for each sub-experiment
+            state ("str"): If set as "keep_all", keeps every file in the sub-experiment
+                           If set as "keep_none", keeps only comparison files for each experiment
+
+
+        Returns:
+            dict: Tabular data on training_accuracy, validation_accuracy, training_loss, validation_loss and training_time for each experiment.
+        '''
+
+        from pytorch_prototype import prototype
+        
+        project = analysis_name;
+        self.custom_print("");
+        self.custom_print("Running Freezing layers analysis");                                         #Change 1
+        self.custom_print("Analysis Name      : {}".format(project));
+        self.custom_print("");
+
+        for i in range(len(num_list)):                                                               #Change 2
+            ptf_ = prototype(verbose=0);
+            self.custom_print("Running experiment : {}/{}".format(i+1, len(num_list)));              #Change 3
+
+            experiment = "Freeze_Layers_" + str(num_list[i]);                                          #Change 4
+            self.custom_print("Experiment name    : {}".format(experiment))
+            
+            ptf_.Prototype(project, experiment, pseudo_copy_from=[self.system_dict["project_name"], self.system_dict["experiment_name"]]);
+
+            ptf_.Dataset_Percent(percent_data);
+            dataset_type = ptf_.system_dict["dataset"]["dataset_type"];
+            dataset_train_path = ptf_.system_dict["dataset"]["train_path"];
+            dataset_val_path = ptf_.system_dict["dataset"]["val_path"];
+            csv_train = ptf_.system_dict["dataset"]["csv_train"];
+            csv_val = ptf_.system_dict["dataset"]["csv_val"];
+            if(dataset_type=="train"):
+                ptf_.update_dataset(dataset_path=dataset_train_path, path_to_csv="sampled_dataset_train.csv");
+            elif(dataset_type=="train-val"):
+                ptf_.update_dataset(dataset_path=[dataset_train_path, dataset_val_path], 
+                    path_to_csv=["sampled_dataset_train.csv", "sampled_dataset_val.csv"]);
+            elif(dataset_type=="csv_train"):
+                ptf_.update_dataset(dataset_path=dataset_train_path, path_to_csv="sampled_dataset_train.csv");
+            elif(dataset_type=="csv_train-val"):
+                ptf_.update_dataset(dataset_path=[dataset_train_path, dataset_val_path], 
+                    path_to_csv=["sampled_dataset_train.csv", "sampled_dataset_val.csv"]);
+
+
+            ptf_.update_freeze_layers(num_list[i]);                                                         #Change 5
+            ptf_.Reload();                                                                                  #Change 6
+            
+
+            
+            ptf_.update_num_epochs(num_epochs);
+            ptf_.update_display_progress_realtime(False)
+            ptf_.update_save_intermediate_models(False); 
+
+            total_time_per_epoch = ptf_.get_training_estimate();
+            total_time = total_time_per_epoch*num_epochs;
+            if(int(total_time//60) == 0):
+                self.custom_print("Estimated time     : {} sec".format(total_time));
+            else:
+                self.custom_print("Estimated time     : {} min".format(int(total_time//60)+1));
+
+            ptf_.Train();
+            self.custom_print("Experiment Complete");
+            self.custom_print("\n");
+            
+
+        self.custom_print("Comparing Experiments");
+        from compare_prototype import compare
+
+        ctf_ = compare(verbose=0);
+        ctf_.Comparison("Comparison_" + analysis_name);
+        self.custom_print("Comparison ID:      {}".format("Comparison_" + analysis_name));
+
+
+        training_accuracies = [];
+        validation_accuracies = [];
+        training_losses = [];
+        validation_losses = [];
+
+        tabular_data = [];
+
+        for i in range(len(num_list)):                                                            #Change 7
+            project = analysis_name;
+            experiment = "Freeze_Layers_" + str(num_list[i]);                                       #Change 8
+            ctf_.Add_Experiment(project, experiment)
+
+            tmp = [];
+            tmp.append(experiment);
+            training_accuracy_file = self.system_dict["master_systems_dir_relative"] + "/" + project + "/" + experiment + "/output/logs/train_acc_history.npy";
+            tmp.append(np.load(training_accuracy_file, allow_pickle=True)[-1]);
+            validation_accuracy_file = self.system_dict["master_systems_dir_relative"] + "/" + project + "/" + experiment + "/output/logs/val_acc_history.npy";
+            tmp.append(np.load(validation_accuracy_file, allow_pickle=True)[-1]);
+            training_loss_file = self.system_dict["master_systems_dir_relative"] + "/" + project + "/" + experiment + "/output/logs/train_loss_history.npy";
+            tmp.append(np.load(training_loss_file, allow_pickle=True)[-1]);
+            validation_loss_file = self.system_dict["master_systems_dir_relative"] + "/" + project + "/" + experiment + "/output/logs/val_loss_history.npy";
+            tmp.append(np.load(validation_loss_file, allow_pickle=True)[-1]);
+            tabular_data.append(tmp)
+
+        
+        ctf_.Generate_Statistics();
+
+        self.custom_print("Generated statistics post all epochs");
+        self.custom_print(tabulate(tabular_data, headers=['Experiment Name', 'Train Acc', 'Val Acc', 'Train Loss', 'Val Loss'], tablefmt='orgtbl'));
+        self.custom_print("");
+
+
+        
+        return_dict = {};
+        for i in range(len(tabular_data)):
+            return_dict[tabular_data[i][0]] = {};
+            return_dict[tabular_data[i][0]]["training_accuracy"] = tabular_data[i][1];
+            return_dict[tabular_data[i][0]]["validation_accuracy"] = tabular_data[i][2];
+            return_dict[tabular_data[i][0]]["training_loss"] = tabular_data[i][3];
+            return_dict[tabular_data[i][0]]["validation_loss"] = tabular_data[i][4];
+
+            fname = self.system_dict["master_systems_dir_relative"] + analysis_name + "/" + tabular_data[i][0] + "/experiment_state.json";
+            system_dict = read_json(fname);
+            return_dict[tabular_data[i][0]]["training_time"] = system_dict["training"]["outputs"]["training_time"];
+
+
+        
+        if(state=="keep_none"):
+            shutil.rmtree(self.system_dict["master_systems_dir_relative"] + analysis_name);
+
+        return return_dict
+        
+    ###############################################################################################################################################
+
+
+
+
+
+    ###############################################################################################################################################
+    @warning_checks(None, None, None, ["lt", 50], num_epochs=["lte", 10], state=None, post_trace=False)
+    @error_checks(None, ["name", ["A-Z", "a-z", "0-9", "-", "_", "."]], None, ["gt", 0, "lte", 100], num_epochs=["gt", 0], 
+        state=["in", ["keep_all", "keep_none"]], post_trace=False)
+    @accepts("self", str, list, [int, float], num_epochs=int, state=str, post_trace=False)
+    #@TraceFunction(trace_args=True, trace_rv=True)
+    def Analyse_Optimizers_With_LR(self, analysis_name, optimizer_list, percent_data, num_epochs=2, state="keep_all"):
+        '''
+        Hyperparameter Tuner - Analyse optimizers
+                               Takes in a list of optimizers and initial learning rates to train on a part of dataset
+                               Provides summaries and graphs on every sub-experiment created
+
+        Args:
+            analysis_name (str): A suitable name for analysis
+            optimizer_list (list): List of optimizers along with initial learning rates.
+            percent_data (int): Percentage of complete dataset to run experiments on.
+            num_epochs (int): Number of epochs for each sub-experiment
+            state ("str"): If set as "keep_all", keeps every file in the sub-experiment
+                           If set as "keep_none", keeps only comparison files for each experiment
+
+
+        Returns:
+            dict: Tabular data on training_accuracy, validation_accuracy, training_loss, validation_loss and training_time for each experiment.
+        '''
+
+        from pytorch_prototype import prototype
+        
+        project = analysis_name;
+        self.custom_print("");
+        self.custom_print("Running Optimizer analysis");                                                #Change 1
+        self.custom_print("Analysis Name      : {}".format(project));
+        self.custom_print("");
+
+        for i in range(len(optimizer_list)):                                                            #Change 2
+            ptf_ = prototype(verbose=0);    
+            self.custom_print("Running experiment : {}/{}".format(i+1, len(optimizer_list)));             #Change 3        
+
+            experiment = "Optimizer_" + str(optimizer_list[i][0]) + "_LR_" + str(optimizer_list[i][1]);   #Change 4, 5
+            self.custom_print("Experiment name    : {}".format(experiment))
+            
+            ptf_.Prototype(project, experiment, pseudo_copy_from=[self.system_dict["project_name"], self.system_dict["experiment_name"]]);
+
+            ptf_.Dataset_Percent(percent_data);
+            dataset_type = ptf_.system_dict["dataset"]["dataset_type"];
+            dataset_train_path = ptf_.system_dict["dataset"]["train_path"];
+            dataset_val_path = ptf_.system_dict["dataset"]["val_path"];
+            csv_train = ptf_.system_dict["dataset"]["csv_train"];
+            csv_val = ptf_.system_dict["dataset"]["csv_val"];
+            if(dataset_type=="train"):
+                ptf_.update_dataset(dataset_path=dataset_train_path, path_to_csv="sampled_dataset_train.csv");
+            elif(dataset_type=="train-val"):
+                ptf_.update_dataset(dataset_path=[dataset_train_path, dataset_val_path], 
+                    path_to_csv=["sampled_dataset_train.csv", "sampled_dataset_val.csv"]);
+            elif(dataset_type=="csv_train"):
+                ptf_.update_dataset(dataset_path=dataset_train_path, path_to_csv="sampled_dataset_train.csv");
+            elif(dataset_type=="csv_train-val"):
+                ptf_.update_dataset(dataset_path=[dataset_train_path, dataset_val_path], 
+                    path_to_csv=["sampled_dataset_train.csv", "sampled_dataset_val.csv"]);
+
+
+            lr = optimizer_list[i][1]  
+            if(optimizer_list[i][0] == "adagrad"):                                                 #Change 6 
+                ptf_.optimizer_adagrad(lr);
+            elif(optimizer_list[i][0] == "adadelta"):
+                ptf_.optimizer_adadelta(lr);
+            elif(optimizer_list[i][0] == "adam"):
+                ptf_.optimizer_adam(lr);
+            elif(optimizer_list[i][0] == "adamw"):
+                ptf_.optimizer_adamw(lr);
+            elif(optimizer_list[i][0] == "adamax"):
+                ptf_.optimizer_adamax(lr);
+            elif(optimizer_list[i][0] == "asgd"):
+                ptf_.optimizer_asgd(lr);
+            elif(optimizer_list[i][0] == "rmsprop"):
+                ptf_.optimizer_rmsprop(lr);
+            elif(optimizer_list[i][0] == "momentum_rmsprop"):
+                ptf_.optimizer_momentum_rmsprop(lr);
+            elif(optimizer_list[i][0] == "rprop"):
+                ptf_.optimizer_rprop(lr);
+            elif(optimizer_list[i][0] == "sgd"):
+                ptf_.optimizer_sgd(lr);
+            elif(optimizer_list[i][0] == "nesterov_sgd"):
+                ptf_.optimizer_nesterov_sgd(lr);
+
+                                                      
+            ptf_.Reload();                                                                                  #Change 7
+
+            ptf_.update_num_epochs(num_epochs);
+            ptf_.update_display_progress_realtime(False)
+            ptf_.update_save_intermediate_models(False); 
+
+            total_time_per_epoch = ptf_.get_training_estimate();
+            total_time = total_time_per_epoch*num_epochs;
+            if(int(total_time//60) == 0):
+                self.custom_print("Estimated time     : {} sec".format(total_time));
+            else:
+                self.custom_print("Estimated time     : {} min".format(int(total_time//60)+1));
+
+            ptf_.Train();
+            self.custom_print("Experiment Complete");
+            self.custom_print("\n");
+            
+
+        self.custom_print("Comparing Experiments");
+        from compare_prototype import compare
+
+        ctf_ = compare(verbose=0);
+        ctf_.Comparison("Comparison_" + analysis_name);
+        self.custom_print("Comparison ID:      {}".format("Comparison_" + analysis_name));
+
+
+        training_accuracies = [];
+        validation_accuracies = [];
+        training_losses = [];
+        validation_losses = [];
+
+        tabular_data = [];
+
+        for i in range(len(optimizer_list)):                                                                  #Change 8
+            project = analysis_name;
+            experiment = "Optimizer_" + str(optimizer_list[i][0]) + "_LR_" + str(optimizer_list[i][1]);        #Change 9, 10
+            ctf_.Add_Experiment(project, experiment)
+
+            tmp = [];
+            tmp.append(experiment);
+            training_accuracy_file = self.system_dict["master_systems_dir_relative"] + "/" + project + "/" + experiment + "/output/logs/train_acc_history.npy";
+            tmp.append(np.load(training_accuracy_file, allow_pickle=True)[-1]);
+            validation_accuracy_file = self.system_dict["master_systems_dir_relative"] + "/" + project + "/" + experiment + "/output/logs/val_acc_history.npy";
+            tmp.append(np.load(validation_accuracy_file, allow_pickle=True)[-1]);
+            training_loss_file = self.system_dict["master_systems_dir_relative"] + "/" + project + "/" + experiment + "/output/logs/train_loss_history.npy";
+            tmp.append(np.load(training_loss_file, allow_pickle=True)[-1]);
+            validation_loss_file = self.system_dict["master_systems_dir_relative"] + "/" + project + "/" + experiment + "/output/logs/val_loss_history.npy";
+            tmp.append(np.load(validation_loss_file, allow_pickle=True)[-1]);
+            tabular_data.append(tmp)
+
+        
+        ctf_.Generate_Statistics();
+
+        self.custom_print("Generated statistics post all epochs");
+        self.custom_print(tabulate(tabular_data, headers=['Experiment Name', 'Train Acc', 'Val Acc', 'Train Loss', 'Val Loss'], tablefmt='orgtbl'));
+        self.custom_print("");
+
+
+        
+        return_dict = {};
+        for i in range(len(tabular_data)):
+            return_dict[tabular_data[i][0]] = {};
+            return_dict[tabular_data[i][0]]["training_accuracy"] = tabular_data[i][1];
+            return_dict[tabular_data[i][0]]["validation_accuracy"] = tabular_data[i][2];
+            return_dict[tabular_data[i][0]]["training_loss"] = tabular_data[i][3];
+            return_dict[tabular_data[i][0]]["validation_loss"] = tabular_data[i][4];
+
+            fname = self.system_dict["master_systems_dir_relative"] + analysis_name + "/" + tabular_data[i][0] + "/experiment_state.json";
+            system_dict = read_json(fname);
+            return_dict[tabular_data[i][0]]["training_time"] = system_dict["training"]["outputs"]["training_time"];
+
+
+        
+        if(state=="keep_none"):
+            shutil.rmtree(self.system_dict["master_systems_dir_relative"] + analysis_name);
+
+        return return_dict
+        
+    ###############################################################################################################################################
