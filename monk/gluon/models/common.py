@@ -223,18 +223,18 @@ def freeze_layers(num, system_dict):
         complete_list = [];
         for param in system_dict["local"]["model"].collect_params().values():
             if(ip==0):
-                current_name = param.name.split("_")[0];
+                current_name = param.name.split("_")[:-1];
                 if("running" in current_name):
-                    current_name = '_'.join(current_name.split("_")[:-1]);
+                    current_name = '_'.join(current_name[:-1]);
                 if(param.grad_req == "write"):
                     if(current_name not in complete_list):
                         complete_list.append(current_name);
                     system_dict["local"]["params_to_update"].append(current_name);
             else:
-                if(current_name != param.name.split("_")[0]):
-                    current_name = param.name.split("_")[0];
+                if(current_name != param.name.split("_")[:-1]):
+                    current_name = param.name.split("_")[:-1];
                     if("running" in current_name):
-                        current_name = '_'.join(current_name.split("_")[:-1]);
+                        current_name = '_'.join(current_name[:-1]);
                     if(param.grad_req == "write"):
                         if(current_name not in complete_list):
                             complete_list.append(current_name);
@@ -253,12 +253,12 @@ def freeze_layers(num, system_dict):
 
         current_name = training_list[0];
         for param in system_dict["local"]["model"].collect_params().values():
-            if(current_name != param.name.split("_")[0]):
+            if(current_name != param.name.split("_")[:-1]):
                 num_freezed += 1;
                 if(num_freezed == num_freeze):
                     break;
                 param.grad_req = "null";
-                current_name = param.name.split("_")[0];
+                current_name = param.name.split("_")[:-1];
             else:
                 param.grad_req = "null";
 
@@ -271,7 +271,7 @@ def freeze_layers(num, system_dict):
             if(ip==0):
                 current_name = '_'.join(param.name.split("_")[:-1]);
                 if("running" in current_name):
-                    current_name = '_'.join(current_name.split("_")[:-1]);
+                    current_name = '_'.join(current_name[:-1]);
                 if(param.grad_req == "write"):
                     if(current_name not in complete_list):
                         complete_list.append(current_name);
@@ -280,7 +280,7 @@ def freeze_layers(num, system_dict):
                 if(current_name != '_'.join(param.name.split("_")[:-1])):
                     current_name = '_'.join(param.name.split("_")[:-1]);
                     if("running" in current_name):
-                        current_name = '_'.join(current_name.split("_")[:-1]);
+                        current_name = '_'.join(current_name[:-1]);
                     if(param.grad_req == "write"):
                         if(current_name not in complete_list):
                             complete_list.append(current_name);
