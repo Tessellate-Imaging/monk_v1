@@ -279,3 +279,22 @@ class prototype_aux(prototype_params):
 
 
     ##########################################################################################################################################################
+
+
+    ##########################################################################################################################################################
+    def visualize_kernels(self, store_path=None):
+        is_notebook = isnotebook()
+
+        visualizer = CNNVisualizer(self.system_dict["local"]["model"], is_notebook)
+        visualizer.visualize_kernels(store_path=store_path)
+
+    ##########################################################################################################################################################
+
+
+    ##########################################################################################################################################################
+    def visualize_feature_maps(self, image_path, store_path=None):
+        is_notebook = isnotebook()
+
+        visualizer = CNNVisualizer(self.system_dict["local"]["model"], is_notebook)
+        visualizer.visualize_feature_maps(image_path, store_path=store_path)
+    

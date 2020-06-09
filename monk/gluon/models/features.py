@@ -62,12 +62,12 @@ class CNNVisualizer():
         image_path (str): Path of the image whose feature maps are needed
     '''
 
-    img = mxnet.image.imread(image_path)
-    img = mxnet.image.resize_short(img, 224)
+    img = mx.image.imread(image_path)
+    img = mx.image.resize_short(img, 224)
     img = img.transpose((2,0,1))
     img = img.expand_dims(axis=0).astype('float32')
 
-    inputs = mxnet.sym.var('data')
+    inputs = mx.sym.var('data')
     out = self.model(inputs)
     internals = out.get_internals()
     conv_outputs = [layer for layer in internals.list_outputs() if ('conv' in layer and 'output' in layer)]
