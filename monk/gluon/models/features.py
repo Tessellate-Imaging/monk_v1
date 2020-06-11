@@ -53,7 +53,7 @@ class CNNVisualizer():
 
     print("Found: Layer name: {} | Kernel info: {} filters of size ({} X {}) with {} channels".format(name,num_filters,filter_w,filter_h,num_channels))
   
-  def get_feature_maps(self, image_path):
+  def get_feature_maps(self, image_path, ctx):
 
     '''
     Obtain feature maps generated on an image 
@@ -66,6 +66,7 @@ class CNNVisualizer():
     img = mx.image.resize_short(img, 224)
     img = img.transpose((2,0,1))
     img = img.expand_dims(axis=0).astype('float32')
+    img = img.as_in_context(ctx)
 
     inputs = mx.sym.var('data')
     out = self.model(inputs)
@@ -150,7 +151,6 @@ class CNNVisualizer():
         cmap (str): The CMAP used for the images
     '''
 
-    os.mkdir(path)
     for layer_name, layer in self.conv_layers.items():
       layer_path = os.path.join(path, layer_name) 
       os.mkdir(layer_path)
@@ -175,7 +175,6 @@ class CNNVisualizer():
         cmap (str): The CMAP used for the images
     '''
 
-    os.mkdir(path)
     for layer_name, layer in self.conv_layers.items():
       layer_path = os.path.join(path, layer_name) 
       os.mkdir(layer_path)
@@ -233,7 +232,7 @@ class CNNVisualizer():
     
     interact(self.visualize_kernel,layer_name=self.layers_by_name, filter_id=self.num_filters, channel_id=self.channels, cmap=self.cmap, return_kernel=fixed(False))
 
-  def visualize_feature_maps(self, image_path, store_path=None):
+  def visualize_feature_maps(self, image_path, ctx, store_path=None):
 
     '''
     Visualize the feature maps given an image 
@@ -246,7 +245,7 @@ class CNNVisualizer():
         Interactive Ipython widget displaying feature maps.
     '''
     
-    self.get_feature_maps(image_path)
+    self.get_feature_maps(image_path, ctx)
 
     if (not self.is_notebook) or (store_path is not None): 
       self.store_feature_maps(path=store_path)

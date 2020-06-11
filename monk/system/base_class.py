@@ -163,6 +163,10 @@ class system():
         self.system_dict["log_dir_relative"] = self.system_dict["output_dir_relative"] + "logs/";
         self.system_dict["fname"] = self.system_dict["experiment_dir"] + "/experiment_state.json";
         self.system_dict["fname_relative"] = self.system_dict["experiment_dir_relative"] + "/experiment_state.json";
+        self.system_dict["visualization"]["base"] = self.system_dict["experiment_dir"] + "visualization/"
+        self.system_dict["visualization"]["kernels_dir"] = self.system_dict["visualization"]["base"] + "kernels/";
+        self.system_dict["visualization"]["feature_maps_dir"] = self.system_dict["visualization"]["base"] + "feature_maps/";
+
     #############################################################################################################################
 
 
