@@ -177,6 +177,8 @@ def get_base_system_dict():
     system_dict["local"]["criterion"] = False;
 
     #CNN Visualization storage details
+    system_dict["visualization"] = {}
+    
     system_dict["visualization"]["base"] = False;
     system_dict["visualization"]["kernels_dir"] = False;
     system_dict["visualization"]["feature_maps_dir"] = False;
