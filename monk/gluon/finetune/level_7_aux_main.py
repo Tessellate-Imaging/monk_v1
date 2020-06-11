@@ -301,10 +301,10 @@ class prototype_aux(prototype_params):
             self.custom_print("The images will be stored in the visualization directory of the experiment");
             
             from system.common import create_dir
-            create_dir(system_dict["visualization"]["base"])
-            create_dir(system_dict["visualization"]["kernels_dir"])
+            create_dir(self.system_dict["visualization"]["base"])
+            create_dir(self.system_dict["visualization"]["kernels_dir"])
 
-            visualizer.visualize_kernels(system_dict["visualization"]["kernels_dir"])
+            visualizer.visualize_kernels(self.system_dict["visualization"]["kernels_dir"])
 
         else:
             visualizer.visualize_kernels()
@@ -338,10 +338,10 @@ class prototype_aux(prototype_params):
             self.custom_print("The images will be stored in the visualization directory of the experiment");
 
             from system.common import create_dir
-            create_dir(system_dict["visualization"]["base"])
-            create_dir(system_dict["visualization"]["feature_maps_dir"])
+            create_dir(self.system_dict["visualization"]["base"])
+            create_dir(self.system_dict["visualization"]["feature_maps_dir"])
             img_name = "".join(image_path.split("/")[-1].split(".")[0:-1])
-            img_dir = system_dict["visualization"]["feature_maps_dir"] + img_name + '/'
+            img_dir = self.system_dict["visualization"]["feature_maps_dir"] + img_name + '/'
             create_dir(img_dir)
             
             visualizer.visualize_feature_maps(image_path, ctx=ctx, store_path=img_dir)
