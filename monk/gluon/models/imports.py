@@ -11,6 +11,7 @@ import networkx as nx
 from matplotlib import pyplot as plt
 from mxnet.gluon.contrib import nn as contrib_nn
 
+import os
 import ipywidgets as widgets
 from ipywidgets import interact, fixed
 from IPython.display import display, clear_output
