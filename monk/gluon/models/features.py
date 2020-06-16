@@ -1,5 +1,4 @@
 from gluon.models.imports import *
-import matplotlib.gridspec as gridspec
 
 
 class CNNVisualizer():
