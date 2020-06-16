@@ -1,4 +1,5 @@
 from gluon.models.imports import *
+import matplotlib.gridspec as gridspec
 
 
 class CNNVisualizer():
@@ -52,7 +53,7 @@ class CNNVisualizer():
     num_channels = layer.shape[1]
 
     print("Found: Layer name: {} | Kernel info: {} filters of size ({} X {}) with {} channels".format(name,num_filters,filter_w,filter_h,num_channels))
-  
+    
   def get_feature_maps(self, image_path, ctx):
 
     '''
@@ -76,7 +77,7 @@ class CNNVisualizer():
     model_temp = gluon.SymbolBlock(outputs, inputs, params=self.model.collect_params())
     self.fmaps = model_temp(img)
   
-  def visualize_kernel(self, layer_name='conv_1d',filter_id=0, channel_id=0, cmap='gray', return_kernel=False):
+  def visualize_kernel(self, layer_name='conv_1d',filter_id=0, channel_id=0, num_channels=1, cmap='gray', return_kernel=False):
 
     '''
     Visualize kernel weights of a given layer 
@@ -85,6 +86,7 @@ class CNNVisualizer():
         layer_name (str): Name of the layer whose feature map is needed
         filter_id (int): Filter that needs to be visualized
         channel_id (int): Channel that needs to be visualized
+        num_channels (int): Number of channels to be displayed at once
         cmap (str): CMAP used for displaying image
         return_kernel (bool): Whether the kernel needs to be returned
     
@@ -98,7 +100,11 @@ class CNNVisualizer():
     kernels = layer.data().asnumpy()
     if filter_id >= layer.shape[0] or channel_id >= layer.shape[1]:
       return
-    kernel = kernels[filter_id][channel_id,:,:]
+
+    if num_channels == 1:
+      kernel = kernels[filter_id][channel_id,:,:]
+    else:
+      kernel = kernels[filter_id][channel_id:(channel_id+num_channels),:,:]
 
     if (kernel.max() - kernel.min()) != 0:
       kernel = (kernel - kernel.min())/(kernel.max()-kernel.min())
@@ -106,9 +112,36 @@ class CNNVisualizer():
     if return_kernel:
       return kernel
     
-    plt.title("Filter id: "+str(filter_id)+" | Channel id: "+str(channel_id),wrap=True)
-    plt.imshow(kernel,cmap=cmap)
+
+    num_rows = int(num_channels/4)
+    num_cols = min(4, layer.shape[1])
+
+    print("")
+    
+    fig = plt.figure(figsize=(4*num_cols,4*num_rows))
+
+    gs = gridspec.GridSpec(num_rows, num_cols)
+    
+    fig.subplots_adjust(top=0.88)
+    fig.suptitle("Filter id: "+str(filter_id), fontsize=16)
+    fig.tight_layout()
+
+    for i,channel in enumerate(kernel):
+      ax = plt.subplot(gs[i])
+      plt.axis('on')
+      ax.set_title("Channel id: "+str(channel_id+i),wrap=True)
+      ax.set_xticklabels([])
+      ax.set_yticklabels([])
+      ax.set_aspect('equal')
+      ax.imshow(channel, cmap=cmap)
+
+    
     plt.show()
+
+    if num_channels == 1:
+      plt.title("Filter id: "+str(filter_id)+" | Channel id: "+str(channel_id),wrap=True)
+      plt.imshow(kernel,cmap=cmap)
+      plt.show()
 
   def visualize_image(self, layer_name='conv_1d', channel_id=0, cmap='gray', return_fmap=False):
 
@@ -190,12 +223,21 @@ class CNNVisualizer():
     clear_output()
 
     layer = self.conv_layers[change.new]
-    self.num_filters.value = 0
+    self.filters.value = 0
     self.channels.value = 0
-    self.num_filters.max = (layer.shape[0]-1)
+    self.filters.max = (layer.shape[0]-1)
     self.channels.max = (layer.shape[1]-1)
+    self.num_channels.value = 4
     
-    interact(self.visualize_kernel,layer_name=self.layers_by_name, filter_id=self.num_filters, channel_id=self.channels, cmap=self.cmap, return_kernel=fixed(False))
+    interact(self.visualize_kernel,layer_name=self.layers_by_name, filter_id=self.filters, channel_id=self.channels, num_channels=self.num_channels, cmap=self.cmap, return_kernel=fixed(False))
+    
+  def handle_num_channels_change(self, change):
+    clear_output()
+
+    self.channels.step = change.new
+    self.channels.value = 0
+
+    interact(self.visualize_kernel,layer_name=self.layers_by_name, filter_id=self.filters, channel_id=self.channels, num_channels=self.num_channels, cmap=self.cmap, return_kernel=fixed(False))
     
   def handle_layer_change_image(self,change):
     clear_output()
@@ -224,13 +266,14 @@ class CNNVisualizer():
 
     self.layers_by_name = widgets.Dropdown(options=self.conv_layers.keys(), value=list(self.conv_layers.keys())[0], description='Layer')
     layer = self.conv_layers[self.layers_by_name.value]
-    self.num_filters = widgets.IntSlider(value=0, min=0, max=(layer.shape[0]-1), step=1, description='Filter')
-    self.channels = widgets.IntSlider(value=0, min=0, max=(layer.shape[1]-1), step=1, description='Channel')
-
+    self.filters = widgets.IntSlider(value=0, min=0, max=(layer.shape[0]-1), step=1, description='Filter')
+    self.channels = widgets.IntSlider(value=0, min=0, max=(layer.shape[1]-1), step=4, description='Channel')
+    self.num_channels = widgets.IntSlider(value=4, min=4, max=20, step=4, description='# Channels')
     self.cmap = widgets.Dropdown(options=['viridis','gray'], value='gray', description='CMAP')
     self.layers_by_name.observe(self.handle_layer_change, 'value')
+    self.num_channels.observe(self.handle_num_channels_change, 'value')
     
-    interact(self.visualize_kernel,layer_name=self.layers_by_name, filter_id=self.num_filters, channel_id=self.channels, cmap=self.cmap, return_kernel=fixed(False))
+    interact(self.visualize_kernel,layer_name=self.layers_by_name, filter_id=self.filters, channel_id=self.channels, num_channels=self.num_channels, cmap=self.cmap, return_kernel=fixed(False))
 
   def visualize_feature_maps(self, image_path, ctx, store_path=None):
 
