@@ -134,7 +134,6 @@ class CNNVisualizer():
       ax.set_aspect('equal')
       ax.imshow(channel, cmap=cmap)
 
-    
     plt.show()
 
     if num_channels == 1:
@@ -142,7 +141,7 @@ class CNNVisualizer():
       plt.imshow(kernel,cmap=cmap)
       plt.show()
 
-  def visualize_image(self, layer_name='conv_1d', channel_id=0, cmap='gray', return_fmap=False):
+  def visualize_image(self, layer_name='conv_1d', channel_id=0, num_channels=1, cmap='gray', return_fmap=False):
 
     '''
     Visualize a feature map given an image 
@@ -150,6 +149,7 @@ class CNNVisualizer():
     Args:
         layer_name (str): Name of the layer whose feature map is needed
         channel_id (int): Channel that needs to be visualized
+        num_channels (int): Number of channels to be displayed at once
         cmap (str): CMAP used for displaying image
         return_fmap (bool): Whether the feature map needs to be returned
     
@@ -164,14 +164,41 @@ class CNNVisualizer():
       return
 
     layer_id = list(self.conv_layers.keys()).index(layer_name)
-    fmap = self.fmaps[layer_id][0][channel_id,:,:].asnumpy()
+    if num_channels == 1:
+      fmap = self.fmaps[layer_id][0][channel_id,:,:].asnumpy()
+    else:
+      fmap = self.fmaps[layer_id][0][channel_id:(channel_id+num_channels),:,:].asnumpy()
 
     if return_fmap:
       return fmap
 
-    plt.title("Channel id: "+str(channel_id),wrap=True)
-    plt.imshow(fmap,cmap=cmap)
-    plt.show() 
+    num_rows = int(num_channels/4)
+    num_cols = min(4, layer.shape[0])
+
+    print("")
+    
+    fig = plt.figure(figsize=(4*num_cols,4*num_rows))
+
+    gs = gridspec.GridSpec(num_rows, num_cols)
+    
+    fig.subplots_adjust(top=0.88)
+    fig.tight_layout()
+
+    for i,channel in enumerate(fmap):
+      ax = plt.subplot(gs[i])
+      plt.axis('on')
+      ax.set_title("Filter id: "+str(channel_id+i),wrap=True)
+      ax.set_xticklabels([])
+      ax.set_yticklabels([])
+      ax.set_aspect('equal')
+      ax.imshow(channel, cmap=cmap)
+
+    plt.show()
+
+    if num_channels == 1:
+      plt.title("Filter id: "+str(channel_id),wrap=True)
+      plt.imshow(fmap,cmap=cmap)
+      plt.show() 
 
   def store_kernels(self, path='kernels', cmap='gray'):
 
@@ -231,22 +258,21 @@ class CNNVisualizer():
     interact(self.visualize_kernel,layer_name=self.layers_by_name, filter_id=self.filters, channel_id=self.channels, num_channels=self.num_channels, cmap=self.cmap, return_kernel=fixed(False))
     
   def handle_num_channels_change(self, change):
-    clear_output()
-
     self.channels.step = change.new
-    self.channels.value = 0
-
-    interact(self.visualize_kernel,layer_name=self.layers_by_name, filter_id=self.filters, channel_id=self.channels, num_channels=self.num_channels, cmap=self.cmap, return_kernel=fixed(False))
     
   def handle_layer_change_image(self,change):
     clear_output()
 
     layer = self.conv_layers[change.new]
-    self.channels.value = 0
-    self.channels.max = (layer.shape[0]-1)
+    self.filters.value = 0
+    self.filters.max = (layer.shape[0]-1)
+    self.num_channels.value = 4
 
-    interact(self.visualize_image,layer_name=self.layers_by_name, channel_id=self.channels, cmap=self.cmap, return_fmap=fixed(False))
+    interact(self.visualize_image,layer_name=self.layers_by_name, channel_id=self.filters, num_channels=self.num_channels, cmap=self.cmap, return_fmap=fixed(False))
   
+  def handle_num_channels_change_image(self, change):
+    self.filters.step = change.new
+    
   def visualize_kernels(self, store_path=None):
 
     '''
@@ -281,6 +307,7 @@ class CNNVisualizer():
 
     Args:
         image_path (str): Path to the image
+        ctx : mx.gpu() if gpu is available else mx.cpu()
         store_path (str): Path to the directory where the feature maps need to be stored
 
     Returns:
@@ -295,9 +322,11 @@ class CNNVisualizer():
     
     self.layers_by_name = widgets.Dropdown(options=self.conv_layers.keys(), value=list(self.conv_layers.keys())[0], description='Layer')
     layer = self.conv_layers[self.layers_by_name.value]
-    self.channels = widgets.IntSlider(value=0, min=0, max=(layer.shape[0]-1), step=1, description='Channel')
-      
+    self.num_channels = widgets.IntSlider(value=4, min=4, max=20, step=4, description='# Filters')
+    self.filters = widgets.IntSlider(value=0, min=0, max=(layer.shape[0]-1), step=4, description='Filter')
     self.cmap = widgets.Dropdown(options=['viridis','gray'], value='gray', description='CMAP')
-    self.layers_by_name.observe(self.handle_layer_change_image, 'value')
     
-    interact(self.visualize_image,layer_name=self.layers_by_name, channel_id=self.channels, cmap=self.cmap, return_fmap=fixed(False))
+    self.layers_by_name.observe(self.handle_layer_change_image, 'value')
+    self.num_channels.observe(self.handle_num_channels_change_image, 'value')
+    
+    interact(self.visualize_image,layer_name=self.layers_by_name, channel_id=self.filters, num_channels=self.num_channels, cmap=self.cmap, return_fmap=fixed(False))
