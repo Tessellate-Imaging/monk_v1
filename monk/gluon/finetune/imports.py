@@ -145,6 +145,8 @@ from gluon.models.common import freeze_layers
 from gluon.models.return_model import load_model
 from gluon.models.return_model import setup_model
 from gluon.models.return_model import debug_create_network
+
+from gluon.models.features import CNNVisualizer
 ################################################################################
 
 
