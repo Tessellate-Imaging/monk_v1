@@ -53,7 +53,7 @@ class CNNVisualizer():
     
     print("Found: Layer name: {} | Kernel info: {} filters of size ({} X {}) with {} channels".format(name,num_filters,filter_w,filter_h,num_channels))
     
-  def get_feature_maps(self, image_path, ctx):
+  def get_feature_maps(self, image_path):
 
     '''
     Obtain feature maps generated on an image 
@@ -304,7 +304,6 @@ class CNNVisualizer():
 
     Args:
         image_path (str): Path to the image
-        ctx : mx.gpu() if gpu is available else mx.cpu()
         store_path (str): Path to the directory where the feature maps need to be stored
 
     Returns:
