@@ -106,9 +106,9 @@ class CNNVisualizer():
     if return_kernel:
       return kernel
     
-
+    print(kernel.shape, num_channels)
     num_rows = int(num_channels/4)
-    num_cols = min(4, layer.shape[1])
+    num_cols = min(4, layer.kernel.shape[2])
 
     print("")
     
@@ -120,7 +120,8 @@ class CNNVisualizer():
     fig.suptitle("Filter id: "+str(filter_id), fontsize=16)
     fig.tight_layout()
 
-    for i,channel in enumerate(kernel):
+    for i in range(kernel.shape[2]):
+      channel = kernel[:,:,i]
       ax = plt.subplot(gs[i])
       plt.axis('on')
       ax.set_title("Channel id: "+str(channel_id+i),wrap=True)
@@ -169,8 +170,9 @@ class CNNVisualizer():
       return fmap
 
     num_rows = int(num_channels/4)
-    num_cols = min(4, layer.shape[0])
+    num_cols = min(4, layer.output.shape[3])
 
+    print(fmap.shape)
     print("")
     
     fig = plt.figure(figsize=(4*num_cols,4*num_rows))
@@ -180,7 +182,8 @@ class CNNVisualizer():
     fig.subplots_adjust(top=0.88)
     fig.tight_layout()
 
-    for i,channel in enumerate(fmap):
+    for i in range(fmap.shape[2]):
+      channel = fmap[:,:,i]
       ax = plt.subplot(gs[i])
       plt.axis('on')
       ax.set_title("Filter id: "+str(channel_id+i),wrap=True)
@@ -248,7 +251,7 @@ class CNNVisualizer():
     layer = self.conv_layers[change.new]
     self.filters.value = 0
     self.channels.value = 0
-    self.num_filters.max = (layer.kernel.shape[3]-1)
+    self.filters.max = (layer.kernel.shape[3]-1)
     self.channels.max = (layer.kernel.shape[2]-1)
     self.num_channels.value = 4
     
