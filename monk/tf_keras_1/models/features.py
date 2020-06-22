@@ -92,7 +92,7 @@ class CNNVisualizer():
     self.get_layer_info(layer_name)
 
     kernels = layer.get_weights()[0]
-    print(type(kernels))
+
     if filter_id >= layer.kernel.shape[3] or channel_id >= layer.kernel.shape[2]:
        return
     
