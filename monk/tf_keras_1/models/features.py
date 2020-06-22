@@ -92,6 +92,7 @@ class CNNVisualizer():
     self.get_layer_info(layer_name)
 
     kernels = layer.get_weights()[0]
+    print(type(kernels))
     if filter_id >= layer.kernel.shape[3] or channel_id >= layer.kernel.shape[2]:
        return
     
@@ -106,7 +107,6 @@ class CNNVisualizer():
     if return_kernel:
       return kernel
     
-    print(kernel.shape, num_channels)
     num_rows = int(num_channels/4)
     num_cols = min(4, layer.kernel.shape[2])
 
@@ -172,7 +172,6 @@ class CNNVisualizer():
     num_rows = int(num_channels/4)
     num_cols = min(4, layer.output.shape[3])
 
-    print(fmap.shape)
     print("")
     
     fig = plt.figure(figsize=(4*num_cols,4*num_rows))
