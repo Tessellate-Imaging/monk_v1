@@ -320,7 +320,7 @@ class prototype_aux(prototype_params):
     ##########################################################################################################################################################
 
     ##########################################################################################################################################################
-    def Visualize_Kernels(self, store_images_if_notebook=False):
+    def Visualize_Kernels(self, store_images_if_notebook=False, is_notebook=False):
         '''
         Visualize kernel weights of model
 
@@ -331,7 +331,7 @@ class prototype_aux(prototype_params):
             IPython widget displaying kernel weights if used inside a notebook.
             Else stores the maps in the visualization directory. 
         '''
-        is_notebook = isnotebook()
+        # is_notebook = isnotebook()
 
         visualizer = CNNVisualizer(self.system_dict["local"]["model"], is_notebook)
         
