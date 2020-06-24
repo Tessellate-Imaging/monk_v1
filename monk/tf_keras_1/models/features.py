@@ -108,7 +108,7 @@ class CNNVisualizer():
       return kernel
     
     num_rows = int(num_channels/4)
-    num_cols = min(4, layer.kernel.shape[2])
+    num_cols = min(4, int(layer.kernel.shape[2]))
 
     print("")
     
