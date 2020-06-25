@@ -13,50 +13,40 @@ Admin
 
 Interns 
 1) Hemanth Kumar Akula [Linkedin](https://www.linkedin.com/in/akula-hemanth-kumar-8b2877135/), [Github](https://github.com/THEFASHIONGEEK) 
-  - Dec 2019 - Present
+  - Dec 2019 - May 2020
   
 2) Arijit Gupta [Linkedin](https://www.linkedin.com/in/arijitgupta42/), [Github](https://github.com/arijitgupta42) 
-  - Mar 2020 - Present
+  - Mar 2020 - May 2020
   
 3) Mahak Kothari [Linkedin](https://www.linkedin.com/in/mahak-kothari-001982167/), [Github]() 
-  - Mar 2020 - Present
+  - Mar 2020 - June 2020
   
 4) Sinchana S R [Linkedin](https://www.linkedin.com/in/sinchana-s-r-469313132/ ), [Github](https://github.com/sinchubhat) 
   - Mar 2020 - Present
 
 5) Avishree Khare [Linkedin](https://www.linkedin.com/in/avishreekh/), [Github](https://github.com/avishreekh) 
   - May 2020 - Present
- 
-Contributors
+
+
+Tutorial and blog contributors
 1) Aakash Singh [Linkedin](https://www.linkedin.com/in/singh-aakash/), [Github](https://github.com/Aakash1822) 
-  - Mar 2020 - Present
 
 2) Gaurav Iyer [Linkedin]( https://www.linkedin.com/in/gaurav-iyer-33b29b162/), [Github]() 
-  - Mar 2020 - Present
 
 3) Het Shah [Linkedin](https://www.linkedin.com/in/het-shah163/), [Github](https://github.com/Het-Shah) 
-  - Mar 2020 - Present
 
 4) Rijul Gangulay [Linkedin](https://www.linkedin.com/in/rijul-ganguly-22629b162/), [Github]() 
-  - Mar 2020 - Present
 
 5) Ashwin Vaswani [Linkedin](https://www.linkedin.com/in/ashwin-vaswani-3314aa169/), [Github](https://github.com/ashwinvaswani) 
-  - Mar 2020 - Present
 
 6) Aayush Fadia [Linkedin](https://www.linkedin.com/in/aayush-fadia-700b27190/), [Github](https://github.com/aayush-fadia) 
-  - Mar 2020 - Present
 
 7) Shreyash Waghe [Linkedin](https://www.linkedin.com/in/shreyash-waghe-49537b191/), [Github](https://github.com/Shreyashwaghe) 
-  - Mar 2020 - Present
 
 8) Jayesh Kandpal [Linkedin](https://www.linkedin.com/in/jayesh-kandpal-355995186/), [Github](https://github.com/jayeshk7) 
-  - Mar 2020 - Present
 
 9) Sayan Chakraborty [Linkedin](https://www.linkedin.com/in/sayanchakraborty581/), [Github](https://github.com/sayangoogle) 
-  - Mar 2020 - Present
 
 10) Rohit Lal [Linkedin](https://www.linkedin.com/in/rohit-lal/), [Github](https://github.com/take2rohit) 
-  - Mar 2020 - Present
 
 11) Shubham Gupta [Linkedin](https://www.linkedin.com/in/shubham-gupta-gim/), [Github]() 
-  - Mar 2020 - Present
