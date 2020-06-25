@@ -23,7 +23,9 @@ Interns
   
 4) Sinchana S R [Linkedin](https://www.linkedin.com/in/sinchana-s-r-469313132/ ), [Github](https://github.com/sinchubhat) 
   - Mar 2020 - Present
- 
+
+5) Avishree Khare [Linkedin](https://www.linkedin.com/in/avishreekh/), [Github](https://github.com/avishreekh) 
+  - May 2020 - Present
  
 Contributors
 1) Aakash Singh [Linkedin](https://www.linkedin.com/in/singh-aakash/), [Github](https://github.com/Aakash1822) 
