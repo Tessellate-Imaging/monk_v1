@@ -1,12 +1,5 @@
 from pytorch.models.imports import *
 
-import os
-import ipywidgets as widgets
-from ipywidgets import interact, fixed
-from IPython.display import display, clear_output
-import matplotlib.gridspec as gridspec
-from torchvision import transforms
-
 class CNNVisualizer():
   '''
   Base class for visualizing features and feature maps of gluon models
