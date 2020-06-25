@@ -15,6 +15,13 @@ import torch.optim as optim
 import torch.nn.functional as F
 from matplotlib import pyplot as plt
 
+import os
+import ipywidgets as widgets
+from ipywidgets import interact, fixed
+from IPython.display import display, clear_output
+import matplotlib.gridspec as gridspec
+from torchvision import transforms
+
 layer_names = ["convolution1d", "convolution2d", "convolution", "convolution3d", "transposed_convolution1d",
                     "transposed_convolution", "transposed_convolution2d", "transposed_convolution3d",
                     "max_pooling1d", "max_pooling2d", "max_pooling", "max_pooling3d", "average_pooling1d",
