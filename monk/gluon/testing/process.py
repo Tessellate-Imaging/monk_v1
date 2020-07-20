@@ -25,9 +25,11 @@ def process_single(img_name, return_raw, system_dict):
         prediction = system_dict["dataset"]["params"]["classes"][np.argmax(outputs[0].asnumpy())];
     else:
         prediction = np.argmax(outputs[0].asnumpy());
-    score = outputs[0].asnumpy()[np.argmax(outputs[0].asnumpy())];
+
+    normalized = softmax(outputs[0].asnumpy())
+    score = normalized[np.argmax(normalized)];
     if(return_raw):
-        return prediction, score, outputs[0].asnumpy()
+        return prediction, score, normalized
     else:
         return prediction, score, "";
     

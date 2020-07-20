@@ -28,9 +28,10 @@ def process_single(img_name, return_raw, system_dict):
         prediction = system_dict["dataset"]["params"]["classes"][l];
     else:
         prediction = l;
-    score = outputs.data.cpu().numpy()[0][l];
+    normalized = softmax(outputs.data.cpu().numpy()[0]);
+    score = normalized[l];
     if(return_raw):
-        return prediction, score, outputs.data.cpu().numpy()[0];
+        return prediction, score, normalized;
     else:
         return prediction, score, "";
 
