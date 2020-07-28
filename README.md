@@ -1,11 +1,55 @@
-# monk_v1 [![Tweet](https://img.shields.io/twitter/url/https/github.com/tterb/hyde.svg?style=social)](http://twitter.com/share?text=Check%20out%20Monk:%20An%20Open%20Source%20Unified%20Wrapper%20for%20Computer%20Vision&url=https://github.com/Tessellate-Imaging/monk_v1&hashtags=MonkAI,OpenSource,UnifiedWrapper,DeepLEarning,ComputerVision,TessellateImaging) [![](http://hits.dwyl.io/Tessellate-Imaging/monk_v1.svg)](http://hits.dwyl.io/Tessellate-Imaging/monk_v1)  ![](https://tokei.rs/b1/github/Tessellate-Imaging/monk_v1) ![](https://tokei.rs/b1/github/Tessellate-Imaging/monk_v1?category=files)
+## [Monk - A computer vision toolkit for everyone](https://monkai.org/) [![Tweet](https://img.shields.io/twitter/url/https/github.com/tterb/hyde.svg?style=social)](http://twitter.com/share?text=Check%20out%20Monk:%20An%20Open%20Source%20Unified%20Wrapper%20for%20Computer%20Vision&url=https://github.com/Tessellate-Imaging/monk_v1&hashtags=MonkAI,OpenSource,UnifiedWrapper,DeepLEarning,ComputerVision,TessellateImaging) [![](http://hits.dwyl.io/Tessellate-Imaging/monk_v1.svg)](http://hits.dwyl.io/Tessellate-Imaging/monk_v1)  ![](https://tokei.rs/b1/github/Tessellate-Imaging/monk_v1) ![](https://tokei.rs/b1/github/Tessellate-Imaging/monk_v1?category=files) [![Version](https://img.shields.io/badge/version-v1.0-darkgreen)](https://github.com/Tessellate-Imaging/monk_v1) [![Build_Status](https://img.shields.io/badge/build-passing-darkgreen)](https://github.com/Tessellate-Imaging/monk_v1)
+ 
+<br />
 
 
-[Website](https://monkai.org/)
+## Create real-world Image Classification applications 
+<table>
+  <tr>
+    <td>Medical Domain</td>
+    <td>Fashion Domain</td>
+    <td>Autonomous Vehicles Domain</td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/abhi-kumar/monk_cls_demos/blob/master/cls-chest-xray-pneumonia-demo.gif" width=320 height=240></td>
+    <td><img src="https://github.com/abhi-kumar/monk_cls_demos/blob/master/cls-apparel-demo.gif" width=320 height=240></td>
+    <td><img src="https://github.com/abhi-kumar/monk_cls_demos/blob/master/cls-distracted-driver-demo.gif" width=320 height=240></td>
+  </tr>
+  <tr>
+    <td>Agriculture Domain</td>
+    <td>Wildlife Domain</td>
+    <td>Retail Domain</td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/abhi-kumar/monk_cls_demos/blob/master/cls-rice-leaf-disease-demo.gif" width=320 height=240></td>
+    <td><img src="https://github.com/abhi-kumar/monk_cls_demos/blob/master/cls-oregon-wildlife-species-demo.gif" width=320 height=240></td>
+    <td><img src="https://github.com/abhi-kumar/monk_cls_demos/blob/master/cls-groceries-demo.gif" width=320 height=240></td>
+  </tr>
+ </table>
 
-#### Monk is a low code Deep Learning tool and a unified wrapper for Computer Vision.
-[![Version](https://img.shields.io/badge/version-v1.0-lightgrey)](https://github.com/Tessellate-Imaging/monk_v1) &nbsp; &nbsp;
-[![Build_Status](https://img.shields.io/badge/build-passing-green)](https://github.com/Tessellate-Imaging/monk_v1)
+#### ...... And much more!!!!
+
+<br />
+<br />
+ 
+## How does Monk make image classification easy
+ - Write **less code** to create end to end applications.
+ - Learn only **one syntax** and access any deep learning library - pytorch, mxnet, keras, tensorflow, etc
+ - Manage your entire project easily with multiple experiments
+
+<br />
+<br />
+
+## For whom this library is built
+  - **Students**
+    - Seamlessly learn computer vision using our comprehensive study roadmaps
+  - **Researchers and Developers**
+    - Create and Manage multiple deep learning projects 
+  - **Competiton participants** (Kaggle, Codalab, hHackerearth, AiCrowd, etc)
+    - Expedite the prototyping process and jumpstart with a higher rank
+    
+<br />
+<br />
 
 
 # Table of Contents
@@ -21,43 +65,39 @@
 
 
 <a id="1"></a>
-## Sample Showcase
+## Sample Showcase - Quick Mode
 
-#### Create an image classification experiment.
-- Load foldered dataset
-- Set number of epochs
-- Run training
-
+#### Create an image classifier.
 ```python
-ptf = prototype(verbose=1)
+#Create an experiment
 ptf.Prototype("sample-project-1", "sample-experiment-1")
-ptf.Default(dataset_path="./dataset_cats_dogs_train/", 
-                model_name="resnet18", freeze_base_network=True, num_epochs=2)
+
+#Load Data
+ptf.Default(dataset_path="sample_dataset/", 
+             model_name="resnet18", 
+             num_epochs=2)
+# Train
 ptf.Train()
 ```
 
 #### Inference
 
 ```python
-img_name = "./monk/datasets/test/0.jpg";
-predictions = ptf.Infer(img_name=img_name, return_raw=True);
-print(predictions)
+predictions = ptf.Infer(img_name="sample.png", return_raw=True);
 ```
 
 
 #### Compare Experiments
 
-- Add created experiments with different hyperparameters
-- Generate comparison plots
-
 ```python
-ctf = compare(verbose=1);
+#Create comparison project
 ctf.Comparison("Sample-Comparison-1");
+
+#Add all your experiments
 ctf.Add_Experiment("sample-project-1", "sample-experiment-1");
 ctf.Add_Experiment("sample-project-1", "sample-experiment-2");
-    .
-    . 
-    .
+   
+# Generate statistics
 ctf.Generate_Statistics();
 ```
 
@@ -65,25 +105,19 @@ ctf.Generate_Statistics();
 <br />
 <br />
 
+
 <a id="2"></a>
 ## Installation
-
-Support for
-  - OS
-      - Ubuntu 16.04
-      - Ubuntu 18.04
-      - Mac OS
-      - Windows 
-  - Python
-      - Version 3.6
-      - Version 3.7
-  - Cuda
-      - Version 9.0
-      - Version 9.2
-      - Version 10.0
-      - Version 10.1
-
-For Installation instructions visit: [Link](https://github.com/Tessellate-Imaging/monk_v1/tree/master/installation)
+  - **CPU** (Non GPU)&nbsp;: `pip install -U monk-cpu`
+  - **CUDA 9.0** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-cuda90`
+  - **CUDA 9.0** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-cuda92`
+  - **CUDA 10.0** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-cuda100`
+  - **CUDA 10.1** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-cuda101`
+  - **CUDA 10.2** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-cuda102`
+  - **Google Colab** &nbsp;&nbsp;: `pip install -U monk-colab`
+  - **Kaggle** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-kaggle`
+  
+For More Installation instructions visit: [Link](https://github.com/Tessellate-Imaging/monk_v1/tree/master/installation)
 
 
 <br />
@@ -96,15 +130,19 @@ For Installation instructions visit: [Link](https://github.com/Tessellate-Imagin
 
 
   - [Getting started with Monk](https://github.com/Tessellate-Imaging/monk_v1/tree/master/study_roadmaps/1_getting_started_roadmap)
-  - [Python sample examples](https://github.com/Tessellate-Imaging/monk_v1/tree/master/study_roadmaps/python_sample_examples)
+    - Essential notebooks to use all the monk's features
   - [Image Processing and Deep Learning](https://github.com/Tessellate-Imaging/monk_v1/tree/master/study_roadmaps/3_image_processing_deep_learning_roadmap)
+    - Learn both the basic and advanced concepts of image processing and deep learning
   - [Transfer Learning](https://github.com/Tessellate-Imaging/monk_v1/tree/master/study_roadmaps/2_transfer_learning_roadmap)
+    - Understand transfer learning in the AI field
   - [Image classification zoo](https://github.com/Tessellate-Imaging/monk_v1/tree/master/study_roadmaps/4_image_classification_zoo)
+    - A list of 50+ real world image classification examples 
 
 
 <br />
 <br />
 <br />
+
 
 <a id="4"></a>
 ## Documentation
@@ -139,40 +177,37 @@ For Installation instructions visit: [Link](https://github.com/Tessellate-Imagin
 <br />
 <br />
 
-
 <a id="5"></a>
 ## TODO-2020
 
-### TODO-2020 - Features
+### Features
 - [x] Model Visualization
 - [ ] Pre-processed data visualization
-- [ ] Learned feature visualization
+- [x] Learned feature visualization
 - [ ] NDimensional data input - npy - hdf5 - dicom - tiff
 - [x] Multi-label Image Classification
 - [x] Custom model development
 
 
 
-### TODO-2020 - General
-- [ ] Incorporate pep coding standards
+### General
 - [x] Functional Documentation
 - [x] Tackle Multiple versions of libraries
 - [x] Add unit-testing
 - [ ] Contribution guidelines
+- [x] Python pip packaging support
 
 
-### TODO-2020 - Backend Support
-
-- [ ] Tensorflow 2.0
+### Backend Support
+- [x] Tensorflow 2.0 provision support with v1
+- [ ] Tensorflow 2.0 complete
 - [ ] Chainer
 
 
-### TODO-2020 - External Libraries
+### External Libraries
 - [ ] TensorRT Acceleration
 - [ ] Intel Acceleration
 - [ ] Echo AI - for Activation functions
-
-
 
 
 ## Copyright
