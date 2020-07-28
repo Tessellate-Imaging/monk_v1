@@ -110,10 +110,16 @@ class finetune_training(finetune_model):
 
             if(self.system_dict["training"]["settings"]["save_training_logs"]):
                 history_df = pd.read_csv(self.system_dict["log_dir"] + "/model_history_log.csv");
-                val_acc_history = history_df['val_acc'].tolist();
-                train_acc_history = history_df['acc'].tolist();
-                val_loss_history = history_df['val_loss'].tolist();
-                train_loss_history = history_df['loss'].tolist();
+                if(int(keras.__version__.split(".")[1]) > 2):
+                    val_acc_history = history_df['val_accuracy'].tolist();
+                    train_acc_history = history_df['accuracy'].tolist();
+                    val_loss_history = history_df['val_loss'].tolist();
+                    train_loss_history = history_df['loss'].tolist();
+                else:
+                    val_acc_history = history_df['val_acc'].tolist();
+                    train_acc_history = history_df['acc'].tolist();
+                    val_loss_history = history_df['val_loss'].tolist();
+                    train_loss_history = history_df['loss'].tolist();
 
             f = open(self.system_dict["log_dir"] + "/times.txt", 'r');
             lines = f.readlines();
@@ -189,7 +195,7 @@ class finetune_training(finetune_model):
 
             self.system_dict["training"]["outputs"]["training_time"] = "{:.0f}m {:.0f}s".format(time_elapsed_since // 60, time_elapsed_since % 60);
 
-            if(keras.__version__.split(".")[1] == "3"):
+            if(int(keras.__version__.split(".")[1]) > 2):
                 val_acc_history = history.history['val_accuracy'];
                 val_loss_history = history.history['val_loss'];
                 train_acc_history = history.history['accuracy'];
@@ -323,7 +329,7 @@ class finetune_training(finetune_model):
 
             self.system_dict["training"]["outputs"]["training_time"] = "{:.0f}m {:.0f}s".format(time_elapsed_since // 60, time_elapsed_since % 60);
 
-            if(keras.__version__.split(".")[1] == "3"):
+            if(int(keras.__version__.split(".")[1]) > 2):
                 val_acc_history = history.history['val_accuracy'];
                 val_loss_history = history.history['val_loss'];
                 train_acc_history = history.history['accuracy'];
