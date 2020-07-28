@@ -54,7 +54,7 @@
     - Seamlessly learn computer vision using our comprehensive study roadmaps
   - **Researchers and Developers**
     - Create and Manage multiple deep learning projects 
-  - **Competiton participants** (Kaggle, Codalab, hHackerearth, AiCrowd, etc)
+  - **Competiton participants** (Kaggle, Codalab, Hackerearth, AiCrowd, etc)
     - Expedite the prototyping process and jumpstart with a higher rank
     
 <br />
