@@ -117,12 +117,12 @@ ctf.Generate_Statistics();
 
 <a id="2"></a>
 ## Installation
-  - **CPU** (+ Mac-OS)&nbsp;: `pip install -U monk-cpu`
   - **CUDA 9.0** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-cuda90`
   - **CUDA 9.0** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-cuda92`
   - **CUDA 10.0** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-cuda100`
   - **CUDA 10.1** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-cuda101`
   - **CUDA 10.2** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-cuda102`
+  - **CPU** (+Mac-OS)&nbsp;: `pip install -U monk-cpu`
   - **Google Colab** &nbsp;&nbsp;: `pip install -U monk-colab`
   - **Kaggle** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-kaggle`
   
