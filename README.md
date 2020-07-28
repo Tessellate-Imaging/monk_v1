@@ -42,8 +42,8 @@
 <br />
  
 ## How does Monk make image classification easy
- - Write **less code** to create end to end applications.
- - Learn only **one syntax** to create applications using any deep learning library - pytorch, mxnet, keras, tensorflow, etc
+ - Write **less code** and create end to end applications.
+ - Learn only **one syntax** and create applications using any deep learning library - pytorch, mxnet, keras, tensorflow, etc
  - Manage your entire project easily with multiple experiments
 
 <br />
