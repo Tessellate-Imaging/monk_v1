@@ -1,6 +1,6 @@
-from gluon.models.imports import *
-from system.imports import *
-from gluon.models.layers import get_layer
+from monk.gluon.models.imports import *
+from monk.system.imports import *
+from monk.gluon.models.layers import get_layer
 
 
 @accepts("self", bool, post_trace=False)

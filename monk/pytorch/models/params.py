@@ -1,6 +1,6 @@
-from pytorch.models.imports import *
-from system.imports import *
-from pytorch.models.models import combined_list_lower
+from monk.pytorch.models.imports import *
+from monk.system.imports import *
+from monk.pytorch.models.models import combined_list_lower
 
 @accepts(str, dict, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)

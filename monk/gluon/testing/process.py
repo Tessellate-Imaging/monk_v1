@@ -1,5 +1,5 @@
-from gluon.testing.imports import *
-from system.imports import *
+from monk.gluon.testing.imports import *
+from monk.system.imports import *
 
 @accepts(str, bool, dict, post_trace=False)
 #@TraceFunction(trace_args=False, trace_rv=False)

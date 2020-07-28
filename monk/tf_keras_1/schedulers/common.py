@@ -1,5 +1,5 @@
-from tf_keras_1.schedulers.imports import *
-from system.imports import *
+from monk.tf_keras_1.schedulers.imports import *
+from monk.system.imports import *
 
 
 

@@ -1,5 +1,5 @@
-from system.imports import *
-from system.common import read_json
+from monk.system.imports import *
+from monk.system.common import read_json
 
 
 @accepts(str, post_trace=False)

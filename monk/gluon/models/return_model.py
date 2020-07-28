@@ -1,11 +1,11 @@
-from gluon.models.imports import *
-from system.imports import *
-from gluon.models.models import *
-from gluon.models.common import create_final_layer
-from gluon.models.common import get_layer_uid
-from gluon.models.layers import custom_model_get_layer
-from gluon.models.layers import addBlock
-from gluon.models.initializers import initialize_network
+from monk.gluon.models.imports import *
+from monk.system.imports import *
+from monk.gluon.models.models import *
+from monk.gluon.models.common import create_final_layer
+from monk.gluon.models.common import get_layer_uid
+from monk.gluon.models.layers import custom_model_get_layer
+from monk.gluon.models.layers import addBlock
+from monk.gluon.models.initializers import initialize_network
 
 
 

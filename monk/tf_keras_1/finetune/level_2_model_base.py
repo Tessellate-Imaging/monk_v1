@@ -1,6 +1,6 @@
-from tf_keras_1.finetune.imports import *
-from system.imports import *
-from tf_keras_1.finetune.level_1_dataset_base import finetune_dataset
+from monk.tf_keras_1.finetune.imports import *
+from monk.system.imports import *
+from monk.tf_keras_1.finetune.level_1_dataset_base import finetune_dataset
 
 
 class finetune_model(finetune_dataset):

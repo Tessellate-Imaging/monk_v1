@@ -1,6 +1,6 @@
-from pytorch.models.imports import *
-from system.imports import *
-from pytorch.models.common import set_parameter_requires_grad
+from monk.pytorch.models.imports import *
+from monk.system.imports import *
+from monk.pytorch.models.common import set_parameter_requires_grad
 
 
 #classifier 6

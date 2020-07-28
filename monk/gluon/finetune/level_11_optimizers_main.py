@@ -1,7 +1,7 @@
-from gluon.finetune.imports import *
-from system.imports import *
+from monk.gluon.finetune.imports import *
+from monk.system.imports import *
 
-from gluon.finetune.level_10_schedulers_main import prototype_schedulers
+from monk.gluon.finetune.level_10_schedulers_main import prototype_schedulers
 
 
 class prototype_optimizers(prototype_schedulers):

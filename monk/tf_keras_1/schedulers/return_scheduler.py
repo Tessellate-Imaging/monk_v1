@@ -1,7 +1,7 @@
-from tf_keras_1.schedulers.imports import *
-from system.imports import *
-from tf_keras_1.schedulers.common import StepDecay
-from tf_keras_1.schedulers.common import PolynomialDecay
+from monk.tf_keras_1.schedulers.imports import *
+from monk.system.imports import *
+from monk.tf_keras_1.schedulers.common import StepDecay
+from monk.tf_keras_1.schedulers.common import PolynomialDecay
 
 
 @accepts(dict, post_trace=False)

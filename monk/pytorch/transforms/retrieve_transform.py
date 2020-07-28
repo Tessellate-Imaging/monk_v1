@@ -1,6 +1,6 @@
-from pytorch.transforms.imports import *
-from pytorch.transforms.common import set_transforms
-from system.imports import *
+from monk.pytorch.transforms.imports import *
+from monk.pytorch.transforms.common import set_transforms
+from monk.system.imports import *
 
 
 @accepts(dict, post_trace=False)

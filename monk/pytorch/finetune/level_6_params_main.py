@@ -1,7 +1,7 @@
-from pytorch.finetune.imports import *
-from system.imports import *
+from monk.pytorch.finetune.imports import *
+from monk.system.imports import *
 
-from pytorch.finetune.level_5_state_base import finetune_state
+from monk.pytorch.finetune.level_5_state_base import finetune_state
 
 class prototype_params(finetune_state):
     @accepts("self", verbose=int, post_trace=False)

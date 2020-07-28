@@ -1,7 +1,7 @@
-from pytorch.finetune.imports import *
-from system.imports import *
+from monk.pytorch.finetune.imports import *
+from monk.system.imports import *
 
-from pytorch.finetune.level_9_transforms_main import prototype_transforms
+from monk.pytorch.finetune.level_9_transforms_main import prototype_transforms
 
 
 class prototype_schedulers(prototype_transforms):

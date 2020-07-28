@@ -1,15 +1,15 @@
-from gluon.transforms.imports import *
-from system.imports import *
-from gluon.transforms.transforms import transform_random_resized_crop
-from gluon.transforms.transforms import transform_center_crop
-from gluon.transforms.transforms import transform_color_jitter
-from gluon.transforms.transforms import transform_random_horizontal_flip
-from gluon.transforms.transforms import transform_random_vertical_flip
-from gluon.transforms.transforms import transform_random_lighting
-from gluon.transforms.transforms import transform_resize
-from gluon.transforms.transforms import transform_normalize
-from gluon.transforms.transforms import transform_random_resized_crop
-from gluon.transforms.transforms import transform_random_resized_crop
+from monk.gluon.transforms.imports import *
+from monk.system.imports import *
+from monk.gluon.transforms.transforms import transform_random_resized_crop
+from monk.gluon.transforms.transforms import transform_center_crop
+from monk.gluon.transforms.transforms import transform_color_jitter
+from monk.gluon.transforms.transforms import transform_random_horizontal_flip
+from monk.gluon.transforms.transforms import transform_random_vertical_flip
+from monk.gluon.transforms.transforms import transform_random_lighting
+from monk.gluon.transforms.transforms import transform_resize
+from monk.gluon.transforms.transforms import transform_normalize
+from monk.gluon.transforms.transforms import transform_random_resized_crop
+from monk.gluon.transforms.transforms import transform_random_resized_crop
 
 
 

@@ -1,7 +1,7 @@
-from tf_keras_1.finetune.imports import *
-from system.imports import *
+from monk.tf_keras_1.finetune.imports import *
+from monk.system.imports import *
 
-from tf_keras_1.finetune.level_10_schedulers_main import prototype_schedulers
+from monk.tf_keras_1.finetune.level_10_schedulers_main import prototype_schedulers
 
 
 class prototype_optimizers(prototype_schedulers):

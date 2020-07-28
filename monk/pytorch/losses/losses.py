@@ -1,5 +1,5 @@
-from pytorch.losses.imports import *
-from system.imports import *
+from monk.pytorch.losses.imports import *
+from monk.system.imports import *
 
 
 @accepts(dict, weight=[list, type(np.array([1, 2, 3])), float, type(None)], batch_axis=int, post_trace=False)

@@ -1,7 +1,7 @@
-from tf_keras_1.finetune.imports import *
-from system.imports import *
+from monk.tf_keras_1.finetune.imports import *
+from monk.system.imports import *
 
-from tf_keras_1.finetune.level_6_params_main import prototype_params
+from monk.tf_keras_1.finetune.level_6_params_main import prototype_params
 
 
 class prototype_aux(prototype_params):

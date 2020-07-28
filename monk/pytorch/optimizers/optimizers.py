@@ -1,5 +1,5 @@
-from pytorch.optimizers.imports import *
-from system.imports import *
+from monk.pytorch.optimizers.imports import *
+from monk.system.imports import *
 
 
 @accepts(dict, [int, float], momentum=[int, float], momentum_dampening_rate=[int, float], weight_decay=[int, float], 

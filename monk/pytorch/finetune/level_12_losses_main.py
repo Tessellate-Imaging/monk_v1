@@ -1,7 +1,7 @@
-from pytorch.finetune.imports import *
-from system.imports import *
+from monk.pytorch.finetune.imports import *
+from monk.system.imports import *
 
-from pytorch.finetune.level_11_optimizers_main import prototype_optimizers
+from monk.pytorch.finetune.level_11_optimizers_main import prototype_optimizers
 
 
 class prototype_losses(prototype_optimizers):

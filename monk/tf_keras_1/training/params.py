@@ -1,5 +1,5 @@
-from tf_keras_1.training.imports import *
-from system.imports import *
+from monk.tf_keras_1.training.imports import *
+from monk.system.imports import *
 
 
 @accepts(int, dict, post_trace=False)

@@ -1,8 +1,8 @@
 import math
-from pytorch.finetune.imports import *
-from system.imports import *
+from monk.pytorch.finetune.imports import *
+from monk.system.imports import *
 
-from pytorch.finetune.level_7_aux_main import prototype_aux
+from monk.pytorch.finetune.level_7_aux_main import prototype_aux
 
 
 class prototype_layers(prototype_aux):

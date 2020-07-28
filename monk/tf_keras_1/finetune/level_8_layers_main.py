@@ -1,8 +1,8 @@
 import math
-from tf_keras_1.finetune.imports import *
-from system.imports import *
+from monk.tf_keras_1.finetune.imports import *
+from monk.system.imports import *
 
-from tf_keras_1.finetune.level_7_aux_main import prototype_aux
+from monk.tf_keras_1.finetune.level_7_aux_main import prototype_aux
 
 
 class prototype_layers(prototype_aux):

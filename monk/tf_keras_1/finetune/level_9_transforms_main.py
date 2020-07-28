@@ -1,7 +1,7 @@
-from tf_keras_1.finetune.imports import *
-from system.imports import *
+from monk.tf_keras_1.finetune.imports import *
+from monk.system.imports import *
 
-from tf_keras_1.finetune.level_8_layers_main import prototype_layers
+from monk.tf_keras_1.finetune.level_8_layers_main import prototype_layers
 
 
 class prototype_transforms(prototype_layers):

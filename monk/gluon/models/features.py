@@ -1,4 +1,4 @@
-from gluon.models.imports import *
+from monk.gluon.models.imports import *
 
 
 class CNNVisualizer():

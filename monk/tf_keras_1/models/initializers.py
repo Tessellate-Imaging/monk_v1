@@ -1,5 +1,5 @@
-from tf_keras_1.models.imports import *
-from system.imports import *
+from monk.tf_keras_1.models.imports import *
+from monk.system.imports import *
 
 
 #@TraceFunction(trace_args=False, trace_rv=False)

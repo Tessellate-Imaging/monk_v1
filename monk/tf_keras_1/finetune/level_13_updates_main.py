@@ -1,7 +1,7 @@
-from tf_keras_1.finetune.imports import *
-from system.imports import *
+from monk.tf_keras_1.finetune.imports import *
+from monk.system.imports import *
 
-from tf_keras_1.finetune.level_12_losses_main import prototype_losses
+from monk.tf_keras_1.finetune.level_12_losses_main import prototype_losses
 
 
 class prototype_updates(prototype_losses):

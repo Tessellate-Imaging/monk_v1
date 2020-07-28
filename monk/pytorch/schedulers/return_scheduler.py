@@ -1,5 +1,5 @@
-from pytorch.schedulers.imports import *
-from system.imports import *
+from monk.pytorch.schedulers.imports import *
+from monk.system.imports import *
 
 
 @accepts(dict, post_trace=False)

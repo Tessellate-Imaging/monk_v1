@@ -1,7 +1,7 @@
-from gluon.finetune.imports import *
-from system.imports import *
+from monk.gluon.finetune.imports import *
+from monk.system.imports import *
 
-from gluon.finetune.level_11_optimizers_main import prototype_optimizers
+from monk.gluon.finetune.level_11_optimizers_main import prototype_optimizers
 
 
 class prototype_losses(prototype_optimizers):

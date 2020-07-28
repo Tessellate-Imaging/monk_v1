@@ -1,7 +1,7 @@
-from pytorch.finetune.imports import *
-from system.imports import *
+from monk.pytorch.finetune.imports import *
+from monk.system.imports import *
 
-from pytorch.finetune.level_12_losses_main import prototype_losses
+from monk.pytorch.finetune.level_12_losses_main import prototype_losses
 
 
 class prototype_updates(prototype_losses):

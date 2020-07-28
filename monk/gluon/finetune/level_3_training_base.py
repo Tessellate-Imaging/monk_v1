@@ -1,6 +1,6 @@
-from gluon.finetune.imports import *
-from system.imports import *
-from gluon.finetune.level_2_model_base import finetune_model
+from monk.gluon.finetune.imports import *
+from monk.system.imports import *
+from monk.gluon.finetune.level_2_model_base import finetune_model
 
 
 

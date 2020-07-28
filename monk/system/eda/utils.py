@@ -1,5 +1,5 @@
-from system.eda.imports import *
-from system.imports import *
+from monk.system.eda.imports import *
+from monk.system.imports import *
 
 
 @accepts(str, str, post_trace=False)

@@ -1,5 +1,5 @@
-from pytorch.models.imports import *
-from system.imports import *
+from monk.pytorch.models.imports import *
+from monk.system.imports import *
 
 
 @accepts(dict, int, post_trace=False)

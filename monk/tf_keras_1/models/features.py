@@ -1,4 +1,4 @@
-from tf_keras_1.models.imports import *
+from monk.tf_keras_1.models.imports import *
 
 
 class CNNVisualizer():

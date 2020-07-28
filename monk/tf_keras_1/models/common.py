@@ -1,6 +1,6 @@
-from tf_keras_1.models.imports import *
-from system.imports import *
-from tf_keras_1.models.layers import get_layer
+from monk.tf_keras_1.models.imports import *
+from monk.system.imports import *
+from monk.tf_keras_1.models.layers import get_layer
 
 
 

@@ -1,9 +1,9 @@
-from gluon.finetune.imports import *
-from system.imports import *
+from monk.gluon.finetune.imports import *
+from monk.system.imports import *
 
 
 
-from gluon.finetune.level_5_state_base import finetune_state
+from monk.gluon.finetune.level_5_state_base import finetune_state
 
 
 

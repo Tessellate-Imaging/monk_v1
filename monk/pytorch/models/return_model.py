@@ -1,11 +1,11 @@
-from pytorch.models.imports import *
-from system.imports import *
-from pytorch.models.models import *
-from pytorch.models.common import create_final_layer
-from pytorch.models.common import get_layer_uid
-from pytorch.models.layers import custom_model_get_layer
-from pytorch.models.layers import Net_Add
-from pytorch.models.layers import Net_Concat
+from monk.pytorch.models.imports import *
+from monk.system.imports import *
+from monk.pytorch.models.models import *
+from monk.pytorch.models.common import create_final_layer
+from monk.pytorch.models.common import get_layer_uid
+from monk.pytorch.models.layers import custom_model_get_layer
+from monk.pytorch.models.layers import Net_Add
+from monk.pytorch.models.layers import Net_Concat
 
 
 

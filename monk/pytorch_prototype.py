@@ -1,6 +1,6 @@
-from pytorch.finetune.imports import *
-from system.imports import *
-from pytorch.finetune.level_14_master_main import prototype_master
+from monk.pytorch.finetune.imports import *
+from monk.system.imports import *
+from monk.pytorch.finetune.level_14_master_main import prototype_master
 
 
 
@@ -450,7 +450,7 @@ class prototype(prototype_master):
         Returns:
             dict: Tabular data on training_accuracy, validation_accuracy, training_loss, validation_loss and training_time for each experiment.
         '''
-        from pytorch_prototype import prototype
+        from monk.pytorch_prototype import prototype
         
         project = analysis_name;
         self.custom_print("");
@@ -507,7 +507,7 @@ class prototype(prototype_master):
             
 
         self.custom_print("Comparing Experiments");
-        from compare_prototype import compare
+        from monk.compare_prototype import compare
 
         ctf_ = compare(verbose=0);
         ctf_.Comparison("Comparison_" + analysis_name);
@@ -598,7 +598,7 @@ class prototype(prototype_master):
         Returns:
             dict: Tabular data on training_accuracy, validation_accuracy, training_loss, validation_loss and training_time for each experiment.
         '''
-        from pytorch_prototype import prototype
+        from monk.pytorch_prototype import prototype
         
         project = analysis_name;
         self.custom_print("");
@@ -653,7 +653,7 @@ class prototype(prototype_master):
             
 
         self.custom_print("Comparing Experiments");
-        from compare_prototype import compare
+        from monk.compare_prototype import compare
 
         ctf_ = compare(verbose=0);
         ctf_.Comparison("Comparison_" + analysis_name);
@@ -744,7 +744,7 @@ class prototype(prototype_master):
         Returns:
             dict: Tabular data on training_accuracy, validation_accuracy, training_loss, validation_loss and training_time for each experiment.
         '''
-        from pytorch_prototype import prototype
+        from monk.pytorch_prototype import prototype
         
         project = analysis_name;
         self.custom_print("");
@@ -799,7 +799,7 @@ class prototype(prototype_master):
             
 
         self.custom_print("Comparing Experiments");
-        from compare_prototype import compare
+        from monk.compare_prototype import compare
 
         ctf_ = compare(verbose=0);
         ctf_.Comparison("Comparison_" + analysis_name);
@@ -893,7 +893,7 @@ class prototype(prototype_master):
         Returns:
             dict: Tabular data on training_accuracy, validation_accuracy, training_loss, validation_loss and training_time for each experiment.
         '''
-        from pytorch_prototype import prototype
+        from monk.pytorch_prototype import prototype
         
         project = analysis_name;
         self.custom_print("");
@@ -958,7 +958,7 @@ class prototype(prototype_master):
             
 
         self.custom_print("Comparing Experiments");
-        from compare_prototype import compare
+        from monk.compare_prototype import compare
 
         ctf_ = compare(verbose=0);
         ctf_.Comparison("Comparison_" + analysis_name);
@@ -1057,7 +1057,7 @@ class prototype(prototype_master):
         Returns:
             dict: Tabular data on training_accuracy, validation_accuracy, training_loss, validation_loss and training_time for each experiment.
         '''
-        from pytorch_prototype import prototype
+        from monk.pytorch_prototype import prototype
         
         project = analysis_name;
         self.custom_print("");
@@ -1136,7 +1136,7 @@ class prototype(prototype_master):
             
 
         self.custom_print("Comparing Experiments");
-        from compare_prototype import compare
+        from monk.compare_prototype import compare
 
         ctf_ = compare(verbose=0);
         ctf_.Comparison("Comparison_" + analysis_name);
@@ -1225,7 +1225,7 @@ class prototype(prototype_master):
         Returns:
             dict: Tabular data on training_accuracy, validation_accuracy, training_loss, validation_loss and training_time for each experiment.
         '''
-        from pytorch_prototype import prototype
+        from monk.pytorch_prototype import prototype
         
         project = analysis_name;
         self.custom_print("");
@@ -1282,7 +1282,7 @@ class prototype(prototype_master):
             
 
         self.custom_print("Comparing Experiments");
-        from compare_prototype import compare
+        from monk.compare_prototype import compare
 
         ctf_ = compare(verbose=0);
         ctf_.Comparison("Comparison_" + analysis_name);
@@ -1372,7 +1372,7 @@ class prototype(prototype_master):
             dict: Tabular data on training_accuracy, validation_accuracy, training_loss, validation_loss and training_time for each experiment.
         '''
 
-        from pytorch_prototype import prototype
+        from monk.pytorch_prototype import prototype
         
         project = analysis_name;
         self.custom_print("");
@@ -1429,7 +1429,7 @@ class prototype(prototype_master):
             
 
         self.custom_print("Comparing Experiments");
-        from compare_prototype import compare
+        from monk.compare_prototype import compare
 
         ctf_ = compare(verbose=0);
         ctf_.Comparison("Comparison_" + analysis_name);
@@ -1519,7 +1519,7 @@ class prototype(prototype_master):
             dict: Tabular data on training_accuracy, validation_accuracy, training_loss, validation_loss and training_time for each experiment.
         '''
 
-        from pytorch_prototype import prototype
+        from monk.pytorch_prototype import prototype
         
         project = analysis_name;
         self.custom_print("");
@@ -1598,7 +1598,7 @@ class prototype(prototype_master):
             
 
         self.custom_print("Comparing Experiments");
-        from compare_prototype import compare
+        from monk.compare_prototype import compare
 
         ctf_ = compare(verbose=0);
         ctf_.Comparison("Comparison_" + analysis_name);

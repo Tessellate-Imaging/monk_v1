@@ -1,7 +1,7 @@
 import math
-from gluon.finetune.imports import *
-from system.imports import *
-from gluon.finetune.level_7_aux_main import prototype_aux
+from monk.gluon.finetune.imports import *
+from monk.system.imports import *
+from monk.gluon.finetune.level_7_aux_main import prototype_aux
 
 
 class prototype_layers(prototype_aux):

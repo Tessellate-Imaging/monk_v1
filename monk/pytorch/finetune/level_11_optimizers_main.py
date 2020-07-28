@@ -1,7 +1,7 @@
-from pytorch.finetune.imports import *
-from system.imports import *
+from monk.pytorch.finetune.imports import *
+from monk.system.imports import *
 
-from pytorch.finetune.level_10_schedulers_main import prototype_schedulers
+from monk.pytorch.finetune.level_10_schedulers_main import prototype_schedulers
 
 
 class prototype_optimizers(prototype_schedulers):

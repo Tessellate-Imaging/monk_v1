@@ -1,4 +1,4 @@
-from system.imports import *
+from monk.system.imports import *
 
 
 @accepts(post_trace=False)

@@ -1,9 +1,9 @@
-from tf_keras_1.models.imports import *
-from system.imports import *
-from tf_keras_1.models.models import *
-from tf_keras_1.models.common import create_final_layer
-from tf_keras_1.models.common import get_layer_uid
-from tf_keras_1.models.layers import custom_model_get_layer
+from monk.tf_keras_1.models.imports import *
+from monk.system.imports import *
+from monk.tf_keras_1.models.models import *
+from monk.tf_keras_1.models.common import create_final_layer
+from monk.tf_keras_1.models.common import get_layer_uid
+from monk.tf_keras_1.models.layers import custom_model_get_layer
 
 
 

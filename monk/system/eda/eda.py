@@ -1,7 +1,7 @@
-from system.eda.imports import *
-from system.eda.utils import *
-from system.graphs.bar import create_plot
-from system.imports import *
+from monk.system.eda.imports import *
+from monk.system.eda.utils import *
+from monk.system.graphs.bar import create_plot
+from monk.system.imports import *
 
 
 @accepts(dict, bool, bool, post_trace=False)

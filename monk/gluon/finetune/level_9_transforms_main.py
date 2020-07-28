@@ -1,7 +1,7 @@
-from gluon.finetune.imports import *
-from system.imports import *
+from monk.gluon.finetune.imports import *
+from monk.system.imports import *
 
-from gluon.finetune.level_8_layers_main import prototype_layers
+from monk.gluon.finetune.level_8_layers_main import prototype_layers
 
 
 class prototype_transforms(prototype_layers):

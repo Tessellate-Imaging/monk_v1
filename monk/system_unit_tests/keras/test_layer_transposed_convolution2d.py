@@ -1,5 +1,6 @@
 import os
 import sys
+sys.path.append("../../../../monk_v1/");
 sys.path.append("../../../monk/");
 import psutil
 
@@ -9,6 +10,9 @@ from common import print_start
 from common import print_status
 
 import tensorflow as tf
+if(tf.__version__[0] == '2'):
+    import tensorflow.compat.v1 as tf
+    tf.disable_v2_behavior()
 import numpy as np
 
 

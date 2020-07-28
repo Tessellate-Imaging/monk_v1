@@ -1,6 +1,6 @@
-from tf_keras_1.transforms.imports import *
-from tf_keras_1.transforms.common import set_transforms
-from system.imports import *
+from monk.tf_keras_1.transforms.imports import *
+from monk.tf_keras_1.transforms.common import set_transforms
+from monk.system.imports import *
 
 
 @accepts(dict, post_trace=False)

@@ -1,5 +1,5 @@
-from tf_keras_1.optimizers.imports import *
-from system.imports import *
+from monk.tf_keras_1.optimizers.imports import *
+from monk.system.imports import *
 
 @accepts(dict, [int, float], momentum=[int, float], momentum_dampening_rate=[int, float], weight_decay=[int, float], 
     clipnorm=[int, float], clipvalue=[int, float], post_trace=False)

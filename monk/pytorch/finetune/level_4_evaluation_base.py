@@ -1,7 +1,7 @@
-from pytorch.finetune.imports import *
-from system.imports import *
+from monk.pytorch.finetune.imports import *
+from monk.system.imports import *
 
-from pytorch.finetune.level_3_training_base import finetune_training
+from monk.pytorch.finetune.level_3_training_base import finetune_training
 
 
 class finetune_evaluation(finetune_training):

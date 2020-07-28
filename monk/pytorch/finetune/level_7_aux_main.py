@@ -1,7 +1,7 @@
-from pytorch.finetune.imports import *
-from system.imports import *
+from monk.pytorch.finetune.imports import *
+from monk.system.imports import *
 
-from pytorch.finetune.level_6_params_main import prototype_params
+from monk.pytorch.finetune.level_6_params_main import prototype_params
 
 
 class prototype_aux(prototype_params):

@@ -1,7 +1,7 @@
-from pytorch.finetune.imports import *
-from system.imports import *
+from monk.pytorch.finetune.imports import *
+from monk.system.imports import *
 
-from pytorch.finetune.level_13_updates_main import prototype_updates
+from monk.pytorch.finetune.level_13_updates_main import prototype_updates
 
 
 

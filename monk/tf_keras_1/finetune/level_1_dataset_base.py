@@ -1,7 +1,7 @@
-from system.imports import *
-from tf_keras_1.finetune.imports import *
+from monk.system.imports import *
+from monk.tf_keras_1.finetune.imports import *
 
-from system.base_class import system
+from monk.system.base_class import system
 
 
 class finetune_dataset(system):

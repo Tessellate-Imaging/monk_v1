@@ -1,6 +1,6 @@
-from tf_keras_1.finetune.imports import *
-from system.imports import *
-from tf_keras_1.finetune.level_2_model_base import finetune_model
+from monk.tf_keras_1.finetune.imports import *
+from monk.system.imports import *
+from monk.tf_keras_1.finetune.level_2_model_base import finetune_model
 
 
 

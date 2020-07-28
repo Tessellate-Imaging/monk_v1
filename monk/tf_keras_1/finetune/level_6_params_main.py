@@ -1,7 +1,7 @@
-from tf_keras_1.finetune.imports import *
-from system.imports import *
+from monk.tf_keras_1.finetune.imports import *
+from monk.system.imports import *
 
-from tf_keras_1.finetune.level_5_state_base import finetune_state
+from monk.tf_keras_1.finetune.level_5_state_base import finetune_state
 
 class prototype_params(finetune_state):
     @accepts("self", verbose=int, post_trace=False)

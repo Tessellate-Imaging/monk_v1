@@ -1,7 +1,7 @@
-from gluon.finetune.imports import *
-from system.imports import *
+from monk.gluon.finetune.imports import *
+from monk.system.imports import *
 
-from gluon.finetune.level_3_training_base import finetune_training
+from monk.gluon.finetune.level_3_training_base import finetune_training
 
 
 class finetune_evaluation(finetune_training):

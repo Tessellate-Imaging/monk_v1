@@ -1,7 +1,7 @@
-from tf_keras_1.finetune.imports import *
-from system.imports import *
+from monk.tf_keras_1.finetune.imports import *
+from monk.system.imports import *
 
-from tf_keras_1.finetune.level_4_evaluation_base import finetune_evaluation
+from monk.tf_keras_1.finetune.level_4_evaluation_base import finetune_evaluation
 
 class finetune_state(finetune_evaluation):
     '''

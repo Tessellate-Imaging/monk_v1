@@ -1,6 +1,6 @@
-from gluon.transforms.imports import *
-from gluon.transforms.common import set_transforms
-from system.imports import *
+from monk.gluon.transforms.imports import *
+from monk.gluon.transforms.common import set_transforms
+from monk.system.imports import *
 
 
 @accepts(dict, post_trace=False)

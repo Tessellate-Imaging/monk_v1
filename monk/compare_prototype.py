@@ -1,14 +1,14 @@
 #Import Necessary Functions
-from system.imports import *
-from system.base_class import system
-from system.common import read_json
-from system.graphs.line import training_accuracy_curve
-from system.graphs.line import validation_accuracy_curve
-from system.graphs.line import training_loss_curve
-from system.graphs.line import validation_loss_curve
-from system.graphs.bar import training_time_plot
-from system.graphs.bar import max_accuracy_plot
-from system.graphs.bar import max_gpu_usage_plot
+from monk.system.imports import *
+from monk.system.base_class import system
+from monk.system.common import read_json
+from monk.system.graphs.line import training_accuracy_curve
+from monk.system.graphs.line import validation_accuracy_curve
+from monk.system.graphs.line import training_loss_curve
+from monk.system.graphs.line import validation_loss_curve
+from monk.system.graphs.bar import training_time_plot
+from monk.system.graphs.bar import max_accuracy_plot
+from monk.system.graphs.bar import max_gpu_usage_plot
 
 
 

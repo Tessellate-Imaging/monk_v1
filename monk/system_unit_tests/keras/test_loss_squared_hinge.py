@@ -1,9 +1,10 @@
 import os
 import sys
+sys.path.append("../../../../monk_v1/");
 sys.path.append("../../../monk/");
 import psutil
 
-from gluon_prototype import prototype
+from keras_prototype import prototype
 from compare_prototype import compare
 from common import print_start
 from common import print_status
@@ -12,6 +13,10 @@ import numpy as np
 from tf_keras_1.losses.return_loss import load_loss
 from keras import backend as K
 
+import tensorflow as tf
+if(tf.__version__[0] == '2'):
+    import tensorflow.compat.v1 as tf
+    tf.enable_v2_behavior()
 
 def test_loss_squared_hinge(system_dict):
     forward = True;

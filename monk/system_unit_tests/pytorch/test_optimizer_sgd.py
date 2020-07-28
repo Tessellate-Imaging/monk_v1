@@ -1,5 +1,6 @@
 import os
 import sys
+sys.path.append("../../../../monk_v1/");
 sys.path.append("../../../monk/");
 import psutil
 
@@ -11,6 +12,9 @@ from common import print_status
 
 def test_optimizer_sgd(system_dict):
     forward = True;
+    if(not os.path.isdir("datasets")):
+        os.system("! wget --load-cookies /tmp/cookies.txt \"https://docs.google.com/uc?export=download&confirm=$(wget --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1rG-U1mS8hDU7_wM56a1kc-li_zHLtbq2' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1rG-U1mS8hDU7_wM56a1kc-li_zHLtbq2\" -O datasets.zip && rm -rf /tmp/cookies.txt")
+        os.system("! unzip -qq datasets.zip")
 
     test = "test_optimizer_sgd";
     system_dict["total_tests"] += 1;

@@ -1,4 +1,4 @@
-from pytorch.models.imports import *
+from monk.pytorch.models.imports import *
 
 class CNNVisualizer():
   '''

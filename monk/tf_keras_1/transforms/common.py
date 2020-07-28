@@ -1,13 +1,13 @@
-from tf_keras_1.transforms.imports import *
-from system.imports import *
+from monk.tf_keras_1.transforms.imports import *
+from monk.system.imports import *
 
-from tf_keras_1.transforms.transforms import transform_color_jitter
-from tf_keras_1.transforms.transforms import transform_random_affine
-from tf_keras_1.transforms.transforms import transform_random_horizontal_flip
-from tf_keras_1.transforms.transforms import transform_random_rotation
-from tf_keras_1.transforms.transforms import transform_random_vertical_flip
-from tf_keras_1.transforms.transforms import transform_mean_subtraction
-from tf_keras_1.transforms.transforms import transform_normalize
+from monk.tf_keras_1.transforms.transforms import transform_color_jitter
+from monk.tf_keras_1.transforms.transforms import transform_random_affine
+from monk.tf_keras_1.transforms.transforms import transform_random_horizontal_flip
+from monk.tf_keras_1.transforms.transforms import transform_random_rotation
+from monk.tf_keras_1.transforms.transforms import transform_random_vertical_flip
+from monk.tf_keras_1.transforms.transforms import transform_mean_subtraction
+from monk.tf_keras_1.transforms.transforms import transform_normalize
 
 
 

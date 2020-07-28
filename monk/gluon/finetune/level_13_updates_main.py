@@ -1,7 +1,7 @@
-from gluon.finetune.imports import *
-from system.imports import *
+from monk.gluon.finetune.imports import *
+from monk.system.imports import *
 
-from gluon.finetune.level_12_losses_main import prototype_losses
+from monk.gluon.finetune.level_12_losses_main import prototype_losses
 
 
 class prototype_updates(prototype_losses):

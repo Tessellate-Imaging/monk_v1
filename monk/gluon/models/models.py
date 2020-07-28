@@ -1,6 +1,6 @@
-from gluon.models.imports import *
-from system.imports import *
-from gluon.models.common import set_parameter_requires_grad
+from monk.gluon.models.imports import *
+from monk.system.imports import *
+from monk.gluon.models.common import set_parameter_requires_grad
 
 
 

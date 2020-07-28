@@ -1,5 +1,5 @@
-from gluon.datasets.imports import *
-from system.imports import *
+from monk.gluon.datasets.imports import *
+from monk.system.imports import *
 
 
 @accepts([int, tuple], dict, post_trace=False)

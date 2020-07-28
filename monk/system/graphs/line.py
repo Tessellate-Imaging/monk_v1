@@ -1,5 +1,5 @@
-from system.graphs.imports import *
-from system.imports import * 
+from monk.system.graphs.imports import *
+from monk.system.imports import * 
 
 
 @accepts([list, type(np.array([1, 2]))], [list, type(np.array([1, 2]))], str, show_img=bool, save_img=bool, post_trace=False)

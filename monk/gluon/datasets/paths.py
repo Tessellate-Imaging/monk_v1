@@ -1,5 +1,5 @@
-from gluon.datasets.imports import *
-from system.imports import *
+from monk.gluon.datasets.imports import *
+from monk.system.imports import *
 
 
 @accepts(dict, [str, list, bool], [float, int, bool], [str, list, bool], str, post_trace=False)

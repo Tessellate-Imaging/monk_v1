@@ -1,5 +1,5 @@
-from pytorch.datasets.imports import *
-from system.imports import *
+from monk.pytorch.datasets.imports import *
+from monk.system.imports import *
 
 
 @accepts(list, int, post_trace=False)

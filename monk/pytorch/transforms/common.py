@@ -1,17 +1,17 @@
-from pytorch.transforms.imports import *
-from system.imports import *
-from pytorch.transforms.transforms import transform_center_crop
-from pytorch.transforms.transforms import transform_color_jitter
-from pytorch.transforms.transforms import transform_random_affine
-from pytorch.transforms.transforms import transform_random_crop
-from pytorch.transforms.transforms import transform_random_horizontal_flip
-from pytorch.transforms.transforms import transform_random_perspective
-from pytorch.transforms.transforms import transform_random_resized_crop
-from pytorch.transforms.transforms import transform_grayscale
-from pytorch.transforms.transforms import transform_random_rotation
-from pytorch.transforms.transforms import transform_random_vertical_flip
-from pytorch.transforms.transforms import transform_resize
-from pytorch.transforms.transforms import transform_normalize
+from monk.pytorch.transforms.imports import *
+from monk.system.imports import *
+from monk.pytorch.transforms.transforms import transform_center_crop
+from monk.pytorch.transforms.transforms import transform_color_jitter
+from monk.pytorch.transforms.transforms import transform_random_affine
+from monk.pytorch.transforms.transforms import transform_random_crop
+from monk.pytorch.transforms.transforms import transform_random_horizontal_flip
+from monk.pytorch.transforms.transforms import transform_random_perspective
+from monk.pytorch.transforms.transforms import transform_random_resized_crop
+from monk.pytorch.transforms.transforms import transform_grayscale
+from monk.pytorch.transforms.transforms import transform_random_rotation
+from monk.pytorch.transforms.transforms import transform_random_vertical_flip
+from monk.pytorch.transforms.transforms import transform_resize
+from monk.pytorch.transforms.transforms import transform_normalize
 
 
 

@@ -1,6 +1,6 @@
-from pytorch.finetune.imports import *
-from system.imports import *
-from pytorch.finetune.level_1_dataset_base import finetune_dataset
+from monk.pytorch.finetune.imports import *
+from monk.system.imports import *
+from monk.pytorch.finetune.level_1_dataset_base import finetune_dataset
 
 
 class finetune_model(finetune_dataset):

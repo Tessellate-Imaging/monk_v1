@@ -1,7 +1,7 @@
-from gluon.finetune.imports import *
-from system.imports import *
+from monk.gluon.finetune.imports import *
+from monk.system.imports import *
 
-from gluon.finetune.level_4_evaluation_base import finetune_evaluation
+from monk.gluon.finetune.level_4_evaluation_base import finetune_evaluation
 
 
 

@@ -1,16 +1,19 @@
 import os
 import sys
+sys.path.append("../../../../monk_v1/");
 sys.path.append("../../../monk/");
 import psutil
 
-from pytorch_prototype import prototype
+from keras_prototype import prototype
 from compare_prototype import compare
 from common import print_start
 from common import print_status
 
-import torch
+import tensorflow as tf
+if(tf.__version__[0] == '2'):
+    import tensorflow.compat.v1 as tf
+    tf.disable_v2_behavior()
 import numpy as np
-from pytorch.losses.return_loss import load_loss
 
 
 def test_block_resnet_v1(system_dict):
@@ -30,7 +33,7 @@ def test_block_resnet_v1(system_dict):
             network.append(gtf.resnet_v1_block(output_channels=32, stride=1, downsample=False));
             gtf.Compile_Network(network, data_shape=(1, 64, 64), use_gpu=False);
 
-            x = torch.randn(1, 1, 64, 64);
+            x = tf.placeholder(tf.float32, shape=(1, 64, 64, 1))
             y = gtf.system_dict["local"]["model"](x);         
 
             system_dict["successful_tests"] += 1;

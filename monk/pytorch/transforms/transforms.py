@@ -1,5 +1,5 @@
-from pytorch.transforms.imports import *
-from system.imports import *
+from monk.pytorch.transforms.imports import *
+from monk.system.imports import *
 
 
 
