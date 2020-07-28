@@ -1,5 +1,5 @@
 ## [Monk - A computer vision toolkit for everyone](https://monkai.org/) [![Tweet](https://img.shields.io/twitter/url/https/github.com/tterb/hyde.svg?style=social)](http://twitter.com/share?text=Check%20out%20Monk:%20An%20Open%20Source%20Unified%20Wrapper%20for%20Computer%20Vision&url=https://github.com/Tessellate-Imaging/monk_v1&hashtags=MonkAI,OpenSource,UnifiedWrapper,DeepLEarning,ComputerVision,TessellateImaging) [![](http://hits.dwyl.io/Tessellate-Imaging/monk_v1.svg)](http://hits.dwyl.io/Tessellate-Imaging/monk_v1)  ![](https://tokei.rs/b1/github/Tessellate-Imaging/monk_v1) ![](https://tokei.rs/b1/github/Tessellate-Imaging/monk_v1?category=files) 
-[![Version](https://img.shields.io/badge/version-v1.0-darkgreen)](https://github.com/Tessellate-Imaging/monk_v1) [![Build_Status](https://img.shields.io/badge/build-passing-darkgreen)](https://github.com/Tessellate-Imaging/monk_v1)
+[![Version](https://img.shields.io/badge/version-v0.0.1-darkgreen)](https://github.com/Tessellate-Imaging/monk_v1) [![Build_Status](https://img.shields.io/badge/build-passing-darkgreen)](https://github.com/Tessellate-Imaging/monk_v1)
  
 <br />
 
