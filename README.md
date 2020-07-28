@@ -210,6 +210,13 @@ For More Installation instructions visit: [Link](https://github.com/Tessellate-I
 - [ ] Intel Acceleration
 - [ ] Echo AI - for Activation functions
 
+<br />
+<br />
+
+### Connect with the project [contributors](https://github.com/Tessellate-Imaging/monk_v1/blob/master/Contributors.md)
+
+<br />
+<br />
 
 ## Copyright
 
