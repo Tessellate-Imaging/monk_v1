@@ -26,6 +26,14 @@
     <td><img src="https://github.com/abhi-kumar/monk_cls_demos/blob/master/cls-oregon-wildlife-species-demo.gif" width=320 height=240></td>
     <td><img src="https://github.com/abhi-kumar/monk_cls_demos/blob/master/cls-groceries-demo.gif" width=320 height=240></td>
   </tr>
+  <tr>
+    <td>Satellite Domain</td>
+    <td>Healthcare Domain</td>
+    <td>Activity Analysis Domain</td>
+  </tr>
+    <td><img src="https://github.com/abhi-kumar/monk_cls_demos/blob/master/cls-land-usage-demo.gif" width=320 height=240></td>
+    <td><img src="https://github.com/abhi-kumar/monk_cls_demos/blob/master/cls-mask-demo.gif" width=320 height=240></td>
+    <td><img src="https://github.com/abhi-kumar/monk_cls_demos/blob/master/cls-yoga82-demo.gif" width=320 height=240></td>
  </table>
 
 #### ...... And much more!!!!
