@@ -1,4 +1,109 @@
-# Installation Instructions
+## PIP Installation Instructions (Recommended)
+
+<br />
+
+### Complete Set
+  - **CPU** (Non GPU)&nbsp;: `pip install -U monk-cpu`
+  - **CUDA 9.0** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-cuda90`
+  - **CUDA 9.0** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-cuda92`
+  - **CUDA 10.0** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-cuda100`
+  - **CUDA 10.1** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-cuda101`
+  - **CUDA 10.2** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-cuda102`
+  - **Google Colab** &nbsp;&nbsp;: `pip install -U monk-colab`
+  - **Kaggle** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-kaggle`
+
+<br />
+<br />
+
+### Only Mxnet-Gluon Backend
+  - **CPU** (Non GPU)&nbsp;: `pip install -U monk-gluon-cpu`
+  - **CUDA 9.0** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-gluon-cuda90`
+  - **CUDA 9.0** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-gluon-cuda92`
+  - **CUDA 10.0** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-gluon-cuda100`
+  - **CUDA 10.1** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-gluon-cuda101`
+  - **CUDA 10.2** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-gluon-cuda102`
+  - **Google Colab** &nbsp;&nbsp;: `pip install -U monk-gluon-colab`
+  - **Kaggle** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-gluon-kaggle`
+
+
+<br />
+<br />
+
+### Only Pytorch Backend
+  - **CPU** (Non GPU)&nbsp;: `pip install -U monk-pytorch-cpu`
+  - **CUDA 9.0** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-pytorch-cuda90`
+  - **CUDA 9.0** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-pytorch-cuda92`
+  - **CUDA 10.0** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-pytorch-cuda100`
+  - **CUDA 10.1** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-pytorch-cuda101`
+  - **CUDA 10.2** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-pytorch-cuda102`
+  - **Google Colab** &nbsp;&nbsp;: `pip install -U monk-pytorch-colab`
+  - **Kaggle** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-pytorch-kaggle`
+  
+
+<br />
+<br />
+
+### Only Keras Backend
+  - **CPU** (Non GPU)&nbsp;: `pip install -U monk-keras-cpu`
+  - **CUDA 9.0** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-keras-cuda90`
+  - **CUDA 9.0** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-keras-cuda92`
+  - **CUDA 10.0** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-keras-cuda100`
+  - **CUDA 10.1** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-keras-cuda101`
+  - **CUDA 10.2** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-keras-cuda102`
+  - **Google Colab** &nbsp;&nbsp;: `pip install -U monk-keras-colab`
+  - **Kaggle** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: `pip install -U monk-keras-kaggle`
+
+
+<br />
+<br />
+
+### Run the following python snippets to check installation (Optional)
+
+```python
+# Unit tests for gluon backend
+from monk.gluon_tests import run_unit_tests
+run_unit_tests()
+```
+
+```python
+# Unit tests for pytorch backend
+from monk.pytorch_tests import run_unit_tests
+run_unit_tests()
+```
+
+```python
+# Unit tests for keras backend
+from monk.keras_tests import run_unit_tests
+run_unit_tests()
+```
+
+```python
+# System functionality tests for gluon backend
+from monk.gluon_tests import run_functionality_tests
+run_functionality_tests()
+```
+
+```python
+# System functionality tests for pytorch backend
+from monk.pytorch_tests import run_functionality_tests
+run_functionality_tests()
+```
+
+```python
+# System functionality tests for keras backend
+from monk.keras_tests import run_functionality_tests
+run_functionality_tests()
+```
+
+
+
+
+<br />
+<br />
+<br />
+
+# Manually installing the library (Not Recommended)
+
 
 Note: 
   
