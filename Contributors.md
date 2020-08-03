@@ -50,3 +50,5 @@ Tutorial and blog contributors
 10) Rohit Lal [Linkedin](https://www.linkedin.com/in/rohit-lal/), [Github](https://github.com/take2rohit) 
 
 11) Shubham Gupta [Linkedin](https://www.linkedin.com/in/shubham-gupta-gim/), [Github]() 
+
+12) Vidya P [Linkedin](https://www.linkedin.com/in/vidyapb/), [Github](https://github.com/vidyap-xgboost)
