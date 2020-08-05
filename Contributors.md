@@ -26,6 +26,8 @@ Interns
 
 5) Avishree Khare [Linkedin](https://www.linkedin.com/in/avishreekh/), [Github](https://github.com/avishreekh) 
   - May 2020 - Present
+  
+6) Rohit Verma [Linkedin](https://www.linkedin.com/in/rohit96/), [Github](https://github.com/rohit0906)
 
 
 Tutorial and blog contributors
