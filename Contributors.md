@@ -28,6 +28,10 @@ Interns
   - May 2020 - Present
   
 6) Rohit Verma [Linkedin](https://www.linkedin.com/in/rohit96/), [Github](https://github.com/rohit0906)
+  - Aug 2020 - Present
+  
+7) Aanisha Bhattacharyya [Linkedin](https://www.linkedin.com/in/aanisha-bhattacharyya/), [Github](https://github.com/Aanisha)
+  - Aug 2020 - Present
 
 
 Tutorial and blog contributors
