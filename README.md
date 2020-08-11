@@ -36,7 +36,7 @@
     <td><img src="https://github.com/abhi-kumar/monk_cls_demos/blob/master/cls-yoga82-demo.gif" width=320 height=240></td>
  </table>
 
-#### ...... And much more!!!!
+### ...... For more check out the [Application Model Zoo](https://github.com/Tessellate-Imaging/monk_v1/tree/master/study_roadmaps/4_image_classification_zoo)!!!! 
 
 <br />
 <br />
