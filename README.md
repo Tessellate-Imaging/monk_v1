@@ -4,6 +4,26 @@
 <br />
 
 
+### Why use Monk
+ - Issue: Want to begin learning computer vision
+   - <b> Solution: Start with Monk's hands-on study roadmap tutorials</b>
+   
+ - Issue: Multiple libraries hence multiple syntaxes to learn
+   - <b> Solution: Monk's one syntax to rule them all - pytorch, keras, mxnet, etc </b>
+ 
+ - Issue: Tough to keep track of all the trial projects while participating in a deep learning competition
+   - <b> Solution: Use monk's project management and run develop multiple prototyping experiments</b>
+ 
+ - Issue: Tough to set hyper-parameters while training a classifier
+   - <b> Solution: Try out hyper-parameter analyser to find the right fit </b>
+ 
+ - Issue: Looking for a library to build quick solutions for your customer
+   - <b> Solution: Train, Infer and deploy with monk's low-code syntax </b>
+   
+<br />
+<br />
+
+
 ## Create real-world Image Classification applications 
 <table>
   <tr>
