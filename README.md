@@ -12,7 +12,7 @@
    - <b> Solution: Monk's one syntax to rule them all - pytorch, keras, mxnet, etc </b>
  
  - Issue: Tough to keep track of all the trial projects while participating in a deep learning competition
-   - <b> Solution: Use monk's project management and run develop multiple prototyping experiments</b>
+   - <b> Solution: Use monk's project management and work on multiple prototyping experiments</b>
  
  - Issue: Tough to set hyper-parameters while training a classifier
    - <b> Solution: Try out hyper-parameter analyser to find the right fit </b>
