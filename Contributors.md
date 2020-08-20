@@ -32,6 +32,9 @@ Interns
   
 7) Aanisha Bhattacharyya [Linkedin](https://www.linkedin.com/in/aanisha-bhattacharyya/), [Github](https://github.com/Aanisha)
   - Aug 2020 - Present
+  
+8) Sanskar Jain [Linkedin](https://www.linkedin.com/in/sanskar-jain-018220195/), [Github](https://github.com/Sanskar329)
+  - Aug 2020 - Present
 
 
 Tutorial and blog contributors
