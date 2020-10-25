@@ -25,7 +25,7 @@ Interns
   - Mar 2020 - Present
 
 5) Avishree Khare [Linkedin](https://www.linkedin.com/in/avishreekh/), [Github](https://github.com/avishreekh) 
-  - May 2020 - Present
+  - May 2020 - Aug 2020
   
 6) Rohit Verma [Linkedin](https://www.linkedin.com/in/rohit96/), [Github](https://github.com/rohit0906)
   - Aug 2020 - Present
@@ -34,6 +34,9 @@ Interns
   - Aug 2020 - Present
   
 8) Sanskar Jain [Linkedin](https://www.linkedin.com/in/sanskar-jain-018220195/), [Github](https://github.com/Sanskar329)
+  - Aug 2020 - Present
+  
+9) Piyush Maheshwari [Linkedin](https://www.linkedin.com/in/piyushmaheshwari1/), [Github](https://github.com/PiyushM1)
   - Aug 2020 - Present
 
 
