@@ -2,7 +2,7 @@ scipy
 scikit-learn 
 scikit-image 
 opencv-python 
-pillow==6.0.0
+pillow==8.1.1
 tqdm 
 gpustat 
 psutil 
