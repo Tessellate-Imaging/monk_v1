@@ -64,3 +64,5 @@ Tutorial and blog contributors
 11) Shubham Gupta [Linkedin](https://www.linkedin.com/in/shubham-gupta-gim/), [Github]() 
 
 12) Vidya P [Linkedin](https://www.linkedin.com/in/vidyapb/), [Github](https://github.com/vidyap-xgboost)
+
+13) Sankeerthan Reddy [LinkedIn](https://www.linkedin.com/in/r-sankeerthan-38a47115b/), [GitHub](https://github.com/ratnasankeerthanreddy)
