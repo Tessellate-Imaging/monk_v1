@@ -11,7 +11,7 @@ GPUtil
 pylg
 torch==1.2.0 
 torchvision==0.4.0 
-tensorflow==1.12.0 
+tensorflow==2.7.2 
 keras==2.2.5 
 mxnet==1.5.0
 gluoncv==0.5
